@@ -1,0 +1,32 @@
+.contact-layout {
+  display: grid;
+  gap: var(--space-6);
+}
+
+.contact-copy {
+  display: grid;
+  gap: var(--space-5);
+}
+
+.contact-form-card {
+  display: grid;
+  gap: var(--space-5);
+}
+
+.form-status {
+  margin: 0;
+  padding: 0.9rem 1rem;
+  border: 1px solid rgba(27, 45, 95, 0.16);
+  border-radius: 16px;
+  background: rgba(238, 242, 255, 0.8);
+  color: var(--color-primary);
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+@media (min-width: 1024px) {
+  .contact-layout {
+    grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+    align-items: start;
+  }
+}

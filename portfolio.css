@@ -1,0 +1,37 @@
+.portfolio-hero {
+  display: grid;
+  gap: var(--space-6);
+}
+
+.portfolio-panels {
+  display: grid;
+  gap: var(--space-8);
+}
+
+.portfolio-panel {
+  display: grid;
+  gap: var(--space-6);
+}
+
+.education-grid,
+.skills-grid {
+  display: grid;
+  gap: var(--space-5);
+}
+
+.cert-layout {
+  display: grid;
+  gap: var(--space-8);
+}
+
+.cert-group__copy {
+  margin: 0;
+  color: var(--color-text-muted);
+}
+
+@media (min-width: 768px) {
+  .education-grid,
+  .skills-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}

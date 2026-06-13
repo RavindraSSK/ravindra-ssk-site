@@ -1,0 +1,124 @@
+.explore-hero {
+  display: grid;
+  gap: var(--space-6);
+}
+
+.explore-grid {
+  display: grid;
+  gap: var(--space-5);
+}
+
+.explore-card {
+  position: relative;
+  overflow: hidden;
+  min-height: 280px;
+}
+
+.explore-card__accent {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 6px;
+  border-radius: 20px 0 0 20px;
+}
+
+.explore-card__head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-4);
+}
+
+.explore-card__symbol {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 16px;
+  color: #ffffff;
+}
+
+.explore-card__label {
+  margin: 0;
+  color: var(--color-text-faint);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.explore-card--blog .explore-card__accent,
+.explore-card--blog .explore-card__symbol {
+  background: #92400e;
+}
+
+.explore-card--photo .explore-card__accent,
+.explore-card--photo .explore-card__symbol {
+  background: #14532d;
+}
+
+.explore-card--fitness .explore-card__accent,
+.explore-card--fitness .explore-card__symbol {
+  background: #9f1239;
+}
+
+.explore-card--music .explore-card__accent,
+.explore-card--music .explore-card__symbol {
+  background: #4c1d95;
+}
+
+.content-hero {
+  display: grid;
+  gap: var(--space-6);
+}
+
+.content-grid,
+.gallery-grid {
+  display: grid;
+  gap: var(--space-5);
+}
+
+.gallery-card__frame {
+  aspect-ratio: 4 / 3;
+  border-radius: 16px;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.82), rgba(238, 242, 255, 0.72)),
+    var(--color-surface-alt);
+  border: 1px dashed rgba(27, 45, 95, 0.18);
+}
+
+@media (min-width: 768px) {
+  .explore-grid,
+  .content-grid,
+  .gallery-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .explore-grid {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+  }
+
+  .explore-card--blog {
+    grid-column: span 6;
+  }
+
+  .explore-card--photo,
+  .explore-card--fitness {
+    grid-column: span 3;
+  }
+
+  .explore-card--music {
+    grid-column: span 6;
+  }
+
+  .content-hero {
+    grid-template-columns: minmax(0, 1.1fr) minmax(280px, 0.9fr);
+    align-items: start;
+  }
+
+  .content-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}

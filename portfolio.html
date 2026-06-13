@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Portfolio | Ravindra</title>
+    <meta
+      name="description"
+      content="Portfolio of Ravindra, including projects, research experience, education, skills, and certifications."
+    >
+    <link rel="preconnect" href="https://api.fontshare.com">
+    <link
+      href="https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@400,500,700,800,900&f[]=satoshi@400,500,700&display=swap"
+      rel="stylesheet"
+    >
+    <link rel="stylesheet" href="tokens.css">
+    <link rel="stylesheet" href="base.css">
+    <link rel="stylesheet" href="components.css">
+    <link rel="stylesheet" href="portfolio.css">
+    <script defer src="app.js"></script>
+  </head>
+  <body data-page="portfolio" data-root=".">
+    <div data-site-header></div>
+
+    <main class="page-shell">
+      <section class="section">
+        <div class="container portfolio-hero">
+          <div class="animate-in" style="--delay: 0ms;">
+            <span class="eyebrow">Portfolio</span>
+            <h1 class="page-title">Research systems, product thinking, and technical depth in one place</h1>
+            <p class="page-copy">
+              This portfolio highlights selected work across AI research, machine learning projects,
+              intelligent applications, and technical problem-solving.
+            </p>
+          </div>
+
+          <div
+            class="portfolio-tabs animate-in"
+            data-portfolio-tabs
+            role="tablist"
+            aria-label="Portfolio sections"
+            style="--delay: 80ms;"
+          >
+            <button class="portfolio-tab" id="tab-projects" type="button" role="tab" data-tab-target="projects" aria-controls="projects" aria-selected="false" tabindex="-1">Projects</button>
+            <button class="portfolio-tab" id="tab-experience" type="button" role="tab" data-tab-target="experience" aria-controls="experience" aria-selected="false" tabindex="-1">Experience</button>
+            <button class="portfolio-tab" id="tab-education" type="button" role="tab" data-tab-target="education" aria-controls="education" aria-selected="false" tabindex="-1">Education</button>
+            <button class="portfolio-tab" id="tab-skills" type="button" role="tab" data-tab-target="skills" aria-controls="skills" aria-selected="false" tabindex="-1">Skills</button>
+            <button class="portfolio-tab" id="tab-certifications" type="button" role="tab" data-tab-target="certifications" aria-controls="certifications" aria-selected="false" tabindex="-1">Certifications</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container portfolio-panels">
+          <section class="portfolio-panel" id="projects" data-tab-panel role="tabpanel" aria-labelledby="tab-projects" tabindex="0">
+            <div class="animate-in" style="--delay: 0ms;">
+              <span class="eyebrow">Projects</span>
+              <h2 class="section-title">Selected builds and research projects</h2>
+            </div>
+
+            <div class="project-grid">
+              <article class="card card--hover animate-in" style="--delay: 60ms;">
+                <div class="stack">
+                  <p class="card-heading">GeoAI Flood Detection System</p>
+                  <p class="card-copy">Fall 2025</p>
+                  <p class="card-copy">Semantic segmentation for flood-affected zones using attention U-Net on Sentinel-1 SAR imagery, with Grad-CAM visualizations for interpretability.</p>
+                  <div class="meta-row">
+                    <span class="tag">PyTorch</span><span class="tag">SAR</span><span class="tag">U-Net</span><span class="tag">Attention</span><span class="tag">Grad-CAM</span>
+                  </div>
+                </div>
+              </article>
+
+              <article class="card card--hover animate-in" style="--delay: 120ms;">
+                <div class="stack">
+                  <p class="card-heading">Snap Tune — AI Music Recommender</p>
+                  <p class="card-copy">Spring 2025</p>
+                  <p class="card-copy">Multi-modal pipeline where an uploaded image is captioned by BLIP, passed into DistilGPT2 for mood inference, and routed to Spotify recommendations.</p>
+                  <div class="meta-row">
+                    <span class="tag">Streamlit</span><span class="tag">BLIP</span><span class="tag">DistilGPT2</span><span class="tag">Spotify API</span><span class="tag">HuggingFace</span><span class="tag">Python</span>
+                  </div>
+                </div>
+              </article>
+
+              <article class="card card--hover animate-in" style="--delay: 180ms;">
+                <div class="stack">
+                  <p class="card-heading">Aerial Building Footprint Extraction</p>
+                  <p class="card-copy">2024</p>
+                  <p class="card-copy">Automated building detection pipeline from aerial imagery using deep CNN methods tailored for footprint extraction.</p>
+                  <div class="meta-row">
+                    <span class="tag">Python</span><span class="tag">OpenCV</span><span class="tag">CNN</span><span class="tag">GIS</span><span class="tag">QGIS</span>
+                  </div>
+                </div>
+              </article>
+
+              <article class="card card--hover animate-in" style="--delay: 240ms;">
+                <div class="stack">
+                  <p class="card-heading">BIM-GIS Integration for Infrastructure Planning</p>
+                  <p class="card-copy">2022</p>
+                  <p class="card-copy">Integrated Building Information Modeling and GIS workflows to support smart city planning and infrastructure decisions.</p>
+                  <div class="meta-row">
+                    <span class="tag">Revit</span><span class="tag">ArcGIS</span><span class="tag">Python</span>
+                  </div>
+                </div>
+              </article>
+
+              <article class="card card--hover animate-in" style="--delay: 300ms;">
+                <div class="stack">
+                  <p class="card-heading">SSKS Home Designs — Interior Design Portfolio Site</p>
+                  <p class="card-copy">2021</p>
+                  <p class="card-copy">Client website for an interior design firm with clean presentation, project showcases, and strong visual hierarchy.</p>
+                  <div class="meta-row">
+                    <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span>
+                  </div>
+                </div>
+              </article>
+            </div>
+          </section>
+
+          <section class="portfolio-panel" id="experience" data-tab-panel role="tabpanel" aria-labelledby="tab-experience" tabindex="0" hidden>
+            <div class="animate-in" style="--delay: 0ms;">
+              <span class="eyebrow">Experience</span>
+              <h2 class="section-title">Timeline of roles, research, and applied work</h2>
+            </div>
+
+            <div class="timeline">
+              <article class="timeline-item animate-in" style="--delay: 60ms;">
+                <div class="timeline-marker"></div>
+                <div class="card timeline-content">
+                  <div class="timeline-meta">
+                    <div class="stack" style="gap: 0.35rem;">
+                      <div class="logo-badge logo-badge--slu">SLU</div>
+                      <h3 class="timeline-role">Graduate Researcher</h3>
+                      <p class="timeline-org">AI-CHESS Lab, Saint Louis University · Oct 2025–Present</p>
+                    </div>
+                    <span class="meta-pill">St. Louis, MO</span>
+                  </div>
+                  <ul class="bullet-list">
+                    <li>Developing attention-based neural networks for geospatial AI tasks.</li>
+                    <li>Working on aerial imagery analysis using SAR and optical fusion.</li>
+                  </ul>
+                </div>
+              </article>
+
+              <article class="timeline-item animate-in" style="--delay: 120ms;">
+                <div class="timeline-marker"></div>
+                <div class="card timeline-content">
+                  <div class="timeline-meta">
+                    <div class="stack" style="gap: 0.35rem;">
+                      <div class="logo-badge logo-badge--slu">SLU</div>
+                      <h3 class="timeline-role">Graduate Assistant</h3>
+                      <p class="timeline-org">Department of Athletics, Saint Louis University · Aug 2025–Present</p>
+                    </div>
+                    <span class="meta-pill">Operations</span>
+                  </div>
+                  <ul class="bullet-list">
+                    <li>Supporting administrative and operational workflows across the department.</li>
+                    <li>Balancing graduate research responsibilities with applied institutional work.</li>
+                  </ul>
+                </div>
+              </article>
+
+              <article class="timeline-item animate-in" style="--delay: 180ms;">
+                <div class="timeline-marker"></div>
+                <div class="card timeline-content">
+                  <div class="timeline-meta">
+                    <div class="stack" style="gap: 0.35rem;">
+                      <div class="logo-badge logo-badge--excelerate">EX</div>
+                      <h3 class="timeline-role">Data Science Intern</h3>
+                      <p class="timeline-org">Excelerate · 2024</p>
+                    </div>
+                    <span class="meta-pill">Internship</span>
+                  </div>
+                  <ul class="bullet-list">
+                    <li>Worked on data analysis, visualization, and problem framing.</li>
+                    <li>Supported insight generation from structured datasets.</li>
+                  </ul>
+                </div>
+              </article>
+
+              <article class="timeline-item animate-in" style="--delay: 240ms;">
+                <div class="timeline-marker"></div>
+                <div class="card timeline-content">
+                  <div class="timeline-meta">
+                    <div class="stack" style="gap: 0.35rem;">
+                      <div class="logo-badge logo-badge--salesforce">SF</div>
+                      <h3 class="timeline-role">Salesforce Developer Intern</h3>
+                      <p class="timeline-org">Salesforce ecosystem project · 2023</p>
+                    </div>
+                    <span class="meta-pill">Platform</span>
+                  </div>
+                  <ul class="bullet-list">
+                    <li>Built Apex-driven automation and workflow improvements.</li>
+                    <li>Contributed to process automation and platform configuration.</li>
+                  </ul>
+                </div>
+              </article>
+
+              <article class="timeline-item animate-in" style="--delay: 300ms;">
+                <div class="timeline-marker"></div>
+                <div class="card timeline-content">
+                  <div class="timeline-meta">
+                    <div class="stack" style="gap: 0.35rem;">
+                      <div class="logo-badge logo-badge--chegg">CG</div>
+                      <h3 class="timeline-role">Tutor</h3>
+                      <p class="timeline-org">Chegg · 2022–2023</p>
+                    </div>
+                    <span class="meta-pill">Teaching</span>
+                  </div>
+                  <ul class="bullet-list">
+                    <li>Delivered tutoring support across engineering and math subjects.</li>
+                    <li>Focused on clarity, problem-solving structure, and student confidence.</li>
+                  </ul>
+                </div>
+              </article>
+
+              <article class="timeline-item animate-in" style="--delay: 360ms;">
+                <div class="timeline-marker"></div>
+                <div class="card timeline-content">
+                  <div class="timeline-meta">
+                    <div class="stack" style="gap: 0.35rem;">
+                      <div class="logo-badge logo-badge--ssks">SS</div>
+                      <h3 class="timeline-role">Interior Design Project Lead</h3>
+                      <p class="timeline-org">SSKS Home Designs · 2021–2022</p>
+                    </div>
+                    <span class="meta-pill">Client work</span>
+                  </div>
+                  <ul class="bullet-list">
+                    <li>Led project planning, client communication, and delivery.</li>
+                    <li>Managed design direction while coordinating practical execution.</li>
+                  </ul>
+                </div>
+              </article>
+
+              <article class="timeline-item animate-in" style="--delay: 420ms;">
+                <div class="timeline-marker"></div>
+                <div class="card timeline-content">
+                  <div class="timeline-meta">
+                    <div class="stack" style="gap: 0.35rem;">
+                      <div class="logo-badge logo-badge--iitb">IITB</div>
+                      <h3 class="timeline-role">Summer Research Fellow</h3>
+                      <p class="timeline-org">IIT Bombay · Summer 2019</p>
+                    </div>
+                    <span class="meta-pill">Fellowship</span>
+                  </div>
+                  <ul class="bullet-list">
+                    <li>Selected through the Indian Academy of Sciences Summer Research Fellowship.</li>
+                    <li>Contributed to guided research in the civil and structural domain.</li>
+                  </ul>
+                </div>
+              </article>
+            </div>
+          </section>
+
+          <section class="portfolio-panel" id="education" data-tab-panel role="tabpanel" aria-labelledby="tab-education" tabindex="0" hidden>
+            <div class="animate-in" style="--delay: 0ms;">
+              <span class="eyebrow">Education</span>
+              <h2 class="section-title">Academic foundation with practical crossover</h2>
+            </div>
+
+            <div class="education-grid">
+              <article class="card card--hover animate-in" style="--delay: 60ms;">
+                <div class="stack">
+                  <div class="logo-badge logo-badge--slu">SLU</div>
+                  <h3 class="edu-school">Saint Louis University</h3>
+                  <p class="edu-degree">M.S. Artificial Intelligence</p>
+                  <p class="card-copy">Jan 2025 – Dec 2026 · St. Louis, MO · GPA: 3.72/4.0</p>
+                  <div class="meta-row">
+                    <span class="tag">Machine Learning</span><span class="tag">Deep Learning</span><span class="tag">Computer Vision</span><span class="tag">NLP</span><span class="tag">Data Engineering</span>
+                  </div>
+                </div>
+              </article>
+
+              <article class="card card--hover animate-in" style="--delay: 120ms;">
+                <div class="stack">
+                  <div class="logo-badge logo-badge--veltech">VT</div>
+                  <h3 class="edu-school">Vel Tech University</h3>
+                  <p class="edu-degree">B.Tech Civil Engineering</p>
+                  <p class="card-copy">Jul 2016 – Aug 2020 · Chennai, India · GPA: 3.69/4.0</p>
+                  <p class="card-copy">Mahatma Gandhi Scholarship recipient with strong grounding in GIS, CAD, structural analysis, and MATLAB.</p>
+                  <div class="meta-row">
+                    <span class="tag">Structural Analysis</span><span class="tag">GIS</span><span class="tag">CAD</span><span class="tag">MATLAB</span>
+                  </div>
+                </div>
+              </article>
+            </div>
+          </section>
+          <section class="portfolio-panel" id="skills" data-tab-panel role="tabpanel" aria-labelledby="tab-skills" tabindex="0" hidden>
+            <div class="animate-in" style="--delay: 0ms;">
+              <span class="eyebrow">Skills</span>
+              <h2 class="section-title">Breadth across modeling, spatial AI, systems, and delivery</h2>
+            </div>
+
+            <div class="skills-grid">
+              <article class="card skill-category skill-theme--navy animate-in" style="--delay: 60ms;">
+                <div class="skill-category__head"><h3 class="skill-category__title">ML &amp; Deep Learning</h3></div>
+                <div class="skill-chip-list">
+                  <span class="skill-chip"><span class="skill-chip__icon"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 2L16 10L10 18L4 10Z"></path></svg></span>PyTorch</span>
+                  <span class="skill-chip"><span class="skill-chip__icon"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 2L16 10L10 18L4 10Z"></path></svg></span>TensorFlow</span>
+                  <span class="skill-chip"><span class="skill-chip__icon"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 2L16 10L10 18L4 10Z"></path></svg></span>Keras</span>
+                  <span class="skill-chip"><span class="skill-chip__icon"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 2L16 10L10 18L4 10Z"></path></svg></span>Scikit-learn</span>
+                  <span class="skill-chip"><span class="skill-chip__icon"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 2L16 10L10 18L4 10Z"></path></svg></span>Hugging Face</span>
+                  <span class="skill-chip"><span class="skill-chip__icon"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 2L16 10L10 18L4 10Z"></path></svg></span>ONNX</span>
+                  <span class="skill-chip"><span class="skill-chip__icon"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 2L16 10L10 18L4 10Z"></path></svg></span>Grad-CAM</span>
+                  <span class="skill-chip"><span class="skill-chip__icon"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 2L16 10L10 18L4 10Z"></path></svg></span>U-Net</span>
+                  <span class="skill-chip"><span class="skill-chip__icon"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 2L16 10L10 18L4 10Z"></path></svg></span>Transformers</span>
+                  <span class="skill-chip"><span class="skill-chip__icon"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 2L16 10L10 18L4 10Z"></path></svg></span>YOLO</span>
+                </div>
+              </article>
+
+              <article class="card skill-category skill-theme--green animate-in" style="--delay: 120ms;">
+                <div class="skill-category__head"><h3 class="skill-category__title">Computer Vision &amp; Spatial AI</h3></div>
+                <div class="skill-chip-list">
+                  <span class="skill-chip"><span class="skill-chip__icon"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 3L17 8V17H3V8Z"></path></svg></span>OpenCV</span>
+                  <span class="skill-chip"><span class="skill-chip__icon"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 3L17 8V17H3V8Z"></path></svg></span>SAR Processing</span>
+                  <span class="skill-chip"><span class="skill-chip__icon"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 3L17 8V17H3V8Z"></path></svg></span>QGIS</span>
+                  <span class="skill-chip"><span class="skill-chip__icon"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 3L17 8V17H3V8Z"></path></svg></span>ArcGIS</span>
+                  <span class="skill-chip"><span class="skill-chip__icon"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 3L17 8V17H3V8Z"></path></svg></span>Rasterio</span>
+                  <span class="skill-chip"><span class="skill-chip__icon"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 3L17 8V17H3V8Z"></path></svg></span>Geopandas</span>
+                  <span class="skill-chip"><span class="skill-chip__icon"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 3L17 8V17H3V8Z"></path></svg></span>Sentinel Hub</span>
+                  <span class="skill-chip"><span class="skill-chip__icon"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 3L17 8V17H3V8Z"></path></svg></span>Google Earth Engine</span>
+                  <span class="skill-chip"><span class="skill-chip__icon"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 3L17 8V17H3V8Z"></path></svg></span>Aerial Imagery Analysis</span>
+                </div>
+              </article>
+
+              <article class="card skill-category skill-theme--orange animate-in" style="--delay: 180ms;">
+                <div class="skill-category__head"><h3 class="skill-category__title">Programming &amp; Full-Stack</h3></div>
+                <div class="skill-chip-list">
+                  <span class="skill-chip"><span class="skill-chip__icon"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M6 4L2 10L6 16M14 4L18 10L14 16M8 18L12 2"></path></svg></span>Python</span>
+                  <span class="skill-chip"><span class="skill-chip__icon"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M6 4L2 10L6 16M14 4L18 10L14 16M8 18L12 2"></path></svg></span>JavaScript</span>
+                  <span class="skill-chip"><span class="skill-chip__icon"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M6 4L2 10L6 16M14 4L18 10L14 16M8 18L12 2"></path></svg></span>TypeScript</span>
+                  <span class="skill-chip"><span class="skill-chip__icon"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M6 4L2 10L6 16M14 4L18 10L14 16M8 18L12 2"></path></svg></span>HTML/CSS</span>
+                  <span class="skill-chip"><span class="skill-chip__icon"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M6 4L2 10L6 16M14 4L18 10L14 16M8 18L12 2"></path></svg></span>SQL</span>
+                  <span class="skill-chip"><span class="skill-chip__icon"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M6 4L2 10L6 16M14 4L18 10L14 16M8 18L12 2"></path></svg></span>Bash</span>
+                  <span class="skill-chip"><span class="skill-chip__icon"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M6 4L2 10L6 16M14 4L18 10L14 16M8 18L12 2"></path></svg></span>React</span>
+                  <span class="skill-chip"><span class="skill-chip__icon"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M6 4L2 10L6 16M14 4L18 10L14 16M8 18L12 2"></path></svg></span>FastAPI</span>
+                  <span class="skill-chip"><span class="skill-chip__icon"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M6 4L2 10L6 16M14 4L18 10L14 16M8 18L12 2"></path></svg></span>Node.js</span>
+                  <span class="skill-chip"><span class="skill-chip__icon"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M6 4L2 10L6 16M14 4L18 10L14 16M8 18L12 2"></path></svg></span>Streamlit</span>
+                </div>
+              </article>
+
+              <article class="card skill-category skill-theme--blue animate-in" style="--delay: 240ms;">
+                <div class="skill-category__head"><h3 class="skill-category__title">Data Engineering &amp; Databases</h3></div>
+                <div class="skill-chip-list">
+                  <span class="skill-chip"><span class="skill-chip__icon"><svg viewBox="0 0 20 20" fill="currentColor"><ellipse cx="10" cy="5" rx="6" ry="2.5"></ellipse><path d="M4 5V14C4 15.4 6.7 17 10 17S16 15.4 16 14V5"></path></svg></span>PostgreSQL</span>
+                  <span class="skill-chip"><span class="skill-chip__icon"><svg viewBox="0 0 20 20" fill="currentColor"><ellipse cx="10" cy="5" rx="6" ry="2.5"></ellipse><path d="M4 5V14C4 15.4 6.7 17 10 17S16 15.4 16 14V5"></path></svg></span>MySQL</span>
+                  <span class="skill-chip"><span class="skill-chip__icon"><svg viewBox="0 0 20 20" fill="currentColor"><ellipse cx="10" cy="5" rx="6" ry="2.5"></ellipse><path d="M4 5V14C4 15.4 6.7 17 10 17S16 15.4 16 14V5"></path></svg></span>MongoDB</span>
+                  <span class="skill-chip"><span class="skill-chip__icon"><svg viewBox="0 0 20 20" fill="currentColor"><ellipse cx="10" cy="5" rx="6" ry="2.5"></ellipse><path d="M4 5V14C4 15.4 6.7 17 10 17S16 15.4 16 14V5"></path></svg></span>Apache Spark</span>
+                  <span class="skill-chip"><span class="skill-chip__icon"><svg viewBox="0 0 20 20" fill="currentColor"><ellipse cx="10" cy="5" rx="6" ry="2.5"></ellipse><path d="M4 5V14C4 15.4 6.7 17 10 17S16 15.4 16 14V5"></path></svg></span>Pandas</span>
+                  <span class="skill-chip"><span class="skill-chip__icon"><svg viewBox="0 0 20 20" fill="currentColor"><ellipse cx="10" cy="5" rx="6" ry="2.5"></ellipse><path d="M4 5V14C4 15.4 6.7 17 10 17S16 15.4 16 14V5"></path></svg></span>NumPy</span>
+                  <span class="skill-chip"><span class="skill-chip__icon"><svg viewBox="0 0 20 20" fill="currentColor"><ellipse cx="10" cy="5" rx="6" ry="2.5"></ellipse><path d="M4 5V14C4 15.4 6.7 17 10 17S16 15.4 16 14V5"></path></svg></span>ETL Pipelines</span>
+                  <span class="skill-chip"><span class="skill-chip__icon"><svg viewBox="0 0 20 20" fill="currentColor"><ellipse cx="10" cy="5" rx="6" ry="2.5"></ellipse><path d="M4 5V14C4 15.4 6.7 17 10 17S16 15.4 16 14V5"></path></svg></span>Data Warehousing</span>
+                </div>
+              </article>
+
+              <article class="card skill-category skill-theme--purple animate-in" style="--delay: 300ms;">
+                <div class="skill-category__head"><h3 class="skill-category__title">Tools &amp; Platforms</h3></div>
+                <div class="skill-chip-list">
+                  <span class="skill-chip"><span class="skill-chip__icon"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 3L17 7V13L10 17L3 13V7Z"></path></svg></span>Git</span>
+                  <span class="skill-chip"><span class="skill-chip__icon"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 3L17 7V13L10 17L3 13V7Z"></path></svg></span>Docker</span>
+                  <span class="skill-chip"><span class="skill-chip__icon"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 3L17 7V13L10 17L3 13V7Z"></path></svg></span>AWS</span>
+                  <span class="skill-chip"><span class="skill-chip__icon"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 3L17 7V13L10 17L3 13V7Z"></path></svg></span>Azure</span>
+                  <span class="skill-chip"><span class="skill-chip__icon"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 3L17 7V13L10 17L3 13V7Z"></path></svg></span>Google Cloud</span>
+                  <span class="skill-chip"><span class="skill-chip__icon"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 3L17 7V13L10 17L3 13V7Z"></path></svg></span>Jupyter</span>
+                  <span class="skill-chip"><span class="skill-chip__icon"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 3L17 7V13L10 17L3 13V7Z"></path></svg></span>VS Code</span>
+                  <span class="skill-chip"><span class="skill-chip__icon"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 3L17 7V13L10 17L3 13V7Z"></path></svg></span>Linux</span>
+                  <span class="skill-chip"><span class="skill-chip__icon"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 3L17 7V13L10 17L3 13V7Z"></path></svg></span>HuggingFace Hub</span>
+                  <span class="skill-chip"><span class="skill-chip__icon"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 3L17 7V13L10 17L3 13V7Z"></path></svg></span>Weights &amp; Biases</span>
+                </div>
+              </article>
+
+              <article class="card skill-category skill-theme--red animate-in" style="--delay: 360ms;">
+                <div class="skill-category__head"><h3 class="skill-category__title">Data Visualisation &amp; Analytics</h3></div>
+                <div class="skill-chip-list">
+                  <span class="skill-chip"><span class="skill-chip__icon"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M4 16V10H7V16M9 16V6H12V16M14 16V8H17V16"></path></svg></span>Matplotlib</span>
+                  <span class="skill-chip"><span class="skill-chip__icon"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M4 16V10H7V16M9 16V6H12V16M14 16V8H17V16"></path></svg></span>Seaborn</span>
+                  <span class="skill-chip"><span class="skill-chip__icon"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M4 16V10H7V16M9 16V6H12V16M14 16V8H17V16"></path></svg></span>Plotly</span>
+                  <span class="skill-chip"><span class="skill-chip__icon"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M4 16V10H7V16M9 16V6H12V16M14 16V8H17V16"></path></svg></span>Power BI</span>
+                  <span class="skill-chip"><span class="skill-chip__icon"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M4 16V10H7V16M9 16V6H12V16M14 16V8H17V16"></path></svg></span>Tableau</span>
+                  <span class="skill-chip"><span class="skill-chip__icon"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M4 16V10H7V16M9 16V6H12V16M14 16V8H17V16"></path></svg></span>Excel</span>
+                  <span class="skill-chip"><span class="skill-chip__icon"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M4 16V10H7V16M9 16V6H12V16M14 16V8H17V16"></path></svg></span>MATLAB</span>
+                </div>
+              </article>
+
+              <article class="card skill-category skill-theme--slate animate-in" style="--delay: 420ms;">
+                <div class="skill-category__head"><h3 class="skill-category__title">Productivity &amp; Design</h3></div>
+                <div class="skill-chip-list">
+                  <span class="skill-chip"><span class="skill-chip__icon"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M5 15L15 5M6 5H15V14"></path></svg></span>Microsoft Excel</span>
+                  <span class="skill-chip"><span class="skill-chip__icon"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M5 15L15 5M6 5H15V14"></path></svg></span>Microsoft PowerPoint</span>
+                  <span class="skill-chip"><span class="skill-chip__icon"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M5 15L15 5M6 5H15V14"></path></svg></span>Microsoft Word</span>
+                  <span class="skill-chip"><span class="skill-chip__icon"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M5 15L15 5M6 5H15V14"></path></svg></span>Adobe Photoshop</span>
+                  <span class="skill-chip"><span class="skill-chip__icon"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M5 15L15 5M6 5H15V14"></path></svg></span>Adobe Illustrator</span>
+                  <span class="skill-chip"><span class="skill-chip__icon"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M5 15L15 5M6 5H15V14"></path></svg></span>AutoCAD</span>
+                  <span class="skill-chip"><span class="skill-chip__icon"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M5 15L15 5M6 5H15V14"></path></svg></span>SketchUp</span>
+                  <span class="skill-chip"><span class="skill-chip__icon"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M5 15L15 5M6 5H15V14"></path></svg></span>Revit</span>
+                </div>
+              </article>
+            </div>
+          </section>
+          <section class="portfolio-panel" id="certifications" data-tab-panel role="tabpanel" aria-labelledby="tab-certifications" tabindex="0" hidden>
+            <div class="animate-in" style="--delay: 0ms;">
+              <span class="eyebrow">Certifications</span>
+              <h2 class="section-title">Formal validation across cloud, AI, GIS, and platforms</h2>
+            </div>
+
+            <div class="cert-layout">
+              <section class="cert-group animate-in" style="--delay: 60ms;">
+                <h3 class="cert-group__title">Cloud &amp; MLOps</h3>
+                <div class="cert-grid">
+                  <button class="card card--hover cert-card" type="button" data-cert-card data-cert-title="AWS Certified Machine Learning Engineer – Associate" data-cert-issuer="AWS · 2025" data-cert-url="">
+                    <div class="cert-card__head"><div class="cert-card__copy"><div class="logo-badge" style="background:#ff9900;">AWS</div><h4 class="cert-title">AWS Certified Machine Learning Engineer – Associate</h4><p class="cert-issuer">AWS · 2025</p></div><span class="status-badge status-badge--active">Active</span></div>
+                    <p class="cert-card__description">Credential validating cloud-native machine learning engineering and deployment competence.</p>
+                    <div class="meta-row"><span class="tag">AWS</span><span class="tag">MLOps</span><span class="tag">ML Engineering</span></div>
+                    <div class="cert-card__footer"><span>Open certificate</span><span class="cert-card__arrow">→</span></div>
+                  </button>
+                  <button class="card card--hover cert-card" type="button" data-cert-card data-cert-title="Microsoft Azure AI Engineer Associate AI-102" data-cert-issuer="Microsoft Azure · Scheduled 2026" data-cert-url="">
+                    <div class="cert-card__head"><div class="cert-card__copy"><div class="logo-badge" style="background:#2563eb;">AZ</div><h4 class="cert-title">Microsoft Azure AI Engineer Associate AI-102</h4><p class="cert-issuer">Microsoft Azure · Scheduled 2026</p></div><span class="status-badge status-badge--scheduled">Scheduled</span></div>
+                    <p class="cert-card__description">Planned certification focused on AI workloads, cognitive services, and Azure ML orchestration.</p>
+                    <div class="meta-row"><span class="tag">Azure</span><span class="tag">AI-102</span><span class="tag">Cognitive Services</span></div>
+                    <div class="cert-card__footer"><span>Open certificate</span><span class="cert-card__arrow">→</span></div>
+                  </button>
+                </div>
+              </section>
+
+              <section class="cert-group animate-in" style="--delay: 120ms;">
+                <h3 class="cert-group__title">NVIDIA DLI</h3>
+                <div class="cert-grid">
+                  <button class="card card--hover cert-card" type="button" data-cert-card data-cert-title="Building RAG Agents with LLMs at Scale" data-cert-issuer="NVIDIA DLI · 2024" data-cert-url="">
+                    <div class="cert-card__head"><div class="cert-card__copy"><div class="logo-badge" style="background:#76b900;">NV</div><h4 class="cert-title">Building RAG Agents with LLMs at Scale</h4><p class="cert-issuer">NVIDIA DLI · 2024</p></div><span class="status-badge status-badge--active">Completed</span></div>
+                    <p class="cert-card__description">Hands-on work with large language model pipelines and retrieval-augmented generation patterns.</p>
+                    <div class="meta-row"><span class="tag">RAG</span><span class="tag">LLMs</span><span class="tag">Agents</span></div>
+                    <div class="cert-card__footer"><span>Open certificate</span><span class="cert-card__arrow">→</span></div>
+                  </button>
+                  <button class="card card--hover cert-card" type="button" data-cert-card data-cert-title="Accelerating CUDA Python" data-cert-issuer="NVIDIA DLI · 2024" data-cert-url="">
+                    <div class="cert-card__head"><div class="cert-card__copy"><div class="logo-badge" style="background:#76b900;">NV</div><h4 class="cert-title">Accelerating CUDA Python</h4><p class="cert-issuer">NVIDIA DLI · 2024</p></div><span class="status-badge status-badge--active">Completed</span></div>
+                    <p class="cert-card__description">Training on GPU-accelerated Python workflows and performance-oriented scientific computing.</p>
+                    <div class="meta-row"><span class="tag">CUDA</span><span class="tag">Python</span><span class="tag">Acceleration</span></div>
+                    <div class="cert-card__footer"><span>Open certificate</span><span class="cert-card__arrow">→</span></div>
+                  </button>
+                </div>
+              </section>
+
+              <section class="cert-group animate-in" style="--delay: 180ms;">
+                <h3 class="cert-group__title">IBM</h3>
+                <div class="cert-grid">
+                  <button class="card card--hover cert-card" type="button" data-cert-card data-cert-title="IBM Data Science Professional Certificate" data-cert-issuer="IBM · 2023" data-cert-url="">
+                    <div class="cert-card__head"><div class="cert-card__copy"><div class="logo-badge" style="background:#0f62fe;">IBM</div><h4 class="cert-title">IBM Data Science Professional Certificate</h4><p class="cert-issuer">IBM · Coursera · 2023</p></div><span class="status-badge status-badge--active">Completed</span></div>
+                    <p class="cert-card__description">Eight-course track covering data science workflow, modeling, notebooks, and applied analytics.</p>
+                    <div class="meta-row"><span class="tag">Data Science</span><span class="tag">Coursera</span><span class="tag">Analytics</span></div>
+                    <div class="cert-card__footer"><span>Open certificate</span><span class="cert-card__arrow">→</span></div>
+                  </button>
+                </div>
+              </section>
+
+              <section class="cert-group animate-in" style="--delay: 240ms;">
+                <h3 class="cert-group__title">Salesforce</h3>
+                <div class="cert-grid">
+                  <button class="card card--hover cert-card" type="button" data-cert-card data-cert-title="Apex Specialist Superbadge" data-cert-issuer="Salesforce" data-cert-url="">
+                    <div class="cert-card__head"><div class="cert-card__copy"><div class="logo-badge logo-badge--salesforce">SF</div><h4 class="cert-title">Apex Specialist Superbadge</h4><p class="cert-issuer">Salesforce</p></div><span class="status-badge status-badge--active">Completed</span></div>
+                    <p class="cert-card__description">Applied validation of Apex development skills and platform problem-solving.</p>
+                    <div class="meta-row"><span class="tag">Apex</span><span class="tag">Salesforce</span><span class="tag">Automation</span></div>
+                    <div class="cert-card__footer"><span>Open certificate</span><span class="cert-card__arrow">→</span></div>
+                  </button>
+                  <button class="card card--hover cert-card" type="button" data-cert-card data-cert-title="Process Automation Specialist Superbadge" data-cert-issuer="Salesforce" data-cert-url="">
+                    <div class="cert-card__head"><div class="cert-card__copy"><div class="logo-badge logo-badge--salesforce">SF</div><h4 class="cert-title">Process Automation Specialist Superbadge</h4><p class="cert-issuer">Salesforce</p></div><span class="status-badge status-badge--active">Completed</span></div>
+                    <p class="cert-card__description">Focused on automating workflows, process logic, and operational efficiency inside Salesforce.</p>
+                    <div class="meta-row"><span class="tag">Process Builder</span><span class="tag">Flows</span><span class="tag">Salesforce</span></div>
+                    <div class="cert-card__footer"><span>Open certificate</span><span class="cert-card__arrow">→</span></div>
+                  </button>
+                </div>
+              </section>
+
+              <section class="cert-group animate-in" style="--delay: 300ms;">
+                <h3 class="cert-group__title">NPTEL · IIT Madras</h3>
+                <div class="cert-grid">
+                  <button class="card card--hover cert-card" type="button" data-cert-card data-cert-title="Multi-Criteria Decision Making in R" data-cert-issuer="NPTEL · IIT Madras" data-cert-url="">
+                    <div class="cert-card__head"><div class="cert-card__copy"><div class="logo-badge" style="background:#7c2d12;">NPT</div><h4 class="cert-title">Multi-Criteria Decision Making in R</h4><p class="cert-issuer">NPTEL · IIT Madras</p></div><span class="status-badge status-badge--active">Completed</span></div>
+                    <p class="cert-card__description">Decision analysis methods implemented through R-based problem solving.</p>
+                    <div class="meta-row"><span class="tag">R</span><span class="tag">Decision Science</span></div>
+                    <div class="cert-card__footer"><span>Open certificate</span><span class="cert-card__arrow">→</span></div>
+                  </button>
+                  <button class="card card--hover cert-card" type="button" data-cert-card data-cert-title="Remote Sensing & GIS Applications" data-cert-issuer="NPTEL · IIT Madras" data-cert-url="">
+                    <div class="cert-card__head"><div class="cert-card__copy"><div class="logo-badge" style="background:#7c2d12;">NPT</div><h4 class="cert-title">Remote Sensing &amp; GIS Applications</h4><p class="cert-issuer">NPTEL · IIT Madras</p></div><span class="status-badge status-badge--active">Completed</span></div>
+                    <p class="cert-card__description">Foundational and applied work in remote sensing analysis and GIS workflows.</p>
+                    <div class="meta-row"><span class="tag">GIS</span><span class="tag">Remote Sensing</span></div>
+                    <div class="cert-card__footer"><span>Open certificate</span><span class="cert-card__arrow">→</span></div>
+                  </button>
+                  <button class="card card--hover cert-card" type="button" data-cert-card data-cert-title="Strength of Materials" data-cert-issuer="NPTEL · IIT Madras" data-cert-url="">
+                    <div class="cert-card__head"><div class="cert-card__copy"><div class="logo-badge" style="background:#7c2d12;">NPT</div><h4 class="cert-title">Strength of Materials</h4><p class="cert-issuer">NPTEL · IIT Madras</p></div><span class="status-badge status-badge--active">Completed</span></div>
+                    <p class="cert-card__description">Engineering mechanics foundation reinforcing analysis and structural reasoning.</p>
+                    <div class="meta-row"><span class="tag">Mechanics</span><span class="tag">Materials</span></div>
+                    <div class="cert-card__footer"><span>Open certificate</span><span class="cert-card__arrow">→</span></div>
+                  </button>
+                  <button class="card card--hover cert-card" type="button" data-cert-card data-cert-title="MATLAB Programming" data-cert-issuer="NPTEL · IIT Madras" data-cert-url="">
+                    <div class="cert-card__head"><div class="cert-card__copy"><div class="logo-badge" style="background:#7c2d12;">NPT</div><h4 class="cert-title">MATLAB Programming</h4><p class="cert-issuer">NPTEL · IIT Madras</p></div><span class="status-badge status-badge--active">Completed</span></div>
+                    <p class="cert-card__description">Programming fundamentals and numerical workflows using MATLAB.</p>
+                    <div class="meta-row"><span class="tag">MATLAB</span><span class="tag">Numerical Computing</span></div>
+                    <div class="cert-card__footer"><span>Open certificate</span><span class="cert-card__arrow">→</span></div>
+                  </button>
+                </div>
+              </section>
+
+              <section class="cert-group animate-in" style="--delay: 360ms;">
+                <h3 class="cert-group__title">Coursera</h3>
+                <div class="cert-grid">
+                  <button class="card card--hover cert-card" type="button" data-cert-card data-cert-title="Fundamentals of GIS" data-cert-issuer="UC Santa Cruz · Coursera" data-cert-url="">
+                    <div class="cert-card__head"><div class="cert-card__copy"><div class="logo-badge" style="background:#1d4ed8;">UCSC</div><h4 class="cert-title">Fundamentals of GIS</h4><p class="cert-issuer">UC Santa Cruz · Coursera</p></div><span class="status-badge status-badge--active">Completed</span></div>
+                    <p class="cert-card__description">Introduced core GIS concepts, mapping, and spatial analysis techniques.</p>
+                    <div class="meta-row"><span class="tag">GIS</span><span class="tag">Spatial Analysis</span></div>
+                    <div class="cert-card__footer"><span>Open certificate</span><span class="cert-card__arrow">→</span></div>
+                  </button>
+                  <button class="card card--hover cert-card" type="button" data-cert-card data-cert-title="BIM Applications in Construction" data-cert-issuer="Coursera" data-cert-url="">
+                    <div class="cert-card__head"><div class="cert-card__copy"><div class="logo-badge" style="background:#2563eb;">CO</div><h4 class="cert-title">BIM Applications in Construction</h4><p class="cert-issuer">Coursera</p></div><span class="status-badge status-badge--active">Completed</span></div>
+                    <p class="cert-card__description">Focused on BIM workflow application in planning and construction contexts.</p>
+                    <div class="meta-row"><span class="tag">BIM</span><span class="tag">Construction</span></div>
+                    <div class="cert-card__footer"><span>Open certificate</span><span class="cert-card__arrow">→</span></div>
+                  </button>
+                  <button class="card card--hover cert-card" type="button" data-cert-card data-cert-title="Data Analysis with Excel" data-cert-issuer="Coursera" data-cert-url="">
+                    <div class="cert-card__head"><div class="cert-card__copy"><div class="logo-badge" style="background:#2563eb;">CO</div><h4 class="cert-title">Data Analysis with Excel</h4><p class="cert-issuer">Coursera</p></div><span class="status-badge status-badge--active">Completed</span></div>
+                    <p class="cert-card__description">Analytical workflow development using spreadsheets and business data analysis patterns.</p>
+                    <div class="meta-row"><span class="tag">Excel</span><span class="tag">Analytics</span></div>
+                    <div class="cert-card__footer"><span>Open certificate</span><span class="cert-card__arrow">→</span></div>
+                  </button>
+                </div>
+              </section>
+
+              <section class="cert-group animate-in" style="--delay: 420ms;">
+                <h3 class="cert-group__title">edX</h3>
+                <div class="cert-grid">
+                  <button class="card card--hover cert-card" type="button" data-cert-card data-cert-title="MITx Course Placeholder" data-cert-issuer="MITx · edX" data-cert-url="">
+                    <div class="cert-card__head"><div class="cert-card__copy"><div class="logo-badge" style="background:#a31f34;">MIT</div><h4 class="cert-title">MITx Course Placeholder</h4><p class="cert-issuer">MITx · edX</p></div><span class="status-badge">Planned</span></div>
+                    <p class="cert-card__description">Reserved space for future edX coursework from MITx.</p>
+                    <div class="meta-row"><span class="tag">edX</span><span class="tag">MITx</span></div>
+                    <div class="cert-card__footer"><span>Open certificate</span><span class="cert-card__arrow">→</span></div>
+                  </button>
+                  <button class="card card--hover cert-card" type="button" data-cert-card data-cert-title="TU Delft Course Placeholder" data-cert-issuer="TU Delft · edX" data-cert-url="">
+                    <div class="cert-card__head"><div class="cert-card__copy"><div class="logo-badge" style="background:#00a6d6;">TUD</div><h4 class="cert-title">TU Delft Course Placeholder</h4><p class="cert-issuer">TU Delft · edX</p></div><span class="status-badge">Planned</span></div>
+                    <p class="cert-card__description">Reserved space for future technical coursework from TU Delft.</p>
+                    <div class="meta-row"><span class="tag">edX</span><span class="tag">TU Delft</span></div>
+                    <div class="cert-card__footer"><span>Open certificate</span><span class="cert-card__arrow">→</span></div>
+                  </button>
+                </div>
+              </section>
+
+              <section class="cert-group animate-in" style="--delay: 480ms;">
+                <h3 class="cert-group__title">LinkedIn Learning</h3>
+                <div class="cert-grid">
+                  <button class="card card--hover cert-card" type="button" data-cert-card data-cert-title="Construction Management Foundations" data-cert-issuer="LinkedIn Learning" data-cert-url="">
+                    <div class="cert-card__head"><div class="cert-card__copy"><div class="logo-badge" style="background:#0a66c2;">in</div><h4 class="cert-title">Construction Management Foundations</h4><p class="cert-issuer">LinkedIn Learning</p></div><span class="status-badge status-badge--active">Completed</span></div>
+                    <p class="cert-card__description">Core management principles for planning, execution, and communication in construction projects.</p>
+                    <div class="meta-row"><span class="tag">Management</span><span class="tag">Operations</span></div>
+                    <div class="cert-card__footer"><span>Open certificate</span><span class="cert-card__arrow">→</span></div>
+                  </button>
+                  <button class="card card--hover cert-card" type="button" data-cert-card data-cert-title="BIM Foundations" data-cert-issuer="LinkedIn Learning" data-cert-url="">
+                    <div class="cert-card__head"><div class="cert-card__copy"><div class="logo-badge" style="background:#0a66c2;">in</div><h4 class="cert-title">BIM Foundations</h4><p class="cert-issuer">LinkedIn Learning</p></div><span class="status-badge status-badge--active">Completed</span></div>
+                    <p class="cert-card__description">Foundation credential for BIM concepts, workflows, and project collaboration.</p>
+                    <div class="meta-row"><span class="tag">BIM</span><span class="tag">Design workflows</span></div>
+                    <div class="cert-card__footer"><span>Open certificate</span><span class="cert-card__arrow">→</span></div>
+                  </button>
+                </div>
+              </section>
+
+              <section class="cert-group animate-in" style="--delay: 540ms;">
+                <h3 class="cert-group__title">Aspiring Minds</h3>
+                <div class="cert-grid">
+                  <button class="card card--hover cert-card" type="button" data-cert-card data-cert-title="Data Processing Specialist" data-cert-issuer="AMCAT · Aspiring Minds" data-cert-url="">
+                    <div class="cert-card__head"><div class="cert-card__copy"><div class="logo-badge" style="background:#7c3aed;">AM</div><h4 class="cert-title">Data Processing Specialist</h4><p class="cert-issuer">AMCAT · Aspiring Minds</p></div><span class="status-badge status-badge--active">Completed</span></div>
+                    <p class="cert-card__description">Professional validation around structured data handling and applied processing ability.</p>
+                    <div class="meta-row"><span class="tag">AMCAT</span><span class="tag">Data Processing</span></div>
+                    <div class="cert-card__footer"><span>Open certificate</span><span class="cert-card__arrow">→</span></div>
+                  </button>
+                </div>
+              </section>
+            </div>
+          </section>
+        </div>
+      </section>
+    </main>
+
+    <div class="modal" data-cert-modal aria-hidden="true" role="dialog" aria-modal="true">
+      <div class="modal__panel">
+        <div class="modal__bar">
+          <h2 class="modal__title" data-cert-title>Certificate</h2>
+          <button class="modal__close" type="button" data-cert-close aria-label="Close certificate preview">×</button>
+        </div>
+        <div class="modal__media">
+          <img data-cert-image src="" alt="">
+        </div>
+      </div>
+    </div>
+
+    <div data-site-footer></div>
+  </body>
+</html>

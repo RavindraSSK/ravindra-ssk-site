@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Contact | Ravindra</title>
+    <meta
+      name="description"
+      content="Contact Ravindra for research collaborations, internships, and interesting technical problems."
+    >
+    <link rel="preconnect" href="https://api.fontshare.com">
+    <link
+      href="https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@400,500,700,800,900&f[]=satoshi@400,500,700&display=swap"
+      rel="stylesheet"
+    >
+    <link rel="stylesheet" href="tokens.css">
+    <link rel="stylesheet" href="base.css">
+    <link rel="stylesheet" href="components.css">
+    <link rel="stylesheet" href="contact.css">
+    <script defer src="app.js"></script>
+  </head>
+  <body data-page="contact" data-root=".">
+    <div data-site-header></div>
+
+    <main class="page-shell">
+      <section class="section">
+        <div class="container contact-layout">
+          <div class="contact-copy animate-in" style="--delay: 0ms;">
+            <span class="eyebrow">Contact</span>
+            <h1 class="page-title">Get in touch</h1>
+            <p class="page-copy">
+              Open to research collaborations, internships, and interesting problems.
+            </p>
+
+            <article class="card card--glass">
+              <div class="contact-list">
+                <div class="contact-list__item"><span class="contact-list__label">Email</span><a class="contact-list__value" href="mailto:ravindrassk1304@gmail.com">ravindrassk1304@gmail.com</a></div>
+                <div class="contact-list__item"><span class="contact-list__label">Phone</span><a class="contact-list__value" href="tel:+13143359331">(314) 335-9331</a></div>
+                <div class="contact-list__item"><span class="contact-list__label">LinkedIn</span><a class="contact-list__value" href="https://www.linkedin.com/in/ravindra-ssk-medicharla-45ba44123/" target="_blank" rel="noreferrer">ravindra-ssk-medicharla-45ba44123</a></div>
+                <div class="contact-list__item"><span class="contact-list__label">GitHub</span><a class="contact-list__value" href="https://github.com/RavindraSSK" target="_blank" rel="noreferrer">github.com/RavindraSSK</a></div>
+                <div class="contact-list__item"><span class="contact-list__label">Location</span><span class="contact-list__value">St. Louis, MO</span></div>
+              </div>
+            </article>
+          </div>
+
+          <form class="card contact-form-card animate-in" data-contact-form style="--delay: 120ms;">
+            <div class="stack">
+              <span class="eyebrow">Send a note</span>
+              <h2 class="section-title">Share the context</h2>
+            </div>
+
+            <div class="form-grid form-grid--split">
+              <label class="field-label">Name
+                <input class="field" type="text" name="name" placeholder="Your name" autocomplete="name" required>
+              </label>
+              <label class="field-label">Email
+                <input class="field" type="email" name="email" placeholder="you@example.com" autocomplete="email" required>
+              </label>
+            </div>
+
+            <label class="field-label">Subject
+              <select class="select-field" name="subject" required>
+                <option>Research Collaboration</option>
+                <option>Internship Opportunity</option>
+                <option>General</option>
+                <option>Other</option>
+              </select>
+            </label>
+
+            <label class="field-label">Message
+              <textarea class="textarea-field" name="message" rows="8" placeholder="A few details about the project, role, or question are enough to get started." required></textarea>
+            </label>
+
+            <button class="button button--primary" type="submit">Send message</button>
+            <p class="form-status" data-form-status aria-live="polite" hidden></p>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <div data-site-footer></div>
+  </body>
+</html>

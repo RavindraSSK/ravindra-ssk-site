@@ -1,0 +1,109 @@
+"use client";
+
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import type { ReactNode } from "react";
+import { useEffect, useState } from "react";
+
+import { SiteInteractions } from "@/components/site-interactions";
+
+const portfolioLinks = [
+  ["Projects", "/portfolio#projects", "Research systems, products, and applied builds."],
+  ["Experience", "/portfolio#experience", "Timeline of roles, research, and internships."],
+  ["Education", "/portfolio#education", "Degrees, scholarships, and coursework."],
+  ["Skills", "/portfolio#skills", "Tooling across machine learning, software, and data."],
+  ["Certifications", "/portfolio#certifications", "Cloud, AI, and professional credentials."],
+] as const;
+
+const exploreLinks = [
+  ["Blog", "/explore/blog", "Thoughts on AI, research, and building things."],
+  ["Photography", "/explore/photography", "Light, geometry, and visual observation."],
+  ["Fitness & Health", "/explore/fitness-health", "Discipline, training, and performance habits."],
+  ["Music", "/explore/music", "Listening, discovery, and creative energy."],
+] as const;
+
+function Logo() {
+  return (
+    <svg viewBox="0 0 32 32" fill="none" width="32" height="32" aria-hidden="true">
+      <rect width="32" height="32" rx="8" fill="#1B2D5F" />
+      <path d="M8 24V8h8c3.314 0 6 2.686 6 6s-2.686 6-6 6H12" stroke="white" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
+      <circle cx="22" cy="22" r="2" fill="#93B4F5" />
+    </svg>
+  );
+}
+
+function Dropdown({ id, title, links, open, setOpen }: { id: string; title: string; links: readonly (readonly [string, string, string])[]; open: boolean; setOpen: () => void }) {
+  return (
+    <li className={`nav-item nav-item--has-menu${open ? " is-open" : ""}`}>
+      <div className="nav-link-group">
+        <Link className="nav-link" href={`/${id}`}>{title}</Link>
+        <button className="nav-expand" type="button" aria-expanded={open} aria-label={`Toggle ${title.toLowerCase()} menu`} onClick={setOpen}>⌄</button>
+      </div>
+      <div className="nav-dropdown">
+        <div className="nav-dropdown__panel">
+          <p className="nav-dropdown__title">{title}</p>
+          <div className="nav-dropdown__grid">
+            {links.map(([label, href, copy]) => (
+              <Link className="nav-dropdown__item" href={href} key={href}>
+                <p className="nav-dropdown__item-title">{label}<span>↗</span></p>
+                <p className="nav-dropdown__item-copy">{copy}</p>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </div>
+    </li>
+  );
+}
+
+export function SiteChrome({ children }: { children: ReactNode }) {
+  const pathname = usePathname();
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const [dropdown, setDropdown] = useState<string | null>(null);
+  const [dark, setDark] = useState(false);
+
+  useEffect(() => {
+    setMobileOpen(false);
+    setDropdown(null);
+  }, [pathname]);
+
+  useEffect(() => {
+    document.documentElement.toggleAttribute("data-theme", dark);
+  }, [dark]);
+
+  return (
+    <>
+      <header className="site-header" role="banner">
+        <div className="container">
+          <div className="site-header__inner">
+            <Link className="brand" href="/" aria-label="Ravindra home">
+              <span className="brand__mark"><Logo /></span>
+              <span className="brand__text"><span className="brand__name">Ravindra</span><span className="brand__role">AI Researcher | Machine Learning Engineer</span></span>
+            </Link>
+            <button className="nav-toggle" type="button" aria-expanded={mobileOpen} aria-label="Open navigation" onClick={() => setMobileOpen((value) => !value)}>{mobileOpen ? "×" : "☰"}</button>
+            <nav className={`site-nav${mobileOpen ? " is-open" : ""}`} aria-label="Primary navigation">
+              <ul className="nav-list list-reset">
+                <li className="nav-item"><Link className={`nav-link${pathname === "/" ? " is-active" : ""}`} href="/">Home</Link></li>
+                <Dropdown id="portfolio" title="Portfolio" links={portfolioLinks} open={dropdown === "portfolio"} setOpen={() => setDropdown(dropdown === "portfolio" ? null : "portfolio")} />
+                <Dropdown id="explore" title="Explore" links={exploreLinks} open={dropdown === "explore"} setOpen={() => setDropdown(dropdown === "explore" ? null : "explore")} />
+                <li className="nav-item"><Link className={`nav-link${pathname === "/about" ? " is-active" : ""}`} href="/about">About</Link></li>
+              </ul>
+              <div className="nav-utilities">
+                <button className="theme-toggle" type="button" aria-label="Toggle dark mode" aria-pressed={dark} onClick={() => setDark((value) => !value)}>{dark ? "☾" : "☼"}</button>
+                <Link className="button button--nav" href="/contact">Say hello</Link>
+              </div>
+            </nav>
+          </div>
+        </div>
+      </header>
+      {children}
+      <footer className="site-footer" role="contentinfo">
+        <div className="container"><div className="site-footer__inner">
+          <div className="stack"><p className="brand__name">Ravindra</p><p className="site-footer__copy">AI Researcher | Machine Learning Engineer | St. Louis, MO</p></div>
+          <div className="social-links"><a className="icon-link" href="mailto:ravindrassk1304@gmail.com">Email</a><a className="icon-link" href="https://github.com/RavindraSSK" target="_blank" rel="noreferrer">GitHub</a><a className="icon-link" href="https://www.linkedin.com/in/ravindra-ssk-medicharla-45ba44123/" target="_blank" rel="noreferrer">LinkedIn</a></div>
+        </div></div>
+      </footer>
+      <SiteInteractions pathname={pathname} />
+    </>
+  );
+}
