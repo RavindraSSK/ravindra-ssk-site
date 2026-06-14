@@ -1,11 +1,9 @@
 import type { Metadata } from "next";
 
 import { StaticPage } from "@/components/static-page";
+import { pageMetadata } from "@/lib/content";
 
-export const metadata: Metadata = {
-  title: "About",
-  description: "About Ravindra, an AI-focused researcher and builder working across machine learning, deep learning, explainability, and software development.",
-};
+export const metadata: Metadata = pageMetadata.about;
 
 export default function AboutPage() {
   return <StaticPage page="about" />;

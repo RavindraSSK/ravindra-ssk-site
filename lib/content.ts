@@ -6,6 +6,18 @@ export const navigation = [
   { href: "/contact", label: "Contact" },
 ] as const;
 
+export const pageMetadata = {
+  about: {
+    title: "About",
+    description:
+      "About Ravindra's current AI research, technical interests, and professional profiles.",
+  },
+  explore: {
+    title: "Explore",
+    description: "Writing, photography, fitness and health, and music from Ravindra.",
+  },
+} as const;
+
 export const featuredProjects = [
   {
     title: "Terrain Intelligence Studio",
@@ -140,12 +152,12 @@ export const exploreCategories = [
     slug: "blog",
     href: "/explore/blog",
     title: "Blog",
-    description: "Writing, working notes, and short technical essays.",
+    description: "Writing, project notes, and short technical essays.",
     detail:
-      "A space for research notes, essays, product reflections, and clean technical write-ups.",
-    heroTitle: "Writing, notes, and short technical essays.",
+      "Research notes, project updates, and concise technical writing.",
+    heroTitle: "Writing, notes, and technical essays.",
     heroDescription:
-      "A clean editorial space for ideas, project notes, and concise technical writing.",
+      "Research ideas, project notes, and practical technical writing.",
     collectionTitle: "Article placeholders",
     collectionDescription:
       "A starter structure for essays, notes, and small writing series.",
@@ -183,12 +195,12 @@ export const exploreCategories = [
     slug: "photography",
     href: "/explore/photography",
     title: "Photography",
-    description: "Image-led work, visual studies, and quiet documentation.",
+    description: "Selected photographs, visual studies, and image collections.",
     detail:
-      "Built to support galleries, image stories, and a more visual side of the site.",
-    heroTitle: "Image-led work and quiet visual documentation.",
+      "Galleries, image stories, and ongoing photography projects.",
+    heroTitle: "Photography and visual studies.",
     heroDescription:
-      "A premium gallery-ready foundation for photo essays, collections, and ongoing studies.",
+      "Selected images, photo essays, and ongoing visual work.",
     collectionTitle: "Gallery placeholders",
     collectionDescription:
       "A starter grid for series, studies, and future image-led stories.",
@@ -231,12 +243,12 @@ export const exploreCategories = [
     slug: "fitness-health",
     href: "/explore/fitness-health",
     title: "Fitness & Health",
-    description: "Discipline, training rhythm, and healthy systems.",
+    description: "Training, recovery, routines, and sustainable health practices.",
     detail:
-      "A home for routines, health experiments, and sustainable performance practices.",
-    heroTitle: "Training rhythm, health systems, and everyday discipline.",
+      "Training routines, recovery notes, and practical health habits.",
+    heroTitle: "Fitness, recovery, and health practices.",
     heroDescription:
-      "A modular page for routines, notes, and a calmer view of long-term health habits.",
+      "Routines, notes, and lessons from consistent training.",
     collectionTitle: "Routine placeholders",
     collectionDescription:
       "A starter layout for routines, notes, and small health-focused posts.",
@@ -274,12 +286,12 @@ export const exploreCategories = [
     slug: "music",
     href: "/explore/music",
     title: "Music",
-    description: "Listening habits, playlists, and ongoing discovery.",
+    description: "Playlists, listening notes, and ongoing music discovery.",
     detail:
       "Structured for playlists, album notes, and personal listening archives over time.",
-    heroTitle: "Playlists, listening habits, and ongoing discovery.",
+    heroTitle: "Music, playlists, and listening notes.",
     heroDescription:
-      "A quiet structure for playlists, album notes, and a personal archive of listening taste.",
+      "Playlists, album notes, and a personal listening archive.",
     collectionTitle: "Listening placeholders",
     collectionDescription:
       "A starter system for playlists, recommendations, and album notes.",
@@ -382,9 +394,9 @@ export const navigationMenus = {
   },
   "/explore": {
     eyebrow: "Explore",
-    title: "A calmer space for the personal side.",
+    title: "Interests and ongoing work.",
     description:
-      "Writing, photography, fitness and health, and music in one modular content system.",
+      "Writing, photography, fitness and health, and music.",
     featured: { label: "Open explore hub", href: "/explore" },
     groups: [
       {
@@ -421,9 +433,9 @@ export const navigationMenus = {
   },
   "/about": {
     eyebrow: "About",
-    title: "A concise public profile with personality.",
+    title: "Research interests and current work.",
     description:
-      "Overview, perspective, selected links, and the quieter interests behind the work.",
+      "A short introduction, current role, research interests, and profile links.",
     featured: { label: "View about page", href: "/about" },
     groups: [
       {
@@ -435,9 +447,9 @@ export const navigationMenus = {
             description: "Short introduction and working style.",
           },
           {
-            label: "Perspective",
-            href: "/about#perspective",
-            description: "How Ravi approaches systems and interface work.",
+            label: "Research interests",
+            href: "/about#research-interests",
+            description: "Current work across GeoAI, vision, and spatial systems.",
           },
         ],
       },

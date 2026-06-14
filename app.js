@@ -454,7 +454,8 @@ function initCertFilters() {
   const categoryFor = (title) => {
     if (/AWS|Azure/i.test(title)) return "cloud";
     if (/RAG Agents|CUDA Python/i.test(title)) return "ai-ml";
-    if (/Remote Sensing|Fundamentals of GIS|BIM Applications|TU Delft|Construction Management|BIM Foundations/i.test(title)) return "gis";
+    if (/Remote Sensing|Fundamentals of GIS|BIM Applications|TU Delft/i.test(title)) return "gis";
+    if (/Strength of Materials|Construction Management|BIM Foundations/i.test(title)) return "other";
     return "data-software";
   };
 
