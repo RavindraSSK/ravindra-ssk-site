@@ -27,15 +27,14 @@ export function ProfileLinks({ links }: ProfileLinksProps) {
         const Icon = iconMap[link.label as keyof typeof iconMap] ?? ArrowUpRight;
         const isExternal =
           link.href.startsWith("http://") ||
-          link.href.startsWith("https://") ||
-          link.href.startsWith("mailto:");
+          link.href.startsWith("https://");
 
         return (
           <Link
             key={link.label}
             href={link.href}
             target={isExternal ? "_blank" : undefined}
-            rel={isExternal ? "noreferrer" : undefined}
+            rel={isExternal ? "noopener noreferrer" : undefined}
             className="group block h-full"
           >
             <GlassCard className="flex h-full flex-col gap-4 p-5 sm:p-6">

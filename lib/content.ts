@@ -333,22 +333,22 @@ export const profileLinks = [
   {
     label: "LinkedIn",
     description: "Professional updates and selected experience.",
-    href: "https://www.linkedin.com/in/ravi-medicharla",
+    href: "https://www.linkedin.com/in/ravindra-ssk-medicharla-45ba44123/",
   },
   {
     label: "GitHub",
     description: "Code, prototypes, and ongoing build work.",
-    href: "https://github.com/ravi-medicharla",
+    href: "https://github.com/RavindraSSK",
   },
   {
     label: "Instagram",
     description: "Photography and lighter personal moments.",
-    href: "https://www.instagram.com/ravi-medicharla",
+    href: "https://www.instagram.com/ravindra_ssk_m_/",
   },
   {
     label: "Email",
     description: "Direct conversations, collaborations, and inquiries.",
-    href: "mailto:hello@ravimedicharla.com",
+    href: "mailto:ravindrassk1304@gmail.com",
   },
 ] as const;
 
