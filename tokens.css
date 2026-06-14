@@ -2,10 +2,10 @@
   --color-primary: #1b2d5f;
   --color-primary-mid: #1e3a8a;
   --color-primary-light: #eef2ff;
-  --color-bg: #f7f8fa;
+  --color-bg: #f5f8fd;
   --color-surface: #ffffff;
   --color-surface-alt: #f0f2f5;
-  --color-border: #e2e8f0;
+  --color-border: rgba(148, 163, 184, 0.26);
   --color-text: #0f172a;
   --color-text-muted: #64748b;
   --color-text-faint: #94a3b8;
@@ -15,7 +15,7 @@
   --color-shadow: rgba(15, 23, 42, 0.06);
   --color-shadow-strong: rgba(27, 45, 95, 0.14);
   --color-overlay: rgba(15, 23, 42, 0.64);
-  --color-backdrop: rgba(255, 255, 255, 0.76);
+  --color-backdrop: rgba(255, 255, 255, 0.72);
 
   --font-display: "Cabinet Grotesk", sans-serif;
   --font-body: "Satoshi", sans-serif;
@@ -35,14 +35,14 @@
 
   --radius-sm: 0.75rem;
   --radius-md: 1rem;
-  --radius-lg: 1.25rem;
-  --radius-xl: 1.5rem;
+  --radius-lg: 1.35rem;
+  --radius-xl: 1.75rem;
   --radius-pill: 999px;
 
-  --shadow-soft: 0 12px 34px var(--color-shadow);
-  --shadow-card: 0 18px 48px rgba(15, 23, 42, 0.08);
-  --shadow-hover: 0 8px 28px rgba(27, 45, 95, 0.18);
-  --shadow-nav: 0 16px 36px rgba(15, 23, 42, 0.14);
+  --shadow-soft: 0 14px 38px rgba(27, 45, 95, 0.07), inset 0 1px 0 rgba(255, 255, 255, 0.82);
+  --shadow-card: 0 24px 64px rgba(27, 45, 95, 0.11), inset 0 1px 0 rgba(255, 255, 255, 0.88);
+  --shadow-hover: 0 22px 52px rgba(27, 45, 95, 0.18), 0 0 0 1px rgba(67, 105, 190, 0.08);
+  --shadow-nav: 0 20px 55px rgba(19, 39, 88, 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.16);
 
   --container-width: 1180px;
   --transition-fast: 160ms ease-out;

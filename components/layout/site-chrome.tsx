@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import type { ReactNode } from "react";
 import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 
 import { SiteInteractions } from "@/components/site-interactions";
 
@@ -73,7 +74,13 @@ export function SiteChrome({ children }: { children: ReactNode }) {
 
   return (
     <>
-      <header className="site-header" role="banner">
+      <motion.header
+        className="site-header"
+        role="banner"
+        initial={{ opacity: 0, y: -12 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.48, ease: [0.22, 1, 0.36, 1] }}
+      >
         <div className="container">
           <div className="site-header__inner">
             <Link className="brand" href="/" aria-label="Ravindra home">
@@ -95,14 +102,21 @@ export function SiteChrome({ children }: { children: ReactNode }) {
             </nav>
           </div>
         </div>
-      </header>
+      </motion.header>
       {children}
-      <footer className="site-footer" role="contentinfo">
+      <motion.footer
+        className="site-footer"
+        role="contentinfo"
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true, amount: 0.3 }}
+        transition={{ duration: 0.5 }}
+      >
         <div className="container"><div className="site-footer__inner">
           <div className="stack"><p className="brand__name">Ravindra</p><p className="site-footer__copy">AI Researcher | Machine Learning Engineer | St. Louis, MO</p></div>
           <div className="social-links"><a className="icon-link" href="mailto:ravindrassk1304@gmail.com">Email</a><a className="icon-link" href="https://github.com/RavindraSSK" target="_blank" rel="noreferrer">GitHub</a><a className="icon-link" href="https://www.linkedin.com/in/ravindra-ssk-medicharla-45ba44123/" target="_blank" rel="noreferrer">LinkedIn</a></div>
         </div></div>
-      </footer>
+      </motion.footer>
       <SiteInteractions pathname={pathname} />
     </>
   );

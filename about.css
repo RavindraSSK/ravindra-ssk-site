@@ -1,14 +1,22 @@
 .about-header {
   display: grid;
   gap: var(--space-6);
+  padding: clamp(1.5rem, 4vw, 2.5rem);
+  border: 1px solid rgba(255, 255, 255, 0.74);
+  border-radius: 32px;
+  background:
+    radial-gradient(circle at 10% 15%, rgba(126, 166, 237, 0.22), transparent 15rem),
+    linear-gradient(145deg, rgba(255, 255, 255, 0.78), rgba(232, 240, 253, 0.58));
+  box-shadow: var(--shadow-card);
+  backdrop-filter: blur(18px);
 }
 
 .avatar-shell {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 124px;
-  height: 124px;
+  width: 132px;
+  height: 132px;
   border-radius: 50%;
   background: linear-gradient(135deg, var(--color-primary), var(--color-primary-mid));
   color: #ffffff;
@@ -16,6 +24,7 @@
   font-size: 2.4rem;
   font-weight: 900;
   letter-spacing: -0.06em;
+  box-shadow: 0 24px 55px rgba(27, 45, 95, 0.24), inset 0 1px 0 rgba(255, 255, 255, 0.3);
 }
 
 .about-kicker {
@@ -55,19 +64,24 @@
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
-  padding: 0.75rem 0;
-  border-bottom: 1px solid var(--color-border);
+  padding: 0.85rem 1rem;
+  border: 1px solid rgba(148, 163, 184, 0.22);
+  border-radius: 15px;
+  background: rgba(255, 255, 255, 0.56);
   color: var(--color-text);
   font-weight: 700;
 }
 
-.about-profile-links a:last-child {
-  border-bottom: 0;
+.about-profile-links a:hover {
+  transform: translateX(4px);
+  border-color: rgba(27, 45, 95, 0.22);
+  background: rgba(238, 244, 255, 0.9);
+  color: var(--color-primary);
+  box-shadow: 0 10px 26px rgba(27, 45, 95, 0.09);
 }
 
-.about-profile-links a:hover {
-  color: var(--color-primary);
-}
+.interest-grid .card:nth-child(3n + 1) { background: linear-gradient(145deg, rgba(239, 246, 255, 0.92), rgba(255, 255, 255, 0.72)); }
+.interest-grid .card:nth-child(3n + 2) { background: linear-gradient(145deg, rgba(245, 243, 255, 0.9), rgba(255, 255, 255, 0.72)); }
 
 @media (min-width: 768px) {
   .interest-grid,
