@@ -21,13 +21,41 @@ export function SiteInteractions({ pathname }: { pathname: string }) {
     const tabHandlers = tabs.map((tab) => { const handler = () => { const id = tab.dataset.tabTarget; if (id) { selectTab(id); history.replaceState(null, "", `#${id}`); } }; tab.addEventListener("click", handler); return [tab, handler] as const; });
 
     const certs = Array.from(document.querySelectorAll<HTMLButtonElement>("[data-cert-card]"));
+    const categoryFor = (title: string) => {
+      if (/AWS|Azure/i.test(title)) return "cloud";
+      if (/RAG Agents|CUDA Python/i.test(title)) return "ai-ml";
+      if (/Remote Sensing|Fundamentals of GIS|BIM Applications|TU Delft|Construction Management|BIM Foundations/i.test(title)) return "gis";
+      return "data-software";
+    };
+    certs.forEach((card) => {
+      card.dataset.certCategory = categoryFor(card.dataset.certTitle || "");
+      const badge = card.querySelector<HTMLElement>(".status-badge");
+      if (badge?.textContent?.trim() === "Active") badge.textContent = "Completed";
+      if (badge?.textContent?.trim() === "Scheduled") badge.textContent = "Planned";
+      badge?.classList.toggle("status-badge--completed", badge.textContent?.trim() === "Completed");
+      badge?.classList.toggle("status-badge--planned", badge.textContent?.trim() === "Planned");
+    });
+    const filters = Array.from(document.querySelectorAll<HTMLButtonElement>("[data-cert-filter]"));
+    const filterHandlers = filters.map((filter) => {
+      const handler = () => {
+        const category = filter.dataset.certFilter || "all";
+        filters.forEach((item) => {
+          const active = item === filter;
+          item.classList.toggle("is-active", active);
+          item.setAttribute("aria-pressed", String(active));
+        });
+        certs.forEach((card) => { card.hidden = category !== "all" && card.dataset.certCategory !== category; });
+      };
+      filter.addEventListener("click", handler);
+      return [filter, handler] as const;
+    });
     const certHandlers = certs.map((card) => { const handler = () => setCertificate({ title: card.dataset.certTitle || "Certificate", issuer: card.dataset.certIssuer || "Issuer" }); card.addEventListener("click", handler); return [card, handler] as const; });
 
     const form = document.querySelector<HTMLFormElement>("[data-contact-form]");
     const submit = (event: SubmitEvent) => { event.preventDefault(); const status = form?.querySelector<HTMLElement>("[data-form-status]"); if (status) { status.hidden = false; status.textContent = "Thanks — this form is ready to connect to your preferred email service."; } };
     form?.addEventListener("submit", submit);
 
-    return () => { observer.disconnect(); tabHandlers.forEach(([tab, handler]) => tab.removeEventListener("click", handler)); certHandlers.forEach(([card, handler]) => card.removeEventListener("click", handler)); form?.removeEventListener("submit", submit); };
+    return () => { observer.disconnect(); tabHandlers.forEach(([tab, handler]) => tab.removeEventListener("click", handler)); filterHandlers.forEach(([filter, handler]) => filter.removeEventListener("click", handler)); certHandlers.forEach(([card, handler]) => card.removeEventListener("click", handler)); form?.removeEventListener("submit", submit); };
   }, [pathname]);
 
   if (!certificate) return null;

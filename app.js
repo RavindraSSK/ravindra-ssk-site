@@ -446,6 +446,43 @@ function buildCertPlaceholder(title, issuer) {
   return `data:image/svg+xml;charset=utf-8,${encodeURIComponent(svg)}`;
 }
 
+function initCertFilters() {
+  const filters = Array.from(document.querySelectorAll("[data-cert-filter]"));
+  const cards = Array.from(document.querySelectorAll("[data-cert-card]"));
+  if (!filters.length || !cards.length) return;
+
+  const categoryFor = (title) => {
+    if (/AWS|Azure/i.test(title)) return "cloud";
+    if (/RAG Agents|CUDA Python/i.test(title)) return "ai-ml";
+    if (/Remote Sensing|Fundamentals of GIS|BIM Applications|TU Delft|Construction Management|BIM Foundations/i.test(title)) return "gis";
+    return "data-software";
+  };
+
+  cards.forEach((card) => {
+    card.dataset.certCategory = categoryFor(card.dataset.certTitle || "");
+    const badge = card.querySelector(".status-badge");
+    if (!badge) return;
+    if (badge.textContent.trim() === "Active") badge.textContent = "Completed";
+    if (badge.textContent.trim() === "Scheduled") badge.textContent = "Planned";
+    badge.classList.toggle("status-badge--completed", badge.textContent.trim() === "Completed");
+    badge.classList.toggle("status-badge--planned", badge.textContent.trim() === "Planned");
+  });
+
+  filters.forEach((filter) => {
+    filter.addEventListener("click", () => {
+      const category = filter.dataset.certFilter || "all";
+      filters.forEach((item) => {
+        const active = item === filter;
+        item.classList.toggle("is-active", active);
+        item.setAttribute("aria-pressed", String(active));
+      });
+      cards.forEach((card) => {
+        card.hidden = category !== "all" && card.dataset.certCategory !== category;
+      });
+    });
+  });
+}
+
 function initCertModal() {
   const modal = document.querySelector("[data-cert-modal]");
   if (!modal) return;
@@ -542,6 +579,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initThemeToggle();
   initNavigation();
   initPortfolioTabs();
+  initCertFilters();
   initCertModal();
   initScrollAnimations();
   initContactForm();

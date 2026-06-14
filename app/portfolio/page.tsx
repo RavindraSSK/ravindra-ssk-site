@@ -3,8 +3,8 @@ import type { Metadata } from "next";
 import { StaticPage } from "@/components/static-page";
 
 export const metadata: Metadata = {
-  title: "Portfolio",
-  description: "Selected AI research, machine learning projects, experience, education, skills, and certifications from Ravindra.",
+  title: "Portfolio & Credentials",
+  description: "Projects, experience, education, technical skills, and certifications from Ravindra.",
 };
 
 export default function PortfolioPage() {

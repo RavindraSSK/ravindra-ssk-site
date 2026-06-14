@@ -342,10 +342,10 @@ export const profileLinks = [
 
 export const navigationMenus = {
   "/portfolio": {
-    eyebrow: "Portfolio",
-    title: "Professional work with room for depth.",
+    eyebrow: "Credentials & Proof",
+    title: "Professional work and the evidence behind it.",
     description:
-      "Projects, experience, education, and the skills behind Ravi's product and ML practice.",
+      "Projects, experience, education, skills, and certifications in one clear professional record.",
     featured: { label: "Open portfolio", href: "/portfolio" },
     groups: [
       {
