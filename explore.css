@@ -4,6 +4,18 @@
   max-width: 850px;
 }
 
+.explore-hero::after {
+  content: "";
+  position: absolute;
+  inset: 8rem 10% auto auto;
+  z-index: -1;
+  width: 24rem;
+  height: 16rem;
+  border-radius: 999px;
+  background: radial-gradient(circle, rgba(27, 45, 95, 0.12), transparent 70%);
+  filter: blur(36px);
+}
+
 .explore-grid {
   display: grid;
   gap: var(--space-6);
@@ -12,7 +24,7 @@
 .explore-card {
   position: relative;
   overflow: hidden;
-  min-height: 340px;
+  min-height: 360px;
   isolation: isolate;
   border-radius: 30px;
   transition: transform 260ms cubic-bezier(0.22, 1, 0.36, 1), box-shadow 260ms ease, border-color 260ms ease;
@@ -29,7 +41,9 @@
 .explore-card::before {
   inset: 0;
   opacity: 0.78;
-  background: radial-gradient(circle at 86% 12%, var(--explore-glow), transparent 13rem);
+  background:
+    radial-gradient(circle at 86% 12%, var(--explore-glow), transparent 13rem),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.42), transparent 42%);
 }
 
 .explore-card::after {
@@ -43,7 +57,7 @@
 }
 
 .explore-card:hover {
-  transform: translateY(-7px) scale(1.005);
+  transform: translateY(-8px) scale(1.006);
 }
 
 .explore-card__accent {
@@ -66,7 +80,7 @@
   justify-content: center;
   width: 3.4rem;
   height: 3.4rem;
-  border-radius: 18px;
+  border-radius: 20px;
   color: #ffffff;
   box-shadow: 0 14px 30px rgba(27, 45, 95, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.24);
 }
@@ -82,28 +96,28 @@
 
 .explore-card--blog .explore-card__accent,
 .explore-card--blog .explore-card__symbol {
-  background: #92400e;
+  background: linear-gradient(135deg, #8a4a0d, #c47116);
 }
 
 .explore-card--blog { --explore-glow: rgba(251, 191, 36, 0.2); }
 
 .explore-card--photo .explore-card__accent,
 .explore-card--photo .explore-card__symbol {
-  background: #14532d;
+  background: linear-gradient(135deg, #11552d, #1f7a46);
 }
 
 .explore-card--photo { --explore-glow: rgba(74, 222, 128, 0.17); }
 
 .explore-card--fitness .explore-card__accent,
 .explore-card--fitness .explore-card__symbol {
-  background: #9f1239;
+  background: linear-gradient(135deg, #99153c, #cf315c);
 }
 
 .explore-card--fitness { --explore-glow: rgba(251, 113, 133, 0.17); }
 
 .explore-card--music .explore-card__accent,
 .explore-card--music .explore-card__symbol {
-  background: #4c1d95;
+  background: linear-gradient(135deg, #48208f, #7456c8);
 }
 
 .explore-card--music { --explore-glow: rgba(167, 139, 250, 0.2); }
@@ -146,11 +160,13 @@
 
 @media (min-width: 1024px) {
   .explore-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: 1.08fr 0.92fr;
+    align-items: stretch;
   }
 
   .explore-card--blog {
     grid-column: span 1;
+    grid-row: span 2;
   }
 
   .explore-card--photo,
@@ -162,7 +178,8 @@
     grid-column: span 1;
   }
 
-  .explore-card--blog,
+  .explore-card--blog { min-height: 100%; }
+
   .explore-card--music { min-height: 390px; }
 
   .explore-card--photo,

@@ -3,6 +3,18 @@
   gap: var(--space-6);
 }
 
+.portfolio-hero::before {
+  content: "";
+  position: absolute;
+  inset: 7rem auto auto 8%;
+  z-index: -1;
+  width: 34rem;
+  height: 16rem;
+  border-radius: 999px;
+  background: radial-gradient(circle, rgba(27, 45, 95, 0.12), transparent 68%);
+  filter: blur(34px);
+}
+
 .portfolio-hero > div:first-child {
   max-width: 820px;
 }
@@ -15,7 +27,8 @@
   border: 1px solid rgba(255, 255, 255, 0.78);
   border-radius: 28px;
   background:
-    radial-gradient(circle at 88% 12%, rgba(135, 173, 240, 0.28), transparent 15rem),
+    radial-gradient(circle at 88% 12%, rgba(38, 84, 179, 0.18), transparent 15rem),
+    linear-gradient(120deg, rgba(255, 255, 255, 0.48), transparent 40%),
     linear-gradient(135deg, rgba(255, 255, 255, 0.86), rgba(225, 236, 253, 0.62));
   box-shadow: var(--shadow-card);
   backdrop-filter: blur(18px);
@@ -45,8 +58,8 @@
   gap: 0.15rem;
   padding: 0.9rem;
   border: 1px solid rgba(255, 255, 255, 0.65);
-  border-radius: 18px;
-  background: rgba(255, 255, 255, 0.55);
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.66);
   color: var(--color-text-muted);
   font-size: 0.78rem;
   font-weight: 700;
@@ -67,6 +80,7 @@
 .portfolio-panel {
   display: grid;
   gap: var(--space-6);
+  scroll-margin-top: 8rem;
 }
 
 .education-grid,
@@ -94,7 +108,7 @@
   padding: 0.6rem;
   border: 1px solid var(--color-border);
   border-radius: 20px;
-  background: rgba(255, 255, 255, 0.72);
+  background: rgba(255, 255, 255, 0.78);
   box-shadow: var(--shadow-soft);
   backdrop-filter: blur(16px);
 }
@@ -124,8 +138,9 @@
 
 .cert-filter:hover,
 .cert-filter.is-active {
-  background: var(--color-primary);
+  background: linear-gradient(135deg, #142d66, #2d58b5);
   color: #ffffff;
+  box-shadow: 0 12px 26px rgba(27, 45, 95, 0.18);
 }
 
 .cert-filter.is-active span {
@@ -144,24 +159,34 @@
 .cert-layout .cert-card {
   position: relative;
   display: flex;
-  min-height: 205px;
+  min-height: 214px;
   flex-direction: column;
   gap: 0.85rem;
   padding: 1.15rem;
   overflow: hidden;
   border: 1px solid rgba(148, 163, 184, 0.28);
   border-radius: 22px;
-  background: rgba(255, 255, 255, 0.68);
+  background:
+    radial-gradient(circle at 90% 0%, rgba(45, 88, 181, 0.09), transparent 9rem),
+    rgba(255, 255, 255, 0.72);
   box-shadow: 0 12px 32px rgba(27, 45, 95, 0.08);
   backdrop-filter: blur(16px);
   transition: transform 180ms ease, border-color 180ms ease, background 180ms ease, box-shadow 180ms ease;
 }
 
 .cert-layout .cert-card:hover {
-  transform: translateY(-3px);
+  transform: translateY(-5px);
   border-color: rgba(27, 45, 95, 0.34);
   background: linear-gradient(145deg, rgba(27, 45, 95, 0.96), rgba(39, 67, 132, 0.92));
-  box-shadow: 0 18px 38px rgba(27, 45, 95, 0.2);
+  box-shadow: 0 22px 48px rgba(27, 45, 95, 0.22), 0 0 42px rgba(52, 96, 188, 0.14);
+}
+
+.project-grid > article:first-child {
+  min-height: 320px;
+}
+
+.project-grid > article:first-child .card-heading {
+  font-size: clamp(1.55rem, 2.4vw, 2.2rem);
 }
 
 .cert-layout .cert-card[hidden] {
@@ -248,6 +273,20 @@
   .education-grid,
   .skills-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .portfolio-panel .project-grid {
+    grid-template-columns: 1.12fr 0.88fr;
+  }
+
+  .portfolio-panel .project-grid > article:first-child {
+    grid-row: span 2;
+  }
+
+  .skills-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
 

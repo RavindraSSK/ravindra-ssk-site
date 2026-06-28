@@ -5,7 +5,8 @@
   border: 1px solid rgba(255, 255, 255, 0.74);
   border-radius: 32px;
   background:
-    radial-gradient(circle at 10% 15%, rgba(126, 166, 237, 0.22), transparent 15rem),
+    radial-gradient(circle at 10% 15%, rgba(126, 166, 237, 0.24), transparent 15rem),
+    radial-gradient(circle at 88% 20%, rgba(27, 45, 95, 0.11), transparent 16rem),
     linear-gradient(145deg, rgba(255, 255, 255, 0.78), rgba(232, 240, 253, 0.58));
   box-shadow: var(--shadow-card);
   backdrop-filter: blur(18px);
@@ -66,18 +67,18 @@
   gap: 1rem;
   padding: 0.85rem 1rem;
   border: 1px solid rgba(148, 163, 184, 0.22);
-  border-radius: 15px;
-  background: rgba(255, 255, 255, 0.56);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.62);
   color: var(--color-text);
   font-weight: 700;
 }
 
 .about-profile-links a:hover {
-  transform: translateX(4px);
+  transform: translateX(4px) translateY(-1px);
   border-color: rgba(27, 45, 95, 0.22);
   background: rgba(238, 244, 255, 0.9);
   color: var(--color-primary);
-  box-shadow: 0 10px 26px rgba(27, 45, 95, 0.09);
+  box-shadow: 0 14px 30px rgba(27, 45, 95, 0.11);
 }
 
 .interest-grid .card:nth-child(3n + 1) { background: linear-gradient(145deg, rgba(239, 246, 255, 0.92), rgba(255, 255, 255, 0.72)); }
@@ -102,7 +103,7 @@
   }
 
   .leadership-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: 1.05fr 0.95fr 1fr;
   }
 
   .about-summary-grid {

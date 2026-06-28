@@ -15,9 +15,14 @@
   padding: clamp(1.5rem, 4vw, 2.25rem);
   border-radius: 30px;
   background:
-    radial-gradient(circle at 92% 5%, rgba(126, 166, 237, 0.18), transparent 15rem),
+    radial-gradient(circle at 92% 5%, rgba(43, 84, 177, 0.17), transparent 15rem),
+    linear-gradient(120deg, rgba(255, 255, 255, 0.52), transparent 42%),
     linear-gradient(145deg, rgba(255, 255, 255, 0.88), rgba(237, 243, 253, 0.72));
   box-shadow: 0 30px 80px rgba(27, 45, 95, 0.14), inset 0 1px 0 rgba(255, 255, 255, 0.94);
+}
+
+.contact-form-card:hover {
+  box-shadow: 0 34px 86px rgba(27, 45, 95, 0.16), 0 0 42px rgba(52, 96, 188, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.94);
 }
 
 .contact-copy > .card {
@@ -33,7 +38,7 @@
   padding: 0.9rem 1rem;
   border: 1px solid rgba(148, 163, 184, 0.2);
   border-radius: 16px;
-  background: rgba(255, 255, 255, 0.54);
+  background: rgba(255, 255, 255, 0.62);
   transition: transform 180ms ease, border-color 180ms ease, background-color 180ms ease;
 }
 

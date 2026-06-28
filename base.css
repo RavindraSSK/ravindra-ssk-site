@@ -14,10 +14,10 @@ body {
   min-width: 320px;
   overflow-x: clip;
   background:
-    radial-gradient(circle at 12% 4%, rgba(153, 184, 244, 0.24), transparent 25rem),
-    radial-gradient(circle at 88% 16%, rgba(27, 45, 95, 0.11), transparent 30rem),
-    radial-gradient(circle at 55% 54%, rgba(191, 219, 254, 0.16), transparent 36rem),
-    linear-gradient(180deg, #fcfdff 0%, #f4f8fd 38%, var(--color-bg) 100%);
+    radial-gradient(circle at 16% 2%, rgba(168, 199, 255, 0.4), transparent 26rem),
+    radial-gradient(circle at 82% 12%, rgba(27, 45, 95, 0.1), transparent 31rem),
+    radial-gradient(circle at 58% 50%, rgba(214, 231, 255, 0.26), transparent 38rem),
+    linear-gradient(180deg, #ffffff 0%, #fbfdff 34%, var(--color-bg) 100%);
   color: var(--color-text);
   font-family: var(--font-body);
   font-size: 16px;
@@ -32,12 +32,13 @@ body::before {
   inset: 0;
   z-index: -2;
   pointer-events: none;
-  opacity: 0.32;
+  opacity: 0.42;
   background-image:
-    linear-gradient(rgba(27, 45, 95, 0.045) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(27, 45, 95, 0.045) 1px, transparent 1px);
-  background-size: 64px 64px;
-  mask-image: linear-gradient(to bottom, #000 0%, transparent 68%);
+    linear-gradient(rgba(27, 45, 95, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(27, 45, 95, 0.04) 1px, transparent 1px),
+    linear-gradient(135deg, transparent 0 48%, rgba(27, 45, 95, 0.035) 49% 51%, transparent 52% 100%);
+  background-size: 68px 68px, 68px 68px, 136px 136px;
+  mask-image: linear-gradient(to bottom, #000 0%, rgba(0, 0, 0, 0.78) 36%, transparent 78%);
 }
 
 body::after {
@@ -50,8 +51,8 @@ body::after {
   height: 32rem;
   border-radius: 50%;
   pointer-events: none;
-  background: rgba(103, 146, 226, 0.1);
-  filter: blur(80px);
+  background: radial-gradient(circle, rgba(43, 84, 177, 0.16), rgba(103, 146, 226, 0.08), transparent 68%);
+  filter: blur(74px);
 }
 
 html[data-theme="dark"] body {
@@ -123,6 +124,7 @@ main {
 }
 
 .section {
+  position: relative;
   padding: clamp(3.5rem, 8vw, 6.5rem) 0;
 }
 
@@ -185,11 +187,13 @@ main {
 .section-copy {
   margin-top: var(--space-4);
   font-size: 1.04rem;
+  line-height: 1.75;
 }
 
 .page-copy,
 .hero-copy {
   font-size: 1.08rem;
+  line-height: 1.78;
 }
 
 .grid {

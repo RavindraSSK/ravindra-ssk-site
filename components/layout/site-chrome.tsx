@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import type { ReactNode } from "react";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import { ArrowRight, ChevronDown, Menu, Moon, Sun, X } from "lucide-react";
 
 import { SiteInteractions } from "@/components/site-interactions";
 
@@ -38,7 +39,7 @@ function Dropdown({ id, title, links, open, setOpen }: { id: string; title: stri
     <li className={`nav-item nav-item--has-menu${open ? " is-open" : ""}`}>
       <div className="nav-link-group">
         <Link className="nav-link" href={`/${id}`}>{title}</Link>
-        <button className="nav-expand" type="button" aria-expanded={open} aria-label={`Toggle ${title.toLowerCase()} menu`} onClick={setOpen}>⌄</button>
+        <button className="nav-expand" type="button" aria-expanded={open} aria-label={`Toggle ${title.toLowerCase()} menu`} onClick={setOpen}><ChevronDown size={16} aria-hidden="true" /></button>
       </div>
       <div className="nav-dropdown">
         <div className="nav-dropdown__panel">
@@ -46,7 +47,7 @@ function Dropdown({ id, title, links, open, setOpen }: { id: string; title: stri
           <div className="nav-dropdown__grid">
             {links.map(([label, href, copy]) => (
               <Link className="nav-dropdown__item" href={href} key={href}>
-                <p className="nav-dropdown__item-title">{label}<span>↗</span></p>
+                <p className="nav-dropdown__item-title">{label}<ArrowRight size={15} aria-hidden="true" /></p>
                 <p className="nav-dropdown__item-copy">{copy}</p>
               </Link>
             ))}
@@ -64,12 +65,22 @@ export function SiteChrome({ children }: { children: ReactNode }) {
   const [dark, setDark] = useState(false);
 
   useEffect(() => {
+    setDark(window.localStorage.getItem("theme") === "dark");
+  }, []);
+
+  useEffect(() => {
     setMobileOpen(false);
     setDropdown(null);
   }, [pathname]);
 
   useEffect(() => {
-    document.documentElement.toggleAttribute("data-theme", dark);
+    if (dark) {
+      document.documentElement.setAttribute("data-theme", "dark");
+      window.localStorage.setItem("theme", "dark");
+    } else {
+      document.documentElement.removeAttribute("data-theme");
+      window.localStorage.setItem("theme", "light");
+    }
   }, [dark]);
 
   return (
@@ -87,7 +98,7 @@ export function SiteChrome({ children }: { children: ReactNode }) {
               <span className="brand__mark"><Logo /></span>
               <span className="brand__text"><span className="brand__name">Ravindra</span><span className="brand__role">AI Researcher | Machine Learning Engineer</span></span>
             </Link>
-            <button className="nav-toggle" type="button" aria-expanded={mobileOpen} aria-label="Open navigation" onClick={() => setMobileOpen((value) => !value)}>{mobileOpen ? "×" : "☰"}</button>
+            <button className="nav-toggle" type="button" aria-expanded={mobileOpen} aria-label="Open navigation" onClick={() => setMobileOpen((value) => !value)}>{mobileOpen ? <X size={20} aria-hidden="true" /> : <Menu size={20} aria-hidden="true" />}</button>
             <nav className={`site-nav${mobileOpen ? " is-open" : ""}`} aria-label="Primary navigation">
               <ul className="nav-list list-reset">
                 <li className="nav-item"><Link className={`nav-link${pathname === "/" ? " is-active" : ""}`} href="/">Home</Link></li>
@@ -96,7 +107,7 @@ export function SiteChrome({ children }: { children: ReactNode }) {
                 <li className="nav-item"><Link className={`nav-link${pathname === "/about" ? " is-active" : ""}`} href="/about">About</Link></li>
               </ul>
               <div className="nav-utilities">
-                <button className="theme-toggle" type="button" aria-label="Toggle dark mode" aria-pressed={dark} onClick={() => setDark((value) => !value)}>{dark ? "☾" : "☼"}</button>
+                <button className="theme-toggle" type="button" aria-label={dark ? "Switch to light mode" : "Switch to dark mode"} aria-pressed={dark} data-mode={dark ? "dark" : "light"} onClick={() => setDark((value) => !value)}>{dark ? <Moon size={17} aria-hidden="true" /> : <Sun size={17} aria-hidden="true" />}</button>
                 <Link className="button button--nav" href="/contact">Say hello</Link>
               </div>
             </nav>
