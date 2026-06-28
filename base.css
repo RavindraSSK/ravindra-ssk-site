@@ -17,7 +17,7 @@ body {
     radial-gradient(circle at 16% 2%, rgba(168, 199, 255, 0.4), transparent 26rem),
     radial-gradient(circle at 82% 12%, rgba(27, 45, 95, 0.1), transparent 31rem),
     radial-gradient(circle at 58% 50%, rgba(214, 231, 255, 0.26), transparent 38rem),
-    linear-gradient(180deg, #ffffff 0%, #fbfdff 34%, var(--color-bg) 100%);
+    linear-gradient(180deg, #ffffff 0%, #fbfdff 34%, var(--ambient-bg) 100%);
   color: var(--color-text);
   font-family: var(--font-body);
   font-size: 16px;
@@ -34,9 +34,9 @@ body::before {
   pointer-events: none;
   opacity: 0.42;
   background-image:
-    linear-gradient(rgba(27, 45, 95, 0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(27, 45, 95, 0.04) 1px, transparent 1px),
-    linear-gradient(135deg, transparent 0 48%, rgba(27, 45, 95, 0.035) 49% 51%, transparent 52% 100%);
+    linear-gradient(var(--ambient-grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--ambient-grid) 1px, transparent 1px),
+    linear-gradient(135deg, transparent 0 48%, var(--ambient-grid) 49% 51%, transparent 52% 100%);
   background-size: 68px 68px, 68px 68px, 136px 136px;
   mask-image: linear-gradient(to bottom, #000 0%, rgba(0, 0, 0, 0.78) 36%, transparent 78%);
 }
@@ -51,14 +51,16 @@ body::after {
   height: 32rem;
   border-radius: 50%;
   pointer-events: none;
-  background: radial-gradient(circle, rgba(43, 84, 177, 0.16), rgba(103, 146, 226, 0.08), transparent 68%);
+  background: radial-gradient(circle, var(--ambient-glow-strong), var(--ambient-glow), transparent 68%);
   filter: blur(74px);
 }
 
 html[data-theme="dark"] body {
   background:
-    radial-gradient(circle at top left, rgba(30, 58, 138, 0.18), transparent 30%),
-    linear-gradient(180deg, #0f172a 0%, #111827 100%);
+    radial-gradient(circle at 14% 0%, rgba(82, 132, 230, 0.18), transparent 28rem),
+    radial-gradient(circle at 82% 12%, rgba(147, 180, 245, 0.11), transparent 30rem),
+    radial-gradient(circle at 50% 70%, rgba(36, 70, 135, 0.14), transparent 38rem),
+    linear-gradient(180deg, #091121 0%, #0d1729 48%, #101827 100%);
 }
 
 img,
@@ -156,7 +158,7 @@ main {
   margin: 0;
   color: var(--color-text);
   font-family: var(--font-display);
-  letter-spacing: -0.04em;
+  letter-spacing: -0.035em;
   line-height: 1.02;
 }
 

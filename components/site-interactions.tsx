@@ -53,7 +53,7 @@ export function SiteInteractions({ pathname }: { pathname: string }) {
     const certHandlers = certs.map((card) => { const handler = () => setCertificate({ title: card.dataset.certTitle || "Certificate", issuer: card.dataset.certIssuer || "Issuer" }); card.addEventListener("click", handler); return [card, handler] as const; });
 
     const form = document.querySelector<HTMLFormElement>("[data-contact-form]");
-    const submit = (event: SubmitEvent) => { event.preventDefault(); const status = form?.querySelector<HTMLElement>("[data-form-status]"); if (status) { status.hidden = false; status.textContent = "Thanks - this form is ready to connect to your preferred email service."; } };
+    const submit = (event: SubmitEvent) => { event.preventDefault(); const status = form?.querySelector<HTMLElement>("[data-form-status]"); if (status) { status.hidden = false; status.textContent = "This form is not connected to a backend yet. Please email me directly at ravindrassk1304@gmail.com."; } };
     form?.addEventListener("submit", submit);
 
     return () => { observer.disconnect(); tabHandlers.forEach(([tab, handler]) => tab.removeEventListener("click", handler)); filterHandlers.forEach(([filter, handler]) => filter.removeEventListener("click", handler)); certHandlers.forEach(([card, handler]) => card.removeEventListener("click", handler)); form?.removeEventListener("submit", submit); };

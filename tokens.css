@@ -17,6 +17,17 @@
   --color-overlay: rgba(15, 23, 42, 0.64);
   --color-backdrop: rgba(255, 255, 255, 0.72);
 
+  --ambient-bg: #f8fbff;
+  --ambient-surface: rgba(255, 255, 255, 0.86);
+  --ambient-surface-strong: rgba(255, 255, 255, 0.94);
+  --ambient-ink-soft: #34445d;
+  --ambient-line: rgba(43, 69, 117, 0.14);
+  --ambient-line-strong: rgba(27, 45, 95, 0.22);
+  --ambient-glow: rgba(55, 101, 194, 0.14);
+  --ambient-glow-strong: rgba(32, 75, 166, 0.22);
+  --ambient-editorial: rgba(245, 248, 255, 0.78);
+  --ambient-grid: rgba(27, 45, 95, 0.035);
+
   --font-display: "Cabinet Grotesk", sans-serif;
   --font-body: "Satoshi", sans-serif;
 
@@ -65,4 +76,15 @@ html[data-theme="dark"] {
   --color-shadow-strong: rgba(2, 6, 23, 0.42);
   --color-overlay: rgba(2, 6, 23, 0.78);
   --color-backdrop: rgba(15, 23, 42, 0.82);
+
+  --ambient-bg: #0d1729;
+  --ambient-surface: rgba(18, 29, 52, 0.84);
+  --ambient-surface-strong: rgba(25, 38, 66, 0.94);
+  --ambient-ink-soft: #bfccde;
+  --ambient-line: rgba(148, 163, 184, 0.16);
+  --ambient-line-strong: rgba(147, 180, 245, 0.24);
+  --ambient-glow: rgba(82, 132, 230, 0.16);
+  --ambient-glow-strong: rgba(111, 158, 255, 0.24);
+  --ambient-editorial: rgba(17, 27, 48, 0.78);
+  --ambient-grid: rgba(191, 219, 254, 0.04);
 }

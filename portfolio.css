@@ -11,8 +11,8 @@
   width: 34rem;
   height: 16rem;
   border-radius: 999px;
-  background: radial-gradient(circle, rgba(27, 45, 95, 0.12), transparent 68%);
-  filter: blur(34px);
+  background: var(--ambient-glow-strong);
+  filter: blur(38px);
 }
 
 .portfolio-hero > div:first-child {
@@ -24,18 +24,19 @@
   gap: 1.5rem;
   padding: clamp(1.35rem, 3vw, 2rem);
   overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.78);
+  border: 1px solid var(--ambient-line);
   border-radius: 28px;
   background:
-    radial-gradient(circle at 88% 12%, rgba(38, 84, 179, 0.18), transparent 15rem),
-    linear-gradient(120deg, rgba(255, 255, 255, 0.48), transparent 40%),
-    linear-gradient(135deg, rgba(255, 255, 255, 0.86), rgba(225, 236, 253, 0.62));
+    radial-gradient(circle at 88% 12%, rgba(38, 84, 179, 0.15), transparent 15rem),
+    linear-gradient(120deg, var(--ambient-editorial), transparent 44%),
+    var(--ambient-surface-strong);
   box-shadow: var(--shadow-card);
   backdrop-filter: blur(18px);
 }
 
 .credentials-overview__lead {
   display: grid;
+  gap: 0.65rem;
 }
 
 .credentials-overview__lead strong {
@@ -57,9 +58,9 @@
   display: grid;
   gap: 0.15rem;
   padding: 0.9rem;
-  border: 1px solid rgba(255, 255, 255, 0.65);
+  border: 1px solid var(--ambient-line);
   border-radius: 20px;
-  background: rgba(255, 255, 255, 0.66);
+  background: var(--ambient-surface);
   color: var(--color-text-muted);
   font-size: 0.78rem;
   font-weight: 700;
@@ -106,9 +107,9 @@
   flex-wrap: wrap;
   gap: 0.65rem;
   padding: 0.6rem;
-  border: 1px solid var(--color-border);
+  border: 1px solid var(--ambient-line);
   border-radius: 20px;
-  background: rgba(255, 255, 255, 0.78);
+  background: var(--ambient-surface);
   box-shadow: var(--shadow-soft);
   backdrop-filter: blur(16px);
 }
@@ -125,6 +126,7 @@
   color: var(--color-text-muted);
   font-weight: 800;
   cursor: pointer;
+  transition: background-color 180ms ease, box-shadow 180ms ease, color 180ms ease, transform 180ms ease;
 }
 
 .cert-filter span {
@@ -141,6 +143,10 @@
   background: linear-gradient(135deg, #142d66, #2d58b5);
   color: #ffffff;
   box-shadow: 0 12px 26px rgba(27, 45, 95, 0.18);
+}
+
+.cert-filter:hover {
+  transform: translateY(-1px);
 }
 
 .cert-filter.is-active span {
@@ -164,20 +170,22 @@
   gap: 0.85rem;
   padding: 1.15rem;
   overflow: hidden;
-  border: 1px solid rgba(148, 163, 184, 0.28);
+  border: 1px solid var(--ambient-line);
   border-radius: 22px;
   background:
     radial-gradient(circle at 90% 0%, rgba(45, 88, 181, 0.09), transparent 9rem),
-    rgba(255, 255, 255, 0.72);
+    var(--ambient-surface);
   box-shadow: 0 12px 32px rgba(27, 45, 95, 0.08);
   backdrop-filter: blur(16px);
   transition: transform 180ms ease, border-color 180ms ease, background 180ms ease, box-shadow 180ms ease;
 }
 
 .cert-layout .cert-card:hover {
-  transform: translateY(-5px);
+  transform: translateY(-4px);
   border-color: rgba(27, 45, 95, 0.34);
-  background: linear-gradient(145deg, rgba(27, 45, 95, 0.96), rgba(39, 67, 132, 0.92));
+  background:
+    radial-gradient(circle at 95% 5%, rgba(126, 166, 237, 0.2), transparent 9rem),
+    linear-gradient(145deg, rgba(27, 45, 95, 0.96), rgba(39, 67, 132, 0.92));
   box-shadow: 0 22px 48px rgba(27, 45, 95, 0.22), 0 0 42px rgba(52, 96, 188, 0.14);
 }
 
@@ -234,6 +242,10 @@
   font-weight: 800;
 }
 
+.cert-layout .cert-issuer {
+  color: var(--color-text-muted);
+}
+
 .cert-layout .cert-card:hover .cert-title,
 .cert-layout .cert-card:hover .cert-issuer,
 .cert-layout .cert-card:hover .cert-card__footer,
@@ -257,6 +269,13 @@
   color: var(--color-warning);
   border-color: rgba(161, 98, 7, 0.18);
   background: rgba(161, 98, 7, 0.08);
+}
+
+.status-badge--progress,
+.status-badge--in-progress {
+  color: var(--color-primary);
+  border-color: rgba(27, 45, 95, 0.16);
+  background: rgba(27, 45, 95, 0.08);
 }
 
 .cert-layout .cert-card:hover .status-badge {

@@ -13,12 +13,14 @@
   display: grid;
   gap: var(--space-5);
   padding: clamp(1.5rem, 4vw, 2.25rem);
+  border: 1px solid var(--ambient-line);
   border-radius: 30px;
   background:
-    radial-gradient(circle at 92% 5%, rgba(43, 84, 177, 0.17), transparent 15rem),
-    linear-gradient(120deg, rgba(255, 255, 255, 0.52), transparent 42%),
-    linear-gradient(145deg, rgba(255, 255, 255, 0.88), rgba(237, 243, 253, 0.72));
+    radial-gradient(circle at 92% 5%, rgba(43, 84, 177, 0.14), transparent 15rem),
+    linear-gradient(120deg, var(--ambient-editorial), transparent 42%),
+    var(--ambient-surface-strong);
   box-shadow: 0 30px 80px rgba(27, 45, 95, 0.14), inset 0 1px 0 rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(18px);
 }
 
 .contact-form-card:hover {
@@ -28,6 +30,9 @@
 .contact-copy > .card {
   padding: 0.75rem;
   border-radius: 28px;
+  background:
+    radial-gradient(circle at 0% 0%, rgba(45, 88, 181, 0.08), transparent 10rem),
+    var(--ambient-surface);
 }
 
 .contact-list {
@@ -36,16 +41,17 @@
 
 .contact-list__item {
   padding: 0.9rem 1rem;
-  border: 1px solid rgba(148, 163, 184, 0.2);
+  border: 1px solid var(--ambient-line);
   border-radius: 16px;
-  background: rgba(255, 255, 255, 0.62);
-  transition: transform 180ms ease, border-color 180ms ease, background-color 180ms ease;
+  background: var(--ambient-surface);
+  transition: transform 180ms ease, border-color 180ms ease, background 180ms ease, box-shadow 180ms ease;
 }
 
 .contact-list__item:has(a):hover {
   transform: translateX(3px);
   border-color: rgba(27, 45, 95, 0.22);
-  background: rgba(238, 244, 255, 0.86);
+  background: var(--ambient-surface-strong);
+  box-shadow: 0 14px 30px rgba(27, 45, 95, 0.09);
 }
 
 .contact-form-card .button {
@@ -58,7 +64,7 @@
   padding: 0.9rem 1rem;
   border: 1px solid rgba(27, 45, 95, 0.16);
   border-radius: 16px;
-  background: rgba(238, 242, 255, 0.8);
+  background: var(--ambient-editorial);
   color: var(--color-primary);
   font-size: 0.95rem;
   font-weight: 600;
