@@ -39,8 +39,47 @@
 
       <section class="section section--tight content-list content-list--blog">
         <div class="container content-grid">
-          <article class="blog-article card animate-in" style="--delay: 40ms;">
-            <header class="blog-article__header">
+          <details class="blog-entry animate-in" style="--delay: 40ms;">
+            <summary class="blog-entry-card card card--hover">
+              <div class="blog-entry-card__content">
+                <div class="blog-feature-card__top">
+                  <span class="meta-pill">Technical guide</span>
+                  <span class="blog-feature-card__source">Feb 2025</span>
+                </div>
+                <div class="blog-entry-card__main">
+                  <div class="stack">
+                    <h2 class="card-heading">Decoding the Web: A Practical Guide to Web Scraping with Python</h2>
+                    <p class="card-copy">A professional walkthrough for collecting public web data, parsing page structure, extracting useful fields, and exporting results into a clean dataset.</p>
+                  </div>
+                  <div class="blog-entry-card__facts" aria-label="Article details">
+                    <span><strong>Type</strong> Practical tutorial</span>
+                    <span><strong>Level</strong> Beginner friendly</span>
+                    <span><strong>Output</strong> CSV dataset</span>
+                  </div>
+                </div>
+                <div class="blog-entry-card__skills" aria-label="Skills covered">
+                  <span>Python</span>
+                  <span>requests</span>
+                  <span>BeautifulSoup</span>
+                  <span>pandas</span>
+                  <span>HTML parsing</span>
+                  <span>Responsible scraping</span>
+                </div>
+                <div class="blog-entry-card__footer">
+                  <div>
+                    <span class="blog-entry-card__label">Inside the article</span>
+                    <p>Tools, scraper structure, code explanation, output example, and reliability notes.</p>
+                  </div>
+                  <span class="blog-entry-card__action">
+                    <span class="blog-entry-card__action-open">Open full guide</span>
+                    <span class="blog-entry-card__action-close">Close guide</span>
+                  </span>
+                </div>
+              </div>
+            </summary>
+
+            <article class="blog-article card">
+              <header class="blog-article__header">
               <div class="blog-feature-card__top">
                 <span class="meta-pill">Technical guide</span>
                 <span class="blog-feature-card__source">Originally on SSK Hub</span>
@@ -166,8 +205,9 @@ Senior Machine Learning Engineer (Remote-USA) United States            https://w
                 <p>Web scraping can save time and create structured datasets from scattered public information. The advantages of automation and efficiency are significant, but real-world scraping also brings challenges: site changes, dynamic content, ethical boundaries, and increasing complexity. The example above is a solid starting point, but production-grade scraping requires careful planning and responsible practice.</p>
                 <p class="blog-article__source">Original post: <a href="https://sskhub.blogspot.com/2025/02/decoding-web-practical-guide-to-web.html" target="_blank" rel="noopener noreferrer">SSK Hub</a>. Code reference: <a href="https://github.com/RavindraSSK/RavindraSSK" target="_blank" rel="noopener noreferrer">GitHub</a>.</p>
               </section>
-            </div>
-          </article>
+              </div>
+            </article>
+          </details>
           <article class="card card--hover animate-in" style="--delay: 60ms;"><div class="stack"><span class="meta-pill">Research note</span><h2 class="card-heading">Why spatial context changes model design</h2><p class="card-copy">Geospatial data is never just another image benchmark. Location, scale, sensor timing, and terrain change how a model should be trained, evaluated, and explained.</p><div class="note-meta"><span>Reading time: 4 min</span><span>GeoAI</span></div></div></article>
           <article class="card card--hover animate-in" style="--delay: 120ms;"><div class="stack"><span class="meta-pill">Model note</span><h2 class="card-heading">Grad-CAM for interpretable flood detection</h2><p class="card-copy">A working note on using activation maps to inspect attention U-Net decisions on SAR imagery, especially where false positives carry operational cost.</p><div class="note-meta"><span>Reading time: 5 min</span><span>Explainability</span></div></div></article>
           <article class="card card--hover animate-in" style="--delay: 180ms;"><div class="stack"><span class="meta-pill">Field note</span><h2 class="card-heading">From civil engineering to GeoAI</h2><p class="card-copy">Infrastructure thinking trained me to care about context, constraints, and physical systems. GeoAI adds machine perception to that same way of reading the world.</p><div class="note-meta"><span>Reading time: 3 min</span><span>Personal path</span></div></div></article>
