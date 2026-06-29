@@ -12,13 +12,36 @@ export function SiteInteractions({ pathname }: { pathname: string }) {
 
     const tabs = Array.from(document.querySelectorAll<HTMLButtonElement>("[data-tab-target]"));
     const panels = Array.from(document.querySelectorAll<HTMLElement>("[data-tab-panel]"));
+    const tabRoot = document.querySelector<HTMLElement>("[data-portfolio-tabs]");
+    let selectedTab: HTMLButtonElement | null = null;
+    const moveTabIndicator = (tab: HTMLButtonElement | null) => {
+      if (!tabRoot || !tab) return;
+      tabs.forEach((item) => item.classList.toggle("is-preview", item === tab));
+      tabRoot.style.setProperty("--tab-indicator-left", `${tab.offsetLeft}px`);
+      tabRoot.style.setProperty("--tab-indicator-top", `${tab.offsetTop}px`);
+      tabRoot.style.setProperty("--tab-indicator-width", `${tab.offsetWidth}px`);
+      tabRoot.style.setProperty("--tab-indicator-height", `${tab.offsetHeight}px`);
+      tabRoot.dataset.indicatorReady = "true";
+    };
     const selectTab = (id: string) => {
-      tabs.forEach((tab) => { const active = tab.dataset.tabTarget === id; tab.classList.toggle("is-active", active); tab.setAttribute("aria-selected", String(active)); tab.tabIndex = active ? 0 : -1; });
+      tabs.forEach((tab) => { const active = tab.dataset.tabTarget === id; tab.classList.toggle("is-active", active); tab.setAttribute("aria-selected", String(active)); tab.tabIndex = active ? 0 : -1; if (active) selectedTab = tab; });
       panels.forEach((panel) => { panel.hidden = panel.id !== id; });
+      window.requestAnimationFrame(() => moveTabIndicator(selectedTab));
     };
     const hash = window.location.hash.slice(1);
     if (tabs.length) selectTab(tabs.some((tab) => tab.dataset.tabTarget === hash) ? hash : "projects");
-    const tabHandlers = tabs.map((tab) => { const handler = () => { const id = tab.dataset.tabTarget; if (id) { selectTab(id); history.replaceState(null, "", `#${id}`); } }; tab.addEventListener("click", handler); return [tab, handler] as const; });
+    const tabHandlers = tabs.map((tab) => {
+      const clickHandler = () => { const id = tab.dataset.tabTarget; if (id) { selectTab(id); history.replaceState(null, "", `#${id}`); } };
+      const previewHandler = () => moveTabIndicator(tab);
+      tab.addEventListener("click", clickHandler);
+      tab.addEventListener("pointerenter", previewHandler);
+      tab.addEventListener("focus", previewHandler);
+      return [tab, clickHandler, previewHandler] as const;
+    });
+    const leaveTabsHandler = () => moveTabIndicator(selectedTab);
+    const resizeTabsHandler = () => moveTabIndicator(selectedTab);
+    tabRoot?.addEventListener("pointerleave", leaveTabsHandler);
+    window.addEventListener("resize", resizeTabsHandler);
 
     const certs = Array.from(document.querySelectorAll<HTMLButtonElement>("[data-cert-card]"));
     const categoryFor = (title: string) => {
@@ -59,7 +82,7 @@ export function SiteInteractions({ pathname }: { pathname: string }) {
     const submit = (event: SubmitEvent) => { event.preventDefault(); const status = form?.querySelector<HTMLElement>("[data-form-status]"); if (status) { status.hidden = false; status.textContent = "This form is not connected to a backend yet. Please email me directly at ravindrassk1304@gmail.com."; } };
     form?.addEventListener("submit", submit);
 
-    return () => { observer.disconnect(); tabHandlers.forEach(([tab, handler]) => tab.removeEventListener("click", handler)); filterHandlers.forEach(([filter, handler]) => filter.removeEventListener("click", handler)); certHandlers.forEach(([card, handler]) => card.removeEventListener("click", handler)); form?.removeEventListener("submit", submit); };
+    return () => { observer.disconnect(); tabHandlers.forEach(([tab, clickHandler, previewHandler]) => { tab.removeEventListener("click", clickHandler); tab.removeEventListener("pointerenter", previewHandler); tab.removeEventListener("focus", previewHandler); }); tabRoot?.removeEventListener("pointerleave", leaveTabsHandler); window.removeEventListener("resize", resizeTabsHandler); filterHandlers.forEach(([filter, handler]) => filter.removeEventListener("click", handler)); certHandlers.forEach(([card, handler]) => card.removeEventListener("click", handler)); form?.removeEventListener("submit", submit); };
   }, [pathname]);
 
   if (!certificate) return null;
