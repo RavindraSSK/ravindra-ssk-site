@@ -63,9 +63,11 @@ export function SiteChrome({ children }: { children: ReactNode }) {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [dropdown, setDropdown] = useState<string | null>(null);
   const [dark, setDark] = useState(false);
+  const [themeReady, setThemeReady] = useState(false);
 
   useEffect(() => {
-    setDark(window.localStorage.getItem("theme") === "dark");
+    setDark(document.documentElement.getAttribute("data-theme") === "dark");
+    setThemeReady(true);
   }, []);
 
   useEffect(() => {
@@ -74,6 +76,10 @@ export function SiteChrome({ children }: { children: ReactNode }) {
   }, [pathname]);
 
   useEffect(() => {
+    if (!themeReady) {
+      return;
+    }
+
     if (dark) {
       document.documentElement.setAttribute("data-theme", "dark");
       window.localStorage.setItem("theme", "dark");
@@ -81,7 +87,7 @@ export function SiteChrome({ children }: { children: ReactNode }) {
       document.documentElement.removeAttribute("data-theme");
       window.localStorage.setItem("theme", "light");
     }
-  }, [dark]);
+  }, [dark, themeReady]);
 
   return (
     <>
@@ -96,7 +102,7 @@ export function SiteChrome({ children }: { children: ReactNode }) {
           <div className="site-header__inner">
             <Link className="brand" href="/" aria-label="Ravindra home">
               <span className="brand__mark"><Logo /></span>
-              <span className="brand__text"><span className="brand__name">Ravindra</span><span className="brand__role">AI Researcher | Machine Learning Engineer</span></span>
+              <span className="brand__text"><span className="brand__name">Ravindra</span><span className="brand__role">Researcher | Engineer | Creator</span></span>
             </Link>
             <button className="nav-toggle" type="button" aria-expanded={mobileOpen} aria-label="Open navigation" onClick={() => setMobileOpen((value) => !value)}>{mobileOpen ? <X size={20} aria-hidden="true" /> : <Menu size={20} aria-hidden="true" />}</button>
             <nav className={`site-nav${mobileOpen ? " is-open" : ""}`} aria-label="Primary navigation">
@@ -105,12 +111,18 @@ export function SiteChrome({ children }: { children: ReactNode }) {
                 <Dropdown id="portfolio" title="Portfolio" links={portfolioLinks} open={dropdown === "portfolio"} setOpen={() => setDropdown(dropdown === "portfolio" ? null : "portfolio")} />
                 <Dropdown id="explore" title="Explore" links={exploreLinks} open={dropdown === "explore"} setOpen={() => setDropdown(dropdown === "explore" ? null : "explore")} />
                 <li className="nav-item"><Link className={`nav-link${pathname === "/about" ? " is-active" : ""}`} href="/about">About</Link></li>
+                <li className="nav-item"><Link className={`nav-link${pathname === "/contact" ? " is-active" : ""}`} href="/contact">Contact</Link></li>
               </ul>
               <div className="nav-utilities">
                 <button className="theme-toggle" type="button" aria-label={dark ? "Switch to light mode" : "Switch to dark mode"} aria-pressed={dark} data-mode={dark ? "dark" : "light"} onClick={() => setDark((value) => !value)}>{dark ? <Moon size={17} aria-hidden="true" /> : <Sun size={17} aria-hidden="true" />}</button>
                 <Link className="button button--nav" href="/contact">Say hello</Link>
               </div>
             </nav>
+          </div>
+          <div className="mobile-quick-links" aria-label="Quick navigation">
+            <Link href="/portfolio">Work</Link>
+            <Link href="/explore">Explore</Link>
+            <Link href="/contact">Contact</Link>
           </div>
         </div>
       </motion.header>
@@ -124,7 +136,7 @@ export function SiteChrome({ children }: { children: ReactNode }) {
         transition={{ duration: 0.5 }}
       >
         <div className="container"><div className="site-footer__inner">
-          <div className="stack"><p className="brand__name">Ravindra</p><p className="site-footer__copy">AI Researcher | Machine Learning Engineer | St. Louis, MO</p></div>
+          <div className="stack"><p className="brand__name">Ravindra</p><p className="site-footer__copy">Researcher | Engineer | Creator | St. Louis, MO</p></div>
           <div className="social-links"><a className="icon-link" href="mailto:ravindrassk1304@gmail.com">Email</a><a className="icon-link" href="https://github.com/RavindraSSK" target="_blank" rel="noopener noreferrer">GitHub</a><a className="icon-link" href="https://www.linkedin.com/in/ravindra-ssk-medicharla-45ba44123/" target="_blank" rel="noopener noreferrer">LinkedIn</a><a className="icon-link" href="https://www.instagram.com/ravindra_ssk_m_/" target="_blank" rel="noopener noreferrer">Instagram</a></div>
         </div></div>
       </motion.footer>

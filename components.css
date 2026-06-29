@@ -2,14 +2,14 @@
   position: fixed;
   inset: 0 0 auto;
   z-index: 100;
-  padding: 1rem 0;
+  padding: 0.8rem 0 0;
 }
 
 .site-header__inner {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: var(--space-5);
+  gap: clamp(0.55rem, 2vw, var(--space-5));
   padding: 0.72rem 0.82rem;
   border: 1px solid rgba(120, 145, 190, 0.2);
   border-radius: 20px;
@@ -43,7 +43,7 @@
   font-family: var(--font-display);
   font-size: 1.05rem;
   font-weight: 800;
-  letter-spacing: -0.04em;
+  letter-spacing: 0;
 }
 
 .brand__role {
@@ -65,6 +65,8 @@
   background: rgba(255, 255, 255, 0.9);
   box-shadow: var(--shadow-card);
   backdrop-filter: blur(20px) saturate(140%);
+  max-height: min(72vh, 620px);
+  overflow-y: auto;
 }
 
 .site-nav.is-open {
@@ -84,6 +86,10 @@
   display: flex;
   align-items: center;
   gap: 0.35rem;
+}
+
+.nav-link-group .nav-link {
+  flex: 1 1 auto;
 }
 
 .nav-link {
@@ -224,6 +230,37 @@
   gap: 0.5rem;
 }
 
+.mobile-quick-links {
+  display: flex;
+  gap: 0.45rem;
+  margin-top: 0.55rem;
+  overflow-x: auto;
+  padding: 0.1rem 0.15rem 0.7rem;
+  scrollbar-width: none;
+}
+
+.mobile-quick-links::-webkit-scrollbar {
+  display: none;
+}
+
+.mobile-quick-links a {
+  flex: 1 0 auto;
+  min-height: 38px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 0.85rem;
+  border: 1px solid var(--ambient-line);
+  border-radius: 999px;
+  background:
+    radial-gradient(circle at 80% 0%, var(--ambient-glow), transparent 7rem),
+    var(--ambient-surface);
+  color: var(--color-primary);
+  font-size: 0.84rem;
+  font-weight: 800;
+  box-shadow: 0 10px 22px rgba(27, 45, 95, 0.08);
+}
+
 .button {
   position: relative;
   overflow: hidden;
@@ -267,7 +304,7 @@
 
 .button--secondary {
   border-color: rgba(27, 45, 95, 0.16);
-  background: rgba(255, 255, 255, 0.76);
+  background: var(--ambient-surface);
   backdrop-filter: blur(16px) saturate(130%);
   color: var(--color-text);
 }
@@ -300,7 +337,7 @@
   border-radius: 22px;
   background:
     linear-gradient(145deg, var(--ambient-surface-strong), var(--ambient-surface)),
-    linear-gradient(180deg, rgba(255, 255, 255, 0.3), transparent);
+    linear-gradient(180deg, var(--surface-shine), transparent);
   box-shadow: var(--shadow-soft);
   backdrop-filter: blur(12px) saturate(112%);
 }
@@ -313,7 +350,7 @@
   border-radius: inherit;
   background:
     radial-gradient(circle at 88% 8%, var(--ambient-glow), transparent 10rem),
-    linear-gradient(120deg, rgba(255, 255, 255, 0.36), transparent 42%);
+    linear-gradient(120deg, var(--surface-shine), transparent 42%);
   opacity: 0;
   transition: opacity var(--transition-base);
 }
@@ -327,7 +364,7 @@
   border-color: rgba(74, 101, 153, 0.14);
   background:
     radial-gradient(circle at 90% 0%, rgba(53, 97, 188, 0.08), transparent 8rem),
-    linear-gradient(145deg, rgba(255, 255, 255, 0.94), rgba(242, 247, 255, 0.82));
+    linear-gradient(145deg, var(--ambient-surface-strong), var(--ambient-editorial));
 }
 
 .card--hover:hover {
@@ -907,6 +944,13 @@ html[data-theme="dark"] .site-header__inner {
   border-color: rgba(148, 163, 184, 0.18);
 }
 
+html[data-theme="dark"] .mobile-quick-links a {
+  color: #dbeafe;
+  background:
+    radial-gradient(circle at 80% 0%, var(--ambient-glow), transparent 7rem),
+    rgba(15, 23, 42, 0.76);
+}
+
 html[data-theme="dark"] .brand__name {
   color: #ffffff;
 }
@@ -1077,5 +1121,77 @@ html[data-theme="dark"] .button--primary {
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
+  }
+}
+
+@media (min-width: 1024px) and (max-width: 1119px) {
+  .nav-toggle {
+    display: inline-flex;
+  }
+
+  .site-nav {
+    position: absolute;
+    top: calc(100% + 0.75rem);
+    right: 0;
+    left: 0;
+    display: none !important;
+    padding: 0.75rem;
+    border: 1px solid var(--color-border);
+    border-radius: 24px;
+    background: rgba(255, 255, 255, 0.9);
+    box-shadow: var(--shadow-card);
+    backdrop-filter: blur(20px) saturate(140%);
+  }
+
+  .site-nav.is-open {
+    display: block !important;
+  }
+
+  .nav-list {
+    grid-auto-flow: row;
+    gap: 0.35rem;
+  }
+
+  .nav-expand {
+    display: inline-flex;
+  }
+
+  .nav-dropdown {
+    position: static;
+    width: auto;
+    padding: 0.5rem 0 0;
+    transform: none;
+  }
+}
+
+@media (min-width: 1120px) {
+  .mobile-quick-links {
+    display: none;
+  }
+}
+
+@media (max-width: 560px) {
+  .site-header {
+    padding-top: 0.55rem;
+  }
+
+  .site-header__inner {
+    padding: 0.62rem;
+    border-radius: 18px;
+  }
+
+  .brand__mark,
+  .brand__mark svg {
+    width: 30px;
+    height: 30px;
+  }
+
+  .brand__name {
+    font-size: 0.98rem;
+  }
+
+  .hero__actions .button,
+  .contact-form-card .button {
+    width: 100%;
   }
 }

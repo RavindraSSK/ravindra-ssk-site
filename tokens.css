@@ -16,6 +16,9 @@
   --color-shadow-strong: rgba(27, 45, 95, 0.18);
   --color-overlay: rgba(15, 23, 42, 0.64);
   --color-backdrop: rgba(255, 255, 255, 0.72);
+  --color-on-primary: #ffffff;
+  --surface-shine: rgba(255, 255, 255, 0.36);
+  --surface-shine-strong: rgba(255, 255, 255, 0.94);
 
   --ambient-bg: #f8fbff;
   --ambient-surface: rgba(255, 255, 255, 0.86);
@@ -76,6 +79,9 @@ html[data-theme="dark"] {
   --color-shadow-strong: rgba(2, 6, 23, 0.42);
   --color-overlay: rgba(2, 6, 23, 0.78);
   --color-backdrop: rgba(15, 23, 42, 0.82);
+  --color-on-primary: #f8fbff;
+  --surface-shine: rgba(147, 180, 245, 0.1);
+  --surface-shine-strong: rgba(226, 232, 240, 0.12);
 
   --ambient-bg: #0d1729;
   --ambient-surface: rgba(18, 29, 52, 0.84);

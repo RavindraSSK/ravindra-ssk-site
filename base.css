@@ -121,7 +121,7 @@ main {
 .page-shell {
   position: relative;
   isolation: isolate;
-  padding-top: calc(88px + var(--space-10));
+  padding-top: calc(132px + var(--space-8));
   padding-bottom: var(--space-20);
 }
 
@@ -192,6 +192,12 @@ main {
   line-height: 1.75;
 }
 
+html[data-theme="dark"] .eyebrow {
+  border-color: var(--ambient-line);
+  background: rgba(15, 23, 42, 0.5);
+  color: #dbeafe;
+}
+
 .page-copy,
 .hero-copy {
   font-size: 1.08rem;
@@ -246,12 +252,22 @@ main {
   }
 
   .page-shell {
-    padding-top: calc(88px + var(--space-12));
+    padding-top: calc(138px + var(--space-10));
   }
 }
 
 @media (min-width: 1024px) {
+  .page-shell {
+    padding-top: calc(88px + var(--space-12));
+  }
+
   .section--tight { padding: var(--space-12) 0; }
+}
+
+@media (min-width: 1024px) and (max-width: 1119px) {
+  .page-shell {
+    padding-top: calc(138px + var(--space-10));
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

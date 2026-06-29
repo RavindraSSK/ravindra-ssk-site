@@ -317,6 +317,76 @@ html[data-theme="dark"] .hero-panel__topline {
     linear-gradient(145deg, rgba(255, 255, 255, 0.94), rgba(242, 247, 255, 0.74));
 }
 
+.home-explore-section {
+  position: relative;
+}
+
+.home-explore-section::before {
+  content: "";
+  position: absolute;
+  inset: 12% 4% auto;
+  z-index: -1;
+  height: 22rem;
+  border-radius: 999px;
+  background:
+    radial-gradient(circle at 18% 38%, rgba(31, 95, 85, 0.1), transparent 15rem),
+    radial-gradient(circle at 82% 24%, var(--ambient-glow), transparent 18rem);
+  filter: blur(34px);
+}
+
+.home-explore-layout {
+  display: grid;
+  gap: var(--space-5);
+}
+
+.home-explore-feature {
+  min-height: 100%;
+  align-content: center;
+}
+
+.home-interest-grid {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.home-interest-card {
+  min-height: 168px;
+  display: grid;
+  align-content: end;
+  gap: 0.65rem;
+}
+
+.home-interest-card--blog {
+  background:
+    radial-gradient(circle at 88% 0%, rgba(55, 101, 194, 0.14), transparent 9rem),
+    var(--ambient-surface);
+}
+
+.home-interest-card--photo {
+  background:
+    radial-gradient(circle at 82% 0%, rgba(61, 136, 168, 0.14), transparent 9rem),
+    var(--ambient-surface);
+}
+
+.home-interest-card--fitness {
+  background:
+    radial-gradient(circle at 12% 0%, rgba(31, 95, 85, 0.12), transparent 9rem),
+    var(--ambient-surface);
+}
+
+.home-interest-card--music {
+  background:
+    radial-gradient(circle at 88% 4%, rgba(118, 101, 199, 0.14), transparent 9rem),
+    var(--ambient-surface);
+}
+
+html[data-theme="dark"] .project-grid--three > article:nth-child(2),
+html[data-theme="dark"] .home-interest-card {
+  background:
+    radial-gradient(circle at 88% 4%, rgba(99, 150, 255, 0.1), transparent 9rem),
+    var(--ambient-surface);
+}
+
 .cta-strip {
   display: grid;
   gap: var(--space-5);
@@ -392,7 +462,35 @@ html[data-theme="dark"] .hero-panel__topline {
     grid-template-columns: minmax(0, 1.1fr) minmax(320px, 0.9fr);
   }
 
+  .home-explore-layout {
+    grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+    align-items: stretch;
+  }
+
+  .home-interest-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .home-interest-card:nth-child(2),
+  .home-interest-card:nth-child(3) {
+    transform: translateY(0.85rem);
+  }
+
   .cta-strip {
     grid-template-columns: minmax(0, 1fr) auto;
+  }
+}
+
+@media (max-width: 560px) {
+  .hero__actions {
+    display: grid;
+  }
+
+  .hero-panel__grid > .card {
+    min-height: 126px;
+  }
+
+  .home-interest-card {
+    min-height: 148px;
   }
 }
