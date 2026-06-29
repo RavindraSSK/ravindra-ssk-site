@@ -34,6 +34,10 @@
   backdrop-filter: blur(18px);
 }
 
+.portfolio-tabs {
+  margin-top: 0.3rem;
+}
+
 .credentials-overview__lead {
   display: grid;
   gap: 0.65rem;
@@ -74,14 +78,37 @@
 }
 
 .portfolio-panels {
+  position: relative;
   display: grid;
   gap: var(--space-8);
 }
 
+.portfolio-panels::before {
+  content: "";
+  position: absolute;
+  inset: -2rem 6% auto;
+  z-index: -1;
+  height: 26rem;
+  border-radius: 999px;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(27, 45, 95, 0.1), transparent 16rem),
+    radial-gradient(circle at 86% 10%, rgba(55, 101, 194, 0.13), transparent 18rem);
+  filter: blur(34px);
+}
+
 .portfolio-panel {
+  position: relative;
   display: grid;
   gap: var(--space-6);
   scroll-margin-top: 8rem;
+  padding: clamp(1.25rem, 3vw, 2rem);
+  border: 1px solid var(--ambient-line);
+  border-radius: 30px;
+  background:
+    radial-gradient(circle at 94% 0%, rgba(45, 88, 181, 0.08), transparent 18rem),
+    linear-gradient(145deg, rgba(255, 255, 255, 0.72), rgba(245, 248, 255, 0.56));
+  box-shadow: 0 22px 54px rgba(27, 45, 95, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.68);
+  backdrop-filter: blur(14px) saturate(115%);
 }
 
 .education-grid,
@@ -109,8 +136,10 @@
   padding: 0.6rem;
   border: 1px solid var(--ambient-line);
   border-radius: 20px;
-  background: var(--ambient-surface);
-  box-shadow: var(--shadow-soft);
+  background:
+    radial-gradient(circle at 8% 0%, rgba(45, 88, 181, 0.12), transparent 10rem),
+    var(--ambient-surface);
+  box-shadow: 0 14px 34px rgba(27, 45, 95, 0.09), inset 0 1px 0 rgba(255, 255, 255, 0.72);
   backdrop-filter: blur(16px);
 }
 
@@ -122,7 +151,8 @@
   padding: 0.65rem 0.9rem;
   border: 0;
   border-radius: 14px;
-  background: transparent;
+  border: 1px solid transparent;
+  background: rgba(255, 255, 255, 0.36);
   color: var(--color-text-muted);
   font-weight: 800;
   cursor: pointer;
@@ -140,6 +170,7 @@
 
 .cert-filter:hover,
 .cert-filter.is-active {
+  border-color: rgba(27, 45, 95, 0.26);
   background: linear-gradient(135deg, #142d66, #2d58b5);
   color: #ffffff;
   box-shadow: 0 12px 26px rgba(27, 45, 95, 0.18);
@@ -175,7 +206,7 @@
   background:
     radial-gradient(circle at 90% 0%, rgba(45, 88, 181, 0.09), transparent 9rem),
     var(--ambient-surface);
-  box-shadow: 0 12px 32px rgba(27, 45, 95, 0.08);
+  box-shadow: 0 14px 34px rgba(27, 45, 95, 0.09), inset 0 1px 0 rgba(255, 255, 255, 0.58);
   backdrop-filter: blur(16px);
   transition: transform 180ms ease, border-color 180ms ease, background 180ms ease, box-shadow 180ms ease;
 }
@@ -187,6 +218,26 @@
     radial-gradient(circle at 95% 5%, rgba(126, 166, 237, 0.2), transparent 9rem),
     linear-gradient(145deg, rgba(27, 45, 95, 0.96), rgba(39, 67, 132, 0.92));
   box-shadow: 0 22px 48px rgba(27, 45, 95, 0.22), 0 0 42px rgba(52, 96, 188, 0.14);
+}
+
+html[data-theme="dark"] .portfolio-panel {
+  border-color: rgba(148, 163, 184, 0.14);
+  background:
+    radial-gradient(circle at 94% 0%, rgba(99, 150, 255, 0.1), transparent 18rem),
+    linear-gradient(145deg, rgba(18, 29, 52, 0.82), rgba(15, 23, 42, 0.68));
+  box-shadow: 0 22px 54px rgba(2, 6, 23, 0.28), inset 0 1px 0 rgba(226, 232, 240, 0.06);
+}
+
+html[data-theme="dark"] .cert-filter-bar {
+  background:
+    radial-gradient(circle at 8% 0%, rgba(99, 150, 255, 0.12), transparent 10rem),
+    rgba(15, 23, 42, 0.7);
+  box-shadow: 0 14px 34px rgba(2, 6, 23, 0.28), inset 0 1px 0 rgba(226, 232, 240, 0.06);
+}
+
+html[data-theme="dark"] .cert-filter {
+  background: rgba(15, 23, 42, 0.36);
+  border-color: rgba(148, 163, 184, 0.1);
 }
 
 .project-grid > article:first-child {
@@ -310,6 +361,29 @@
 }
 
 @media (max-width: 560px) {
+  .portfolio-tabs {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding: 0.55rem;
+    border-radius: 20px;
+    scrollbar-width: none;
+  }
+
+  .portfolio-tabs::-webkit-scrollbar {
+    display: none;
+  }
+
+  .portfolio-tab {
+    flex: 0 0 auto;
+    min-width: max-content;
+    scroll-snap-align: start;
+  }
+
+  .portfolio-panel {
+    padding: 1rem;
+    border-radius: 24px;
+  }
+
   .cert-filter-bar {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));

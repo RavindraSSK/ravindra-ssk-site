@@ -13,7 +13,7 @@ export function SiteInteractions({ pathname }: { pathname: string }) {
     const tabs = Array.from(document.querySelectorAll<HTMLButtonElement>("[data-tab-target]"));
     const panels = Array.from(document.querySelectorAll<HTMLElement>("[data-tab-panel]"));
     const selectTab = (id: string) => {
-      tabs.forEach((tab) => { const active = tab.dataset.tabTarget === id; tab.setAttribute("aria-selected", String(active)); tab.tabIndex = active ? 0 : -1; });
+      tabs.forEach((tab) => { const active = tab.dataset.tabTarget === id; tab.classList.toggle("is-active", active); tab.setAttribute("aria-selected", String(active)); tab.tabIndex = active ? 0 : -1; });
       panels.forEach((panel) => { panel.hidden = panel.id !== id; });
     };
     const hash = window.location.hash.slice(1);

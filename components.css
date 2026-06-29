@@ -632,30 +632,58 @@
 }
 
 .portfolio-tabs {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
   display: flex;
   flex-wrap: wrap;
-  gap: 0.75rem;
-  padding: 0.65rem;
-  border: 1px solid var(--color-border);
-  border-radius: 22px;
-  border-color: rgba(255, 255, 255, 0.7);
-  background: rgba(255, 255, 255, 0.78);
-  box-shadow: var(--shadow-soft);
-  backdrop-filter: blur(18px);
+  gap: 0.55rem;
+  padding: 0.7rem;
+  border: 1px solid var(--ambient-line-strong);
+  border-radius: 24px;
+  background:
+    radial-gradient(circle at 8% 0%, rgba(45, 88, 181, 0.16), transparent 13rem),
+    radial-gradient(circle at 92% 10%, rgba(31, 95, 85, 0.08), transparent 12rem),
+    linear-gradient(135deg, rgba(248, 251, 255, 0.96), rgba(229, 238, 255, 0.78));
+  box-shadow: 0 22px 54px rgba(27, 45, 95, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(22px) saturate(145%);
+}
+
+.portfolio-tabs::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, transparent, rgba(27, 45, 95, 0.06), transparent),
+    linear-gradient(rgba(27, 45, 95, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(27, 45, 95, 0.035) 1px, transparent 1px);
+  background-size: auto, 34px 34px, 34px 34px;
+  opacity: 0.75;
 }
 
 .portfolio-tab {
-  padding: 0.85rem 1rem;
-  border: 0;
-  border-radius: 15px;
-  background: transparent;
+  position: relative;
+  overflow: hidden;
+  min-height: 46px;
+  padding: 0.75rem 1.05rem;
+  border: 1px solid rgba(27, 45, 95, 0.08);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.54);
   color: var(--color-text-muted);
-  font-weight: 700;
+  font-weight: 850;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.68);
 }
 
 .portfolio-tab:hover {
-  background: rgba(27, 45, 95, 0.07);
+  transform: translateY(-1px);
+  border-color: rgba(27, 45, 95, 0.18);
+  background:
+    radial-gradient(circle at 82% 0%, rgba(49, 88, 173, 0.1), transparent 7rem),
+    rgba(255, 255, 255, 0.78);
   color: var(--color-primary);
+  box-shadow: 0 12px 26px rgba(27, 45, 95, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.9);
 }
 
 .section-kicker {
@@ -664,10 +692,26 @@
   color: var(--color-text-muted);
 }
 
-.portfolio-tab.is-active {
-  background: linear-gradient(135deg, #172b60, #3158ad);
+.portfolio-tab.is-active,
+.portfolio-tab[aria-selected="true"] {
+  border-color: rgba(27, 45, 95, 0.34);
+  background:
+    radial-gradient(circle at 88% 0%, rgba(147, 180, 245, 0.26), transparent 7rem),
+    linear-gradient(135deg, #132b61, #244da1 58%, #3b6fcf);
   color: #ffffff;
-  box-shadow: 0 10px 24px rgba(27, 45, 95, 0.2);
+  box-shadow: 0 16px 34px rgba(27, 45, 95, 0.24), 0 0 34px rgba(49, 88, 173, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.portfolio-tab.is-active::after,
+.portfolio-tab[aria-selected="true"]::after {
+  content: "";
+  position: absolute;
+  right: 0.9rem;
+  bottom: 0.55rem;
+  left: 0.9rem;
+  height: 2px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.7);
 }
 
 .portfolio-panel[hidden] {
@@ -1014,6 +1058,39 @@ html[data-theme="dark"] .status-badge {
 
 html[data-theme="dark"] .button--primary {
   background: #3157b8;
+}
+
+html[data-theme="dark"] .portfolio-tabs {
+  border-color: rgba(147, 180, 245, 0.24);
+  background:
+    radial-gradient(circle at 8% 0%, rgba(79, 124, 215, 0.18), transparent 13rem),
+    radial-gradient(circle at 92% 10%, rgba(155, 210, 199, 0.08), transparent 12rem),
+    linear-gradient(135deg, rgba(15, 23, 42, 0.92), rgba(24, 39, 69, 0.86));
+  box-shadow: 0 22px 54px rgba(2, 6, 23, 0.34), inset 0 1px 0 rgba(226, 232, 240, 0.08);
+}
+
+html[data-theme="dark"] .portfolio-tab {
+  border-color: rgba(148, 163, 184, 0.13);
+  background: rgba(15, 23, 42, 0.42);
+  color: #b9c6dc;
+  box-shadow: inset 0 1px 0 rgba(226, 232, 240, 0.05);
+}
+
+html[data-theme="dark"] .portfolio-tab:hover {
+  border-color: rgba(147, 180, 245, 0.25);
+  background:
+    radial-gradient(circle at 82% 0%, rgba(99, 150, 255, 0.12), transparent 7rem),
+    rgba(30, 41, 59, 0.74);
+  color: #dbeafe;
+}
+
+html[data-theme="dark"] .portfolio-tab.is-active,
+html[data-theme="dark"] .portfolio-tab[aria-selected="true"] {
+  border-color: rgba(147, 180, 245, 0.38);
+  background:
+    radial-gradient(circle at 88% 0%, rgba(147, 180, 245, 0.18), transparent 7rem),
+    linear-gradient(135deg, #203b7f, #3157b8 60%, #4b7fe0);
+  color: #ffffff;
 }
 
 @media (min-width: 768px) {
