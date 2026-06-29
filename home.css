@@ -168,6 +168,28 @@
   color: rgba(255, 255, 255, 0.78);
 }
 
+.hero-panel__stack {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  padding-top: 1rem;
+}
+
+.hero-panel__stack span {
+  min-height: 30px;
+  display: inline-flex;
+  align-items: center;
+  padding: 0 0.72rem;
+  border: 1px solid var(--ambient-line);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.6);
+  color: var(--color-primary);
+  font-size: 0.76rem;
+  font-weight: 850;
+  box-shadow: 0 10px 22px rgba(27, 45, 95, 0.06);
+}
+
 .hero-panel__grid > .card:nth-child(2),
 .hero-panel__grid > .card:nth-child(4) {
   transform: none;
@@ -241,6 +263,11 @@ html[data-theme="dark"] .hero-panel__grid > .card:first-child {
 
 html[data-theme="dark"] .hero-panel__label {
   color: #8fa1bd;
+}
+
+html[data-theme="dark"] .hero-panel__stack span {
+  background: rgba(15, 23, 42, 0.48);
+  color: #dbeafe;
 }
 
 html[data-theme="dark"] .hero-panel__value,

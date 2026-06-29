@@ -35,6 +35,9 @@ export function SiteInteractions({ pathname }: { pathname: string }) {
       if (badge?.textContent?.trim() === "Scheduled") badge.textContent = "Planned";
       badge?.classList.toggle("status-badge--completed", badge.textContent?.trim() === "Completed");
       badge?.classList.toggle("status-badge--planned", badge.textContent?.trim() === "Planned");
+      const footer = card.querySelector<HTMLElement>(".cert-card__footer span:first-child");
+      const hasUrl = Boolean(card.dataset.certUrl?.trim());
+      if (footer) footer.textContent = hasUrl ? "View credential" : badge?.textContent?.trim() === "Planned" ? "Planned credential" : "Credential details";
     });
     const filters = Array.from(document.querySelectorAll<HTMLButtonElement>("[data-cert-filter]"));
     const filterHandlers = filters.map((filter) => {
@@ -64,7 +67,7 @@ export function SiteInteractions({ pathname }: { pathname: string }) {
     <div className="modal is-open" aria-hidden="false" role="dialog" aria-modal="true" onClick={() => setCertificate(null)}>
       <div className="modal__panel" onClick={(event) => event.stopPropagation()}>
         <div className="modal__bar"><h2 className="modal__title">{certificate.title}</h2><button className="modal__close" type="button" onClick={() => setCertificate(null)} aria-label="Close certificate preview">x</button></div>
-        <div className="modal__media cert-modal__copy"><strong>{certificate.title}</strong><span>{certificate.issuer}</span><p className="card-copy">Certificate image or verification link can be added when available.</p></div>
+        <div className="modal__media cert-modal__copy"><strong>{certificate.title}</strong><span>{certificate.issuer}</span><p className="card-copy">Verification link will appear here when a public credential URL is available.</p></div>
       </div>
     </div>
   );

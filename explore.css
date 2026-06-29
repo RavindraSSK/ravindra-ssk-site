@@ -169,6 +169,26 @@
   max-width: 22ch;
 }
 
+.note-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  padding-top: 0.35rem;
+  color: var(--color-text-faint);
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.note-meta span {
+  min-height: 28px;
+  display: inline-flex;
+  align-items: center;
+  padding: 0 0.7rem;
+  border: 1px solid var(--ambient-line);
+  border-radius: 999px;
+  background: var(--ambient-editorial);
+}
+
 .content-page--photo .content-hero > .card:first-child {
   min-height: 380px;
   background:
@@ -202,6 +222,33 @@
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.48);
 }
 
+.gallery-card--morning .gallery-card__frame {
+  background:
+    linear-gradient(115deg, rgba(255, 255, 255, 0.78) 0 18%, transparent 18% 100%),
+    linear-gradient(155deg, rgba(20, 45, 95, 0.82), rgba(87, 131, 203, 0.22)),
+    radial-gradient(circle at 82% 18%, rgba(255, 255, 255, 0.7), transparent 7rem);
+}
+
+.gallery-card--road .gallery-card__frame {
+  background:
+    linear-gradient(90deg, transparent 0 42%, rgba(255, 255, 255, 0.62) 42% 44%, transparent 44% 100%),
+    linear-gradient(150deg, rgba(24, 79, 99, 0.82), rgba(178, 211, 226, 0.32)),
+    radial-gradient(circle at 20% 80%, rgba(255, 255, 255, 0.42), transparent 6rem);
+}
+
+.gallery-card--concrete .gallery-card__frame {
+  background:
+    repeating-linear-gradient(135deg, rgba(255, 255, 255, 0.18) 0 1px, transparent 1px 13px),
+    linear-gradient(145deg, rgba(35, 50, 72, 0.8), rgba(203, 213, 225, 0.34)),
+    radial-gradient(circle at 72% 14%, rgba(255, 255, 255, 0.52), transparent 7rem);
+}
+
+.gallery-card--shadow .gallery-card__frame {
+  background:
+    linear-gradient(120deg, rgba(8, 18, 35, 0.82) 0 42%, rgba(255, 255, 255, 0.5) 42% 44%, transparent 44% 100%),
+    linear-gradient(150deg, rgba(23, 52, 111, 0.86), rgba(118, 101, 199, 0.24));
+}
+
 .content-list--photo .gallery-card:nth-child(1) .gallery-card__frame,
 .content-list--photo .gallery-card:nth-child(4) .gallery-card__frame {
   aspect-ratio: 5 / 3;
@@ -220,6 +267,26 @@
 
 .content-list--fitness .meta-pill {
   color: #1f5f55;
+}
+
+.habit-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.3rem;
+}
+
+.habit-row span {
+  min-height: 28px;
+  display: inline-flex;
+  align-items: center;
+  padding: 0 0.65rem;
+  border: 1px solid rgba(31, 95, 85, 0.18);
+  border-radius: 999px;
+  background: rgba(31, 95, 85, 0.07);
+  color: #1f5f55;
+  font-size: 0.76rem;
+  font-weight: 800;
 }
 
 .content-page--music .content-hero > .card:first-child,
@@ -242,6 +309,32 @@
   pointer-events: none;
 }
 
+.mood-meter {
+  display: flex;
+  gap: 0.4rem;
+  align-items: center;
+  padding-top: 0.3rem;
+}
+
+.mood-meter span {
+  display: block;
+  height: 0.42rem;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #293577, #7665c7);
+}
+
+.mood-meter span:nth-child(1) { width: 26%; opacity: 0.55; }
+.mood-meter span:nth-child(2) { width: 38%; opacity: 0.78; }
+.mood-meter span:nth-child(3) { width: 22%; opacity: 0.45; }
+
+.music-card--album .mood-meter span {
+  background: linear-gradient(90deg, #184f63, #7665c7);
+}
+
+.music-card--discover .mood-meter span {
+  background: linear-gradient(90deg, #17346f, #4d9b8a);
+}
+
 html[data-theme="dark"] .content-page--photo .content-hero > .card:first-child {
   background:
     linear-gradient(140deg, rgba(8, 18, 35, 0.94), rgba(35, 74, 132, 0.62)),
@@ -249,6 +342,12 @@ html[data-theme="dark"] .content-page--photo .content-hero > .card:first-child {
 }
 
 html[data-theme="dark"] .content-list--fitness .meta-pill {
+  color: #9bd2c7;
+}
+
+html[data-theme="dark"] .habit-row span {
+  border-color: rgba(155, 210, 199, 0.18);
+  background: rgba(155, 210, 199, 0.09);
   color: #9bd2c7;
 }
 

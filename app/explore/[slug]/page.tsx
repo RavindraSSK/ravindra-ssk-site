@@ -16,13 +16,15 @@ export function generateStaticParams() {
   return exploreCategories.map(({ slug }) => ({ slug }));
 }
 
-export function generateMetadata({ params }: { params: { slug: string } }): Metadata {
-  const category = getExploreCategory(params.slug);
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const { slug } = await params;
+  const category = getExploreCategory(slug);
   return category ? { title: category.title, description: category.description } : {};
 }
 
-export default function ExploreDetailPage({ params }: { params: { slug: string } }) {
-  const page = pages[params.slug as keyof typeof pages];
+export default async function ExploreDetailPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const page = pages[slug as keyof typeof pages];
   if (!page) notFound();
   return <StaticPage page={page} />;
 }

@@ -1,13 +1,13 @@
 import { GlassCard } from "@/components/ui/glass-card";
 
-type PlaceholderItem = {
+type PreviewItem = {
   label: string;
   title: string;
   description: string;
 };
 
 type PlaceholderGridProps = {
-  items: readonly PlaceholderItem[];
+  items: readonly PreviewItem[];
   mode?: "cards" | "gallery";
 };
 
@@ -39,7 +39,7 @@ export function PlaceholderGrid({
 
           <div className="mt-auto flex items-center justify-between border-t border-navy/8 pt-4">
             <span className="text-xs font-semibold uppercase tracking-[0.22em] text-navy/58">
-              Coming soon
+              Preview note
             </span>
             <span className="text-sm font-medium text-navy">View more</span>
           </div>
