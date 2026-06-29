@@ -634,55 +634,56 @@
 .portfolio-tabs {
   position: relative;
   isolation: isolate;
+  justify-self: start;
+  width: fit-content;
+  max-width: 100%;
   overflow: hidden;
   display: flex;
   flex-wrap: wrap;
-  gap: 0.55rem;
-  padding: 0.7rem;
-  border: 1px solid var(--ambient-line-strong);
-  border-radius: 24px;
+  align-items: center;
+  gap: 0.18rem;
+  padding: 0.38rem;
+  border: 1px solid rgba(27, 45, 95, 0.16);
+  border-radius: 999px;
   background:
-    radial-gradient(circle at 8% 0%, rgba(45, 88, 181, 0.16), transparent 13rem),
-    radial-gradient(circle at 92% 10%, rgba(31, 95, 85, 0.08), transparent 12rem),
-    linear-gradient(135deg, rgba(248, 251, 255, 0.96), rgba(229, 238, 255, 0.78));
-  box-shadow: 0 22px 54px rgba(27, 45, 95, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.92);
-  backdrop-filter: blur(22px) saturate(145%);
+    radial-gradient(circle at 12% 0%, rgba(45, 88, 181, 0.12), transparent 14rem),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.9), rgba(239, 245, 255, 0.72));
+  box-shadow: 0 18px 44px rgba(27, 45, 95, 0.1), 0 1px 0 rgba(255, 255, 255, 0.82) inset;
+  backdrop-filter: blur(20px) saturate(145%);
 }
 
 .portfolio-tabs::before {
   content: "";
   position: absolute;
-  inset: 0;
+  inset: 0.35rem;
   z-index: -1;
   pointer-events: none;
-  background:
-    linear-gradient(90deg, transparent, rgba(27, 45, 95, 0.06), transparent),
-    linear-gradient(rgba(27, 45, 95, 0.035) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(27, 45, 95, 0.035) 1px, transparent 1px);
-  background-size: auto, 34px 34px, 34px 34px;
-  opacity: 0.75;
+  border: 1px solid rgba(255, 255, 255, 0.72);
+  border-radius: inherit;
+  background: linear-gradient(90deg, rgba(27, 45, 95, 0.03), transparent 34%, rgba(27, 45, 95, 0.035));
+  opacity: 0.9;
 }
 
 .portfolio-tabs::after {
   content: "";
   position: absolute;
-  top: var(--tab-indicator-top, 0.7rem);
-  left: var(--tab-indicator-left, 0.7rem);
+  top: var(--tab-indicator-top, 0.38rem);
+  left: var(--tab-indicator-left, 0.38rem);
   width: var(--tab-indicator-width, 0);
-  height: var(--tab-indicator-height, 46px);
-  border: 1px solid rgba(27, 45, 95, 0.3);
-  border-radius: 16px;
+  height: var(--tab-indicator-height, 44px);
+  border: 1px solid rgba(27, 45, 95, 0.28);
+  border-radius: 999px;
   background:
-    radial-gradient(circle at 88% 0%, rgba(147, 180, 245, 0.26), transparent 7rem),
-    linear-gradient(135deg, #132b61, #244da1 58%, #3b6fcf);
-  box-shadow: 0 16px 34px rgba(27, 45, 95, 0.24), 0 0 34px rgba(49, 88, 173, 0.14), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    radial-gradient(circle at 82% 0%, rgba(159, 188, 245, 0.24), transparent 7rem),
+    linear-gradient(135deg, #102456, #244b9c 58%, #376ac8);
+  box-shadow: 0 14px 30px rgba(27, 45, 95, 0.24), 0 0 28px rgba(49, 88, 173, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.18);
   opacity: 0;
   pointer-events: none;
   transition:
-    left 220ms cubic-bezier(0.22, 1, 0.36, 1),
-    top 220ms cubic-bezier(0.22, 1, 0.36, 1),
-    width 220ms cubic-bezier(0.22, 1, 0.36, 1),
-    height 220ms cubic-bezier(0.22, 1, 0.36, 1),
+    left 240ms cubic-bezier(0.22, 1, 0.36, 1),
+    top 240ms cubic-bezier(0.22, 1, 0.36, 1),
+    width 240ms cubic-bezier(0.22, 1, 0.36, 1),
+    height 240ms cubic-bezier(0.22, 1, 0.36, 1),
     opacity 160ms ease;
 }
 
@@ -694,19 +695,23 @@
   position: relative;
   z-index: 1;
   overflow: hidden;
-  min-height: 46px;
-  padding: 0.75rem 1.05rem;
-  border: 1px solid rgba(27, 45, 95, 0.08);
-  border-radius: 16px;
-  background: rgba(255, 255, 255, 0.54);
-  color: var(--color-text-muted);
+  min-height: 44px;
+  padding: 0.68rem 1.05rem;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: rgba(27, 45, 95, 0.68);
+  font-size: 0.96rem;
   font-weight: 850;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.68);
+  letter-spacing: 0;
+  box-shadow: none;
+  cursor: pointer;
+  transition: color 180ms ease, transform 180ms ease;
 }
 
 .portfolio-tab:hover {
   transform: translateY(-1px);
-  color: #ffffff;
+  color: var(--color-primary);
 }
 
 .section-kicker {
@@ -717,12 +722,13 @@
 
 .portfolio-tab.is-active,
 .portfolio-tab[aria-selected="true"] {
-  border-color: transparent;
   background: transparent;
   color: var(--color-primary);
   box-shadow: none;
 }
 
+.portfolio-tabs:not([data-indicator-ready="true"]) .portfolio-tab.is-active,
+.portfolio-tabs:not([data-indicator-ready="true"]) .portfolio-tab[aria-selected="true"],
 .portfolio-tab.is-preview {
   color: #ffffff;
 }
@@ -1074,12 +1080,11 @@ html[data-theme="dark"] .button--primary {
 }
 
 html[data-theme="dark"] .portfolio-tabs {
-  border-color: rgba(147, 180, 245, 0.24);
+  border-color: rgba(147, 180, 245, 0.2);
   background:
-    radial-gradient(circle at 8% 0%, rgba(79, 124, 215, 0.18), transparent 13rem),
-    radial-gradient(circle at 92% 10%, rgba(155, 210, 199, 0.08), transparent 12rem),
-    linear-gradient(135deg, rgba(15, 23, 42, 0.92), rgba(24, 39, 69, 0.86));
-  box-shadow: 0 22px 54px rgba(2, 6, 23, 0.34), inset 0 1px 0 rgba(226, 232, 240, 0.08);
+    radial-gradient(circle at 12% 0%, rgba(79, 124, 215, 0.18), transparent 14rem),
+    linear-gradient(180deg, rgba(23, 37, 67, 0.92), rgba(14, 24, 46, 0.76));
+  box-shadow: 0 18px 44px rgba(2, 6, 23, 0.34), inset 0 1px 0 rgba(226, 232, 240, 0.08);
 }
 
 html[data-theme="dark"] .portfolio-tabs::after {
@@ -1091,14 +1096,13 @@ html[data-theme="dark"] .portfolio-tabs::after {
 }
 
 html[data-theme="dark"] .portfolio-tab {
-  border-color: rgba(148, 163, 184, 0.13);
-  background: rgba(15, 23, 42, 0.42);
   color: #b9c6dc;
-  box-shadow: inset 0 1px 0 rgba(226, 232, 240, 0.05);
+  background: transparent;
+  box-shadow: none;
 }
 
 html[data-theme="dark"] .portfolio-tab:hover {
-  color: #ffffff;
+  color: #dbeafe;
 }
 
 html[data-theme="dark"] .portfolio-tab.is-active,

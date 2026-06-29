@@ -35,7 +35,7 @@
 }
 
 .portfolio-tabs {
-  margin-top: 0.3rem;
+  margin-top: 0.45rem;
 }
 
 .credentials-overview__lead {
@@ -362,10 +362,13 @@ html[data-theme="dark"] .cert-filter {
 
 @media (max-width: 560px) {
   .portfolio-tabs {
+    justify-self: stretch;
+    width: 100%;
     flex-wrap: nowrap;
     overflow-x: auto;
-    padding: 0.55rem;
-    border-radius: 20px;
+    padding: 0.38rem;
+    border-radius: 999px;
+    scroll-snap-type: x proximity;
     scrollbar-width: none;
   }
 
