@@ -267,6 +267,15 @@ html[data-theme="dark"] .cert-filter {
   font-size: 0.72rem;
 }
 
+.cert-layout .logo-badge--wordmark {
+  width: auto;
+  min-width: 3.45rem;
+  max-width: 5.6rem;
+  padding: 0 0.58rem;
+  font-size: 0.64rem;
+  letter-spacing: 0;
+}
+
 .cert-layout .cert-title {
   font-size: 1.05rem;
   line-height: 1.25;

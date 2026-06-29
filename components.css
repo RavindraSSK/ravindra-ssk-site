@@ -548,6 +548,7 @@
 
 .logo-badge,
 .skill-chip__icon {
+  position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -562,6 +563,17 @@
   font-size: 0.72rem;
   font-weight: 800;
   letter-spacing: 0.04em;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.18);
+  white-space: nowrap;
+}
+
+.logo-badge--wordmark {
+  width: auto;
+  min-width: 3rem;
+  padding: 0 0.55rem;
+  border-radius: 11px;
+  font-size: 0.66rem;
+  letter-spacing: 0.01em;
 }
 
 .logo-badge--slu {
@@ -590,6 +602,77 @@
 
 .logo-badge--veltech {
   background: #c41e3a;
+}
+
+.logo-badge--aws {
+  background: #232f3e;
+  color: #ffffff;
+}
+
+.logo-badge--aws::after {
+  content: "";
+  position: absolute;
+  right: 0.48rem;
+  bottom: 0.38rem;
+  width: 1.1rem;
+  height: 0.28rem;
+  border-bottom: 2px solid #ff9900;
+  border-radius: 0 0 999px 999px;
+}
+
+.logo-badge--azure {
+  background: linear-gradient(135deg, #0078d4, #50a7f2);
+}
+
+.logo-badge--azure::before {
+  content: "";
+  width: 0.58rem;
+  height: 0.58rem;
+  margin-right: 0.28rem;
+  background: #ffffff;
+  clip-path: polygon(42% 0, 100% 100%, 0 100%);
+  opacity: 0.95;
+}
+
+.logo-badge--nvidia {
+  background: #76b900;
+  color: #101820;
+}
+
+.logo-badge--ibm {
+  background: #0f62fe;
+}
+
+.logo-badge--coursera {
+  background: #0056d2;
+}
+
+.logo-badge--nptel {
+  background: linear-gradient(135deg, #8a1538, #c2410c);
+}
+
+.logo-badge--mitx {
+  background: #a31f34;
+}
+
+.logo-badge--edx {
+  background: #02262b;
+}
+
+.logo-badge--tudelft {
+  background: #00a6d6;
+}
+
+.logo-badge--linkedin {
+  background: #0a66c2;
+}
+
+.logo-badge--amcat {
+  background: #5b21b6;
+}
+
+.logo-badge--ucsc {
+  background: linear-gradient(135deg, #003c6c, #f1b82d);
 }
 
 .timeline-content {
@@ -786,6 +869,27 @@
 .skill-chip__icon svg {
   width: 1rem;
   height: 1rem;
+}
+
+.skill-chip--brand .skill-chip__icon {
+  width: auto;
+  min-width: 2.65rem;
+  padding: 0 0.45rem;
+  font-size: 0.66rem;
+  font-weight: 900;
+  letter-spacing: 0.02em;
+}
+
+.skill-chip--aws .skill-chip__icon {
+  background: #232f3e;
+}
+
+.skill-chip--azure .skill-chip__icon {
+  background: linear-gradient(135deg, #0078d4, #50a7f2);
+}
+
+.skill-chip--gcp .skill-chip__icon {
+  background: linear-gradient(135deg, #4285f4, #34a853 46%, #fbbc05 70%, #ea4335);
 }
 
 .skill-theme--navy .skill-chip__icon {
