@@ -29,52 +29,70 @@
             <span class="eyebrow">Contact</span>
             <h1 class="page-title">Get in touch</h1>
             <p class="page-copy">
-              Open to research collaborations, internships, and interesting problems.
+              Open to research collaborations, engineering work, internships, and thoughtful creative conversations.
             </p>
 
-            <article class="card card--glass">
-              <div class="contact-list">
-                <div class="contact-list__item"><span class="contact-list__label">Email</span><a class="contact-list__value" href="mailto:ravindrassk1304@gmail.com">ravindrassk1304@gmail.com</a></div>
-                <div class="contact-list__item"><span class="contact-list__label">Phone</span><a class="contact-list__value" href="tel:+13143359331">(314) 335-9331</a></div>
-                <div class="contact-list__item"><span class="contact-list__label">LinkedIn</span><a class="contact-list__value" href="https://www.linkedin.com/in/ravindra-ssk-medicharla-45ba44123/" target="_blank" rel="noopener noreferrer">ravindra-ssk-medicharla-45ba44123</a></div>
-                <div class="contact-list__item"><span class="contact-list__label">Instagram</span><a class="contact-list__value" href="https://www.instagram.com/ravindra_ssk_m_/" target="_blank" rel="noopener noreferrer">instagram.com/ravindra_ssk_m_</a></div>
-                <div class="contact-list__item"><span class="contact-list__label">GitHub</span><a class="contact-list__value" href="https://github.com/RavindraSSK" target="_blank" rel="noopener noreferrer">github.com/RavindraSSK</a></div>
-                <div class="contact-list__item"><span class="contact-list__label">Location</span><span class="contact-list__value">St. Louis, MO</span></div>
-              </div>
-            </article>
+            <div class="contact-hero-actions" aria-label="Primary contact actions">
+              <a class="button button--primary" href="mailto:ravindrassk1304@gmail.com?subject=Hello%20Ravindra">Email Ravi</a>
+              <a class="button button--secondary" href="https://www.linkedin.com/in/ravindra-ssk-medicharla-45ba44123/" target="_blank" rel="noopener noreferrer">Open LinkedIn</a>
+            </div>
+
+            <div class="contact-note">
+              <span class="contact-note__label">Based in</span>
+              <strong>St. Louis, Missouri</strong>
+              <span>Available for remote collaboration and selected in-person opportunities.</span>
+            </div>
           </div>
 
-          <form class="card contact-form-card animate-in" data-contact-form style="--delay: 120ms;">
-            <div class="stack">
-              <span class="eyebrow">Send a note</span>
-              <h2 class="section-title">Share the context</h2>
+          <div class="contact-panel animate-in" style="--delay: 120ms;">
+            <div class="contact-panel__intro">
+              <span class="eyebrow">Direct paths</span>
+              <h2 class="section-title">Choose the right way to connect</h2>
+              <p class="section-copy">Each option opens directly. No form, no extra friction.</p>
             </div>
 
-            <div class="form-grid form-grid--split">
-              <label class="field-label">Name
-                <input class="field" type="text" name="name" placeholder="Your name" autocomplete="name" required>
-              </label>
-              <label class="field-label">Email
-                <input class="field" type="email" name="email" placeholder="you@example.com" autocomplete="email" required>
-              </label>
+            <div class="contact-action-grid">
+              <a class="contact-action contact-action--primary" href="mailto:ravindrassk1304@gmail.com?subject=Research%20or%20engineering%20conversation">
+                <span class="contact-action__mark">Mail</span>
+                <span class="contact-action__body">
+                  <strong>Email</strong>
+                  <span>Best for project context, research ideas, and opportunities.</span>
+                </span>
+              </a>
+
+              <a class="contact-action" href="https://www.linkedin.com/in/ravindra-ssk-medicharla-45ba44123/" target="_blank" rel="noopener noreferrer">
+                <span class="contact-action__mark">in</span>
+                <span class="contact-action__body">
+                  <strong>LinkedIn</strong>
+                  <span>Professional profile, roles, and collaboration messages.</span>
+                </span>
+              </a>
+
+              <a class="contact-action" href="https://github.com/RavindraSSK" target="_blank" rel="noopener noreferrer">
+                <span class="contact-action__mark">Git</span>
+                <span class="contact-action__body">
+                  <strong>GitHub</strong>
+                  <span>Code, technical work, and project repositories.</span>
+                </span>
+              </a>
+
+              <a class="contact-action" href="tel:+13143359331">
+                <span class="contact-action__mark">Call</span>
+                <span class="contact-action__body">
+                  <strong>Phone</strong>
+                  <span>Useful for scheduled conversations and urgent coordination.</span>
+                </span>
+              </a>
+
+              <a class="contact-action" href="https://www.instagram.com/ravindra_ssk_m_/" target="_blank" rel="noopener noreferrer">
+                <span class="contact-action__mark">Vis</span>
+                <span class="contact-action__body">
+                  <strong>Visual profile</strong>
+                  <span>Photography, personal perspective, and creative updates.</span>
+                </span>
+              </a>
             </div>
-
-            <label class="field-label">Subject
-              <select class="select-field" name="subject" required>
-                <option>Research Collaboration</option>
-                <option>Internship Opportunity</option>
-                <option>General</option>
-                <option>Other</option>
-              </select>
-            </label>
-
-            <label class="field-label">Message
-              <textarea class="textarea-field" name="message" rows="8" placeholder="A few details about the project, role, or question are enough to get started." required></textarea>
-            </label>
-
-            <button class="button button--primary" type="submit">Prepare note</button>
-            <p class="form-status" data-form-status aria-live="polite" hidden></p>
-          </form>
+          </div>
         </div>
       </section>
     </main>
