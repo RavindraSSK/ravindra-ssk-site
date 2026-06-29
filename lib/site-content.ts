@@ -34,7 +34,7 @@ function normalizeLinks(html: string) {
 }
 
 export function getPageContent(key: SiteContentKey) {
-  const file = path.join(process.cwd(), routeFiles[key]);
+  const file = path.join(/* turbopackIgnore: true */ process.cwd(), routeFiles[key]);
   const source = fs.readFileSync(file, "utf8");
   const match = source.match(/<main\b[^>]*>([\s\S]*?)<\/main>/i);
 
