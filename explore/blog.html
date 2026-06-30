@@ -39,8 +39,8 @@
 
       <section class="section section--tight content-list content-list--blog">
         <div class="container content-grid">
-          <details class="blog-entry animate-in" style="--delay: 40ms;">
-            <summary class="blog-entry-card card card--hover">
+          <article class="blog-entry animate-in" style="--delay: 40ms;">
+            <a class="blog-entry-card card card--hover" href="/explore/web-scraping-python" aria-label="Read Decoding the Web: A Practical Guide to Web Scraping with Python">
               <div class="blog-entry-card__content">
                 <div class="blog-feature-card__top">
                   <span class="meta-pill">Technical guide</span>
@@ -71,143 +71,12 @@
                     <p>Tools, scraper structure, code explanation, output example, and reliability notes.</p>
                   </div>
                   <span class="blog-entry-card__action">
-                    <span class="blog-entry-card__action-open">Open full guide</span>
-                    <span class="blog-entry-card__action-close">Close guide</span>
+                    Read full guide
                   </span>
                 </div>
               </div>
-            </summary>
-
-            <article class="blog-article card">
-              <header class="blog-article__header">
-              <div class="blog-feature-card__top">
-                <span class="meta-pill">Technical guide</span>
-                <span class="blog-feature-card__source">Originally on SSK Hub</span>
-              </div>
-              <h2>Decoding the Web: A Practical Guide to Web Scraping with Python</h2>
-              <p class="blog-article__dek">A practical walkthrough for collecting useful information from public web pages, structuring it with Python, and turning scattered online data into something that can be analyzed.</p>
-              <div class="note-meta">
-                <span>Published: Feb 2025</span>
-                <span>Python</span>
-                <span>BeautifulSoup</span>
-                <span>Pandas</span>
-                <span>Web Scraping</span>
-              </div>
-            </header>
-
-            <div class="blog-article__body">
-              <section>
-                <h3>Introduction</h3>
-                <p>Ever felt like you are drowning in data scattered across the web? Web scraping can help. It is a powerful way to extract information from web pages and turn it into actionable insights. In this guide, we will walk through the core idea behind building a web scraper with Python.</p>
-              </section>
-
-              <section>
-                <h3>The Challenge</h3>
-                <p>Imagine gathering job postings from a large job board. Manually copying each listing is slow, repetitive, and difficult to scale. Web scraping automates that process by collecting the fields you care about, such as job title, location, and link, then organizing them into a reusable dataset.</p>
-              </section>
-
-              <section>
-                <h3>The Tools</h3>
-                <p>This example uses three practical Python libraries:</p>
-                <div class="blog-tool-grid">
-                  <div><strong>requests</strong><span>Fetches the website HTML so Python can inspect the page.</span></div>
-                  <div><strong>BeautifulSoup</strong><span>Parses HTML and makes it easier to find specific elements.</span></div>
-                  <div><strong>pandas</strong><span>Organizes extracted records into a table and exports them as CSV.</span></div>
-                </div>
-              </section>
-
-              <section>
-                <h3>Building the Web Scraper</h3>
-                <p>The example below shows the basic structure of a scraper: prepare a list, request each page, parse the response, find listing cards, extract useful fields, and save the result.</p>
-                <pre class="code-block"><code>import requests
-from bs4 import BeautifulSoup
-import pandas as pd
-
-jobs = []
-
-for i in range(1, 10):
-    url = (
-        "https://www.linkedin.com/jobs/search/"
-        "?keywords=computer%20science"
-        f"&amp;start={i}"
-    )
-
-    response = requests.get(url)
-    soup = BeautifulSoup(response.content, "html.parser")
-
-    job_listings = soup.find_all(
-        "div",
-        class_="base-card relative w-full hover:no-underline "
-               "focus:no-underline base-card--link "
-               "base-search-card base-search-card--link job-search-card",
-    )
-
-    for job_listing in job_listings:
-        title_element = job_listing.find("h3", class_="base-search-card__title")
-        location_element = job_listing.find("span", class_="job-search-card__location")
-        link_element = job_listing.find("a", class_="base-card__full-link")
-
-        if title_element and location_element and link_element:
-            title = title_element.text.strip()
-            location = location_element.text.strip()
-            link = link_element["href"]
-            jobs.append([title, location, link])
-
-df = pd.DataFrame(jobs, columns=["Job Title", "Location", "Link"])
-df.to_csv("jobs.csv", index=False)
-
-print(jobs)</code></pre>
-              </section>
-
-              <section>
-                <h3>Example Output</h3>
-                <p>After the scraper runs, the records can be shaped into a table like this:</p>
-                <pre class="code-block code-block--output"><code>Job Title                                      Location                 Link
-Software Engineer, AI/ML                      London, United Kingdom   https://www.linkedin.com/jobs/view/...
-Software Engineer, AI/ML                      London, United Kingdom   https://www.linkedin.com/jobs/view/...
-Senior Machine Learning Engineer (Remote-USA) United States            https://www.linkedin.com/jobs/view/...</code></pre>
-              </section>
-
-              <section>
-                <h3>Decoding the Code</h3>
-                <ul class="blog-list">
-                  <li><strong>Imports:</strong> The script starts by importing the libraries needed for fetching pages, parsing HTML, and structuring data.</li>
-                  <li><strong><code>jobs = []</code>:</strong> An empty list stores each extracted job record before it becomes a table.</li>
-                  <li><strong><code>for i in range(...)</code>:</strong> The loop moves through multiple result pages so the scraper can collect more than one page of data.</li>
-                  <li><strong><code>url = f"... "</code>:</strong> The URL is constructed for each page. This structure is specific to the target website and can change over time.</li>
-                  <li><strong><code>requests.get(url)</code>:</strong> Python fetches the page HTML.</li>
-                  <li><strong><code>BeautifulSoup(...)</code>:</strong> The HTML is parsed so the scraper can search for elements by tag and class name.</li>
-                  <li><strong><code>find_all(...)</code>:</strong> The scraper locates repeated job-card containers on the page.</li>
-                  <li><strong><code>find(...)</code>:</strong> Each card is searched for the title, location, and job link.</li>
-                  <li><strong><code>DataFrame</code> and <code>to_csv</code>:</strong> The extracted data is converted into a table and saved as a CSV file.</li>
-                </ul>
-              </section>
-
-              <section>
-                <h3>Important Notes for the LinkedIn Example</h3>
-                <div class="blog-callout">
-                  <strong>Dynamic content matters.</strong>
-                  <p>Large platforms often load content with JavaScript. A simple <code>requests</code> scraper may not capture every listing. For dynamic pages, browser automation tools such as Selenium or Playwright may be needed because they can render JavaScript before extraction.</p>
-                </div>
-                <div class="blog-callout">
-                  <strong>URL structure can change.</strong>
-                  <p>The search URL used in an example is tied to a specific query and website structure. When websites update their HTML or routing, scrapers often need maintenance.</p>
-                </div>
-              </section>
-
-              <section>
-                <h3>Ethics and Reliability</h3>
-                <p>Web scraping is useful, but it should be done carefully. Always check a website's terms, respect robots.txt where applicable, avoid excessive requests, and do not collect private or protected information. A good scraper is not only functional; it is respectful, transparent, and maintainable.</p>
-              </section>
-
-              <section>
-                <h3>Summary</h3>
-                <p>Web scraping can save time and create structured datasets from scattered public information. The advantages of automation and efficiency are significant, but real-world scraping also brings challenges: site changes, dynamic content, ethical boundaries, and increasing complexity. The example above is a solid starting point, but production-grade scraping requires careful planning and responsible practice.</p>
-                <p class="blog-article__source">Original post: <a href="https://sskhub.blogspot.com/2025/02/decoding-web-practical-guide-to-web.html" target="_blank" rel="noopener noreferrer">SSK Hub</a>. Code reference: <a href="https://github.com/RavindraSSK/RavindraSSK" target="_blank" rel="noopener noreferrer">GitHub</a>.</p>
-              </section>
-              </div>
-            </article>
-          </details>
+            </a>
+          </article>
           <article class="card card--hover animate-in" style="--delay: 60ms;"><div class="stack"><span class="meta-pill">Research note</span><h2 class="card-heading">Why spatial context changes model design</h2><p class="card-copy">Geospatial data is never just another image benchmark. Location, scale, sensor timing, and terrain change how a model should be trained, evaluated, and explained.</p><div class="note-meta"><span>Reading time: 4 min</span><span>GeoAI</span></div></div></article>
           <article class="card card--hover animate-in" style="--delay: 120ms;"><div class="stack"><span class="meta-pill">Model note</span><h2 class="card-heading">Grad-CAM for interpretable flood detection</h2><p class="card-copy">A working note on using activation maps to inspect attention U-Net decisions on SAR imagery, especially where false positives carry operational cost.</p><div class="note-meta"><span>Reading time: 5 min</span><span>Explainability</span></div></div></article>
           <article class="card card--hover animate-in" style="--delay: 180ms;"><div class="stack"><span class="meta-pill">Field note</span><h2 class="card-heading">From civil engineering to GeoAI</h2><p class="card-copy">Infrastructure thinking trained me to care about context, constraints, and physical systems. GeoAI adds machine perception to that same way of reading the world.</p><div class="note-meta"><span>Reading time: 3 min</span><span>Personal path</span></div></div></article>
