@@ -264,12 +264,6 @@ html[data-theme="dark"] .eyebrow {
   .section--tight { padding: var(--space-12) 0; }
 }
 
-@media (min-width: 1024px) and (max-width: 1119px) {
-  .page-shell {
-    padding-top: calc(138px + var(--space-10));
-  }
-}
-
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }

@@ -2,36 +2,40 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
 import { StaticPage } from "@/components/static-page";
-import { exploreCategories, getExploreCategory } from "@/lib/content";
+import { blogArticles, exploreCategories, getBlogArticle, getExploreCategory } from "@/lib/content";
 import type { SiteContentKey } from "@/lib/site-content";
 
 const pages = {
   blog: "blog",
-  "web-scraping-python": "web-scraping-python",
   photography: "photography",
   "fitness-health": "fitness-health",
   music: "music",
+  ...Object.fromEntries(blogArticles.map((article) => [article.slug, article.slug])),
 } satisfies Record<string, SiteContentKey>;
 
-const articleMetadata = {
-  "web-scraping-python": {
-    title: "Decoding the Web",
-    description:
-      "A practical Python web scraping guide covering requests, BeautifulSoup, pandas, output structure, and responsible scraping.",
-  },
-} satisfies Record<string, Metadata>;
+const articleMetadata = Object.fromEntries(
+  blogArticles.map((article) => [
+    article.slug,
+    { title: article.title, description: article.description },
+  ]),
+) satisfies Record<string, Metadata>;
 
 export function generateStaticParams() {
   return [
     ...exploreCategories.map(({ slug }) => ({ slug })),
-    { slug: "web-scraping-python" },
+    ...blogArticles.map(({ slug }) => ({ slug })),
   ];
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
   const category = getExploreCategory(slug);
-  return category ? { title: category.title, description: category.description } : articleMetadata[slug as keyof typeof articleMetadata] ?? {};
+  if (category) {
+    return { title: category.title, description: category.description };
+  }
+
+  const article = getBlogArticle(slug);
+  return article ? articleMetadata[article.slug] : {};
 }
 
 export default async function ExploreDetailPage({ params }: { params: Promise<{ slug: string }> }) {

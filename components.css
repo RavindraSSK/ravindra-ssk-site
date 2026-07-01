@@ -1328,47 +1328,7 @@ html[data-theme="dark"] .portfolio-tab.is-preview {
   }
 }
 
-@media (min-width: 1024px) and (max-width: 1119px) {
-  .nav-toggle {
-    display: inline-flex;
-  }
-
-  .site-nav {
-    position: absolute;
-    top: calc(100% + 0.75rem);
-    right: 0;
-    left: 0;
-    display: none !important;
-    padding: 0.75rem;
-    border: 1px solid var(--color-border);
-    border-radius: 24px;
-    background: rgba(255, 255, 255, 0.9);
-    box-shadow: var(--shadow-card);
-    backdrop-filter: blur(20px) saturate(140%);
-  }
-
-  .site-nav.is-open {
-    display: block !important;
-  }
-
-  .nav-list {
-    grid-auto-flow: row;
-    gap: 0.35rem;
-  }
-
-  .nav-expand {
-    display: inline-flex;
-  }
-
-  .nav-dropdown {
-    position: static;
-    width: auto;
-    padding: 0.5rem 0 0;
-    transform: none;
-  }
-}
-
-@media (min-width: 1120px) {
+@media (min-width: 1024px) {
   .mobile-quick-links {
     display: none;
   }

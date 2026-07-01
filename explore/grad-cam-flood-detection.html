@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Grad-CAM for Flood Detection | Ravindra</title>
+    <meta name="description" content="Using Grad-CAM activation maps to inspect attention U-Net decisions on SAR imagery for interpretable flood detection.">
+    <link rel="preconnect" href="https://api.fontshare.com">
+    <link href="https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@400,500,700,800,900&f[]=satoshi@400,500,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../tokens.css">
+    <link rel="stylesheet" href="../base.css">
+    <link rel="stylesheet" href="../components.css">
+    <link rel="stylesheet" href="../explore.css">
+    <script defer src="../app.js"></script>
+  </head>
+  <body data-page="explore" data-root="..">
+    <div data-site-header></div>
+    <main class="page-shell">
+      <section class="section article-page">
+        <div class="container article-shell">
+          <a class="article-back-link" href="/explore/blog">Back to Blog</a>
+
+          <article class="blog-article blog-article--reading card animate-in" style="--delay: 40ms;">
+            <header class="blog-article__header article-reading-header">
+              <div class="blog-feature-card__top">
+                <span class="meta-pill">Model note</span>
+                <span class="blog-feature-card__source">Explainability</span>
+              </div>
+              <h1>Grad-CAM for interpretable flood detection</h1>
+              <p class="blog-article__dek">A working note on using activation maps to inspect attention U-Net decisions on SAR imagery, especially where false positives carry operational cost.</p>
+              <div class="note-meta">
+                <span>Reading time: 5 min</span>
+                <span>Grad-CAM</span>
+                <span>SAR</span>
+                <span>Attention U-Net</span>
+              </div>
+            </header>
+
+            <aside class="article-insight-panel" aria-label="Article overview">
+              <div>
+                <span>Problem</span>
+                <strong>Flood maps influence response decisions; opaque models are hard to trust.</strong>
+              </div>
+              <div>
+                <span>Method</span>
+                <strong>Grad-CAM highlights regions that most influenced the segmentation output.</strong>
+              </div>
+              <div>
+                <span>Goal</span>
+                <strong>Catch specular noise, shadow confusion, and urban false positives early.</strong>
+              </div>
+            </aside>
+
+            <div class="blog-article__body article-reading-body">
+              <section>
+                <h2>Why explainability shows up late—and shouldn't</h2>
+                <p>Segmentation accuracy alone is insufficient when the output informs emergency routing, insurance triage, or resource allocation. An attention U-Net can produce plausible masks while attending to the wrong structures: bright rooftops, dock reflections, or bare soil after rainfall.</p>
+                <p>Grad-CAM offers a lightweight sanity check by visualizing which parts of the input image pushed the model toward its prediction.</p>
+              </section>
+
+              <section>
+                <h2>Where Grad-CAM fits in the pipeline</h2>
+                <p>In a typical flood detection workflow using Sentinel-1 SAR:</p>
+                <ul class="blog-list">
+                  <li>Preprocess SAR tiles (calibration, speckle filtering, normalization).</li>
+                  <li>Run inference with an attention U-Net trained on flood / non-flood labels.</li>
+                  <li>Overlay Grad-CAM heatmaps on the input and predicted mask.</li>
+                  <li>Review cases where high activation does not align with hydrologically plausible areas.</li>
+                </ul>
+                <p>The review step is manual but fast. It turns a single IoU number into a small set of interpretable failure patterns.</p>
+              </section>
+
+              <section>
+                <h2>Patterns worth watching</h2>
+                <div class="blog-tool-grid">
+                  <div><strong>Specular returns</strong><span>Water-adjacent metal surfaces can mimic low backscatter signatures.</span></div>
+                  <div><strong>Urban shadows</strong><span>Tall structures create dark regions that resemble open water in SAR.</span></div>
+                  <div><strong>Temporal mismatch</strong><span>Pairing the wrong acquisition date can make dry land look like change.</span></div>
+                </div>
+              </section>
+
+              <section>
+                <h2>From visualization to iteration</h2>
+                <p>Grad-CAM is not a replacement for rigorous geographic evaluation, but it accelerates iteration. When heatmaps consistently highlight the wrong features, the fix may be better preprocessing, additional training regions, or architecture changes—not more epochs on the same split.</p>
+                <div class="blog-callout">
+                  <strong>Operational habit</strong>
+                  <p>Keep a small review set of tiles where mistakes are costly. Run Grad-CAM on that set after every major training change.</p>
+                </div>
+              </section>
+
+              <section>
+                <h2>Summary</h2>
+                <p>Interpretability tools like Grad-CAM make deep segmentation models easier to audit in disaster contexts. The point is not prettier plots—it is faster detection of the cases where the model's reasoning diverges from physical reality.</p>
+                <p class="blog-article__source">Related project: <a href="/portfolio#projects">GeoAI Flood Detection System</a>.</p>
+              </section>
+            </div>
+          </article>
+
+          <nav class="article-end-nav" aria-label="Article navigation">
+            <a class="article-back-link article-back-link--bottom" href="/explore/blog">Back to Blog</a>
+          </nav>
+        </div>
+      </section>
+    </main>
+    <div data-site-footer></div>
+  </body>
+</html>

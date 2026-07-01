@@ -61,3 +61,35 @@ export type ExploreSlug = ExploreCategory["slug"];
 export function getExploreCategory(slug: string) {
   return exploreCategories.find((category) => category.slug === slug);
 }
+
+export const blogArticles = [
+  {
+    slug: "web-scraping-python",
+    title: "Decoding the Web",
+    description:
+      "A practical Python web scraping guide covering requests, BeautifulSoup, pandas, output structure, and responsible scraping.",
+  },
+  {
+    slug: "spatial-context-geoai",
+    title: "Spatial Context & Model Design",
+    description: "Why geospatial data demands different model design choices than standard computer vision benchmarks.",
+  },
+  {
+    slug: "grad-cam-flood-detection",
+    title: "Grad-CAM for Flood Detection",
+    description:
+      "Using Grad-CAM activation maps to inspect attention U-Net decisions on SAR imagery for interpretable flood detection.",
+  },
+  {
+    slug: "civil-engineering-to-geoai",
+    title: "From Civil Engineering to GeoAI",
+    description:
+      "How infrastructure thinking and civil engineering background inform GeoAI research and applied machine learning work.",
+  },
+] as const;
+
+export type BlogArticleSlug = (typeof blogArticles)[number]["slug"];
+
+export function getBlogArticle(slug: string) {
+  return blogArticles.find((article) => article.slug === slug);
+}
