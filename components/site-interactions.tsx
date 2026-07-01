@@ -78,7 +78,70 @@ export function SiteInteractions({ pathname }: { pathname: string }) {
     });
     const certHandlers = certs.map((card) => { const handler = () => setCertificate({ title: card.dataset.certTitle || "Certificate", issuer: card.dataset.certIssuer || "Issuer" }); card.addEventListener("click", handler); return [card, handler] as const; });
 
-    return () => { observer.disconnect(); tabHandlers.forEach(([tab, clickHandler, previewHandler]) => { tab.removeEventListener("click", clickHandler); tab.removeEventListener("pointerenter", previewHandler); tab.removeEventListener("focus", previewHandler); }); tabRoot?.removeEventListener("pointerleave", leaveTabsHandler); window.removeEventListener("resize", resizeTabsHandler); filterHandlers.forEach(([filter, handler]) => filter.removeEventListener("click", handler)); certHandlers.forEach(([card, handler]) => card.removeEventListener("click", handler)); };
+    const form = document.querySelector<HTMLFormElement>("[data-contact-form]");
+    const submitHandler = async (event: SubmitEvent) => {
+      event.preventDefault();
+      if (!form) return;
+
+      const status = form.querySelector<HTMLElement>("[data-form-status]");
+      const submitButton = form.querySelector<HTMLButtonElement>('button[type="submit"]');
+      const formData = new FormData(form);
+
+      const payload = {
+        name: String(formData.get("name") ?? "").trim(),
+        email: String(formData.get("email") ?? "").trim(),
+        topic: String(formData.get("topic") ?? "").trim(),
+        message: String(formData.get("message") ?? "").trim(),
+        company: String(formData.get("company") ?? "").trim(),
+      };
+
+      if (status) {
+        status.hidden = true;
+        status.removeAttribute("data-tone");
+      }
+
+      submitButton?.setAttribute("disabled", "true");
+
+      try {
+        const response = await fetch("/api/contact", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload),
+        });
+        const result = (await response.json()) as { ok?: boolean; error?: string; mailto?: string };
+
+        if (response.ok && result.ok) {
+          form.reset();
+          if (status) {
+            status.hidden = false;
+            status.dataset.tone = "success";
+            status.textContent = "Thanks — your message was sent. I will get back to you soon.";
+          }
+        } else if (result.mailto) {
+          if (status) {
+            status.hidden = false;
+            status.dataset.tone = "error";
+            status.innerHTML = `${result.error ?? "Email delivery is not configured yet."} <a href="${result.mailto}">Open your email app</a>.`;
+          }
+        } else if (status) {
+          status.hidden = false;
+          status.dataset.tone = "error";
+          status.textContent = result.error ?? "Unable to send message. Please try email directly.";
+        }
+      } catch {
+        if (status) {
+          status.hidden = false;
+          status.dataset.tone = "error";
+          status.textContent = "Network error. Please email ravindrassk1304@gmail.com directly.";
+        }
+      } finally {
+        submitButton?.removeAttribute("disabled");
+      }
+    };
+
+    form?.addEventListener("submit", submitHandler);
+
+    return () => { observer.disconnect(); tabHandlers.forEach(([tab, clickHandler, previewHandler]) => { tab.removeEventListener("click", clickHandler); tab.removeEventListener("pointerenter", previewHandler); tab.removeEventListener("focus", previewHandler); }); tabRoot?.removeEventListener("pointerleave", leaveTabsHandler); window.removeEventListener("resize", resizeTabsHandler); filterHandlers.forEach(([filter, handler]) => filter.removeEventListener("click", handler)); certHandlers.forEach(([card, handler]) => card.removeEventListener("click", handler)); form?.removeEventListener("submit", submitHandler); };
   }, [pathname]);
 
   if (!certificate) return null;

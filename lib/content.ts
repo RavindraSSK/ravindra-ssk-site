@@ -88,8 +88,51 @@ export const blogArticles = [
   },
 ] as const;
 
-export type BlogArticleSlug = (typeof blogArticles)[number]["slug"];
+export const fitnessArticles = [
+  {
+    slug: "weekly-training-structure",
+    title: "Weekly Training Structure",
+    description: "A compact weekly rhythm built around strength, mobility, and recovery for long research weeks.",
+  },
+  {
+    slug: "sport-consistency-mindset",
+    title: "Sport & Consistency",
+    description: "What handball and shot-put taught about discipline, feedback, and steady progress in technical work.",
+  },
+  {
+    slug: "recovery-system-design",
+    title: "Recovery as System Design",
+    description: "Treating sleep, fuel, and reset days as performance inputs rather than afterthoughts.",
+  },
+] as const;
 
+export const musicArticles = [
+  {
+    slug: "focused-work-playlist",
+    title: "Focused Work Rotation",
+    description: "Low-friction tracks for coding, reading papers, and staying inside difficult problems.",
+  },
+  {
+    slug: "records-with-weight",
+    title: "Records with Weight",
+    description: "Albums that carry a memory, a season, or a way of thinking that stays after the last track.",
+  },
+  {
+    slug: "listening-discovery",
+    title: "Discovery Shelf",
+    description: "New finds, reliable repeats, and songs that become part of the workday atmosphere.",
+  },
+] as const;
+
+export const exploreArticles = [...blogArticles, ...fitnessArticles, ...musicArticles] as const;
+
+export type ExploreArticleSlug = (typeof exploreArticles)[number]["slug"];
+
+export function getExploreArticle(slug: string) {
+  return exploreArticles.find((article) => article.slug === slug);
+}
+
+/** @deprecated Use getExploreArticle */
 export function getBlogArticle(slug: string) {
   return blogArticles.find((article) => article.slug === slug);
 }

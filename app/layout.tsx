@@ -4,10 +4,11 @@ import type { ReactNode } from "react";
 
 import { SiteChrome } from "@/components/layout/site-chrome";
 import { pageMetadata } from "@/lib/content";
+import { getSiteUrl } from "@/lib/site-url";
 
 import "./globals.css";
 
-const siteUrl = "https://ravindra-ssk.vercel.app";
+const siteUrl = getSiteUrl();
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),

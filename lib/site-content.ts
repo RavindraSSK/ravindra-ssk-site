@@ -1,7 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 
-import { blogArticles } from "@/lib/content";
+import { exploreArticles } from "@/lib/content";
 
 const routeFiles = {
   home: "index.html",
@@ -14,7 +14,7 @@ const routeFiles = {
   "fitness-health": path.join("explore", "fitness-health.html"),
   music: path.join("explore", "music.html"),
   ...Object.fromEntries(
-    blogArticles.map((article) => [article.slug, path.join("explore", `${article.slug}.html`)]),
+    exploreArticles.map((article) => [article.slug, path.join("explore", `${article.slug}.html`)]),
   ),
 } as const;
 
@@ -37,6 +37,8 @@ function normalizeLinks(html: string) {
     .replaceAll('href="../contact.html"', 'href="/contact"')
     .replaceAll('href="../explore.html"', 'href="/explore"')
     .replaceAll('href="../explore/blog.html"', 'href="/explore/blog"')
+    .replaceAll('href="../explore/fitness-health.html"', 'href="/explore/fitness-health"')
+    .replaceAll('href="../explore/music.html"', 'href="/explore/music"')
     .replaceAll(
       /href="(?:\.\.\/)?explore\/([a-z0-9-]+)\.html"/g,
       'href="/explore/$1"',

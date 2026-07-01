@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
 import { StaticPage } from "@/components/static-page";
-import { blogArticles, exploreCategories, getBlogArticle, getExploreCategory } from "@/lib/content";
+import { exploreArticles, exploreCategories, getExploreArticle, getExploreCategory } from "@/lib/content";
 import type { SiteContentKey } from "@/lib/site-content";
 
 const pages = {
@@ -10,11 +10,11 @@ const pages = {
   photography: "photography",
   "fitness-health": "fitness-health",
   music: "music",
-  ...Object.fromEntries(blogArticles.map((article) => [article.slug, article.slug])),
+  ...Object.fromEntries(exploreArticles.map((article) => [article.slug, article.slug])),
 } satisfies Record<string, SiteContentKey>;
 
 const articleMetadata = Object.fromEntries(
-  blogArticles.map((article) => [
+  exploreArticles.map((article) => [
     article.slug,
     { title: article.title, description: article.description },
   ]),
@@ -23,7 +23,7 @@ const articleMetadata = Object.fromEntries(
 export function generateStaticParams() {
   return [
     ...exploreCategories.map(({ slug }) => ({ slug })),
-    ...blogArticles.map(({ slug }) => ({ slug })),
+    ...exploreArticles.map(({ slug }) => ({ slug })),
   ];
 }
 
@@ -34,7 +34,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     return { title: category.title, description: category.description };
   }
 
-  const article = getBlogArticle(slug);
+  const article = getExploreArticle(slug);
   return article ? articleMetadata[article.slug] : {};
 }
 
