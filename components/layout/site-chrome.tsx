@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import type { ReactNode } from "react";
-import { useEffect, useState } from "react";
+import { useState, useSyncExternalStore } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, ChevronDown, Menu, Moon, Sun, X } from "lucide-react";
 
@@ -23,6 +23,28 @@ const exploreLinks = [
   ["Fitness & Health", "/explore/fitness-health", "Discipline, training, and performance habits."],
   ["Music", "/explore/music", "Listening, discovery, and creative energy."],
 ] as const;
+
+const THEME_EVENT = "themechange";
+
+function subscribeTheme(callback: () => void) {
+  window.addEventListener(THEME_EVENT, callback);
+  return () => window.removeEventListener(THEME_EVENT, callback);
+}
+
+function getThemeSnapshot() {
+  return document.documentElement.getAttribute("data-theme") === "dark";
+}
+
+function setTheme(dark: boolean) {
+  if (dark) {
+    document.documentElement.setAttribute("data-theme", "dark");
+    window.localStorage.setItem("theme", "dark");
+  } else {
+    document.documentElement.removeAttribute("data-theme");
+    window.localStorage.setItem("theme", "light");
+  }
+  window.dispatchEvent(new Event(THEME_EVENT));
+}
 
 function Logo() {
   return (
@@ -62,32 +84,14 @@ export function SiteChrome({ children }: { children: ReactNode }) {
   const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [dropdown, setDropdown] = useState<string | null>(null);
-  const [dark, setDark] = useState(false);
-  const [themeReady, setThemeReady] = useState(false);
+  const [activePath, setActivePath] = useState(pathname);
+  const dark = useSyncExternalStore(subscribeTheme, getThemeSnapshot, () => false);
 
-  useEffect(() => {
-    setDark(document.documentElement.getAttribute("data-theme") === "dark");
-    setThemeReady(true);
-  }, []);
-
-  useEffect(() => {
+  if (activePath !== pathname) {
+    setActivePath(pathname);
     setMobileOpen(false);
     setDropdown(null);
-  }, [pathname]);
-
-  useEffect(() => {
-    if (!themeReady) {
-      return;
-    }
-
-    if (dark) {
-      document.documentElement.setAttribute("data-theme", "dark");
-      window.localStorage.setItem("theme", "dark");
-    } else {
-      document.documentElement.removeAttribute("data-theme");
-      window.localStorage.setItem("theme", "light");
-    }
-  }, [dark, themeReady]);
+  }
 
   return (
     <>
@@ -114,7 +118,7 @@ export function SiteChrome({ children }: { children: ReactNode }) {
                 <li className="nav-item"><Link className={`nav-link${pathname === "/contact" ? " is-active" : ""}`} href="/contact">Contact</Link></li>
               </ul>
               <div className="nav-utilities">
-                <button className="theme-toggle" type="button" aria-label={dark ? "Switch to light mode" : "Switch to dark mode"} aria-pressed={dark} data-mode={dark ? "dark" : "light"} onClick={() => setDark((value) => !value)}>{dark ? <Moon size={17} aria-hidden="true" /> : <Sun size={17} aria-hidden="true" />}</button>
+                <button className="theme-toggle" type="button" aria-label={dark ? "Switch to light mode" : "Switch to dark mode"} aria-pressed={dark} data-mode={dark ? "dark" : "light"} onClick={() => setTheme(!dark)}>{dark ? <Moon size={17} aria-hidden="true" /> : <Sun size={17} aria-hidden="true" />}</button>
                 <Link className="button button--nav" href="/contact">Say hello</Link>
               </div>
             </nav>

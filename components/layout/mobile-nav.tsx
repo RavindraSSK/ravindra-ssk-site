@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import { ChevronDown } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
@@ -25,20 +25,21 @@ function isActivePath(targetHref: string, currentPath: string) {
 export function MobileNav({ open, pathname, onClose }: MobileNavProps) {
   const [expandedMenu, setExpandedMenu] =
     useState<keyof typeof navigationMenus | null>(null);
+  const [syncKey, setSyncKey] = useState(`${open}|${pathname}`);
 
-  useEffect(() => {
-    if (!open) {
+  const currentKey = `${open}|${pathname}`;
+  if (syncKey !== currentKey) {
+    setSyncKey(currentKey);
+    if (open) {
+      setExpandedMenu(
+        (Object.keys(navigationMenus).find((key) =>
+          isActivePath(key, pathname),
+        ) as keyof typeof navigationMenus | undefined) ?? null,
+      );
+    } else {
       setExpandedMenu(null);
-      return;
     }
-
-    const activeMenu =
-      (Object.keys(navigationMenus).find((key) =>
-        isActivePath(key, pathname),
-      ) as keyof typeof navigationMenus | undefined) ?? null;
-
-    setExpandedMenu(activeMenu);
-  }, [open, pathname]);
+  }
 
   return (
     <AnimatePresence>
