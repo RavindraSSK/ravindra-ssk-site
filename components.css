@@ -13,9 +13,9 @@
   pointer-events: none;
   background: linear-gradient(
     180deg,
-    rgba(248, 251, 255, 0.96) 0%,
-    rgba(248, 251, 255, 0.92) 72%,
-    rgba(248, 251, 255, 0) 100%
+    rgba(248, 251, 255, 0.98) 0%,
+    rgba(248, 251, 255, 0.94) 85%,
+    rgba(248, 251, 255, 0.88) 100%
   );
   backdrop-filter: blur(10px);
 }
@@ -1098,9 +1098,9 @@ html[data-theme="dark"] .site-header__inner {
 html[data-theme="dark"] .site-header::before {
   background: linear-gradient(
     180deg,
-    rgba(9, 17, 33, 0.96) 0%,
-    rgba(9, 17, 33, 0.9) 72%,
-    rgba(9, 17, 33, 0) 100%
+    rgba(9, 17, 33, 0.98) 0%,
+    rgba(9, 17, 33, 0.94) 85%,
+    rgba(9, 17, 33, 0.88) 100%
   );
 }
 
@@ -1328,6 +1328,26 @@ html[data-theme="dark"] .portfolio-tab.is-preview {
 
   .brand__name {
     font-size: 0.98rem;
+  }
+
+  .site-footer__inner {
+    align-items: flex-start;
+  }
+
+  .social-links {
+    width: 100%;
+  }
+
+  .icon-link {
+    flex: 1 1 calc(50% - 0.375rem);
+    justify-content: center;
+  }
+
+  .content-hero .page-title,
+  .content-hero .hero-title,
+  .article-reading-header h1 {
+    max-width: 100%;
+    font-size: clamp(2rem, 9vw, 2.75rem);
   }
 
   .hero__actions .button,

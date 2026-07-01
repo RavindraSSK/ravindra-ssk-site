@@ -6,6 +6,7 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--site-header-offset, 120px) + var(--space-4));
 }
 
 body {
@@ -121,8 +122,12 @@ main {
 .page-shell {
   position: relative;
   isolation: isolate;
-  padding-top: calc(var(--site-header-offset, 96px) + var(--space-6));
+  padding-top: calc(var(--site-header-offset, 120px) + var(--space-8));
   padding-bottom: var(--space-20);
+}
+
+.page-shell > .section:first-child {
+  padding-top: clamp(1.5rem, 4vw, var(--space-10));
 }
 
 .section {
