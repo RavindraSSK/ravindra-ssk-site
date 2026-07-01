@@ -66,13 +66,18 @@ export function SiteChrome({ children }: { children: ReactNode }) {
   const [themeReady, setThemeReady] = useState(false);
 
   useEffect(() => {
-    setDark(document.documentElement.getAttribute("data-theme") === "dark");
-    setThemeReady(true);
+    const isDark = document.documentElement.getAttribute("data-theme") === "dark";
+    requestAnimationFrame(() => {
+      setDark(isDark);
+      setThemeReady(true);
+    });
   }, []);
 
   useEffect(() => {
-    setMobileOpen(false);
-    setDropdown(null);
+    requestAnimationFrame(() => {
+      setMobileOpen(false);
+      setDropdown(null);
+    });
   }, [pathname]);
 
   useEffect(() => {
@@ -104,8 +109,8 @@ export function SiteChrome({ children }: { children: ReactNode }) {
               <span className="brand__mark"><Logo /></span>
               <span className="brand__text"><span className="brand__name">Ravindra</span><span className="brand__role">Researcher | Engineer | Creator</span></span>
             </Link>
-            <button className="nav-toggle" type="button" aria-expanded={mobileOpen} aria-label="Open navigation" onClick={() => setMobileOpen((value) => !value)}>{mobileOpen ? <X size={20} aria-hidden="true" /> : <Menu size={20} aria-hidden="true" />}</button>
-            <nav className={`site-nav${mobileOpen ? " is-open" : ""}`} aria-label="Primary navigation">
+            <button className="nav-toggle" type="button" aria-expanded={mobileOpen} aria-controls="primary-navigation" aria-label={mobileOpen ? "Close navigation" : "Open navigation"} onClick={() => setMobileOpen((value) => !value)}>{mobileOpen ? <X size={20} aria-hidden="true" /> : <Menu size={20} aria-hidden="true" />}</button>
+            <nav id="primary-navigation" className={`site-nav${mobileOpen ? " is-open" : ""}`} aria-label="Primary navigation">
               <ul className="nav-list list-reset">
                 <li className="nav-item"><Link className={`nav-link${pathname === "/" ? " is-active" : ""}`} href="/">Home</Link></li>
                 <Dropdown id="portfolio" title="Portfolio" links={portfolioLinks} open={dropdown === "portfolio"} setOpen={() => setDropdown(dropdown === "portfolio" ? null : "portfolio")} />
