@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState, type FocusEvent } from "react";
+import { useState, type FocusEvent } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
@@ -28,13 +28,6 @@ export function Navbar() {
   const [pendingPath, setPendingPath] = useState<string | null>(null);
   const [openMenuPath, setOpenMenuPath] =
     useState<keyof typeof navigationMenus | null>(null);
-
-  useEffect(() => {
-    setOpen(false);
-    setHoveredPath(null);
-    setPendingPath(null);
-    setOpenMenuPath(null);
-  }, [pathname]);
 
   const selectedPath = pendingPath ?? pathname;
 

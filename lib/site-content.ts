@@ -33,7 +33,11 @@ function normalizeLinks(html: string) {
     .replaceAll('href="../about.html"', 'href="/about"')
     .replaceAll('href="../contact.html"', 'href="/contact"')
     .replaceAll('href="../explore.html"', 'href="/explore"')
-    .replaceAll('href="../explore/blog.html"', 'href="/explore/blog"');
+    .replaceAll('href="../explore/blog.html"', 'href="/explore/blog"')
+    .replaceAll('href="../explore/web-scraping-python.html"', 'href="/explore/web-scraping-python"')
+    .replaceAll('href="../explore/photography.html"', 'href="/explore/photography"')
+    .replaceAll('href="../explore/fitness-health.html"', 'href="/explore/fitness-health"')
+    .replaceAll('href="../explore/music.html"', 'href="/explore/music"');
 }
 
 export function getPageContent(key: SiteContentKey) {

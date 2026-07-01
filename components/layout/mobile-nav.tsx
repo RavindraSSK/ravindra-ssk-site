@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import { ChevronDown } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
@@ -25,20 +25,11 @@ function isActivePath(targetHref: string, currentPath: string) {
 export function MobileNav({ open, pathname, onClose }: MobileNavProps) {
   const [expandedMenu, setExpandedMenu] =
     useState<keyof typeof navigationMenus | null>(null);
-
-  useEffect(() => {
-    if (!open) {
-      setExpandedMenu(null);
-      return;
-    }
-
-    const activeMenu =
-      (Object.keys(navigationMenus).find((key) =>
-        isActivePath(key, pathname),
-      ) as keyof typeof navigationMenus | undefined) ?? null;
-
-    setExpandedMenu(activeMenu);
-  }, [open, pathname]);
+  const activeMenu =
+    (Object.keys(navigationMenus).find((key) =>
+      isActivePath(key, pathname),
+    ) as keyof typeof navigationMenus | undefined) ?? null;
+  const visibleExpandedMenu = open ? expandedMenu ?? activeMenu : null;
 
   return (
     <AnimatePresence>
@@ -58,7 +49,7 @@ export function MobileNav({ open, pathname, onClose }: MobileNavProps) {
                 const menuPath = hasMenu
                   ? (item.href as keyof typeof navigationMenus)
                   : null;
-                const isExpanded = menuPath ? expandedMenu === menuPath : false;
+                const isExpanded = menuPath ? visibleExpandedMenu === menuPath : false;
 
                 return (
                   <div key={item.href} className="surface-card overflow-hidden p-1.5">

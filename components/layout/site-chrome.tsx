@@ -34,11 +34,11 @@ function Logo() {
   );
 }
 
-function Dropdown({ id, title, links, open, setOpen }: { id: string; title: string; links: readonly (readonly [string, string, string])[]; open: boolean; setOpen: () => void }) {
+function Dropdown({ id, title, links, open, setOpen, onNavigate }: { id: string; title: string; links: readonly (readonly [string, string, string])[]; open: boolean; setOpen: () => void; onNavigate: () => void }) {
   return (
     <li className={`nav-item nav-item--has-menu${open ? " is-open" : ""}`}>
       <div className="nav-link-group">
-        <Link className="nav-link" href={`/${id}`}>{title}</Link>
+        <Link className="nav-link" href={`/${id}`} onClick={onNavigate}>{title}</Link>
         <button className="nav-expand" type="button" aria-expanded={open} aria-label={`Toggle ${title.toLowerCase()} menu`} onClick={setOpen}><ChevronDown size={16} aria-hidden="true" /></button>
       </div>
       <div className="nav-dropdown">
@@ -46,7 +46,7 @@ function Dropdown({ id, title, links, open, setOpen }: { id: string; title: stri
           <p className="nav-dropdown__title">{title}</p>
           <div className="nav-dropdown__grid">
             {links.map(([label, href, copy]) => (
-              <Link className="nav-dropdown__item" href={href} key={href}>
+              <Link className="nav-dropdown__item" href={href} key={href} onClick={onNavigate}>
                 <p className="nav-dropdown__item-title">{label}<ArrowRight size={15} aria-hidden="true" /></p>
                 <p className="nav-dropdown__item-copy">{copy}</p>
               </Link>
@@ -62,24 +62,13 @@ export function SiteChrome({ children }: { children: ReactNode }) {
   const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [dropdown, setDropdown] = useState<string | null>(null);
-  const [dark, setDark] = useState(false);
-  const [themeReady, setThemeReady] = useState(false);
+  const [dark, setDark] = useState(
+    () =>
+      typeof document !== "undefined" &&
+      document.documentElement.getAttribute("data-theme") === "dark",
+  );
 
   useEffect(() => {
-    setDark(document.documentElement.getAttribute("data-theme") === "dark");
-    setThemeReady(true);
-  }, []);
-
-  useEffect(() => {
-    setMobileOpen(false);
-    setDropdown(null);
-  }, [pathname]);
-
-  useEffect(() => {
-    if (!themeReady) {
-      return;
-    }
-
     if (dark) {
       document.documentElement.setAttribute("data-theme", "dark");
       window.localStorage.setItem("theme", "dark");
@@ -87,7 +76,12 @@ export function SiteChrome({ children }: { children: ReactNode }) {
       document.documentElement.removeAttribute("data-theme");
       window.localStorage.setItem("theme", "light");
     }
-  }, [dark, themeReady]);
+  }, [dark]);
+
+  function closeMenus() {
+    setMobileOpen(false);
+    setDropdown(null);
+  }
 
   return (
     <>
@@ -100,29 +94,29 @@ export function SiteChrome({ children }: { children: ReactNode }) {
       >
         <div className="container">
           <div className="site-header__inner">
-            <Link className="brand" href="/" aria-label="Ravindra home">
+            <Link className="brand" href="/" aria-label="Ravindra home" onClick={closeMenus}>
               <span className="brand__mark"><Logo /></span>
               <span className="brand__text"><span className="brand__name">Ravindra</span><span className="brand__role">Researcher | Engineer | Creator</span></span>
             </Link>
-            <button className="nav-toggle" type="button" aria-expanded={mobileOpen} aria-label="Open navigation" onClick={() => setMobileOpen((value) => !value)}>{mobileOpen ? <X size={20} aria-hidden="true" /> : <Menu size={20} aria-hidden="true" />}</button>
+            <button className="nav-toggle" type="button" aria-expanded={mobileOpen} aria-label={mobileOpen ? "Close navigation" : "Open navigation"} onClick={() => setMobileOpen((value) => !value)}>{mobileOpen ? <X size={20} aria-hidden="true" /> : <Menu size={20} aria-hidden="true" />}</button>
             <nav className={`site-nav${mobileOpen ? " is-open" : ""}`} aria-label="Primary navigation">
               <ul className="nav-list list-reset">
-                <li className="nav-item"><Link className={`nav-link${pathname === "/" ? " is-active" : ""}`} href="/">Home</Link></li>
-                <Dropdown id="portfolio" title="Portfolio" links={portfolioLinks} open={dropdown === "portfolio"} setOpen={() => setDropdown(dropdown === "portfolio" ? null : "portfolio")} />
-                <Dropdown id="explore" title="Explore" links={exploreLinks} open={dropdown === "explore"} setOpen={() => setDropdown(dropdown === "explore" ? null : "explore")} />
-                <li className="nav-item"><Link className={`nav-link${pathname === "/about" ? " is-active" : ""}`} href="/about">About</Link></li>
-                <li className="nav-item"><Link className={`nav-link${pathname === "/contact" ? " is-active" : ""}`} href="/contact">Contact</Link></li>
+                <li className="nav-item"><Link className={`nav-link${pathname === "/" ? " is-active" : ""}`} href="/" onClick={closeMenus}>Home</Link></li>
+                <Dropdown id="portfolio" title="Portfolio" links={portfolioLinks} open={dropdown === "portfolio"} setOpen={() => setDropdown(dropdown === "portfolio" ? null : "portfolio")} onNavigate={closeMenus} />
+                <Dropdown id="explore" title="Explore" links={exploreLinks} open={dropdown === "explore"} setOpen={() => setDropdown(dropdown === "explore" ? null : "explore")} onNavigate={closeMenus} />
+                <li className="nav-item"><Link className={`nav-link${pathname === "/about" ? " is-active" : ""}`} href="/about" onClick={closeMenus}>About</Link></li>
+                <li className="nav-item"><Link className={`nav-link${pathname === "/contact" ? " is-active" : ""}`} href="/contact" onClick={closeMenus}>Contact</Link></li>
               </ul>
               <div className="nav-utilities">
                 <button className="theme-toggle" type="button" aria-label={dark ? "Switch to light mode" : "Switch to dark mode"} aria-pressed={dark} data-mode={dark ? "dark" : "light"} onClick={() => setDark((value) => !value)}>{dark ? <Moon size={17} aria-hidden="true" /> : <Sun size={17} aria-hidden="true" />}</button>
-                <Link className="button button--nav" href="/contact">Say hello</Link>
+                <Link className="button button--nav" href="/contact" onClick={closeMenus}>Say hello</Link>
               </div>
             </nav>
           </div>
           <div className="mobile-quick-links" aria-label="Quick navigation">
-            <Link href="/portfolio">Work</Link>
-            <Link href="/explore">Explore</Link>
-            <Link href="/contact">Contact</Link>
+            <Link href="/portfolio" onClick={closeMenus}>Work</Link>
+            <Link href="/explore" onClick={closeMenus}>Explore</Link>
+            <Link href="/contact" onClick={closeMenus}>Contact</Link>
           </div>
         </div>
       </motion.header>
