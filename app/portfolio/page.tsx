@@ -1,11 +1,9 @@
 import type { Metadata } from "next";
 
 import { StaticPage } from "@/components/static-page";
+import { pageMetadata } from "@/lib/content";
 
-export const metadata: Metadata = {
-  title: "Portfolio & Credentials",
-  description: "Projects, experience, education, technical skills, and certifications from Ravindra.",
-};
+export const metadata: Metadata = pageMetadata.portfolio;
 
 export default function PortfolioPage() {
   return <StaticPage page="portfolio" />;

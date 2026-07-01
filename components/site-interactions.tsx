@@ -78,11 +78,7 @@ export function SiteInteractions({ pathname }: { pathname: string }) {
     });
     const certHandlers = certs.map((card) => { const handler = () => setCertificate({ title: card.dataset.certTitle || "Certificate", issuer: card.dataset.certIssuer || "Issuer" }); card.addEventListener("click", handler); return [card, handler] as const; });
 
-    const form = document.querySelector<HTMLFormElement>("[data-contact-form]");
-    const submit = (event: SubmitEvent) => { event.preventDefault(); const status = form?.querySelector<HTMLElement>("[data-form-status]"); if (status) { status.hidden = false; status.textContent = "This form is not connected to a backend yet. Please email me directly at ravindrassk1304@gmail.com."; } };
-    form?.addEventListener("submit", submit);
-
-    return () => { observer.disconnect(); tabHandlers.forEach(([tab, clickHandler, previewHandler]) => { tab.removeEventListener("click", clickHandler); tab.removeEventListener("pointerenter", previewHandler); tab.removeEventListener("focus", previewHandler); }); tabRoot?.removeEventListener("pointerleave", leaveTabsHandler); window.removeEventListener("resize", resizeTabsHandler); filterHandlers.forEach(([filter, handler]) => filter.removeEventListener("click", handler)); certHandlers.forEach(([card, handler]) => card.removeEventListener("click", handler)); form?.removeEventListener("submit", submit); };
+    return () => { observer.disconnect(); tabHandlers.forEach(([tab, clickHandler, previewHandler]) => { tab.removeEventListener("click", clickHandler); tab.removeEventListener("pointerenter", previewHandler); tab.removeEventListener("focus", previewHandler); }); tabRoot?.removeEventListener("pointerleave", leaveTabsHandler); window.removeEventListener("resize", resizeTabsHandler); filterHandlers.forEach(([filter, handler]) => filter.removeEventListener("click", handler)); certHandlers.forEach(([card, handler]) => card.removeEventListener("click", handler)); };
   }, [pathname]);
 
   if (!certificate) return null;
