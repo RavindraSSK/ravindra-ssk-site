@@ -61,3 +61,78 @@ export type ExploreSlug = ExploreCategory["slug"];
 export function getExploreCategory(slug: string) {
   return exploreCategories.find((category) => category.slug === slug);
 }
+
+export const blogArticles = [
+  {
+    slug: "web-scraping-python",
+    title: "Decoding the Web",
+    description:
+      "A practical Python web scraping guide covering requests, BeautifulSoup, pandas, output structure, and responsible scraping.",
+  },
+  {
+    slug: "spatial-context-geoai",
+    title: "Spatial Context & Model Design",
+    description: "Why geospatial data demands different model design choices than standard computer vision benchmarks.",
+  },
+  {
+    slug: "grad-cam-flood-detection",
+    title: "Grad-CAM for Flood Detection",
+    description:
+      "Using Grad-CAM activation maps to inspect attention U-Net decisions on SAR imagery for interpretable flood detection.",
+  },
+  {
+    slug: "civil-engineering-to-geoai",
+    title: "From Civil Engineering to GeoAI",
+    description:
+      "How infrastructure thinking and civil engineering background inform GeoAI research and applied machine learning work.",
+  },
+] as const;
+
+export const fitnessArticles = [
+  {
+    slug: "weekly-training-structure",
+    title: "Weekly Training Structure",
+    description: "A compact weekly rhythm built around strength, mobility, and recovery for long research weeks.",
+  },
+  {
+    slug: "sport-consistency-mindset",
+    title: "Sport & Consistency",
+    description: "What handball and shot-put taught about discipline, feedback, and steady progress in technical work.",
+  },
+  {
+    slug: "recovery-system-design",
+    title: "Recovery as System Design",
+    description: "Treating sleep, fuel, and reset days as performance inputs rather than afterthoughts.",
+  },
+] as const;
+
+export const musicArticles = [
+  {
+    slug: "focused-work-playlist",
+    title: "Focused Work Rotation",
+    description: "Low-friction tracks for coding, reading papers, and staying inside difficult problems.",
+  },
+  {
+    slug: "records-with-weight",
+    title: "Records with Weight",
+    description: "Albums that carry a memory, a season, or a way of thinking that stays after the last track.",
+  },
+  {
+    slug: "listening-discovery",
+    title: "Discovery Shelf",
+    description: "New finds, reliable repeats, and songs that become part of the workday atmosphere.",
+  },
+] as const;
+
+export const exploreArticles = [...blogArticles, ...fitnessArticles, ...musicArticles] as const;
+
+export type ExploreArticleSlug = (typeof exploreArticles)[number]["slug"];
+
+export function getExploreArticle(slug: string) {
+  return exploreArticles.find((article) => article.slug === slug);
+}
+
+/** @deprecated Use getExploreArticle */
+export function getBlogArticle(slug: string) {
+  return blogArticles.find((article) => article.slug === slug);
+}

@@ -121,7 +121,7 @@ main {
 .page-shell {
   position: relative;
   isolation: isolate;
-  padding-top: calc(132px + var(--space-8));
+  padding-top: calc(var(--site-header-offset, 96px) + var(--space-6));
   padding-bottom: var(--space-20);
 }
 
@@ -252,22 +252,16 @@ html[data-theme="dark"] .eyebrow {
   }
 
   .page-shell {
-    padding-top: calc(138px + var(--space-10));
+    padding-top: calc(var(--site-header-offset, 104px) + var(--space-8));
   }
 }
 
 @media (min-width: 1024px) {
   .page-shell {
-    padding-top: calc(88px + var(--space-12));
+    padding-top: calc(var(--site-header-offset, 88px) + var(--space-10));
   }
 
   .section--tight { padding: var(--space-12) 0; }
-}
-
-@media (min-width: 1024px) and (max-width: 1119px) {
-  .page-shell {
-    padding-top: calc(138px + var(--space-10));
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {

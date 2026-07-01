@@ -274,3 +274,83 @@ html[data-theme="dark"] .contact-action__mark {
   background: rgba(147, 180, 245, 0.12);
   color: #dbeafe;
 }
+
+.contact-form-card {
+  display: grid;
+  gap: var(--space-6);
+  padding: clamp(1.25rem, 4vw, 2rem);
+  border: 1px solid var(--ambient-line);
+  border-radius: 30px;
+  background:
+    radial-gradient(circle at 94% 0%, rgba(43, 84, 177, 0.12), transparent 14rem),
+    var(--ambient-surface-strong);
+  box-shadow: var(--shadow-card);
+}
+
+.contact-form-card__intro {
+  display: grid;
+  gap: 0.65rem;
+  max-width: 42rem;
+}
+
+.contact-form-card__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.contact-form-card__hint {
+  margin: 0;
+  color: var(--color-text-muted);
+  font-size: 0.95rem;
+}
+
+.contact-form-card__hint a {
+  color: var(--color-primary);
+  font-weight: 700;
+}
+
+.contact-form__honeypot {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.contact-form-status {
+  margin: 0;
+  padding: 0.85rem 1rem;
+  border-radius: 18px;
+  font-size: 0.95rem;
+}
+
+.contact-form-status[data-tone="success"] {
+  color: #14532d;
+  background: rgba(34, 197, 94, 0.12);
+  border: 1px solid rgba(34, 197, 94, 0.24);
+}
+
+.contact-form-status[data-tone="error"] {
+  color: #7f1d1d;
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.22);
+}
+
+html[data-theme="dark"] .contact-form-card {
+  background:
+    radial-gradient(circle at 94% 0%, rgba(82, 132, 230, 0.14), transparent 14rem),
+    var(--ambient-surface-strong);
+}
+
+html[data-theme="dark"] .contact-form-status[data-tone="success"] {
+  color: #bbf7d0;
+  background: rgba(34, 197, 94, 0.14);
+}
+
+html[data-theme="dark"] .contact-form-status[data-tone="error"] {
+  color: #fecaca;
+  background: rgba(239, 68, 68, 0.14);
+}

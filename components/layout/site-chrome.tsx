@@ -94,6 +94,28 @@ export function SiteChrome({ children }: { children: ReactNode }) {
     }
   }, [dark, themeReady]);
 
+  useEffect(() => {
+    const header = document.querySelector<HTMLElement>(".site-header");
+    if (!header) {
+      return;
+    }
+
+    const syncHeaderOffset = () => {
+      document.documentElement.style.setProperty("--site-header-offset", `${header.offsetHeight}px`);
+    };
+
+    syncHeaderOffset();
+
+    const observer = new ResizeObserver(syncHeaderOffset);
+    observer.observe(header);
+    window.addEventListener("resize", syncHeaderOffset);
+
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("resize", syncHeaderOffset);
+    };
+  }, [mobileOpen, pathname]);
+
   return (
     <>
       <motion.header
@@ -123,11 +145,6 @@ export function SiteChrome({ children }: { children: ReactNode }) {
                 <Link className="button button--nav" href="/contact">Say hello</Link>
               </div>
             </nav>
-          </div>
-          <div className="mobile-quick-links" aria-label="Quick navigation">
-            <Link href="/portfolio">Work</Link>
-            <Link href="/explore">Explore</Link>
-            <Link href="/contact">Contact</Link>
           </div>
         </div>
       </motion.header>

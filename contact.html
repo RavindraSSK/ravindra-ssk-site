@@ -95,6 +95,53 @@
           </div>
         </div>
       </section>
+
+      <section class="section section--tight">
+        <div class="container">
+          <article class="contact-form-card card animate-in" style="--delay: 180ms;">
+            <div class="contact-form-card__intro">
+              <span class="eyebrow">Send a message</span>
+              <h2 class="section-title">Contact form</h2>
+              <p class="section-copy">Prefer a form? Send a note here. It delivers to my inbox when email delivery is configured.</p>
+            </div>
+
+            <form class="form-grid" data-contact-form novalidate>
+              <div class="form-grid form-grid--split">
+                <label class="field-label">
+                  Name
+                  <input class="field" type="text" name="name" autocomplete="name" required placeholder="Your name">
+                </label>
+                <label class="field-label">
+                  Email
+                  <input class="field" type="email" name="email" autocomplete="email" required placeholder="you@example.com">
+                </label>
+              </div>
+
+              <label class="field-label">
+                Topic
+                <input class="field" type="text" name="topic" placeholder="Research collaboration, internship, project idea">
+              </label>
+
+              <label class="field-label">
+                Message
+                <textarea class="textarea-field" name="message" rows="5" required placeholder="A few details are enough for a first message."></textarea>
+              </label>
+
+              <label class="contact-form__honeypot" aria-hidden="true">
+                Company
+                <input class="field" type="text" name="company" tabindex="-1" autocomplete="off">
+              </label>
+
+              <div class="contact-form-card__actions">
+                <button class="button button--primary" type="submit">Send message</button>
+                <p class="contact-form-card__hint">Or email directly at <a href="mailto:ravindrassk1304@gmail.com">ravindrassk1304@gmail.com</a>.</p>
+              </div>
+
+              <p class="contact-form-status" data-form-status hidden role="status"></p>
+            </form>
+          </article>
+        </div>
+      </section>
     </main>
 
     <div data-site-footer></div>

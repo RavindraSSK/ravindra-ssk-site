@@ -762,39 +762,18 @@
 
 .gallery-card__frame {
   aspect-ratio: 4 / 3;
+  overflow: hidden;
   border-radius: 18px;
-  background:
-    linear-gradient(135deg, rgba(14, 38, 82, 0.78), rgba(71, 121, 190, 0.18)),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.72), rgba(238, 242, 255, 0.42));
   border: 1px solid var(--ambient-line);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.48);
+  background: rgba(238, 244, 255, 0.42);
 }
 
-.gallery-card--morning .gallery-card__frame {
-  background:
-    linear-gradient(115deg, rgba(255, 255, 255, 0.78) 0 18%, transparent 18% 100%),
-    linear-gradient(155deg, rgba(20, 45, 95, 0.82), rgba(87, 131, 203, 0.22)),
-    radial-gradient(circle at 82% 18%, rgba(255, 255, 255, 0.7), transparent 7rem);
-}
-
-.gallery-card--road .gallery-card__frame {
-  background:
-    linear-gradient(90deg, transparent 0 42%, rgba(255, 255, 255, 0.62) 42% 44%, transparent 44% 100%),
-    linear-gradient(150deg, rgba(24, 79, 99, 0.82), rgba(178, 211, 226, 0.32)),
-    radial-gradient(circle at 20% 80%, rgba(255, 255, 255, 0.42), transparent 6rem);
-}
-
-.gallery-card--concrete .gallery-card__frame {
-  background:
-    repeating-linear-gradient(135deg, rgba(255, 255, 255, 0.18) 0 1px, transparent 1px 13px),
-    linear-gradient(145deg, rgba(35, 50, 72, 0.8), rgba(203, 213, 225, 0.34)),
-    radial-gradient(circle at 72% 14%, rgba(255, 255, 255, 0.52), transparent 7rem);
-}
-
-.gallery-card--shadow .gallery-card__frame {
-  background:
-    linear-gradient(120deg, rgba(8, 18, 35, 0.82) 0 42%, rgba(255, 255, 255, 0.5) 42% 44%, transparent 44% 100%),
-    linear-gradient(150deg, rgba(23, 52, 111, 0.86), rgba(118, 101, 199, 0.24));
+.gallery-card__frame img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .content-list--photo .gallery-card:nth-child(1) .gallery-card__frame,
