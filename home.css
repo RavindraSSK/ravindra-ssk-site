@@ -408,6 +408,10 @@ html[data-theme="dark"] .home-interest-card {
 }
 
 @media (max-width: 767px) {
+  .home-hero {
+    padding-top: var(--space-2);
+  }
+
   .hero__visual {
     min-height: auto;
     padding: 2.5rem 0 1rem;
@@ -435,15 +439,23 @@ html[data-theme="dark"] .home-interest-card {
 }
 
 @media (max-width: 480px) {
+  .hero__lead {
+    gap: 1rem;
+    padding-top: 0.25rem;
+  }
+
   .hero__lead .hero-title {
-    font-size: clamp(2.55rem, 12vw, 3rem);
+    font-size: clamp(2.2rem, 10.5vw, 2.85rem);
+    max-width: 100%;
   }
 
   .hero__lead .eyebrow {
     max-width: 100%;
-    font-size: 0.7rem;
-    letter-spacing: 0.1em;
-    text-align: center;
+    font-size: 0.68rem;
+    letter-spacing: 0.08em;
+    text-align: left;
+    line-height: 1.45;
+    white-space: normal;
   }
 }
 
