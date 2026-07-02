@@ -6,6 +6,25 @@
 2. Vercel auto-deploys from the connected repository.
 3. Preview deployments are created for pull requests.
 
+### If the live site does not update
+
+GitHub CI passing does **not** guarantee Vercel redeployed. If production still shows old content:
+
+1. Open [Vercel Dashboard](https://vercel.com/dashboard) → **ravindra-ssk-site** (or your project) → **Deployments**.
+2. Confirm the latest deployment matches the latest `master` commit.
+3. If not, click **Redeploy** on the latest `master` deployment, or use **Deploy** → **Redeploy with existing Build Cache** disabled.
+4. Reconnect GitHub if needed: **Settings** → **Git** → ensure the repo is linked and **Production Branch** is `master`.
+
+### Optional: GitHub Actions deploy
+
+If Vercel Git hooks are unreliable, add these repository secrets and the workflow in `.github/workflows/deploy.yml` will deploy on every `master` push:
+
+| Secret | Where to find it |
+|---|---|
+| `VERCEL_TOKEN` | Vercel → Account Settings → Tokens |
+| `VERCEL_ORG_ID` | Vercel project → Settings → General |
+| `VERCEL_PROJECT_ID` | Vercel project → Settings → General |
+
 ## Custom domain
 
 ### 1. Add domain in Vercel

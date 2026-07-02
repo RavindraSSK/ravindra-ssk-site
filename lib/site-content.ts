@@ -42,7 +42,8 @@ function normalizeLinks(html: string) {
     .replaceAll(
       /href="(?:\.\.\/)?explore\/([a-z0-9-]+)\.html"/g,
       'href="/explore/$1"',
-    );
+    )
+    .replaceAll('src="images/', 'src="/images/');
 }
 
 export function getPageContent(key: SiteContentKey) {
