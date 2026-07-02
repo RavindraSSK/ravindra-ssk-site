@@ -115,17 +115,102 @@
                 </div>
               </article>
 
-              <article class="card card--hover animate-in" style="--delay: 300ms;">
-                <div class="stack">
-                  <p class="card-heading">SSKS Home Designs — Interior Design Portfolio Site</p>
-                  <p class="card-copy">2021</p>
-                  <p class="card-copy">Client website for an interior design firm with clean presentation, project showcases, and strong visual hierarchy.</p>
-                  <div class="meta-row">
-                    <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span>
+            </div>
+
+            <article class="ssks-showcase card animate-in" id="ssks-home-designs" style="--delay: 360ms;">
+              <div class="ssks-showcase__top">
+                <div class="ssks-showcase__identity">
+                  <div class="logo-badge logo-badge--ssks">SS</div>
+                  <div class="stack" style="gap: 0.35rem;">
+                    <h3 class="ssks-showcase__title">SSKS Home Designs</h3>
+                    <p class="ssks-showcase__category">Interior Design · Sustainable Building Models · 3D Visualization</p>
+                    <p class="ssks-showcase__meta">Founded venture · 2021–2023 · East Godavari, Andhra Pradesh</p>
                   </div>
                 </div>
-              </article>
-            </div>
+                <div class="ssks-showcase__actions">
+                  <a class="button button--secondary" href="https://share.google/kJQzyJE7oGcyuFSr6" target="_blank" rel="noopener noreferrer">View on Google Maps</a>
+                  <a class="button button--ghost" href="https://www.google.com/maps/search/SSKS+HOME+DESIGNS" target="_blank" rel="noopener noreferrer">Directions</a>
+                </div>
+              </div>
+
+              <div class="ssks-showcase__gallery" aria-label="SSKS Home Designs project photos">
+                <figure class="ssks-showcase__hero-photo">
+                  <img src="images/ssks/showcase-hero.webp" alt="Modern living room interior with warm lighting and clean lines" width="1200" height="800" loading="lazy" decoding="async">
+                  <figcaption>Living room concept — warm materials and layered lighting</figcaption>
+                </figure>
+                <div class="ssks-showcase__photo-grid">
+                  <figure class="ssks-showcase__photo">
+                    <img src="images/ssks/modular-kitchen.webp" alt="Modular kitchen interior with contemporary cabinetry" width="800" height="480" loading="lazy" decoding="async">
+                    <figcaption>Modular kitchen layout</figcaption>
+                  </figure>
+                  <figure class="ssks-showcase__photo">
+                    <img src="images/ssks/bedroom-interior.webp" alt="Bedroom interior with neutral palette and soft textures" width="800" height="600" loading="lazy" decoding="async">
+                    <figcaption>Bedroom styling</figcaption>
+                  </figure>
+                  <figure class="ssks-showcase__photo">
+                    <img src="images/ssks/modern-home-exterior.webp" alt="Modern home exterior with clean architectural lines" width="800" height="600" loading="lazy" decoding="async">
+                    <figcaption>Elevation and exterior concept</figcaption>
+                  </figure>
+                  <figure class="ssks-showcase__photo">
+                    <img src="images/ssks/architectural-model.webp" alt="Architectural model and building design planning" width="800" height="450" loading="lazy" decoding="async">
+                    <figcaption>3D building model workflow</figcaption>
+                  </figure>
+                  <figure class="ssks-showcase__photo">
+                    <img src="images/ssks/office-interior.webp" alt="Commercial office interior with open workspace layout" width="800" height="533" loading="lazy" decoding="async">
+                    <figcaption>Commercial workspace planning</figcaption>
+                  </figure>
+                  <figure class="ssks-showcase__photo">
+                    <img src="images/ssks/living-room.webp" alt="Residential living area with refined furniture selection" width="800" height="533" loading="lazy" decoding="async">
+                    <figcaption>Residential living area</figcaption>
+                  </figure>
+                </div>
+              </div>
+
+              <div class="ssks-showcase__body">
+                <div class="ssks-showcase__details stack">
+                  <span class="eyebrow">Business profile</span>
+                  <p class="card-copy">
+                    SSKS Home Designs is an interior design and sustainable building venture I founded to deliver
+                    energy-efficient models, client-ready visualizations, and end-to-end project coordination. The work
+                    spans residential interiors, modular kitchens, elevation concepts, and portfolio websites that
+                    present projects with the clarity of a Google Business listing.
+                  </p>
+                  <ul class="bullet-list">
+                    <li>Led client communication, design direction, and practical delivery across residential projects.</li>
+                    <li>Built 3D models and sustainable building concepts using AutoCAD, Revit, and SketchUp.</li>
+                    <li>Designed and shipped the firm portfolio site with HTML, CSS, and JavaScript.</li>
+                  </ul>
+                  <div class="meta-row">
+                    <span class="tag">Interior Design</span>
+                    <span class="tag">AutoCAD</span>
+                    <span class="tag">Revit</span>
+                    <span class="tag">SketchUp</span>
+                    <span class="tag">HTML</span>
+                    <span class="tag">CSS</span>
+                    <span class="tag">JavaScript</span>
+                  </div>
+                </div>
+
+                <aside class="ssks-showcase__map-card stack">
+                  <span class="eyebrow">Find on Maps</span>
+                  <div class="ssks-showcase__map-frame">
+                    <iframe
+                      title="SSKS Home Designs on Google Maps"
+                      src="https://maps.google.com/maps?q=SSKS+HOME+DESIGNS&amp;hl=en&amp;z=12&amp;output=embed"
+                      loading="lazy"
+                      referrerpolicy="no-referrer-when-downgrade"
+                      allowfullscreen
+                    ></iframe>
+                  </div>
+                  <p class="card-copy">
+                    Browse the live Google Maps listing for project photos, location context, and business details.
+                  </p>
+                  <a class="inline-link" href="https://share.google/kJQzyJE7oGcyuFSr6" target="_blank" rel="noopener noreferrer">
+                    Open shared Maps profile <span aria-hidden="true">&rarr;</span>
+                  </a>
+                </aside>
+              </div>
+            </article>
           </section>
 
           <section class="portfolio-panel" id="experience" data-tab-panel role="tabpanel" aria-labelledby="tab-experience" tabindex="0" hidden>
@@ -239,7 +324,9 @@
                   <ul class="bullet-list">
                     <li>Led project planning, client communication, and delivery.</li>
                     <li>Managed design direction while coordinating practical execution.</li>
+                    <li>Published the venture on Google Maps with project photos and a portfolio website.</li>
                   </ul>
+                  <a class="inline-link" href="#ssks-home-designs">View SSKS showcase <span aria-hidden="true">&rarr;</span></a>
                 </div>
               </article>
 
