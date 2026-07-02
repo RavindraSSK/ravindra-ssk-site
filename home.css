@@ -408,8 +408,12 @@ html[data-theme="dark"] .home-interest-card {
 }
 
 @media (max-width: 767px) {
+  .home-hero.section--tight {
+    padding-top: clamp(1rem, 3vw, 1.5rem);
+  }
+
   .home-hero {
-    padding-top: var(--space-2);
+    padding-top: 0;
   }
 
   .hero__visual {

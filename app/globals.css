@@ -8,10 +8,6 @@
 @import "../contact.css";
 @import "../explore.css";
 
-.route-content {
-  display: contents;
-}
-
 .cert-modal__copy {
   display: grid;
   gap: 0.75rem;

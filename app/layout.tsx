@@ -39,6 +39,13 @@ export default function RootLayout({ children }: Readonly<{ children: ReactNode 
   return (
     <html lang="en" suppressHydrationWarning>
       <Script
+        id="header-offset-init"
+        strategy="beforeInteractive"
+        dangerouslySetInnerHTML={{
+          __html: `document.documentElement.style.setProperty("--site-header-offset","120px");`,
+        }}
+      />
+      <Script
         id="theme-init"
         strategy="beforeInteractive"
         dangerouslySetInnerHTML={{
