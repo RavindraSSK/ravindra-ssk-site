@@ -112,9 +112,24 @@
 }
 
 .education-grid,
-.skills-grid {
+.skills-grid,
+.achievements-grid {
   display: grid;
   gap: var(--space-5);
+}
+
+.achievements-layout {
+  display: grid;
+  gap: var(--space-6);
+}
+
+.achievements-group {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.achievements-grid {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
 }
 
 .cert-layout {
