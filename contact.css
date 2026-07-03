@@ -28,6 +28,41 @@
   gap: 0.8rem;
 }
 
+.contact-profile-links {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.contact-profile-links__grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+}
+
+.contact-action-group__label {
+  margin: 0.35rem 0 0;
+  color: var(--color-text-faint);
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.contact-action--profile .contact-action__mark--linkedin {
+  background: linear-gradient(135deg, #0a66c2, #378fe9);
+  color: #ffffff;
+}
+
+.contact-action--profile .contact-action__mark--github {
+  background: linear-gradient(135deg, #24292f, #57606a);
+  color: #ffffff;
+}
+
+.contact-action--profile .contact-action__mark--researchgate {
+  background: linear-gradient(135deg, #00d0af, #00b38f);
+  color: #053b31;
+}
+
 .contact-note {
   display: grid;
   gap: 0.35rem;
@@ -224,7 +259,8 @@
 }
 
 @media (max-width: 640px) {
-  .contact-hero-actions .button {
+  .contact-hero-actions .button,
+  .contact-profile-links__grid .button {
     width: 100%;
   }
 
