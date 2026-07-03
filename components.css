@@ -568,6 +568,10 @@
   background: #6366f1;
 }
 
+.logo-badge--handshake {
+  background: #1f4d3d;
+}
+
 .logo-badge--salesforce {
   background: #00a1e0;
 }
@@ -878,6 +882,10 @@
 
 .skill-theme--navy .skill-chip__icon {
   background: #1e3a8a;
+}
+
+.skill-theme--indigo .skill-chip__icon {
+  background: #4338ca;
 }
 
 .skill-theme--green .skill-chip__icon {

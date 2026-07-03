@@ -2,7 +2,7 @@ export const pageMetadata = {
   home: {
     title: "Ravindra | AI Researcher & Machine Learning Engineer",
     description:
-      "Ravindra is an AI researcher and machine learning engineer building practical systems across machine learning, deep learning, explainability, and applied AI.",
+      "Ravindra is an ML/AI engineer and graduate researcher building end-to-end machine learning systems across computer vision, generative AI, healthcare AI, and applied AI.",
   },
   about: {
     title: "About",
@@ -15,7 +15,7 @@ export const pageMetadata = {
   },
   portfolio: {
     title: "Portfolio & Credentials",
-    description: "Projects, experience, education, technical skills, and certifications from Ravindra.",
+    description: "Projects, experience, education, technical skills, achievements, and certifications from Ravindra.",
   },
   contact: {
     title: "Contact",

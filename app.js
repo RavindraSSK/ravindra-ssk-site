@@ -60,6 +60,7 @@ const NAV_DATA = {
     { title: "Experience", href: "portfolio.html#experience", copy: "Timeline of roles, research, and internships." },
     { title: "Education", href: "portfolio.html#education", copy: "Degrees, scholarships, and coursework." },
     { title: "Skills", href: "portfolio.html#skills", copy: "Tooling across machine learning, software, and data." },
+    { title: "Achievements", href: "portfolio.html#achievements", copy: "Awards, publications, and leadership." },
     { title: "Certifications", href: "portfolio.html#certifications", copy: "Cloud, AI, and professional credentials." },
   ],
   explore: [

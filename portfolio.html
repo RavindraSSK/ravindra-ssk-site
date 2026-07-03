@@ -29,7 +29,7 @@
             <span class="eyebrow">Credentials &amp; Proof</span>
             <h1 class="page-title">Portfolio &amp; Credentials</h1>
             <p class="page-copy">
-              A practical record of projects, experience, education, technical skills, and certifications.
+              A practical record of projects, experience, education, technical skills, certifications, and achievements.
               Each section shows the work completed and the knowledge behind it.
             </p>
           </div>
@@ -57,6 +57,7 @@
             <button class="portfolio-tab" id="tab-experience" type="button" role="tab" data-tab-target="experience" aria-controls="experience" aria-selected="false" tabindex="-1">Experience</button>
             <button class="portfolio-tab" id="tab-education" type="button" role="tab" data-tab-target="education" aria-controls="education" aria-selected="false" tabindex="-1">Education</button>
             <button class="portfolio-tab" id="tab-skills" type="button" role="tab" data-tab-target="skills" aria-controls="skills" aria-selected="false" tabindex="-1">Skills</button>
+            <button class="portfolio-tab" id="tab-achievements" type="button" role="tab" data-tab-target="achievements" aria-controls="achievements" aria-selected="false" tabindex="-1">Achievements</button>
             <button class="portfolio-tab" id="tab-certifications" type="button" role="tab" data-tab-target="certifications" aria-controls="certifications" aria-selected="false" tabindex="-1">Certifications</button>
           </div>
         </div>
@@ -73,44 +74,44 @@
             <div class="project-grid">
               <article class="card card--hover animate-in" style="--delay: 60ms;">
                 <div class="stack">
-                  <p class="card-heading">GeoAI Flood Detection System</p>
-                  <p class="card-copy">Fall 2025</p>
-                  <p class="card-copy">Semantic segmentation for flood-affected zones using attention U-Net on Sentinel-1 SAR imagery, with Grad-CAM visualizations for interpretability.</p>
+                  <p class="card-heading">MediTrust — Explainable AI Healthcare Risk Prediction</p>
+                  <p class="card-copy">Spring 2026</p>
+                  <p class="card-copy">Full-stack AI healthcare platform for cardiovascular risk prediction with FastAPI, React, and PostgreSQL. Built and evaluated Logistic Regression, Random Forest, and XGBoost models (ROC-AUC 0.87) with SHAP-based explainability for clinical decision support. Containerized and deployed on AWS with GitHub Actions CI/CD.</p>
                   <div class="meta-row">
-                    <span class="tag">PyTorch</span><span class="tag">SAR</span><span class="tag">U-Net</span><span class="tag">Attention</span><span class="tag">Grad-CAM</span>
+                    <span class="tag">FastAPI</span><span class="tag">React</span><span class="tag">PostgreSQL</span><span class="tag">XGBoost</span><span class="tag">SHAP</span><span class="tag">Docker</span><span class="tag">AWS</span>
                   </div>
                 </div>
               </article>
 
               <article class="card card--hover animate-in" style="--delay: 120ms;">
                 <div class="stack">
-                  <p class="card-heading">Snap Tune — AI Music Recommender</p>
-                  <p class="card-copy">Spring 2025</p>
-                  <p class="card-copy">Multi-modal pipeline where an uploaded image is captioned by BLIP, passed into DistilGPT2 for mood inference, and routed to Spotify recommendations.</p>
+                  <p class="card-heading">Campus-Objects — Multi-Class Object Detection</p>
+                  <p class="card-copy">Fall 2025</p>
+                  <p class="card-copy">Collected and annotated 3,000+ campus images across 8 object categories in COCO format. Built an end-to-end LW-DETR detection pipeline with transfer learning, data augmentation, and hyperparameter tuning, achieving 0.71 mAP@0.5 on validation data.</p>
                   <div class="meta-row">
-                    <span class="tag">Streamlit</span><span class="tag">BLIP</span><span class="tag">DistilGPT2</span><span class="tag">Spotify API</span><span class="tag">HuggingFace</span><span class="tag">Python</span>
+                    <span class="tag">PyTorch</span><span class="tag">LW-DETR</span><span class="tag">COCO</span><span class="tag">Object Detection</span><span class="tag">Python</span>
                   </div>
                 </div>
               </article>
 
               <article class="card card--hover animate-in" style="--delay: 180ms;">
                 <div class="stack">
-                  <p class="card-heading">Aerial Building Footprint Extraction</p>
-                  <p class="card-copy">2024</p>
-                  <p class="card-copy">Automated building detection pipeline from aerial imagery using deep CNN methods tailored for footprint extraction.</p>
+                  <p class="card-heading">Snap Tune — AI Music Recommender</p>
+                  <p class="card-copy">Spring 2025</p>
+                  <p class="card-copy">Multi-modal AI application that generates contextual music recommendations from user-uploaded images using BLIP captioning and GPT-based mood inference, with real-time Spotify API integration deployed on Streamlit Cloud.</p>
                   <div class="meta-row">
-                    <span class="tag">Python</span><span class="tag">OpenCV</span><span class="tag">CNN</span><span class="tag">GIS</span><span class="tag">QGIS</span>
+                    <span class="tag">Streamlit</span><span class="tag">BLIP</span><span class="tag">DistilGPT2</span><span class="tag">Spotify API</span><span class="tag">Hugging Face</span>
                   </div>
                 </div>
               </article>
 
               <article class="card card--hover animate-in" style="--delay: 240ms;">
                 <div class="stack">
-                  <p class="card-heading">BIM-GIS Integration for Infrastructure Planning</p>
-                  <p class="card-copy">2022</p>
-                  <p class="card-copy">Integrated Building Information Modeling and GIS workflows to support smart city planning and infrastructure decisions.</p>
+                  <p class="card-heading">GeoAI Flood Detection System</p>
+                  <p class="card-copy">Fall 2025</p>
+                  <p class="card-copy">Semantic segmentation for flood-affected zones using attention U-Net on Sentinel-1 SAR imagery, with Grad-CAM visualizations for interpretability.</p>
                   <div class="meta-row">
-                    <span class="tag">Revit</span><span class="tag">ArcGIS</span><span class="tag">Python</span>
+                    <span class="tag">PyTorch</span><span class="tag">SAR</span><span class="tag">U-Net</span><span class="tag">Attention</span><span class="tag">Grad-CAM</span>
                   </div>
                 </div>
               </article>
@@ -225,15 +226,16 @@
                 <div class="card timeline-content">
                   <div class="timeline-meta">
                     <div class="stack" style="gap: 0.35rem;">
-                      <div class="logo-badge logo-badge--slu">SLU</div>
-                      <h3 class="timeline-role">Graduate Researcher</h3>
-                      <p class="timeline-org">AI-CHESS Lab, Saint Louis University · Oct 2025–Present</p>
+                      <div class="logo-badge logo-badge--handshake">HS</div>
+                      <h3 class="timeline-role">AI Trainer — LLM Evaluation &amp; Model Assessment</h3>
+                      <p class="timeline-org">Handshake AI · Apr 2026–Present</p>
                     </div>
-                    <span class="meta-pill">St. Louis, MO</span>
+                    <span class="meta-pill">Remote</span>
                   </div>
                   <ul class="bullet-list">
-                    <li>Developing attention-based neural networks for geospatial AI tasks.</li>
-                    <li>Working on aerial imagery analysis using SAR and optical fusion.</li>
+                    <li>Conduct blind evaluations of frontier large language models by executing complex tasks and assessing reasoning quality, factual accuracy, and overall user experience.</li>
+                    <li>Design challenging prompts and golden reference solutions to benchmark model capabilities and surface failure cases.</li>
+                    <li>Contribute to AI alignment and human-in-the-loop workflows through prompt engineering and qualitative model assessment.</li>
                   </ul>
                 </div>
               </article>
@@ -244,14 +246,15 @@
                   <div class="timeline-meta">
                     <div class="stack" style="gap: 0.35rem;">
                       <div class="logo-badge logo-badge--slu">SLU</div>
-                      <h3 class="timeline-role">Graduate Assistant</h3>
-                      <p class="timeline-org">Department of Athletics, Saint Louis University · Aug 2025–Present</p>
+                      <h3 class="timeline-role">Graduate Researcher — GeoAI, Computer Vision &amp; Deep Learning</h3>
+                      <p class="timeline-org">AI-CHESS Lab, Saint Louis University · Oct 2025–Mar 2026</p>
                     </div>
-                    <span class="meta-pill">Operations</span>
+                    <span class="meta-pill">St. Louis, MO</span>
                   </div>
                   <ul class="bullet-list">
-                    <li>Supporting administrative and operational workflows across the department.</li>
-                    <li>Balancing graduate research responsibilities with applied institutional work.</li>
+                    <li>Developed deep learning models using CNNs, GANs, and attention mechanisms for satellite imagery and geospatial data analysis.</li>
+                    <li>Built reproducible ML pipelines using PyTorch, OpenCV, Rasterio, and GeoPandas for preprocessing, training, and evaluation.</li>
+                    <li>Implemented computer vision techniques for shadow removal and spatial feature extraction to improve downstream geospatial analytics.</li>
                   </ul>
                 </div>
               </article>
@@ -262,14 +265,15 @@
                   <div class="timeline-meta">
                     <div class="stack" style="gap: 0.35rem;">
                       <div class="logo-badge logo-badge--excelerate">EX</div>
-                      <h3 class="timeline-role">Data Science Intern</h3>
-                      <p class="timeline-org">Excelerate · 2024</p>
+                      <h3 class="timeline-role">Data Visualization Associate — Project Lead</h3>
+                      <p class="timeline-org">Excelerate · Feb 2025–Mar 2025</p>
                     </div>
-                    <span class="meta-pill">Internship</span>
+                    <span class="meta-pill">Internship · Remote</span>
                   </div>
                   <ul class="bullet-list">
-                    <li>Worked on data analysis, visualization, and problem framing.</li>
-                    <li>Supported insight generation from structured datasets.</li>
+                    <li>Managed an end-to-end data pipeline for 5,000+ student engagement records, improving data quality and consistency.</li>
+                    <li>Designed interactive dashboards and KPI reporting solutions using Google Data Studio for global stakeholders.</li>
+                    <li>Translated analytical findings into actionable insights to support data-driven decision making.</li>
                   </ul>
                 </div>
               </article>
@@ -280,14 +284,14 @@
                   <div class="timeline-meta">
                     <div class="stack" style="gap: 0.35rem;">
                       <div class="logo-badge logo-badge--salesforce">SF</div>
-                      <h3 class="timeline-role">Salesforce Developer Intern</h3>
-                      <p class="timeline-org">Salesforce ecosystem project · 2023</p>
+                      <h3 class="timeline-role">Salesforce Administrator &amp; Developer</h3>
+                      <p class="timeline-org">Salesforce · Aug 2023–Oct 2023</p>
                     </div>
-                    <span class="meta-pill">Platform</span>
+                    <span class="meta-pill">Internship · Remote</span>
                   </div>
                   <ul class="bullet-list">
-                    <li>Built Apex-driven automation and workflow improvements.</li>
-                    <li>Contributed to process automation and platform configuration.</li>
+                    <li>Automated CRM workflows using Salesforce Flow and Process Builder, improving operational efficiency and reducing manual effort.</li>
+                    <li>Customized enterprise data models, validation rules, access controls, and SOQL/SOSL-based solutions for data management and reporting.</li>
                   </ul>
                 </div>
               </article>
@@ -298,14 +302,14 @@
                   <div class="timeline-meta">
                     <div class="stack" style="gap: 0.35rem;">
                       <div class="logo-badge logo-badge--chegg">CG</div>
-                      <h3 class="timeline-role">Tutor</h3>
-                      <p class="timeline-org">Chegg · 2022–2023</p>
+                      <h3 class="timeline-role">Statistics &amp; Data Analytics Specialist</h3>
+                      <p class="timeline-org">Chegg India Pvt. Ltd. · Apr 2021–Nov 2024</p>
                     </div>
-                    <span class="meta-pill">Teaching</span>
+                    <span class="meta-pill">Remote</span>
                   </div>
                   <ul class="bullet-list">
-                    <li>Delivered tutoring support across engineering and math subjects.</li>
-                    <li>Focused on clarity, problem-solving structure, and student confidence.</li>
+                    <li>Authored and reviewed 500+ advanced probability and statistics solutions using Minitab and R; recognized as Quality Champ for exceptional depth and consistency.</li>
+                    <li>Applied statistical modelling and inferential techniques to develop rigorous step-by-step solutions for complex data analysis problems.</li>
                   </ul>
                 </div>
               </article>
@@ -317,13 +321,13 @@
                     <div class="stack" style="gap: 0.35rem;">
                       <div class="logo-badge logo-badge--ssks">SS</div>
                       <h3 class="timeline-role">Interior Design Project Lead</h3>
-                      <p class="timeline-org">SSKS Home Designs · 2021–2022</p>
+                      <p class="timeline-org">SSKS Home Designs · 2021–2023</p>
                     </div>
                     <span class="meta-pill">Client work</span>
                   </div>
                   <ul class="bullet-list">
-                    <li>Led project planning, client communication, and delivery.</li>
-                    <li>Managed design direction while coordinating practical execution.</li>
+                    <li>Led project planning, client communication, and delivery across residential interior design projects.</li>
+                    <li>Built 3D models and sustainable building concepts using AutoCAD, Revit, and SketchUp.</li>
                     <li>Published the venture on Google Maps with project photos and a portfolio website.</li>
                   </ul>
                   <a class="inline-link" href="#ssks-home-designs">View SSKS showcase <span aria-hidden="true">&rarr;</span></a>
@@ -336,14 +340,15 @@
                   <div class="timeline-meta">
                     <div class="stack" style="gap: 0.35rem;">
                       <div class="logo-badge logo-badge--iitb">IITB</div>
-                      <h3 class="timeline-role">Summer Research Fellow</h3>
-                      <p class="timeline-org">IIT Bombay · Summer 2019</p>
+                      <h3 class="timeline-role">Research Intern</h3>
+                      <p class="timeline-org">Indian Institute of Technology (IIT) Bombay · Jun 2019–Aug 2019</p>
                     </div>
-                    <span class="meta-pill">Fellowship</span>
+                    <span class="meta-pill">Mumbai, India</span>
                   </div>
                   <ul class="bullet-list">
-                    <li>Selected through the Indian Academy of Sciences Summer Research Fellowship.</li>
-                    <li>Contributed to guided research in the civil and structural domain.</li>
+                    <li>Conducted research on terrestrial laser scanning (TLS) and 3D point-cloud processing for spatial reconstruction applications.</li>
+                    <li>Processed and analyzed large-scale spatial datasets using registration, filtering, and feature extraction techniques.</li>
+                    <li>Developed technical user manuals for TLS hardware and data processing workflows adopted as standard lab reference.</li>
                   </ul>
                 </div>
               </article>
@@ -361,10 +366,11 @@
                 <div class="stack">
                   <div class="logo-badge logo-badge--slu">SLU</div>
                   <h3 class="edu-school">Saint Louis University</h3>
-                  <p class="edu-degree">M.S. Artificial Intelligence</p>
-                  <p class="card-copy">Jan 2025 – Dec 2026 · St. Louis, MO · GPA: 3.72/4.0</p>
+                  <p class="edu-degree">M.S. in Artificial Intelligence</p>
+                  <p class="card-copy">Jan 2025 – Dec 2026 · St. Louis, MO · GPA: 3.83/4.0</p>
+                  <p class="card-copy">Coursework: Artificial Intelligence, Machine Learning, Deep Learning, Computer Vision, NLP, Databases, Software Development, AI in Modern Software Development, OOP &amp; Data Structures.</p>
                   <div class="meta-row">
-                    <span class="tag">Machine Learning</span><span class="tag">Deep Learning</span><span class="tag">Computer Vision</span><span class="tag">NLP</span><span class="tag">Data Engineering</span>
+                    <span class="tag">Machine Learning</span><span class="tag">Deep Learning</span><span class="tag">Computer Vision</span><span class="tag">NLP</span><span class="tag">Software Development</span>
                   </div>
                 </div>
               </article>
@@ -372,10 +378,10 @@
               <article class="card card--hover animate-in" style="--delay: 120ms;">
                 <div class="stack">
                   <div class="logo-badge logo-badge--veltech">VT</div>
-                  <h3 class="edu-school">Vel Tech University</h3>
-                  <p class="edu-degree">B.Tech Civil Engineering</p>
+                  <h3 class="edu-school">Vel Tech R&amp;D Institute of Science &amp; Technology</h3>
+                  <p class="edu-degree">B.Tech in Civil Engineering</p>
                   <p class="card-copy">Jul 2016 – Aug 2020 · Chennai, India · GPA: 3.69/4.0</p>
-                  <p class="card-copy">Mahatma Gandhi Scholarship recipient with strong grounding in GIS, CAD, structural analysis, and MATLAB.</p>
+                  <p class="card-copy">Vel Tech Mahatma Gandhi Scholarship recipient — awarded for academic excellence, covering 75% of undergraduate tuition across the full B.Tech program.</p>
                   <div class="meta-row">
                     <span class="tag">Structural Analysis</span><span class="tag">GIS</span><span class="tag">CAD</span><span class="tag">MATLAB</span>
                   </div>
@@ -395,14 +401,24 @@
                 <div class="skill-chip-list">
                   <span class="skill-chip"><span class="skill-chip__icon"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 2L16 10L10 18L4 10Z"></path></svg></span>PyTorch</span>
                   <span class="skill-chip"><span class="skill-chip__icon"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 2L16 10L10 18L4 10Z"></path></svg></span>TensorFlow</span>
-                  <span class="skill-chip"><span class="skill-chip__icon"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 2L16 10L10 18L4 10Z"></path></svg></span>Keras</span>
                   <span class="skill-chip"><span class="skill-chip__icon"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 2L16 10L10 18L4 10Z"></path></svg></span>Scikit-learn</span>
+                  <span class="skill-chip"><span class="skill-chip__icon"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 2L16 10L10 18L4 10Z"></path></svg></span>XGBoost</span>
+                  <span class="skill-chip"><span class="skill-chip__icon"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 2L16 10L10 18L4 10Z"></path></svg></span>SHAP</span>
                   <span class="skill-chip"><span class="skill-chip__icon"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 2L16 10L10 18L4 10Z"></path></svg></span>Hugging Face</span>
-                  <span class="skill-chip"><span class="skill-chip__icon"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 2L16 10L10 18L4 10Z"></path></svg></span>ONNX</span>
-                  <span class="skill-chip"><span class="skill-chip__icon"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 2L16 10L10 18L4 10Z"></path></svg></span>Grad-CAM</span>
-                  <span class="skill-chip"><span class="skill-chip__icon"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 2L16 10L10 18L4 10Z"></path></svg></span>U-Net</span>
-                  <span class="skill-chip"><span class="skill-chip__icon"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 2L16 10L10 18L4 10Z"></path></svg></span>Transformers</span>
-                  <span class="skill-chip"><span class="skill-chip__icon"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 2L16 10L10 18L4 10Z"></path></svg></span>YOLO</span>
+                  <span class="skill-chip"><span class="skill-chip__icon"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 2L16 10L10 18L4 10Z"></path></svg></span>Transfer Learning</span>
+                  <span class="skill-chip"><span class="skill-chip__icon"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 2L16 10L10 18L4 10Z"></path></svg></span>Model Evaluation</span>
+                </div>
+              </article>
+
+              <article class="card skill-category skill-theme--indigo animate-in" style="--delay: 90ms;">
+                <div class="skill-category__head"><h3 class="skill-category__title">Generative AI &amp; LLMs</h3></div>
+                <div class="skill-chip-list">
+                  <span class="skill-chip"><span class="skill-chip__icon"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 2L16 10L10 18L4 10Z"></path></svg></span>LLM Evaluation</span>
+                  <span class="skill-chip"><span class="skill-chip__icon"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 2L16 10L10 18L4 10Z"></path></svg></span>Prompt Engineering</span>
+                  <span class="skill-chip"><span class="skill-chip__icon"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 2L16 10L10 18L4 10Z"></path></svg></span>AI Benchmarking</span>
+                  <span class="skill-chip"><span class="skill-chip__icon"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 2L16 10L10 18L4 10Z"></path></svg></span>RAG Pipelines</span>
+                  <span class="skill-chip"><span class="skill-chip__icon"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 2L16 10L10 18L4 10Z"></path></svg></span>DistilGPT2</span>
+                  <span class="skill-chip"><span class="skill-chip__icon"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 2L16 10L10 18L4 10Z"></path></svg></span>BLIP</span>
                 </div>
               </article>
 
@@ -410,14 +426,12 @@
                 <div class="skill-category__head"><h3 class="skill-category__title">Computer Vision &amp; Spatial AI</h3></div>
                 <div class="skill-chip-list">
                   <span class="skill-chip"><span class="skill-chip__icon"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 3L17 8V17H3V8Z"></path></svg></span>OpenCV</span>
-                  <span class="skill-chip"><span class="skill-chip__icon"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 3L17 8V17H3V8Z"></path></svg></span>SAR Processing</span>
-                  <span class="skill-chip"><span class="skill-chip__icon"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 3L17 8V17H3V8Z"></path></svg></span>QGIS</span>
-                  <span class="skill-chip"><span class="skill-chip__icon"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 3L17 8V17H3V8Z"></path></svg></span>ArcGIS</span>
+                  <span class="skill-chip"><span class="skill-chip__icon"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 3L17 8V17H3V8Z"></path></svg></span>TorchVision</span>
+                  <span class="skill-chip"><span class="skill-chip__icon"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 3L17 8V17H3V8Z"></path></svg></span>Scikit-image</span>
+                  <span class="skill-chip"><span class="skill-chip__icon"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 3L17 8V17H3V8Z"></path></svg></span>LW-DETR</span>
+                  <span class="skill-chip"><span class="skill-chip__icon"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 3L17 8V17H3V8Z"></path></svg></span>GeoPandas</span>
                   <span class="skill-chip"><span class="skill-chip__icon"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 3L17 8V17H3V8Z"></path></svg></span>Rasterio</span>
-                  <span class="skill-chip"><span class="skill-chip__icon"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 3L17 8V17H3V8Z"></path></svg></span>Geopandas</span>
-                  <span class="skill-chip"><span class="skill-chip__icon"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 3L17 8V17H3V8Z"></path></svg></span>Sentinel Hub</span>
-                  <span class="skill-chip"><span class="skill-chip__icon"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 3L17 8V17H3V8Z"></path></svg></span>Google Earth Engine</span>
-                  <span class="skill-chip"><span class="skill-chip__icon"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 3L17 8V17H3V8Z"></path></svg></span>Aerial Imagery Analysis</span>
+                  <span class="skill-chip"><span class="skill-chip__icon"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 3L17 8V17H3V8Z"></path></svg></span>ArcGIS</span>
                 </div>
               </article>
 
@@ -425,15 +439,14 @@
                 <div class="skill-category__head"><h3 class="skill-category__title">Programming &amp; Full-Stack</h3></div>
                 <div class="skill-chip-list">
                   <span class="skill-chip"><span class="skill-chip__icon"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M6 4L2 10L6 16M14 4L18 10L14 16M8 18L12 2"></path></svg></span>Python</span>
-                  <span class="skill-chip"><span class="skill-chip__icon"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M6 4L2 10L6 16M14 4L18 10L14 16M8 18L12 2"></path></svg></span>JavaScript</span>
-                  <span class="skill-chip"><span class="skill-chip__icon"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M6 4L2 10L6 16M14 4L18 10L14 16M8 18L12 2"></path></svg></span>TypeScript</span>
-                  <span class="skill-chip"><span class="skill-chip__icon"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M6 4L2 10L6 16M14 4L18 10L14 16M8 18L12 2"></path></svg></span>HTML/CSS</span>
                   <span class="skill-chip"><span class="skill-chip__icon"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M6 4L2 10L6 16M14 4L18 10L14 16M8 18L12 2"></path></svg></span>SQL</span>
-                  <span class="skill-chip"><span class="skill-chip__icon"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M6 4L2 10L6 16M14 4L18 10L14 16M8 18L12 2"></path></svg></span>Bash</span>
-                  <span class="skill-chip"><span class="skill-chip__icon"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M6 4L2 10L6 16M14 4L18 10L14 16M8 18L12 2"></path></svg></span>React</span>
+                  <span class="skill-chip"><span class="skill-chip__icon"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M6 4L2 10L6 16M14 4L18 10L14 16M8 18L12 2"></path></svg></span>R</span>
+                  <span class="skill-chip"><span class="skill-chip__icon"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M6 4L2 10L6 16M14 4L18 10L14 16M8 18L12 2"></path></svg></span>Java</span>
+                  <span class="skill-chip"><span class="skill-chip__icon"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M6 4L2 10L6 16M14 4L18 10L14 16M8 18L12 2"></path></svg></span>JavaScript</span>
                   <span class="skill-chip"><span class="skill-chip__icon"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M6 4L2 10L6 16M14 4L18 10L14 16M8 18L12 2"></path></svg></span>FastAPI</span>
-                  <span class="skill-chip"><span class="skill-chip__icon"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M6 4L2 10L6 16M14 4L18 10L14 16M8 18L12 2"></path></svg></span>Node.js</span>
-                  <span class="skill-chip"><span class="skill-chip__icon"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M6 4L2 10L6 16M14 4L18 10L14 16M8 18L12 2"></path></svg></span>Streamlit</span>
+                  <span class="skill-chip"><span class="skill-chip__icon"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M6 4L2 10L6 16M14 4L18 10L14 16M8 18L12 2"></path></svg></span>REST APIs</span>
+                  <span class="skill-chip"><span class="skill-chip__icon"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M6 4L2 10L6 16M14 4L18 10L14 16M8 18L12 2"></path></svg></span>React</span>
+                  <span class="skill-chip"><span class="skill-chip__icon"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M6 4L2 10L6 16M14 4L18 10L14 16M8 18L12 2"></path></svg></span>HTML/CSS</span>
                 </div>
               </article>
 
@@ -441,42 +454,38 @@
                 <div class="skill-category__head"><h3 class="skill-category__title">Data Engineering &amp; Databases</h3></div>
                 <div class="skill-chip-list">
                   <span class="skill-chip"><span class="skill-chip__icon"><svg viewBox="0 0 20 20" fill="currentColor"><ellipse cx="10" cy="5" rx="6" ry="2.5"></ellipse><path d="M4 5V14C4 15.4 6.7 17 10 17S16 15.4 16 14V5"></path></svg></span>PostgreSQL</span>
-                  <span class="skill-chip"><span class="skill-chip__icon"><svg viewBox="0 0 20 20" fill="currentColor"><ellipse cx="10" cy="5" rx="6" ry="2.5"></ellipse><path d="M4 5V14C4 15.4 6.7 17 10 17S16 15.4 16 14V5"></path></svg></span>MySQL</span>
-                  <span class="skill-chip"><span class="skill-chip__icon"><svg viewBox="0 0 20 20" fill="currentColor"><ellipse cx="10" cy="5" rx="6" ry="2.5"></ellipse><path d="M4 5V14C4 15.4 6.7 17 10 17S16 15.4 16 14V5"></path></svg></span>MongoDB</span>
+                  <span class="skill-chip"><span class="skill-chip__icon"><svg viewBox="0 0 20 20" fill="currentColor"><ellipse cx="10" cy="5" rx="6" ry="2.5"></ellipse><path d="M4 5V14C4 15.4 6.7 17 10 17S16 15.4 16 14V5"></path></svg></span>SOQL</span>
                   <span class="skill-chip"><span class="skill-chip__icon"><svg viewBox="0 0 20 20" fill="currentColor"><ellipse cx="10" cy="5" rx="6" ry="2.5"></ellipse><path d="M4 5V14C4 15.4 6.7 17 10 17S16 15.4 16 14V5"></path></svg></span>Apache Spark</span>
+                  <span class="skill-chip"><span class="skill-chip__icon"><svg viewBox="0 0 20 20" fill="currentColor"><ellipse cx="10" cy="5" rx="6" ry="2.5"></ellipse><path d="M4 5V14C4 15.4 6.7 17 10 17S16 15.4 16 14V5"></path></svg></span>Hadoop</span>
                   <span class="skill-chip"><span class="skill-chip__icon"><svg viewBox="0 0 20 20" fill="currentColor"><ellipse cx="10" cy="5" rx="6" ry="2.5"></ellipse><path d="M4 5V14C4 15.4 6.7 17 10 17S16 15.4 16 14V5"></path></svg></span>Pandas</span>
                   <span class="skill-chip"><span class="skill-chip__icon"><svg viewBox="0 0 20 20" fill="currentColor"><ellipse cx="10" cy="5" rx="6" ry="2.5"></ellipse><path d="M4 5V14C4 15.4 6.7 17 10 17S16 15.4 16 14V5"></path></svg></span>NumPy</span>
-                  <span class="skill-chip"><span class="skill-chip__icon"><svg viewBox="0 0 20 20" fill="currentColor"><ellipse cx="10" cy="5" rx="6" ry="2.5"></ellipse><path d="M4 5V14C4 15.4 6.7 17 10 17S16 15.4 16 14V5"></path></svg></span>ETL Pipelines</span>
-                  <span class="skill-chip"><span class="skill-chip__icon"><svg viewBox="0 0 20 20" fill="currentColor"><ellipse cx="10" cy="5" rx="6" ry="2.5"></ellipse><path d="M4 5V14C4 15.4 6.7 17 10 17S16 15.4 16 14V5"></path></svg></span>Data Warehousing</span>
+                  <span class="skill-chip"><span class="skill-chip__icon"><svg viewBox="0 0 20 20" fill="currentColor"><ellipse cx="10" cy="5" rx="6" ry="2.5"></ellipse><path d="M4 5V14C4 15.4 6.7 17 10 17S16 15.4 16 14V5"></path></svg></span>SciPy</span>
                 </div>
               </article>
 
               <article class="card skill-category skill-theme--purple animate-in" style="--delay: 300ms;">
-                <div class="skill-category__head"><h3 class="skill-category__title">Tools &amp; Platforms</h3></div>
+                <div class="skill-category__head"><h3 class="skill-category__title">Cloud &amp; MLOps</h3></div>
                 <div class="skill-chip-list">
-                  <span class="skill-chip"><span class="skill-chip__icon"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 3L17 7V13L10 17L3 13V7Z"></path></svg></span>Git</span>
+                  <span class="skill-chip skill-chip--brand skill-chip--aws"><span class="skill-chip__icon">AWS</span>AWS (EC2, S3, RDS)</span>
                   <span class="skill-chip"><span class="skill-chip__icon"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 3L17 7V13L10 17L3 13V7Z"></path></svg></span>Docker</span>
-                  <span class="skill-chip skill-chip--brand skill-chip--aws"><span class="skill-chip__icon">AWS</span>AWS</span>
-                  <span class="skill-chip skill-chip--brand skill-chip--azure"><span class="skill-chip__icon">Azure</span>Azure</span>
-                  <span class="skill-chip skill-chip--brand skill-chip--gcp"><span class="skill-chip__icon">GCP</span>Google Cloud</span>
-                  <span class="skill-chip"><span class="skill-chip__icon"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 3L17 7V13L10 17L3 13V7Z"></path></svg></span>Jupyter</span>
+                  <span class="skill-chip"><span class="skill-chip__icon"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 3L17 7V13L10 17L3 13V7Z"></path></svg></span>Git</span>
+                  <span class="skill-chip"><span class="skill-chip__icon"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 3L17 7V13L10 17L3 13V7Z"></path></svg></span>GitHub Actions</span>
+                  <span class="skill-chip"><span class="skill-chip__icon"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 3L17 7V13L10 17L3 13V7Z"></path></svg></span>CI/CD</span>
                   <span class="skill-chip"><span class="skill-chip__icon"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 3L17 7V13L10 17L3 13V7Z"></path></svg></span>VS Code</span>
-                  <span class="skill-chip"><span class="skill-chip__icon"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 3L17 7V13L10 17L3 13V7Z"></path></svg></span>Linux</span>
-                  <span class="skill-chip"><span class="skill-chip__icon"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 3L17 7V13L10 17L3 13V7Z"></path></svg></span>HuggingFace Hub</span>
-                  <span class="skill-chip"><span class="skill-chip__icon"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 3L17 7V13L10 17L3 13V7Z"></path></svg></span>Weights &amp; Biases</span>
+                  <span class="skill-chip"><span class="skill-chip__icon"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 3L17 7V13L10 17L3 13V7Z"></path></svg></span>Jupyter</span>
+                  <span class="skill-chip"><span class="skill-chip__icon"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 3L17 7V13L10 17L3 13V7Z"></path></svg></span>Google Colab</span>
                 </div>
               </article>
 
               <article class="card skill-category skill-theme--red animate-in" style="--delay: 360ms;">
                 <div class="skill-category__head"><h3 class="skill-category__title">Data Visualisation &amp; Analytics</h3></div>
                 <div class="skill-chip-list">
-                  <span class="skill-chip"><span class="skill-chip__icon"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M4 16V10H7V16M9 16V6H12V16M14 16V8H17V16"></path></svg></span>Matplotlib</span>
-                  <span class="skill-chip"><span class="skill-chip__icon"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M4 16V10H7V16M9 16V6H12V16M14 16V8H17V16"></path></svg></span>Seaborn</span>
-                  <span class="skill-chip"><span class="skill-chip__icon"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M4 16V10H7V16M9 16V6H12V16M14 16V8H17V16"></path></svg></span>Plotly</span>
-                  <span class="skill-chip"><span class="skill-chip__icon"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M4 16V10H7V16M9 16V6H12V16M14 16V8H17V16"></path></svg></span>Power BI</span>
+                  <span class="skill-chip"><span class="skill-chip__icon"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M4 16V10H7V16M9 16V6H12V16M14 16V8H17V16"></path></svg></span>Pandas</span>
                   <span class="skill-chip"><span class="skill-chip__icon"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M4 16V10H7V16M9 16V6H12V16M14 16V8H17V16"></path></svg></span>Tableau</span>
+                  <span class="skill-chip"><span class="skill-chip__icon"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M4 16V10H7V16M9 16V6H12V16M14 16V8H17V16"></path></svg></span>Power BI</span>
+                  <span class="skill-chip"><span class="skill-chip__icon"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M4 16V10H7V16M9 16V6H12V16M14 16V8H17V16"></path></svg></span>Google Data Studio</span>
+                  <span class="skill-chip"><span class="skill-chip__icon"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M4 16V10H7V16M9 16V6H12V16M14 16V8H17V16"></path></svg></span>Minitab</span>
                   <span class="skill-chip"><span class="skill-chip__icon"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M4 16V10H7V16M9 16V6H12V16M14 16V8H17V16"></path></svg></span>Excel</span>
-                  <span class="skill-chip"><span class="skill-chip__icon"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M4 16V10H7V16M9 16V6H12V16M14 16V8H17V16"></path></svg></span>MATLAB</span>
                 </div>
               </article>
 
@@ -484,15 +493,111 @@
                 <div class="skill-category__head"><h3 class="skill-category__title">Productivity &amp; Design</h3></div>
                 <div class="skill-chip-list">
                   <span class="skill-chip"><span class="skill-chip__icon"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M5 15L15 5M6 5H15V14"></path></svg></span>Microsoft Excel</span>
-                  <span class="skill-chip"><span class="skill-chip__icon"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M5 15L15 5M6 5H15V14"></path></svg></span>Microsoft PowerPoint</span>
-                  <span class="skill-chip"><span class="skill-chip__icon"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M5 15L15 5M6 5H15V14"></path></svg></span>Microsoft Word</span>
-                  <span class="skill-chip"><span class="skill-chip__icon"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M5 15L15 5M6 5H15V14"></path></svg></span>Adobe Photoshop</span>
-                  <span class="skill-chip"><span class="skill-chip__icon"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M5 15L15 5M6 5H15V14"></path></svg></span>Adobe Illustrator</span>
                   <span class="skill-chip"><span class="skill-chip__icon"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M5 15L15 5M6 5H15V14"></path></svg></span>AutoCAD</span>
                   <span class="skill-chip"><span class="skill-chip__icon"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M5 15L15 5M6 5H15V14"></path></svg></span>SketchUp</span>
-                  <span class="skill-chip"><span class="skill-chip__icon"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M5 15L15 5M6 5H15V14"></path></svg></span>Revit</span>
+                  <span class="skill-chip"><span class="skill-chip__icon"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M5 15L15 5M6 5H15V14"></path></svg></span>Adobe Photoshop</span>
                 </div>
               </article>
+            </div>
+          </section>
+          <section class="portfolio-panel" id="achievements" data-tab-panel role="tabpanel" aria-labelledby="tab-achievements" tabindex="0" hidden>
+            <div class="animate-in" style="--delay: 0ms;">
+              <span class="eyebrow">Achievements</span>
+              <h2 class="section-title">Awards, publications, and leadership</h2>
+              <p class="cert-group__copy">Recognition, research output, and extracurricular contributions beyond day-to-day project work.</p>
+            </div>
+
+            <div class="achievements-layout">
+              <section class="achievements-group animate-in" style="--delay: 60ms;">
+                <h3 class="cert-group__title">Awards</h3>
+                <div class="achievements-grid">
+                  <article class="card card--hover">
+                    <div class="stack">
+                      <p class="card-heading">Quality Champ</p>
+                      <p class="card-copy">Chegg India · Recognized for outstanding accuracy and subject depth in Statistics &amp; Probability.</p>
+                      <div class="meta-row"><span class="tag">Chegg</span><span class="tag">Statistics</span></div>
+                    </div>
+                  </article>
+                  <article class="card card--hover">
+                    <div class="stack">
+                      <p class="card-heading">IAS Summer Research Fellowship</p>
+                      <p class="card-copy">IIT Bombay (2019) · Competitively selected by the Indian Academy of Sciences to conduct research at one of India's premier technical institutes.</p>
+                      <div class="meta-row"><span class="tag">IIT Bombay</span><span class="tag">Research</span></div>
+                    </div>
+                  </article>
+                  <article class="card card--hover">
+                    <div class="stack">
+                      <p class="card-heading">Vel Tech Mahatma Gandhi Scholarship</p>
+                      <p class="card-copy">Awarded for academic excellence; covered 75% of undergraduate tuition across the full B.Tech program.</p>
+                      <div class="meta-row"><span class="tag">Vel Tech</span><span class="tag">Scholarship</span></div>
+                    </div>
+                  </article>
+                </div>
+              </section>
+
+              <section class="achievements-group animate-in" style="--delay: 120ms;">
+                <h3 class="cert-group__title">Publications &amp; Conferences</h3>
+                <div class="timeline">
+                  <article class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="card timeline-content">
+                      <h3 class="timeline-role">BIM Usage in Construction Industry: Modal Integration and Clash Detection in Building Design</h3>
+                      <p class="timeline-org">Conference Paper &amp; Poster · ResearchGate DOI: 10.13140/RG.2.2.17527.24486</p>
+                    </div>
+                  </article>
+                  <article class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="card timeline-content">
+                      <h3 class="timeline-role">As-Built Mapping Using Terrestrial Laser Scanner (TLS)</h3>
+                      <p class="timeline-org">Published via Author Café, ResearchGate · DOI: 10.13140/RG.2.2.19204.96645</p>
+                    </div>
+                  </article>
+                  <article class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="card timeline-content">
+                      <h3 class="timeline-role">TLS Hardware &amp; Data Processing User Manuals</h3>
+                      <p class="timeline-org">IIT Bombay · Developed technical user manuals for TLS hardware and data processing workflows — adopted as standard lab reference.</p>
+                    </div>
+                  </article>
+                </div>
+              </section>
+
+              <section class="achievements-group animate-in" style="--delay: 180ms;">
+                <h3 class="cert-group__title">Leadership &amp; Extracurricular</h3>
+                <div class="achievements-grid">
+                  <article class="card card--hover">
+                    <div class="stack">
+                      <p class="card-heading">University Handball Captain</p>
+                      <p class="card-copy">Captained university handball team across multiple inter-university tournaments including All India University South Zone Handball Tournament (Dec 2018).</p>
+                    </div>
+                  </article>
+                  <article class="card card--hover">
+                    <div class="stack">
+                      <p class="card-heading">Collegiate Shot-Put Athlete</p>
+                      <p class="card-copy">Competed at the collegiate level with multiple first-place finishes.</p>
+                    </div>
+                  </article>
+                  <article class="card card--hover">
+                    <div class="stack">
+                      <p class="card-heading">Student Coordinator &amp; Office Bearer</p>
+                      <p class="card-copy">Indian Concrete Institute (ICI) — coordinated student activities and institutional engagement.</p>
+                    </div>
+                  </article>
+                  <article class="card card--hover">
+                    <div class="stack">
+                      <p class="card-heading">National Service Scheme Volunteer</p>
+                      <p class="card-copy">Contributed to community service initiatives through the NSS program.</p>
+                    </div>
+                  </article>
+                  <article class="card card--hover">
+                    <div class="stack">
+                      <p class="card-heading">NASM Certified Personal Trainer (CPT)</p>
+                      <p class="card-copy">Currently pursuing NASM CPT certification to deepen fitness and coaching knowledge.</p>
+                      <div class="meta-row"><span class="tag">In progress</span><span class="tag">Fitness</span></div>
+                    </div>
+                  </article>
+                </div>
+              </section>
             </div>
           </section>
           <section class="portfolio-panel" id="certifications" data-tab-panel role="tabpanel" aria-labelledby="tab-certifications" tabindex="0" hidden>
@@ -521,9 +626,9 @@
                     <div class="meta-row"><span class="tag">AWS</span><span class="tag">MLOps</span><span class="tag">ML Engineering</span></div>
                     <div class="cert-card__footer"><span>Credential details</span><span class="cert-card__arrow">→</span></div>
                   </button>
-                  <button class="card card--hover cert-card" type="button" data-cert-card data-cert-title="Microsoft Azure AI Engineer Associate AI-102" data-cert-issuer="Microsoft Azure · Planned 2026" data-cert-url="">
-                    <div class="cert-card__head"><div class="cert-card__copy"><div class="logo-badge logo-badge--azure logo-badge--wordmark" aria-label="Microsoft Azure">Azure</div><h4 class="cert-title">Microsoft Azure AI Engineer Associate AI-102</h4><p class="cert-issuer">Microsoft Azure · Planned 2026</p></div><span class="status-badge status-badge--planned">Planned</span></div>
-                    <p class="cert-card__description">Planned certification focused on AI workloads, cognitive services, and Azure ML orchestration.</p>
+                  <button class="card card--hover cert-card" type="button" data-cert-card data-cert-title="Microsoft Certified: Azure AI Engineer Associate (AI-102)" data-cert-issuer="Microsoft Azure · 2025" data-cert-url="">
+                    <div class="cert-card__head"><div class="cert-card__copy"><div class="logo-badge logo-badge--azure logo-badge--wordmark" aria-label="Microsoft Azure">Azure</div><h4 class="cert-title">Microsoft Certified: Azure AI Engineer Associate (AI-102)</h4><p class="cert-issuer">Microsoft Azure · 2025</p></div><span class="status-badge status-badge--completed">Completed</span></div>
+                    <p class="cert-card__description">Validates ability to build, manage, and deploy AI solutions using Azure AI services and Azure Machine Learning.</p>
                     <div class="meta-row"><span class="tag">Azure</span><span class="tag">AI-102</span><span class="tag">Cognitive Services</span></div>
                     <div class="cert-card__footer"><span>Credential details</span><span class="cert-card__arrow">→</span></div>
                   </button>
@@ -533,15 +638,15 @@
               <section class="cert-group animate-in" style="--delay: 120ms;">
                 <h3 class="cert-group__title">NVIDIA DLI</h3>
                 <div class="cert-grid">
-                  <button class="card card--hover cert-card" type="button" data-cert-card data-cert-title="Building RAG Agents with LLMs at Scale" data-cert-issuer="NVIDIA DLI · 2024" data-cert-url="">
-                    <div class="cert-card__head"><div class="cert-card__copy"><div class="logo-badge logo-badge--nvidia logo-badge--wordmark" aria-label="NVIDIA DLI">NVIDIA</div><h4 class="cert-title">Building RAG Agents with LLMs at Scale</h4><p class="cert-issuer">NVIDIA DLI · 2024</p></div><span class="status-badge status-badge--active">Completed</span></div>
-                    <p class="cert-card__description">Hands-on work with large language model pipelines and retrieval-augmented generation patterns.</p>
-                    <div class="meta-row"><span class="tag">RAG</span><span class="tag">LLMs</span><span class="tag">Agents</span></div>
+                  <button class="card card--hover cert-card" type="button" data-cert-card data-cert-title="Introduction to Deploying RAG Pipelines at Scale" data-cert-issuer="NVIDIA DLI · 2024" data-cert-url="">
+                    <div class="cert-card__head"><div class="cert-card__copy"><div class="logo-badge logo-badge--nvidia logo-badge--wordmark" aria-label="NVIDIA DLI">NVIDIA</div><h4 class="cert-title">Introduction to Deploying RAG Pipelines at Scale</h4><p class="cert-issuer">NVIDIA DLI · 2024</p></div><span class="status-badge status-badge--active">Completed</span></div>
+                    <p class="cert-card__description">Hands-on work with retrieval-augmented generation pipelines and large language model deployment at scale.</p>
+                    <div class="meta-row"><span class="tag">RAG</span><span class="tag">LLMs</span><span class="tag">Deployment</span></div>
                     <div class="cert-card__footer"><span>Credential details</span><span class="cert-card__arrow">→</span></div>
                   </button>
-                  <button class="card card--hover cert-card" type="button" data-cert-card data-cert-title="Accelerating CUDA Python" data-cert-issuer="NVIDIA DLI · 2024" data-cert-url="">
-                    <div class="cert-card__head"><div class="cert-card__copy"><div class="logo-badge logo-badge--nvidia logo-badge--wordmark" aria-label="NVIDIA DLI">NVIDIA</div><h4 class="cert-title">Accelerating CUDA Python</h4><p class="cert-issuer">NVIDIA DLI · 2024</p></div><span class="status-badge status-badge--active">Completed</span></div>
-                    <p class="cert-card__description">Training on GPU-accelerated Python workflows and performance-oriented scientific computing.</p>
+                  <button class="card card--hover cert-card" type="button" data-cert-card data-cert-title="Fundamentals of Accelerated Computing with CUDA Python" data-cert-issuer="NVIDIA DLI · 2024" data-cert-url="">
+                    <div class="cert-card__head"><div class="cert-card__copy"><div class="logo-badge logo-badge--nvidia logo-badge--wordmark" aria-label="NVIDIA DLI">NVIDIA</div><h4 class="cert-title">Fundamentals of Accelerated Computing with CUDA Python</h4><p class="cert-issuer">NVIDIA DLI · 2024</p></div><span class="status-badge status-badge--active">Completed</span></div>
+                    <p class="cert-card__description">Training on GPU-accelerated Python workflows and performance-oriented scientific computing with CUDA.</p>
                     <div class="meta-row"><span class="tag">CUDA</span><span class="tag">Python</span><span class="tag">Acceleration</span></div>
                     <div class="cert-card__footer"><span>Credential details</span><span class="cert-card__arrow">→</span></div>
                   </button>

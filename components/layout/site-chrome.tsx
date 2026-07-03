@@ -14,6 +14,7 @@ const portfolioLinks = [
   ["Experience", "/portfolio#experience", "Timeline of roles, research, and internships."],
   ["Education", "/portfolio#education", "Degrees, scholarships, and coursework."],
   ["Skills", "/portfolio#skills", "Tooling across machine learning, software, and data."],
+  ["Achievements", "/portfolio#achievements", "Awards, publications, and leadership."],
   ["Certifications", "/portfolio#certifications", "Cloud, AI, and professional credentials."],
 ] as const;
 
