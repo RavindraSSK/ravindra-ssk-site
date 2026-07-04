@@ -85,6 +85,15 @@
   text-transform: uppercase;
 }
 
+.contact-note a {
+  color: var(--color-primary);
+  font-weight: 700;
+}
+
+.contact-note a:hover {
+  text-decoration: underline;
+}
+
 .contact-note strong {
   color: var(--color-text);
   font-family: var(--font-display);
