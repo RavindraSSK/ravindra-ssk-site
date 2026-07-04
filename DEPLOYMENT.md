@@ -1,5 +1,11 @@
 # Deployment Guide
 
+## Production URL
+
+**Live site:** [https://ravindra-ssk.vercel.app](https://ravindra-ssk.vercel.app)
+
+The Vercel project may also expose `ravindra-ssk-site.vercel.app`; that hostname redirects to the canonical URL above.
+
 ## Git → Vercel
 
 1. Push changes to `master` on GitHub.
@@ -39,7 +45,7 @@ In Vercel → **Settings** → **Environment Variables**, add:
 
 | Variable | Value | Environments |
 |---|---|---|
-| `NEXT_PUBLIC_SITE_URL` | `https://yourdomain.com` | Production, Preview |
+| `NEXT_PUBLIC_SITE_URL` | `https://ravindra-ssk.vercel.app` (or your custom domain) | Production, Preview |
 
 This updates SEO metadata (`metadataBase`, Open Graph) and enables automatic redirects from `ravindra-ssk.vercel.app` to your primary domain.
 

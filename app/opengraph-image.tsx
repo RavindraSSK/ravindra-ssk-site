@@ -1,10 +1,14 @@
 import { ImageResponse } from "next/og";
 
+import { getSiteHostnameLabel } from "@/lib/site-url";
+
 export const alt = "Ravindra | AI Researcher & Machine Learning Engineer";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
 export default function OpenGraphImage() {
+  const siteLabel = getSiteHostnameLabel();
+
   return new ImageResponse(
     (
       <div
@@ -68,7 +72,7 @@ export default function OpenGraphImage() {
         </div>
 
         <div style={{ display: "flex", gap: "14px", fontSize: "20px", color: "#dbeafe" }}>
-          <span>ravindra-ssk.vercel.app</span>
+          <span>{siteLabel}</span>
           <span>St. Louis, MO</span>
         </div>
       </div>
