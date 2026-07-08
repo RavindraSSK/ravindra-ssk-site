@@ -4,21 +4,21 @@
 
 **Canonical live site:** [https://ravindra-ssk.vercel.app](https://ravindra-ssk.vercel.app)
 
-The legacy hostname `ravindra-ssk-site.vercel.app` redirects to the canonical URL above.
+GitHub pushes deploy to the **ravindra-ssk-site** Vercel project. Until you complete the domain step below, the updated build is visible at [https://ravindra-ssk-site.vercel.app](https://ravindra-ssk-site.vercel.app).
 
-## One-time Vercel setup (required)
+## Fix ravindra-ssk.vercel.app (required — ~2 minutes)
 
-GitHub deploys to the **ravindra-ssk-site** Vercel project. To serve the updated site at **ravindra-ssk.vercel.app**:
+`ravindra-ssk.vercel.app` and `ravindra-ssk-site.vercel.app` are **two different Vercel projects**. Only the `-site` project receives GitHub deploys. Move the domain:
 
-1. Open [Vercel Dashboard](https://vercel.com/dashboard) → **ravindra-ssk-site** project.
-2. Go to **Settings → Domains**.
-3. Click **Add** and enter `ravindra-ssk.vercel.app`.
-4. If Vercel says the domain is already in use, open the older **ravindra-ssk** project → **Settings → Domains** → remove `ravindra-ssk.vercel.app` from that project, then add it to **ravindra-ssk-site**.
-5. Go to **Settings → Environment Variables** and set:
-   - `NEXT_PUBLIC_SITE_URL` = `https://ravindra-ssk.vercel.app` (Production + Preview)
-6. **Deployments** → **Redeploy** the latest production deployment.
+1. [Vercel Dashboard](https://vercel.com/dashboard) → open **ravindra-ssk-site** (Git-connected project).
+2. **Settings → Domains → Add** → enter `ravindra-ssk.vercel.app`.
+3. If blocked (“already in use”):
+   - Open the other **ravindra-ssk** project → **Settings → Domains** → remove `ravindra-ssk.vercel.app`.
+   - Return to **ravindra-ssk-site** → add `ravindra-ssk.vercel.app` again.
+4. **Settings → Environment Variables** → set `NEXT_PUBLIC_SITE_URL` = `https://ravindra-ssk.vercel.app`.
+5. **Deployments** → latest production → **Redeploy**.
 
-After this, every GitHub push updates **ravindra-ssk.vercel.app**, and **ravindra-ssk-site.vercel.app** redirects there automatically.
+After this, `ravindra-ssk.vercel.app` shows the updated site. You can then re-enable the `-site` → `-ssk` redirect in code if desired.
 
 ## Git → Vercel
 
