@@ -1,7 +1,7 @@
 export const DEFAULT_SITE_URL = "https://ravindra-ssk.vercel.app";
 
-/** Optional legacy hosts to redirect once they are aliased to the canonical deployment. */
-export const LEGACY_VERCEL_HOSTS = [] as const;
+/** Deprecated Vercel hostname — redirects to the canonical production URL. */
+export const LEGACY_VERCEL_HOSTS = ["ravindra-ssk-site.vercel.app"] as const;
 
 export function getSiteUrl() {
   const configured = process.env.NEXT_PUBLIC_SITE_URL?.trim();
