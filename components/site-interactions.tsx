@@ -7,8 +7,20 @@ export function SiteInteractions({ pathname }: { pathname: string }) {
 
   useEffect(() => {
     const animated = Array.from(document.querySelectorAll<HTMLElement>(".animate-in"));
-    const observer = new IntersectionObserver((entries) => entries.forEach((entry) => entry.isIntersecting && entry.target.classList.add("is-visible")), { threshold: 0.12 });
+    // threshold: 0 so tall articles (taller than the viewport) still become visible —
+    // a 0.12 ratio can never be reached when the element is >> viewport height.
+    const observer = new IntersectionObserver(
+      (entries) => entries.forEach((entry) => entry.isIntersecting && entry.target.classList.add("is-visible")),
+      { threshold: 0, rootMargin: "0px 0px -8% 0px" },
+    );
     animated.forEach((item) => observer.observe(item));
+    // Reveal anything already in view on first paint (covers hydration / tall cards).
+    requestAnimationFrame(() => {
+      animated.forEach((item) => {
+        const rect = item.getBoundingClientRect();
+        if (rect.top < window.innerHeight && rect.bottom > 0) item.classList.add("is-visible");
+      });
+    });
 
     const tabs = Array.from(document.querySelectorAll<HTMLButtonElement>("[data-tab-target]"));
     const panels = Array.from(document.querySelectorAll<HTMLElement>("[data-tab-panel]"));
