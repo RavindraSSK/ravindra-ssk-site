@@ -64,6 +64,12 @@ export function getExploreCategory(slug: string) {
 
 export const blogArticles = [
   {
+    slug: "us-ai-job-market-guide",
+    title: "The U.S. AI Job Market: A Complete Career Guide",
+    description:
+      "Roles, salaries, in-demand skills, and the gap between what universities teach and what employers actually hire for in the U.S. AI job market.",
+  },
+  {
     slug: "web-scraping-python",
     title: "Decoding the Web",
     description:
