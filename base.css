@@ -251,6 +251,14 @@ html[data-theme="dark"] .eyebrow {
   transform: translateY(0);
 }
 
+@media (prefers-reduced-motion: reduce) {
+  .animate-in {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
 @media (min-width: 768px) {
   .container {
     width: calc(100% - 3rem);

@@ -551,12 +551,23 @@ function initScrollAnimations() {
       });
     },
     {
-      threshold: 0.12,
-      rootMargin: "0px 0px -40px 0px",
+      // 0 so tall articles taller than the viewport still reveal
+      threshold: 0,
+      rootMargin: "0px 0px -8% 0px",
     },
   );
 
   animated.forEach((item) => observer.observe(item));
+
+  requestAnimationFrame(() => {
+    animated.forEach((item) => {
+      const rect = item.getBoundingClientRect();
+      if (rect.top < window.innerHeight && rect.bottom > 0) {
+        item.classList.add("is-visible");
+        observer.unobserve(item);
+      }
+    });
+  });
 }
 
 function initContactForm() {
