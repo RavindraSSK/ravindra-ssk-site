@@ -48,11 +48,20 @@ export function SiteInteractions({ pathname }: { pathname: string }) {
       window.addEventListener("resize", onScrollProgress);
     }
 
-    // Sticky TOC from article h2s
+    // Sticky / mobile TOC from article h2s
     const tocRoot = document.querySelector<HTMLElement>("[data-article-toc]");
     const tocList = tocRoot?.querySelector<HTMLElement>("[data-article-toc-list]");
+    const tocToggle = tocRoot?.querySelector<HTMLButtonElement>("[data-article-toc-toggle]");
+    const tocCount = tocRoot?.querySelector<HTMLElement>("[data-article-toc-count]");
+    const tocFab = document.querySelector<HTMLButtonElement>("[data-article-toc-fab]");
     const headings = Array.from(document.querySelectorAll<HTMLElement>(".blog-article--reading .blog-article__body h2"));
     const tocLinks: HTMLAnchorElement[] = [];
+    const isDesktopToc = () => window.matchMedia("(min-width: 1100px)").matches;
+    const setTocOpen = (open: boolean) => {
+      if (!tocRoot || !tocToggle) return;
+      tocRoot.classList.toggle("is-open", open);
+      tocToggle.setAttribute("aria-expanded", String(open));
+    };
     if (tocRoot && tocList && headings.length >= 3) {
       tocList.innerHTML = "";
       headings.forEach((heading, index) => {
@@ -71,11 +80,45 @@ export function SiteInteractions({ pathname }: { pathname: string }) {
         tocList.appendChild(li);
         tocLinks.push(a);
       });
+      if (tocCount) tocCount.textContent = `${headings.length} sections`;
       tocRoot.hidden = false;
       document.querySelector(".article-layout")?.classList.add("article-layout--with-toc");
+      setTocOpen(isDesktopToc());
     } else if (tocRoot) {
       tocRoot.hidden = true;
+      if (tocFab) tocFab.hidden = true;
     }
+
+    const onTocToggle = () => setTocOpen(!tocRoot?.classList.contains("is-open"));
+    tocToggle?.addEventListener("click", onTocToggle);
+
+    const onTocLinkClick = () => {
+      if (!isDesktopToc()) setTocOpen(false);
+    };
+    tocLinks.forEach((link) => link.addEventListener("click", onTocLinkClick));
+
+    const onTocFab = () => {
+      if (!tocRoot) return;
+      setTocOpen(true);
+      tocRoot.scrollIntoView({ behavior: "smooth", block: "start" });
+      tocToggle?.focus();
+    };
+    tocFab?.addEventListener("click", onTocFab);
+
+    const onTocScrollUi = () => {
+      if (!tocRoot || !tocFab || tocRoot.hidden) return;
+      if (isDesktopToc()) {
+        tocFab.hidden = true;
+        setTocOpen(true);
+        return;
+      }
+      const rect = tocRoot.getBoundingClientRect();
+      const pastToc = rect.bottom < 72;
+      tocFab.hidden = !pastToc;
+    };
+    onTocScrollUi();
+    window.addEventListener("scroll", onTocScrollUi, { passive: true });
+    window.addEventListener("resize", onTocScrollUi);
 
     const tocObserver =
       tocLinks.length > 0
@@ -229,6 +272,11 @@ export function SiteInteractions({ pathname }: { pathname: string }) {
       tocObserver?.disconnect();
       window.removeEventListener("scroll", onScrollProgress);
       window.removeEventListener("resize", onScrollProgress);
+      window.removeEventListener("scroll", onTocScrollUi);
+      window.removeEventListener("resize", onTocScrollUi);
+      tocToggle?.removeEventListener("click", onTocToggle);
+      tocFab?.removeEventListener("click", onTocFab);
+      tocLinks.forEach((link) => link.removeEventListener("click", onTocLinkClick));
       tabHandlers.forEach(([tab, clickHandler, previewHandler]) => {
         tab.removeEventListener("click", clickHandler);
         tab.removeEventListener("pointerenter", previewHandler);

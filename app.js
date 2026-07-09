@@ -571,9 +571,20 @@ function initArticleReadingChrome() {
 
   const tocRoot = document.querySelector("[data-article-toc]");
   const tocList = tocRoot && tocRoot.querySelector("[data-article-toc-list]");
+  const tocToggle = tocRoot && tocRoot.querySelector("[data-article-toc-toggle]");
+  const tocCount = tocRoot && tocRoot.querySelector("[data-article-toc-count]");
+  const tocFab = document.querySelector("[data-article-toc-fab]");
   const headings = Array.from(document.querySelectorAll(".blog-article--reading .blog-article__body h2"));
+  const isDesktopToc = () => window.matchMedia("(min-width: 1100px)").matches;
+  const setTocOpen = (open) => {
+    if (!tocRoot || !tocToggle) return;
+    tocRoot.classList.toggle("is-open", open);
+    tocToggle.setAttribute("aria-expanded", String(open));
+  };
+
   if (!tocRoot || !tocList || headings.length < 3) {
     if (tocRoot) tocRoot.hidden = true;
+    if (tocFab) tocFab.hidden = true;
     return;
   }
 
@@ -595,9 +606,41 @@ function initArticleReadingChrome() {
     tocList.appendChild(li);
     tocLinks.push(a);
   });
+  if (tocCount) tocCount.textContent = `${headings.length} sections`;
   tocRoot.hidden = false;
   const layout = document.querySelector(".article-layout");
   if (layout) layout.classList.add("article-layout--with-toc");
+  setTocOpen(isDesktopToc());
+
+  if (tocToggle) {
+    tocToggle.addEventListener("click", () => setTocOpen(!tocRoot.classList.contains("is-open")));
+  }
+  tocLinks.forEach((link) => {
+    link.addEventListener("click", () => {
+      if (!isDesktopToc()) setTocOpen(false);
+    });
+  });
+  if (tocFab) {
+    tocFab.addEventListener("click", () => {
+      setTocOpen(true);
+      tocRoot.scrollIntoView({ behavior: "smooth", block: "start" });
+      if (tocToggle) tocToggle.focus();
+    });
+  }
+
+  const onTocScrollUi = () => {
+    if (!tocFab || tocRoot.hidden) return;
+    if (isDesktopToc()) {
+      tocFab.hidden = true;
+      setTocOpen(true);
+      return;
+    }
+    const rect = tocRoot.getBoundingClientRect();
+    tocFab.hidden = !(rect.bottom < 72);
+  };
+  onTocScrollUi();
+  window.addEventListener("scroll", onTocScrollUi, { passive: true });
+  window.addEventListener("resize", onTocScrollUi);
 
   const tocObserver = new IntersectionObserver(
     (entries) => {

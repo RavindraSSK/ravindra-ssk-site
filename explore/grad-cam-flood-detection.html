@@ -19,13 +19,24 @@
       <section class="section article-page">
         <div class="container article-shell article-shell--reading">
           <div class="article-layout">
+            <a class="article-back-link article-layout__back" href="/explore/blog">Back to Insights</a>
             <nav class="article-toc" data-article-toc hidden aria-label="Table of contents">
-              <p class="article-toc__label">On this page</p>
-              <ol class="article-toc__list" data-article-toc-list></ol>
+              <p class="article-toc__desktop-label">On this page</p>
+              <button class="article-toc__toggle" type="button" data-article-toc-toggle aria-expanded="false">
+                <span class="article-toc__toggle-copy">
+                  <span class="article-toc__label">On this page</span>
+                  <span class="article-toc__count" data-article-toc-count></span>
+                </span>
+                <span class="article-toc__chevron" aria-hidden="true"></span>
+              </button>
+              <div class="article-toc__panel" data-article-toc-panel>
+                <ol class="article-toc__list" data-article-toc-list></ol>
+              </div>
             </nav>
+            <button class="article-toc-fab" type="button" data-article-toc-fab hidden>
+              <span>On this page</span>
+            </button>
             <div class="article-main">
-          <a class="article-back-link" href="/explore/blog">Back to Insights</a>
-
           <article class="blog-article blog-article--reading card animate-in" style="--delay: 40ms;">
             <aside class="pub-masthead" aria-label="SSK AI Hub publication">
               <div class="pub-masthead__brand">
@@ -138,7 +149,6 @@
                 </div>
               </aside>
           </article>
-
             </div>
           </div>
 
