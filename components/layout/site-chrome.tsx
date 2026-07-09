@@ -19,7 +19,10 @@ const portfolioLinks = [
 ] as const;
 
 const exploreLinks = [
-  ["Blog", "/explore/blog", "Thoughts on AI, research, and building things."],
+  ["Career Guides", "/explore/blog", "Roles, salaries, hiring paths, and AI career roadmaps."],
+  ["Technical Tutorials", "/explore/web-scraping-python", "Practical guides for building with code and data."],
+  ["Research Articles", "/explore/spatial-context-geoai", "Notes from GeoAI, computer vision, and applied ML."],
+  ["Machine Learning", "/explore/grad-cam-flood-detection", "Model design, explainability, and production systems."],
   ["Photography", "/explore/photography", "Light, geometry, and visual observation."],
   ["Fitness & Health", "/explore/fitness-health", "Discipline, training, and performance habits."],
   ["Music", "/explore/music", "Listening, discovery, and creative energy."],
@@ -137,7 +140,7 @@ export function SiteChrome({ children }: { children: ReactNode }) {
               <ul className="nav-list list-reset">
                 <li className="nav-item"><Link className={`nav-link${pathname === "/" ? " is-active" : ""}`} href="/">Home</Link></li>
                 <Dropdown id="portfolio" title="Portfolio" links={portfolioLinks} open={dropdown === "portfolio"} setOpen={() => setDropdown(dropdown === "portfolio" ? null : "portfolio")} />
-                <Dropdown id="explore" title="Explore" links={exploreLinks} open={dropdown === "explore"} setOpen={() => setDropdown(dropdown === "explore" ? null : "explore")} />
+                <Dropdown id="explore" title="Insights" links={exploreLinks} open={dropdown === "explore"} setOpen={() => setDropdown(dropdown === "explore" ? null : "explore")} />
                 <li className="nav-item"><Link className={`nav-link${pathname === "/about" ? " is-active" : ""}`} href="/about">About</Link></li>
                 <li className="nav-item"><Link className={`nav-link${pathname === "/contact" ? " is-active" : ""}`} href="/contact">Contact</Link></li>
               </ul>

@@ -64,7 +64,10 @@ const NAV_DATA = {
     { title: "Certifications", href: "portfolio.html#certifications", copy: "Cloud, AI, and professional credentials." },
   ],
   explore: [
-    { title: "Blog", href: "explore/blog.html", copy: "Thoughts on AI, research, and building things." },
+    { title: "Career Guides", href: "explore/blog.html", copy: "Roles, salaries, hiring paths, and AI career roadmaps." },
+    { title: "Technical Tutorials", href: "explore/web-scraping-python.html", copy: "Practical guides for building with code and data." },
+    { title: "Research Articles", href: "explore/spatial-context-geoai.html", copy: "Notes from GeoAI, computer vision, and applied ML." },
+    { title: "Machine Learning", href: "explore/grad-cam-flood-detection.html", copy: "Model design, explainability, and production systems." },
     { title: "Photography", href: "explore/photography.html", copy: "Light, geometry, and visual observation." },
     { title: "Fitness & Health", href: "explore/fitness-health.html", copy: "Discipline, training, and performance habits." },
     { title: "Music", href: "explore/music.html", copy: "Listening, discovery, and creative energy." },
@@ -138,14 +141,14 @@ function renderChrome() {
                 </li>
                 <li class="nav-item nav-item--has-menu" data-dropdown="explore">
                   <div class="nav-link-group">
-                    <a class="nav-link ${page === "explore" ? "is-active" : ""}" href="${toPath("explore.html")}">Explore</a>
-                    <button class="nav-expand" type="button" aria-expanded="false" aria-controls="dropdown-explore" aria-label="Toggle explore menu">
+                    <a class="nav-link ${page === "explore" ? "is-active" : ""}" href="${toPath("explore.html")}">Insights</a>
+                    <button class="nav-expand" type="button" aria-expanded="false" aria-controls="dropdown-explore" aria-label="Toggle insights menu">
                       ${SVG.chevron}
                     </button>
                   </div>
                   <div class="nav-dropdown" id="dropdown-explore">
                     <div class="nav-dropdown__panel">
-                      <p class="nav-dropdown__title">Explore</p>
+                      <p class="nav-dropdown__title">Insights</p>
                       <div class="nav-dropdown__grid">
                         ${NAV_DATA.explore.map((item) => `
                           <a class="nav-dropdown__item" href="${toPath(item.href)}">
@@ -538,6 +541,78 @@ function initCertModal() {
   });
 }
 
+
+function initArticleReadingChrome() {
+  const articleBody = document.querySelector(".blog-article--reading");
+  if (!articleBody) return;
+
+  let progressEl = document.querySelector("[data-reading-progress]");
+  if (!progressEl) {
+    progressEl = document.createElement("div");
+    progressEl.className = "reading-progress";
+    progressEl.setAttribute("data-reading-progress", "");
+    progressEl.setAttribute("aria-hidden", "true");
+    progressEl.innerHTML = '<span class="reading-progress__bar" data-reading-progress-bar></span>';
+    document.body.prepend(progressEl);
+  }
+
+  const progressBar = document.querySelector("[data-reading-progress-bar]");
+  const onScrollProgress = () => {
+    if (!progressBar) return;
+    const rect = articleBody.getBoundingClientRect();
+    const total = articleBody.offsetHeight - window.innerHeight;
+    const scrolled = Math.min(Math.max(-rect.top, 0), Math.max(total, 1));
+    const pct = total > 0 ? (scrolled / total) * 100 : 0;
+    progressBar.style.width = `${pct}%`;
+  };
+  onScrollProgress();
+  window.addEventListener("scroll", onScrollProgress, { passive: true });
+  window.addEventListener("resize", onScrollProgress);
+
+  const tocRoot = document.querySelector("[data-article-toc]");
+  const tocList = tocRoot && tocRoot.querySelector("[data-article-toc-list]");
+  const headings = Array.from(document.querySelectorAll(".blog-article--reading .blog-article__body h2"));
+  if (!tocRoot || !tocList || headings.length < 3) {
+    if (tocRoot) tocRoot.hidden = true;
+    return;
+  }
+
+  tocList.innerHTML = "";
+  const tocLinks = [];
+  headings.forEach((heading, index) => {
+    if (!heading.id) {
+      const slug = (heading.textContent || `section-${index + 1}`)
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, "-")
+        .replace(/(^-|-$)/g, "");
+      heading.id = slug;
+    }
+    const li = document.createElement("li");
+    const a = document.createElement("a");
+    a.href = `#${heading.id}`;
+    a.textContent = (heading.textContent || `Section ${index + 1}`).trim();
+    li.appendChild(a);
+    tocList.appendChild(li);
+    tocLinks.push(a);
+  });
+  tocRoot.hidden = false;
+  const layout = document.querySelector(".article-layout");
+  if (layout) layout.classList.add("article-layout--with-toc");
+
+  const tocObserver = new IntersectionObserver(
+    (entries) => {
+      const visible = entries
+        .filter((entry) => entry.isIntersecting)
+        .sort((a, b) => (a.boundingClientRect.top > b.boundingClientRect.top ? 1 : -1));
+      if (!visible.length) return;
+      const id = visible[0].target.id;
+      tocLinks.forEach((link) => link.classList.toggle("is-active", link.getAttribute("href") === `#${id}`));
+    },
+    { rootMargin: "-20% 0px -65% 0px", threshold: 0 },
+  );
+  headings.forEach((heading) => tocObserver.observe(heading));
+}
+
 function initScrollAnimations() {
   const animated = document.querySelectorAll(".animate-in");
   if (!animated.length) return;
@@ -598,5 +673,6 @@ document.addEventListener("DOMContentLoaded", () => {
   initCertFilters();
   initCertModal();
   initScrollAnimations();
+  initArticleReadingChrome();
   initContactForm();
 });

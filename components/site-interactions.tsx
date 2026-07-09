@@ -22,6 +22,77 @@ export function SiteInteractions({ pathname }: { pathname: string }) {
       });
     });
 
+    // Reading progress bar
+    let progressEl = document.querySelector<HTMLElement>("[data-reading-progress]");
+    if (!progressEl && document.querySelector(".blog-article--reading")) {
+      progressEl = document.createElement("div");
+      progressEl.className = "reading-progress";
+      progressEl.setAttribute("data-reading-progress", "");
+      progressEl.setAttribute("aria-hidden", "true");
+      progressEl.innerHTML = '<span class="reading-progress__bar" data-reading-progress-bar></span>';
+      document.body.prepend(progressEl);
+    }
+    const progressBar = document.querySelector<HTMLElement>("[data-reading-progress-bar]");
+    const articleBody = document.querySelector<HTMLElement>(".blog-article--reading");
+    const onScrollProgress = () => {
+      if (!progressBar || !articleBody) return;
+      const rect = articleBody.getBoundingClientRect();
+      const total = articleBody.offsetHeight - window.innerHeight;
+      const scrolled = Math.min(Math.max(-rect.top, 0), Math.max(total, 1));
+      const pct = total > 0 ? (scrolled / total) * 100 : 0;
+      progressBar.style.width = `${pct}%`;
+    };
+    if (progressBar && articleBody) {
+      onScrollProgress();
+      window.addEventListener("scroll", onScrollProgress, { passive: true });
+      window.addEventListener("resize", onScrollProgress);
+    }
+
+    // Sticky TOC from article h2s
+    const tocRoot = document.querySelector<HTMLElement>("[data-article-toc]");
+    const tocList = tocRoot?.querySelector<HTMLElement>("[data-article-toc-list]");
+    const headings = Array.from(document.querySelectorAll<HTMLElement>(".blog-article--reading .blog-article__body h2"));
+    const tocLinks: HTMLAnchorElement[] = [];
+    if (tocRoot && tocList && headings.length >= 3) {
+      tocList.innerHTML = "";
+      headings.forEach((heading, index) => {
+        if (!heading.id) {
+          const slug = heading.textContent
+            ?.toLowerCase()
+            .replace(/[^a-z0-9]+/g, "-")
+            .replace(/(^-|-$)/g, "") || `section-${index + 1}`;
+          heading.id = slug;
+        }
+        const li = document.createElement("li");
+        const a = document.createElement("a");
+        a.href = `#${heading.id}`;
+        a.textContent = heading.textContent?.trim() || `Section ${index + 1}`;
+        li.appendChild(a);
+        tocList.appendChild(li);
+        tocLinks.push(a);
+      });
+      tocRoot.hidden = false;
+      document.querySelector(".article-layout")?.classList.add("article-layout--with-toc");
+    } else if (tocRoot) {
+      tocRoot.hidden = true;
+    }
+
+    const tocObserver =
+      tocLinks.length > 0
+        ? new IntersectionObserver(
+            (entries) => {
+              const visible = entries
+                .filter((entry) => entry.isIntersecting)
+                .sort((a, b) => (a.boundingClientRect.top > b.boundingClientRect.top ? 1 : -1));
+              if (!visible.length) return;
+              const id = (visible[0].target as HTMLElement).id;
+              tocLinks.forEach((link) => link.classList.toggle("is-active", link.getAttribute("href") === `#${id}`));
+            },
+            { rootMargin: "-20% 0px -65% 0px", threshold: 0 },
+          )
+        : null;
+    headings.forEach((heading) => tocObserver?.observe(heading));
+
     const tabs = Array.from(document.querySelectorAll<HTMLButtonElement>("[data-tab-target]"));
     const panels = Array.from(document.querySelectorAll<HTMLElement>("[data-tab-panel]"));
     const tabRoot = document.querySelector<HTMLElement>("[data-portfolio-tabs]");
@@ -153,7 +224,22 @@ export function SiteInteractions({ pathname }: { pathname: string }) {
 
     form?.addEventListener("submit", submitHandler);
 
-    return () => { observer.disconnect(); tabHandlers.forEach(([tab, clickHandler, previewHandler]) => { tab.removeEventListener("click", clickHandler); tab.removeEventListener("pointerenter", previewHandler); tab.removeEventListener("focus", previewHandler); }); tabRoot?.removeEventListener("pointerleave", leaveTabsHandler); window.removeEventListener("resize", resizeTabsHandler); filterHandlers.forEach(([filter, handler]) => filter.removeEventListener("click", handler)); certHandlers.forEach(([card, handler]) => card.removeEventListener("click", handler)); form?.removeEventListener("submit", submitHandler); };
+    return () => {
+      observer.disconnect();
+      tocObserver?.disconnect();
+      window.removeEventListener("scroll", onScrollProgress);
+      window.removeEventListener("resize", onScrollProgress);
+      tabHandlers.forEach(([tab, clickHandler, previewHandler]) => {
+        tab.removeEventListener("click", clickHandler);
+        tab.removeEventListener("pointerenter", previewHandler);
+        tab.removeEventListener("focus", previewHandler);
+      });
+      tabRoot?.removeEventListener("pointerleave", leaveTabsHandler);
+      window.removeEventListener("resize", resizeTabsHandler);
+      filterHandlers.forEach(([filter, handler]) => filter.removeEventListener("click", handler));
+      certHandlers.forEach(([card, handler]) => card.removeEventListener("click", handler));
+      form?.removeEventListener("submit", submitHandler);
+    };
   }, [pathname]);
 
   if (!certificate) return null;
