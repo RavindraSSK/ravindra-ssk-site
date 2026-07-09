@@ -10,8 +10,9 @@ export const pageMetadata = {
       "About Ravindra's current AI research, technical interests, and professional profiles.",
   },
   explore: {
-    title: "Explore",
-    description: "Writing, photography, fitness and health, and music from Ravindra.",
+    title: "Insights",
+    description:
+      "SSK AI Hub™ publications, career guides, research notes, photography, fitness, and music from Ravindra.",
   },
   portfolio: {
     title: "Portfolio & Credentials",
@@ -29,8 +30,9 @@ export const exploreCategories = [
     id: "blog",
     slug: "blog",
     href: "/explore/blog",
-    title: "Blog",
-    description: "Writing, notes, and essays from Ravindra on AI, research, and technology.",
+    title: "SSK AI Hub™",
+    description:
+      "Independent AI publications — career guides, technical tutorials, research articles, and industry insights.",
   },
   {
     id: "photography",

@@ -17,14 +17,43 @@
     <div data-site-header></div>
     <main class="page-shell">
       <section class="section article-page">
-        <div class="container article-shell">
-          <a class="article-back-link" href="/explore/blog">Back to Blog</a>
+        <div class="container article-shell article-shell--reading">
+          <div class="article-layout">
+            <nav class="article-toc" data-article-toc hidden aria-label="Table of contents">
+              <p class="article-toc__label">On this page</p>
+              <ol class="article-toc__list" data-article-toc-list></ol>
+            </nav>
+            <div class="article-main">
+          <a class="article-back-link" href="/explore/blog">Back to Insights</a>
 
           <article class="blog-article blog-article--reading card is-visible animate-in" style="--delay: 40ms;">
-            <header class="blog-article__header article-reading-header">
+            <aside class="pub-masthead" aria-label="SSK AI Hub publication">
+              <div class="pub-masthead__brand">
+                <div class="pub-masthead__mark"><svg viewBox="0 0 24 24" fill="none" width="20" height="20" aria-hidden="true"><path d="M12 3l2.2 4.6L19 8.2l-3.5 3.4.8 4.9L12 14.8 7.7 16.5l.8-4.9L5 8.2l4.8-.6L12 3z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><circle cx="12" cy="12" r="9.2" stroke="currentColor" stroke-width="1.2" opacity="0.35"/></svg></div>
+                <div>
+                  <p class="pub-masthead__name">SSK AI Hub™</p>
+                  <p class="pub-masthead__tagline">Learn • Build • Innovate</p>
+                </div>
+              </div>
+              <div class="pub-masthead__topics" aria-label="Publication topics">
+                <span>Independent AI Publications</span>
+                <span>Technical Guides</span>
+                <span>Career Insights</span>
+                <span>Research Articles</span>
+              </div>
+              <div class="pub-masthead__meta">
+                <p class="pub-masthead__curator">Founded &amp; Curated by <strong>Ravindra SSK</strong></p>
+                <div class="pub-masthead__stats">
+                  <span>15 min read</span>
+                  <span>Updated Jul 2026</span>
+                  <span>Reading progress</span>
+                </div>
+              </div>
+            </aside>
+<header class="blog-article__header article-reading-header">
               <div class="blog-feature-card__top">
                 <span class="meta-pill">Career guide</span>
-                <span class="blog-feature-card__source">Originally on SSK AI Hub</span>
+                <span class="blog-feature-card__source">Career guide</span>
               </div>
               <h1>The U.S. AI Job Market: A Complete Career Guide</h1>
               <p class="blog-article__dek">Roles, salaries, in-demand skills, and the gap between what universities teach and what employers actually hire for.</p>
@@ -372,7 +401,7 @@
 
               <section>
                 <h2>References &amp; data sources</h2>
-                <ul class="blog-list">
+                <ul class="blog-article__refs">
                   <li><strong>U.S. Bureau of Labor Statistics</strong> — Employment Projections &amp; Occupational Outlook Handbook</li>
                   <li><strong>Indeed Hiring Lab</strong> — AI job posting trends</li>
                   <li><strong>LinkedIn Economic Graph</strong> — Jobs on the Rise &amp; Workplace Learning reports</li>
@@ -393,13 +422,31 @@
                   <strong>Note on data</strong>
                   <p>Salary sources sample different populations and can differ by 2–4x for the "same" role. Figures here are directional benchmarks, not guarantees. Official BLS occupation codes don't yet include "AI Engineer" or "ML Engineer," so government figures likely understate AI-specific demand.</p>
                 </div>
-                <p class="blog-article__source">Originally published by <strong>SSK AI Hub™</strong> — Learn • Build • Innovate.</p>
               </section>
             </div>
+
+            <aside class="ssk-about-card" aria-label="About SSK AI Hub">
+                <div class="ssk-about-card__top">
+                  <div class="ssk-about-card__mark"><svg viewBox="0 0 24 24" fill="none" width="20" height="20" aria-hidden="true"><path d="M12 3l2.2 4.6L19 8.2l-3.5 3.4.8 4.9L12 14.8 7.7 16.5l.8-4.9L5 8.2l4.8-.6L12 3z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><circle cx="12" cy="12" r="9.2" stroke="currentColor" stroke-width="1.2" opacity="0.35"/></svg></div>
+                  <div>
+                    <p class="ssk-about-card__label">Publication</p>
+                    <h2 class="ssk-about-card__title">About SSK AI Hub™</h2>
+                  </div>
+                </div>
+                <p>SSK AI Hub™ is an independent publication focused on Artificial Intelligence, Machine Learning, Data Science, and emerging technologies.</p>
+                <p>The goal is to simplify complex topics through practical guides, technical roadmaps, industry insights, and educational resources for students, engineers, researchers, and professionals.</p>
+                <div class="ssk-about-card__footer">
+                  <p>Founded &amp; Curated by <strong>Ravindra SSK</strong>.</p>
+                  <p class="ssk-about-card__motto">Learn • Build • Innovate</p>
+                </div>
+              </aside>
           </article>
 
+            </div>
+          </div>
+
           <nav class="article-end-nav" aria-label="Article navigation">
-            <a class="article-back-link article-back-link--bottom" href="/explore/blog">Back to Blog</a>
+            <a class="article-back-link article-back-link--bottom" href="/explore/blog">Back to Insights</a>
           </nav>
         </div>
       </section>
