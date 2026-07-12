@@ -31,9 +31,19 @@ const exploreLinks = [
 function Logo() {
   return (
     <svg viewBox="0 0 32 32" fill="none" width="32" height="32" aria-hidden="true">
-      <rect width="32" height="32" rx="8" fill="#1B2D5F" />
-      <path d="M8 24V8h8c3.314 0 6 2.686 6 6s-2.686 6-6 6H12" stroke="white" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
-      <circle cx="22" cy="22" r="2" fill="#93B4F5" />
+      <defs>
+        <linearGradient id="rssk-logo-bg" x1="0" y1="0" x2="32" y2="32" gradientUnits="userSpaceOnUse">
+          <stop offset="0" stopColor="#1E3A8A" />
+          <stop offset="1" stopColor="#111C3D" />
+        </linearGradient>
+      </defs>
+      <rect width="32" height="32" rx="9" fill="url(#rssk-logo-bg)" />
+      <path d="M10.5 24V9h7a4.5 4.5 0 0 1 0 9h-7" stroke="#FFFFFF" strokeWidth="2.1" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M15.5 18l6 6" stroke="#93B4F5" strokeWidth="2.1" strokeLinecap="round" />
+      <circle cx="10.5" cy="9" r="1.7" fill="#93B4F5" stroke="#152A66" strokeWidth="0.9" />
+      <circle cx="22" cy="13.5" r="1.7" fill="#93B4F5" stroke="#152A66" strokeWidth="0.9" />
+      <circle cx="10.5" cy="24" r="1.7" fill="#FFFFFF" stroke="#152A66" strokeWidth="0.9" />
+      <circle cx="21.5" cy="24" r="2.3" fill="#93B4F5" stroke="#FFFFFF" strokeWidth="1" />
     </svg>
   );
 }

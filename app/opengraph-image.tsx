@@ -31,22 +31,21 @@ export default function OpenGraphImage() {
             gap: "18px",
           }}
         >
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              width: "72px",
-              height: "72px",
-              borderRadius: "18px",
-              background: "rgba(255, 255, 255, 0.12)",
-              fontSize: "28px",
-              fontWeight: 700,
-              letterSpacing: "0.08em",
-            }}
-          >
-            RM
-          </div>
+          <svg viewBox="0 0 32 32" fill="none" width="72" height="72">
+            <rect width="32" height="32" rx="9" fill="rgba(255, 255, 255, 0.12)" />
+            <path
+              d="M10.5 24V9h7a4.5 4.5 0 0 1 0 9h-7"
+              stroke="#FFFFFF"
+              strokeWidth="2.1"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+            <path d="M15.5 18l6 6" stroke="#93B4F5" strokeWidth="2.1" strokeLinecap="round" />
+            <circle cx="10.5" cy="9" r="1.7" fill="#93B4F5" />
+            <circle cx="22" cy="13.5" r="1.7" fill="#93B4F5" />
+            <circle cx="10.5" cy="24" r="1.7" fill="#FFFFFF" />
+            <circle cx="21.5" cy="24" r="2.3" fill="#93B4F5" stroke="#FFFFFF" strokeWidth="1" />
+          </svg>
           <div style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
             <div style={{ fontSize: "34px", fontWeight: 800 }}>Ravindra</div>
             <div style={{ fontSize: "22px", color: "#93B4F5" }}>
