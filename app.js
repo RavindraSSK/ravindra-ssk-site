@@ -1,9 +1,19 @@
 const SVG = {
   logo: `
     <svg viewBox="0 0 32 32" fill="none" width="32" height="32" aria-hidden="true">
-      <rect width="32" height="32" rx="8" fill="#1B2D5F"></rect>
-      <path d="M8 24V8h8c3.314 0 6 2.686 6 6s-2.686 6-6 6H12" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path>
-      <circle cx="22" cy="22" r="2" fill="#93B4F5"></circle>
+      <defs>
+        <linearGradient id="rssk-logo-bg-legacy" x1="0" y1="0" x2="32" y2="32" gradientUnits="userSpaceOnUse">
+          <stop offset="0" stop-color="#1E3A8A"></stop>
+          <stop offset="1" stop-color="#111C3D"></stop>
+        </linearGradient>
+      </defs>
+      <rect width="32" height="32" rx="9" fill="url(#rssk-logo-bg-legacy)"></rect>
+      <path d="M10.5 24V9h7a4.5 4.5 0 0 1 0 9h-7" stroke="#FFFFFF" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"></path>
+      <path d="M15.5 18l6 6" stroke="#93B4F5" stroke-width="2.1" stroke-linecap="round"></path>
+      <circle cx="10.5" cy="9" r="1.7" fill="#93B4F5" stroke="#152A66" stroke-width="0.9"></circle>
+      <circle cx="22" cy="13.5" r="1.7" fill="#93B4F5" stroke="#152A66" stroke-width="0.9"></circle>
+      <circle cx="10.5" cy="24" r="1.7" fill="#FFFFFF" stroke="#152A66" stroke-width="0.9"></circle>
+      <circle cx="21.5" cy="24" r="2.3" fill="#93B4F5" stroke="#FFFFFF" stroke-width="1"></circle>
     </svg>
   `,
   chevron: `
