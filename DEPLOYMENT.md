@@ -2,23 +2,18 @@
 
 ## Production URL
 
-**Canonical live site:** [https://ravindra-ssk.vercel.app](https://ravindra-ssk.vercel.app)
+**Canonical live site:** [https://ravindrassk.com](https://ravindrassk.com)
 
-GitHub pushes deploy to the **ravindra-ssk-site** Vercel project. Until you complete the domain step below, the updated build is visible at [https://ravindra-ssk-site.vercel.app](https://ravindra-ssk-site.vercel.app).
+GitHub pushes deploy to the **ravindra-ssk-site** Vercel project. `www.ravindrassk.com`, `ravindra-ssk.vercel.app`, and `ravindra-ssk-site.vercel.app` are legacy hosts that the middleware 308-redirects to the canonical domain (see `lib/site-url.ts`).
 
-## Fix ravindra-ssk.vercel.app (required — ~2 minutes)
-
-`ravindra-ssk.vercel.app` and `ravindra-ssk-site.vercel.app` are **two different Vercel projects**. Only the `-site` project receives GitHub deploys. Move the domain:
+## Custom domain cutover (ravindrassk.com)
 
 1. [Vercel Dashboard](https://vercel.com/dashboard) → open **ravindra-ssk-site** (Git-connected project).
-2. **Settings → Domains → Add** → enter `ravindra-ssk.vercel.app`.
-3. If blocked (“already in use”):
-   - Open the other **ravindra-ssk** project → **Settings → Domains** → remove `ravindra-ssk.vercel.app`.
-   - Return to **ravindra-ssk-site** → add `ravindra-ssk.vercel.app` again.
-4. **Settings → Environment Variables** → set `NEXT_PUBLIC_SITE_URL` = `https://ravindra-ssk.vercel.app`.
-5. **Deployments** → latest production → **Redeploy**.
-
-After this, `ravindra-ssk.vercel.app` shows the updated site. You can then re-enable the `-site` → `-ssk` redirect in code if desired.
+2. **Settings → Domains → Add** → enter `ravindrassk.com`, then add `www.ravindrassk.com` (set it to redirect to the apex).
+3. Configure DNS at your registrar with the records Vercel shows, then wait until both domains show **Valid Configuration** and the TLS certificate is issued.
+4. **Settings → Environment Variables** → set `NEXT_PUBLIC_SITE_URL` = `https://ravindrassk.com` for Production (or delete the variable — the code now defaults to this URL). An old value pointing at a vercel.app host will override the new default, so do not leave a stale value in place.
+5. Make sure `ravindra-ssk.vercel.app` is also attached to this project (move it from the old standalone **ravindra-ssk** project if needed) so old links redirect instead of serving a stale build.
+6. **Deployments** → latest production → **Redeploy**.
 
 ## Git → Vercel
 
@@ -31,11 +26,11 @@ After this, `ravindra-ssk.vercel.app` shows the updated site. You can then re-en
 1. Open [Vercel Dashboard](https://vercel.com/dashboard) → **ravindra-ssk-site** → **Deployments**.
 2. Confirm the latest deployment matches the latest `master` commit.
 3. If not, click **Redeploy** on the latest `master` deployment.
-4. Confirm `ravindra-ssk.vercel.app` is listed under **Settings → Domains** for this project.
+4. Confirm `ravindrassk.com` is listed under **Settings → Domains** for this project.
 
 ### GitHub Actions deploy (optional)
 
-If Vercel Git hooks are unreliable, add these repository secrets. The workflow in `.github/workflows/deploy.yml` deploys on every `master` push and assigns `ravindra-ssk.vercel.app`:
+If Vercel Git hooks are unreliable, add these repository secrets. The workflow in `.github/workflows/deploy.yml` deploys on every `master` push:
 
 | Secret | Where to find it |
 |---|---|
@@ -44,24 +39,6 @@ If Vercel Git hooks are unreliable, add these repository secrets. The workflow i
 | `VERCEL_PROJECT_ID` | **ravindra-ssk-site** project → Settings → General |
 
 Use the **ravindra-ssk-site** project ID (the Git-connected project), not the old standalone ravindra-ssk project.
-
-## Custom domain
-
-### 1. Add domain in Vercel
-
-1. Open [Vercel Dashboard](https://vercel.com/dashboard) → **ravindra-ssk-site** → **Settings** → **Domains**.
-2. Add your domain (for example `ravindrassk.com` and `www.ravindrassk.com`).
-3. Configure DNS at your registrar using the records Vercel provides.
-
-### 2. Set environment variable
-
-| Variable | Value | Environments |
-|---|---|---|
-| `NEXT_PUBLIC_SITE_URL` | `https://ravindra-ssk.vercel.app` (or your custom domain) | Production, Preview |
-
-### 3. Redeploy
-
-Trigger a redeploy after saving environment variables so the new URL is picked up at build time.
 
 ## Contact form email delivery
 
