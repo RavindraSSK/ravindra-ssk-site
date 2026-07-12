@@ -44,8 +44,7 @@
 
 .brand__mark {
   flex: 0 0 auto;
-  width: 36px;
-  height: 36px;
+  height: 52px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -55,9 +54,30 @@
 .brand__mark-img,
 .brand__mark svg {
   display: block;
-  width: 36px;
-  height: 36px;
+  height: 52px;
+  width: auto;
   object-fit: contain;
+}
+
+.brand__logo {
+  display: inline-flex;
+  height: 52px;
+}
+
+/* Theme-driven swap: no JS, no flash — html[data-theme] is set before paint. */
+img.brand__logo-img--dark,
+.brand__mark img.brand__logo-img--dark {
+  display: none;
+}
+
+html[data-theme="dark"] img.brand__logo-img--light,
+html[data-theme="dark"] .brand__mark img.brand__logo-img--light {
+  display: none;
+}
+
+html[data-theme="dark"] img.brand__logo-img--dark,
+html[data-theme="dark"] .brand__mark img.brand__logo-img--dark {
+  display: block;
 }
 
 .brand__text {
@@ -1342,11 +1362,12 @@ html[data-theme="dark"] .portfolio-tab.is-preview {
   }
 
   .brand__mark,
+  .brand__logo,
   .brand__mark img,
   .brand__mark-img,
   .brand__mark svg {
-    width: 30px;
-    height: 30px;
+    height: 46px;
+    width: auto;
   }
 
   .brand__name {
