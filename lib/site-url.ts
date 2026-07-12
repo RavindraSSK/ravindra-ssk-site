@@ -1,7 +1,11 @@
-export const DEFAULT_SITE_URL = "https://ravindra-ssk.vercel.app";
+export const DEFAULT_SITE_URL = "https://ravindrassk.com";
 
-/** Deprecated hosts — only redirect after ravindra-ssk.vercel.app serves the same deployment. */
-export const LEGACY_VERCEL_HOSTS = [] as const;
+/** Deprecated hosts — redirected to the canonical domain by middleware. */
+export const LEGACY_HOSTS = [
+  "www.ravindrassk.com",
+  "ravindra-ssk.vercel.app",
+  "ravindra-ssk-site.vercel.app",
+] as const;
 
 export function getSiteUrl() {
   const configured = process.env.NEXT_PUBLIC_SITE_URL?.trim();

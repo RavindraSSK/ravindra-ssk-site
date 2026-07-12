@@ -189,7 +189,7 @@ function renderChrome() {
               <p class="site-footer__copy">AI Researcher | Machine Learning Engineer | St. Louis, MO</p>
             </div>
             <div class="social-links">
-              <a class="icon-link" href="https://ravindra-ssk.vercel.app">Website</a>
+              <a class="icon-link" href="https://ravindrassk.com">Website</a>
               <a class="icon-link" href="mailto:ravindrassk1304@gmail.com">${SVG.mail}<span>Email</span></a>
               <a class="icon-link" href="https://github.com/RavindraSSK" target="_blank" rel="noopener noreferrer">${SVG.github}<span>GitHub</span></a>
               <a class="icon-link" href="https://www.linkedin.com/in/ravindra-ssk-medicharla-45ba44123/" target="_blank" rel="noopener noreferrer">${SVG.linkedin}<span>LinkedIn</span></a>
