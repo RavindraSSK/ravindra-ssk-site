@@ -44,8 +44,20 @@
 
 .brand__mark {
   flex: 0 0 auto;
-  width: 32px;
-  height: 32px;
+  width: 36px;
+  height: 36px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.brand__mark img,
+.brand__mark-img,
+.brand__mark svg {
+  display: block;
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
 }
 
 .brand__text {
@@ -58,7 +70,8 @@
   font-family: var(--font-display);
   font-size: 1.05rem;
   font-weight: 800;
-  letter-spacing: 0;
+  letter-spacing: -0.02em;
+  white-space: nowrap;
 }
 
 .brand__role {
@@ -1329,13 +1342,16 @@ html[data-theme="dark"] .portfolio-tab.is-preview {
   }
 
   .brand__mark,
+  .brand__mark img,
+  .brand__mark-img,
   .brand__mark svg {
     width: 30px;
     height: 30px;
   }
 
   .brand__name {
-    font-size: 0.98rem;
+    font-size: 0.92rem;
+    letter-spacing: -0.03em;
   }
 
   .site-footer__inner {

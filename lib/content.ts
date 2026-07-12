@@ -1,27 +1,27 @@
 export const pageMetadata = {
   home: {
-    title: "Ravindra | AI Researcher & Machine Learning Engineer",
+    title: "Ravindra SSK | AI Researcher & Machine Learning Engineer",
     description:
-      "Ravindra is an ML/AI engineer and graduate researcher building end-to-end machine learning systems across computer vision, generative AI, healthcare AI, and applied AI.",
+      "Ravindra SSK is an ML/AI engineer and graduate researcher building end-to-end machine learning systems across computer vision, generative AI, healthcare AI, and applied AI.",
   },
   about: {
     title: "About",
     description:
-      "About Ravindra's current AI research, technical interests, and professional profiles.",
+      "About Ravindra SSK's current AI research, technical interests, and professional profiles.",
   },
   explore: {
     title: "Insights",
     description:
-      "SSK AI Hub™ publications, career guides, research notes, photography, fitness, and music from Ravindra.",
+      "SSK AI Hub™ publications, career guides, research notes, photography, fitness, and music from Ravindra SSK.",
   },
   portfolio: {
     title: "Portfolio & Credentials",
-    description: "Projects, experience, education, technical skills, achievements, and certifications from Ravindra.",
+    description: "Projects, experience, education, technical skills, achievements, and certifications from Ravindra SSK.",
   },
   contact: {
     title: "Contact",
     description:
-      "Contact Ravindra for research collaborations, internships, and interesting technical problems.",
+      "Contact Ravindra SSK for research collaborations, internships, and interesting technical problems.",
   },
 } as const;
 

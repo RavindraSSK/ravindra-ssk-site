@@ -1,21 +1,7 @@
+const BRAND_NAME = "Ravindra SSK";
+const BRAND_ROLE = "Researcher | Engineer | Creator";
+
 const SVG = {
-  logo: `
-    <svg viewBox="0 0 32 32" fill="none" width="32" height="32" aria-hidden="true">
-      <defs>
-        <linearGradient id="rssk-logo-bg-legacy" x1="0" y1="0" x2="32" y2="32" gradientUnits="userSpaceOnUse">
-          <stop offset="0" stop-color="#1E3A8A"></stop>
-          <stop offset="1" stop-color="#111C3D"></stop>
-        </linearGradient>
-      </defs>
-      <rect width="32" height="32" rx="9" fill="url(#rssk-logo-bg-legacy)"></rect>
-      <path d="M10.5 24V9h7a4.5 4.5 0 0 1 0 9h-7" stroke="#FFFFFF" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"></path>
-      <path d="M15.5 18l6 6" stroke="#93B4F5" stroke-width="2.1" stroke-linecap="round"></path>
-      <circle cx="10.5" cy="9" r="1.7" fill="#93B4F5" stroke="#152A66" stroke-width="0.9"></circle>
-      <circle cx="22" cy="13.5" r="1.7" fill="#93B4F5" stroke="#152A66" stroke-width="0.9"></circle>
-      <circle cx="10.5" cy="24" r="1.7" fill="#FFFFFF" stroke="#152A66" stroke-width="0.9"></circle>
-      <circle cx="21.5" cy="24" r="2.3" fill="#93B4F5" stroke="#FFFFFF" stroke-width="1"></circle>
-    </svg>
-  `,
   chevron: `
     <svg viewBox="0 0 20 20" fill="none" width="18" height="18" aria-hidden="true">
       <path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path>
@@ -97,6 +83,11 @@ function toPath(target) {
   return `${root}/${target}`.replace(/\/{2,}/g, "/");
 }
 
+function brandMarkHtml() {
+  // Prefer site-root absolute path so Next and static hosting resolve the public asset.
+  return `<img class="brand__mark-img" src="/images/brand/ravindra-ssk-mark.png" alt="" width="32" height="32" decoding="async" />`;
+}
+
 function currentPage() {
   return document.body.dataset.page || "";
 }
@@ -111,11 +102,11 @@ function renderChrome() {
       <header class="site-header" role="banner">
         <div class="container">
           <div class="site-header__inner">
-            <a class="brand" href="${toPath("index.html")}" aria-label="Ravindra home">
-              <span class="brand__mark">${SVG.logo}</span>
+            <a class="brand" href="${toPath("index.html")}" aria-label="${BRAND_NAME} home">
+              <span class="brand__mark">${brandMarkHtml()}</span>
               <span class="brand__text">
-                <span class="brand__name">Ravindra</span>
-                <span class="brand__role">AI Researcher | Machine Learning Engineer</span>
+                <span class="brand__name">${BRAND_NAME}</span>
+                <span class="brand__role">${BRAND_ROLE}</span>
               </span>
             </a>
 
@@ -195,8 +186,8 @@ function renderChrome() {
         <div class="container">
           <div class="site-footer__inner">
             <div class="stack">
-              <p class="brand__name">Ravindra</p>
-              <p class="site-footer__copy">AI Researcher | Machine Learning Engineer | St. Louis, MO</p>
+              <p class="brand__name">${BRAND_NAME}</p>
+              <p class="site-footer__copy">${BRAND_ROLE} | St. Louis, MO</p>
             </div>
             <div class="social-links">
               <a class="icon-link" href="https://ravindrassk.com">Website</a>

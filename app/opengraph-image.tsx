@@ -1,13 +1,17 @@
 import { ImageResponse } from "next/og";
+import { readFile } from "node:fs/promises";
+import { join } from "node:path";
 
 import { getSiteHostnameLabel } from "@/lib/site-url";
 
-export const alt = "Ravindra | AI Researcher & Machine Learning Engineer";
+export const alt = "Ravindra SSK | AI Researcher & Machine Learning Engineer";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
-export default function OpenGraphImage() {
+export default async function OpenGraphImage() {
   const siteLabel = getSiteHostnameLabel();
+  const markData = await readFile(join(process.cwd(), "public/images/brand/ravindra-ssk-mark.png"));
+  const markSrc = `data:image/png;base64,${markData.toString("base64")}`;
 
   return new ImageResponse(
     (
@@ -31,23 +35,9 @@ export default function OpenGraphImage() {
             gap: "18px",
           }}
         >
-          <svg viewBox="0 0 32 32" fill="none" width="72" height="72">
-            <rect width="32" height="32" rx="9" fill="rgba(255, 255, 255, 0.12)" />
-            <path
-              d="M10.5 24V9h7a4.5 4.5 0 0 1 0 9h-7"
-              stroke="#FFFFFF"
-              strokeWidth="2.1"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-            <path d="M15.5 18l6 6" stroke="#93B4F5" strokeWidth="2.1" strokeLinecap="round" />
-            <circle cx="10.5" cy="9" r="1.7" fill="#93B4F5" />
-            <circle cx="22" cy="13.5" r="1.7" fill="#93B4F5" />
-            <circle cx="10.5" cy="24" r="1.7" fill="#FFFFFF" />
-            <circle cx="21.5" cy="24" r="2.3" fill="#93B4F5" stroke="#FFFFFF" strokeWidth="1" />
-          </svg>
+          <img src={markSrc} width={84} height={84} alt="" />
           <div style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
-            <div style={{ fontSize: "34px", fontWeight: 800 }}>Ravindra</div>
+            <div style={{ fontSize: "34px", fontWeight: 800, letterSpacing: "-0.02em" }}>Ravindra SSK</div>
             <div style={{ fontSize: "22px", color: "#93B4F5" }}>
               Researcher | Engineer | Creator
             </div>
