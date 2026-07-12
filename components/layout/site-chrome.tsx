@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, ChevronDown, Menu, Moon, Sun, X } from "lucide-react";
 
+import { Logo, brandName, brandRole } from "@/components/brand/logo";
 import { SiteInteractions } from "@/components/site-interactions";
 
 const portfolioLinks = [
@@ -27,26 +28,6 @@ const exploreLinks = [
   ["Fitness & Health", "/explore/fitness-health", "Discipline, training, and performance habits."],
   ["Music", "/explore/music", "Listening, discovery, and creative energy."],
 ] as const;
-
-function Logo() {
-  return (
-    <svg viewBox="0 0 32 32" fill="none" width="32" height="32" aria-hidden="true">
-      <defs>
-        <linearGradient id="rssk-logo-bg" x1="0" y1="0" x2="32" y2="32" gradientUnits="userSpaceOnUse">
-          <stop offset="0" stopColor="#1E3A8A" />
-          <stop offset="1" stopColor="#111C3D" />
-        </linearGradient>
-      </defs>
-      <rect width="32" height="32" rx="9" fill="url(#rssk-logo-bg)" />
-      <path d="M10.5 24V9h7a4.5 4.5 0 0 1 0 9h-7" stroke="#FFFFFF" strokeWidth="2.1" strokeLinecap="round" strokeLinejoin="round" />
-      <path d="M15.5 18l6 6" stroke="#93B4F5" strokeWidth="2.1" strokeLinecap="round" />
-      <circle cx="10.5" cy="9" r="1.7" fill="#93B4F5" stroke="#152A66" strokeWidth="0.9" />
-      <circle cx="22" cy="13.5" r="1.7" fill="#93B4F5" stroke="#152A66" strokeWidth="0.9" />
-      <circle cx="10.5" cy="24" r="1.7" fill="#FFFFFF" stroke="#152A66" strokeWidth="0.9" />
-      <circle cx="21.5" cy="24" r="2.3" fill="#93B4F5" stroke="#FFFFFF" strokeWidth="1" />
-    </svg>
-  );
-}
 
 function Dropdown({ id, title, links, open, setOpen }: { id: string; title: string; links: readonly (readonly [string, string, string])[]; open: boolean; setOpen: () => void }) {
   return (
@@ -141,9 +122,9 @@ export function SiteChrome({ children }: { children: ReactNode }) {
       >
         <div className="container">
           <div className="site-header__inner">
-            <Link className="brand" href="/" aria-label="Ravindra home">
+            <Link className="brand" href="/" aria-label={`${brandName} home`}>
               <span className="brand__mark"><Logo /></span>
-              <span className="brand__text"><span className="brand__name">Ravindra</span><span className="brand__role">Researcher | Engineer | Creator</span></span>
+              <span className="brand__text"><span className="brand__name">{brandName}</span><span className="brand__role">{brandRole}</span></span>
             </Link>
             <button className="nav-toggle" type="button" aria-expanded={mobileOpen} aria-controls="primary-navigation" aria-label={mobileOpen ? "Close navigation" : "Open navigation"} onClick={() => setMobileOpen((value) => !value)}>{mobileOpen ? <X size={20} aria-hidden="true" /> : <Menu size={20} aria-hidden="true" />}</button>
             <nav id="primary-navigation" className={`site-nav${mobileOpen ? " is-open" : ""}`} aria-label="Primary navigation">
@@ -172,7 +153,7 @@ export function SiteChrome({ children }: { children: ReactNode }) {
         transition={{ duration: 0.5 }}
       >
         <div className="container"><div className="site-footer__inner">
-          <div className="stack"><p className="brand__name">Ravindra</p><p className="site-footer__copy">Researcher | Engineer | Creator | St. Louis, MO</p></div>
+          <div className="stack"><p className="brand__name">{brandName}</p><p className="site-footer__copy">{brandRole} | St. Louis, MO</p></div>
           <div className="social-links"><a className="icon-link" href="https://ravindrassk.com">Website</a><a className="icon-link" href="mailto:ravindrassk1304@gmail.com">Email</a><a className="icon-link" href="https://github.com/RavindraSSK" target="_blank" rel="noopener noreferrer">GitHub</a><a className="icon-link" href="https://www.linkedin.com/in/ravindra-ssk-medicharla-45ba44123/" target="_blank" rel="noopener noreferrer">LinkedIn</a><a className="icon-link" href="https://www.researchgate.net/profile/Ravindra-Ssk-Medicharla" target="_blank" rel="noopener noreferrer">ResearchGate</a><a className="icon-link" href="https://www.instagram.com/ravindra_ssk_m_/" target="_blank" rel="noopener noreferrer">Instagram</a></div>
         </div></div>
       </motion.footer>

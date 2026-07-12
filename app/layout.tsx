@@ -14,14 +14,14 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
     default: pageMetadata.home.title,
-    template: "%s | Ravindra",
+    template: "%s | Ravindra SSK",
   },
   description: pageMetadata.home.description,
   openGraph: {
     type: "website",
     locale: "en_US",
     url: siteUrl,
-    siteName: "Ravindra",
+    siteName: "Ravindra SSK",
     title: pageMetadata.home.title,
     description: pageMetadata.home.description,
   },
@@ -31,7 +31,10 @@ export const metadata: Metadata = {
     description: pageMetadata.home.description,
   },
   icons: {
-    icon: [{ url: "/icon.svg", type: "image/svg+xml" }],
+    icon: [
+      { url: "/icon.svg", type: "image/svg+xml" },
+      { url: "/images/brand/ravindra-ssk-mark.png", type: "image/png", sizes: "1024x1024" },
+    ],
   },
 };
 
