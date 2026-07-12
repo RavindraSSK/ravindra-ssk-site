@@ -85,7 +85,7 @@ function toPath(target) {
 
 function brandMarkHtml() {
   // Prefer site-root absolute path so Next and static hosting resolve the public asset.
-  return `<img class="brand__mark-img" src="/images/brand/ravindra-ssk-mark.png" alt="" width="32" height="32" decoding="async" />`;
+  return `<span class="brand__logo"><img class="brand__logo-img brand__logo-img--light" src="/branding/header-logo-light.png" alt="" height="52" decoding="async" /><img class="brand__logo-img brand__logo-img--dark" src="/branding/header-logo-dark.png" alt="" height="52" decoding="async" /></span>`;
 }
 
 function currentPage() {
