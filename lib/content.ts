@@ -98,6 +98,12 @@ export const blogArticles = [
 
 export const fitnessArticles = [
   {
+    slug: "handball-my-favorite-sport",
+    title: "Handball — My Favorite Sport",
+    description:
+      "Why handball is my favorite game — speed, teamwork, what the sport taught me, and a creative AI video project in progress.",
+  },
+  {
     slug: "weekly-training-structure",
     title: "Weekly Training Structure",
     description: "A compact weekly rhythm built around strength, mobility, and recovery for long research weeks.",

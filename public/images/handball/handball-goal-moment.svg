@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" fill="none" role="img" aria-label="Handball goal moment illustration">
+  <rect width="800" height="500" rx="24" fill="#F0FDF4"/>
+  <rect x="520" y="80" width="200" height="280" rx="8" fill="rgba(31,95,85,0.08)" stroke="#1F5F55" stroke-width="4"/>
+  <line x1="520" y1="80" x2="520" y2="360" stroke="#1F5F55" stroke-width="6"/>
+  <line x1="520" y1="80" x2="620" y2="30" stroke="#1F5F55" stroke-width="4"/>
+  <line x1="620" y1="30" x2="720" y2="80" stroke="#1F5F55" stroke-width="4"/>
+  <circle cx="340" cy="260" r="32" fill="#1F5F55"/>
+  <circle cx="340" cy="260" r="16" fill="#4D9B8A"/>
+  <path d="M300 320c40-60 80-80 120-40" stroke="#1B2D5F" stroke-width="8" stroke-linecap="round"/>
+  <circle cx="300" cy="320" r="40" fill="rgba(27,45,95,0.15)" stroke="#1B2D5F" stroke-width="3"/>
+  <path d="M280 300 L340 240 L360 280 Z" fill="#3B82F6" opacity="0.85"/>
+  <text x="400" y="430" text-anchor="middle" fill="#1F5F55" font-family="system-ui,sans-serif" font-size="20" font-weight="700">The six-meter line  pressure and precision</text>
+</svg>
