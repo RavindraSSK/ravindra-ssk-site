@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" role="img" aria-label="Ravindra SSK">
+  <defs>
+    <linearGradient id="rssk-body" x1="18" y1="12" x2="48" y2="52" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#2A4A8C"/>
+      <stop offset="0.45" stop-color="#1B2D5F"/>
+      <stop offset="1" stop-color="#0F1A3A"/>
+    </linearGradient>
+    <linearGradient id="rssk-accent" x1="34" y1="14" x2="50" y2="28" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#93C5FD"/>
+      <stop offset="1" stop-color="#3B82F6"/>
+    </linearGradient>
+    <linearGradient id="rssk-ring" x1="8" y1="8" x2="56" y2="56" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#243B73"/>
+      <stop offset="1" stop-color="#15244F"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Segmented outer ring -->
+  <g stroke="url(#rssk-ring)" stroke-width="3.2" stroke-linecap="round" fill="none">
+    <path d="M48.8 15.2A22.5 22.5 0 0 1 53.5 32"/>
+    <path d="M48.8 48.8A22.5 22.5 0 0 1 32 53.5"/>
+    <path d="M15.2 48.8A22.5 22.5 0 0 1 10.5 32"/>
+    <path d="M15.2 15.2A22.5 22.5 0 0 1 32 10.5"/>
+  </g>
+  <circle cx="32" cy="32" r="22.5" stroke="#3B82F6" stroke-width="0.6" opacity="0.35" fill="none"/>
+
+  <!-- R stem + bowl -->
+  <path
+    d="M21.5 46.5V18.2h11.2c5.4 0 8.9 3.1 8.9 7.8 0 3.7-2.1 6.4-5.4 7.5l7.3 13H39.2l-6.7-12.1H26.8V46.5H21.5Z"
+    fill="url(#rssk-body)"
+  />
+  <!-- Electric accent tip on R -->
+  <path d="M37.2 18.2h4.1c2.1 0 3.6 1.1 3.6 3.1 0 1.6-.8 2.7-2.2 3.2l-5.5-6.3Z" fill="url(#rssk-accent)"/>
+  <path d="M26.8 26.8h5.4c2.6 0 4.2 1.3 4.2 3.4S34.8 33.6 32.2 33.6H26.8V26.8Z" fill="#243B73" opacity="0.55"/>
+
+  <!-- Nested S -->
+  <path
+    d="M43.2 27.4c1.9-1.1 4.5-1 6.1.4 1.4 1.2 1.6 3 .5 4.3-.7.8-1.8 1.3-3.1 1.5 1.6.3 2.8 1.1 3.5 2.3 1.1 1.8.5 4.1-1.4 5.3-2.1 1.3-5.1 1.1-6.9-.7l1.7-1.7c1.1 1.1 2.8 1.3 4 .6.9-.5 1.2-1.4.7-2.2-.5-.8-1.6-1.2-3.1-1.2h-1.1v-2.3h1c1.4 0 2.4-.3 2.9-.9.5-.5.4-1.2-.1-1.7-.6-.5-1.7-.6-2.7 0l-1.1-2Z"
+    fill="url(#rssk-body)"
+  />
+  <path d="M47.8 26.2c1.2.1 2.2.7 2.8 1.6" stroke="url(#rssk-accent)" stroke-width="1.4" stroke-linecap="round"/>
+
+  <!-- Camera aperture at base of R stem -->
+  <g transform="translate(21.2 42.2)">
+    <circle cx="5.4" cy="5.4" r="5.1" fill="#0F1A3A" stroke="#3B82F6" stroke-width="1.1"/>
+    <circle cx="5.4" cy="5.4" r="4.1" fill="#15244F"/>
+    <g fill="#60A5FA">
+      <path d="M5.4 5.4L5.4 1.6 7.6 2.5Z"/>
+      <path d="M5.4 5.4L8.8 3.2 9.4 5.4Z"/>
+      <path d="M5.4 5.4L9.2 7.6 7.2 9Z"/>
+      <path d="M5.4 5.4L5.4 9.2 3.2 8.3Z"/>
+      <path d="M5.4 5.4L2 7.6 1.4 5.4Z"/>
+      <path d="M5.4 5.4L1.6 3.2 3.6 1.8Z"/>
+    </g>
+    <circle cx="5.4" cy="5.4" r="1.15" fill="#93C5FD"/>
+  </g>
+</svg>
