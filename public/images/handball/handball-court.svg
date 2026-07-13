@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" fill="none" role="img" aria-label="Handball court diagram">
+  <rect width="800" height="500" rx="24" fill="#EEF4FF"/>
+  <rect x="40" y="40" width="720" height="420" rx="8" stroke="#1B2D5F" stroke-width="4" fill="#F8FAFF"/>
+  <line x1="400" y1="40" x2="400" y2="460" stroke="#1B2D5F" stroke-width="3" stroke-dasharray="12 8"/>
+  <path d="M40 190h80v120H40zM680 190h80v120h-80z" fill="rgba(59,130,246,0.12)" stroke="#3B82F6" stroke-width="3"/>
+  <path d="M120 190h40v120h-40zM640 190h40v120h-40z" stroke="#1B2D5F" stroke-width="2"/>
+  <circle cx="400" cy="250" r="48" stroke="#93B4F5" stroke-width="3" fill="rgba(147,180,245,0.15)"/>
+  <circle cx="400" cy="250" r="8" fill="#3B82F6"/>
+  <text x="400" y="32" text-anchor="middle" fill="#1B2D5F" font-family="system-ui,sans-serif" font-size="18" font-weight="700">40m × 20m court</text>
+</svg>

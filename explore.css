@@ -1045,6 +1045,109 @@ html[data-theme="dark"] .blog-entry-card--visual .blog-entry-card__content {
   object-fit: cover;
 }
 
+.article-media-grid {
+  display: grid;
+  gap: var(--space-4);
+  margin: var(--space-5) 0;
+}
+
+@media (min-width: 720px) {
+  .article-media-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.article-media-figure {
+  margin: var(--space-5) 0;
+}
+
+.article-media-figure__frame {
+  overflow: hidden;
+  border-radius: 18px;
+  border: 1px solid var(--ambient-line);
+  background: var(--ambient-surface);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.48);
+}
+
+.article-media-figure__frame img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+.article-media-figure__caption {
+  margin: 0.65rem 0 0;
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+}
+
+.article-video-card {
+  margin: var(--space-6) 0;
+  padding: 1.35rem;
+  border: 1px solid var(--ambient-line);
+  border-radius: 20px;
+  background:
+    radial-gradient(circle at 100% 0%, rgba(59, 130, 246, 0.1), transparent 14rem),
+    linear-gradient(145deg, var(--ambient-surface-strong), var(--ambient-surface));
+  box-shadow: var(--shadow-soft);
+}
+
+.article-video-card__eyebrow {
+  margin: 0 0 0.35rem;
+  color: var(--color-text-muted);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.article-video-card__title {
+  margin: 0 0 0.5rem;
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+}
+
+.article-video-card__copy {
+  margin: 0 0 1rem;
+  color: var(--color-text-muted);
+}
+
+.article-video-card__placeholder {
+  display: grid;
+  place-items: center;
+  gap: 0.5rem;
+  min-height: 12rem;
+  padding: 1.25rem;
+  border: 2px dashed var(--color-border);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.45);
+  color: var(--color-text-muted);
+  text-align: center;
+  font-size: 0.95rem;
+}
+
+.article-video-card__placeholder-icon {
+  display: grid;
+  place-items: center;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 999px;
+  background: rgba(27, 45, 95, 0.08);
+  color: var(--color-primary);
+  font-size: 1.1rem;
+}
+
+.article-video-card__note {
+  margin: 0.85rem 0 0;
+  color: var(--color-text-muted);
+  font-size: 0.82rem;
+}
+
+html[data-theme="dark"] .article-video-card__placeholder {
+  background: rgba(15, 26, 58, 0.45);
+}
+
 .content-list--photo .gallery-card:nth-child(1) .gallery-card__frame,
 .content-list--photo .gallery-card:nth-child(4) .gallery-card__frame {
   aspect-ratio: 5 / 3;
