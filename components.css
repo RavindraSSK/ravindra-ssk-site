@@ -1083,6 +1083,39 @@ html[data-theme="dark"] .brand__mark img.brand__logo-img--dark {
   color: var(--color-text-muted);
 }
 
+.site-footer__brand {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  min-width: 0;
+}
+
+.site-footer__brand-link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+  text-decoration: none;
+}
+
+.site-footer__mark {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.site-footer__mark .brand__logo,
+.site-footer__mark .brand__logo-img {
+  height: 40px;
+  width: auto;
+}
+
+.site-footer__legal {
+  margin: 0;
+  color: var(--color-text-muted);
+  font-size: 0.85rem;
+}
+
 .modal {
   position: fixed;
   inset: 0;
@@ -1388,6 +1421,11 @@ html[data-theme="dark"] .portfolio-tab.is-preview {
 
   .site-footer__inner {
     align-items: flex-start;
+  }
+
+  .site-footer__mark .brand__logo,
+  .site-footer__mark .brand__logo-img {
+    height: 36px;
   }
 
   .social-links {

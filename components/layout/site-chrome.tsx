@@ -153,7 +153,14 @@ export function SiteChrome({ children }: { children: ReactNode }) {
         transition={{ duration: 0.5 }}
       >
         <div className="container"><div className="site-footer__inner">
-          <div className="stack"><p className="brand__name">{brandName}</p><p className="site-footer__copy">{brandRole} | St. Louis, MO</p></div>
+          <div className="site-footer__brand">
+            <Link className="site-footer__brand-link" href="/" aria-label={`${brandName} home`}>
+              <span className="site-footer__mark"><Logo size={40} /></span>
+              <span className="brand__name">{brandName}</span>
+            </Link>
+            <p className="site-footer__copy">{brandRole} | St. Louis, MO</p>
+            <p className="site-footer__legal">© {new Date().getFullYear()} {brandName}. All rights reserved.</p>
+          </div>
           <div className="social-links"><a className="icon-link" href="https://ravindrassk.com">Website</a><a className="icon-link" href="mailto:ravindrassk1304@gmail.com">Email</a><a className="icon-link" href="https://github.com/RavindraSSK" target="_blank" rel="noopener noreferrer">GitHub</a><a className="icon-link" href="https://www.linkedin.com/in/ravindra-ssk-medicharla-45ba44123/" target="_blank" rel="noopener noreferrer">LinkedIn</a><a className="icon-link" href="https://www.researchgate.net/profile/Ravindra-Ssk-Medicharla" target="_blank" rel="noopener noreferrer">ResearchGate</a><a className="icon-link" href="https://www.instagram.com/ravindra_ssk_m_/" target="_blank" rel="noopener noreferrer">Instagram</a></div>
         </div></div>
       </motion.footer>
