@@ -12,23 +12,21 @@ type LogoProps = {
  * hydration mismatch, or flash during theme load.
  */
 export function Logo({ size = 52, className }: LogoProps) {
-  const width = Math.round(size * (250 / 256));
-
   return (
     <span className={className ? `brand__logo ${className}` : "brand__logo"}>
       <Image
         className="brand__logo-img brand__logo-img--light"
-        src="/branding/header-logo-light.png"
+        src="/branding/logo-light.png"
         alt=""
-        width={width}
+        width={size}
         height={size}
         priority
       />
       <Image
         className="brand__logo-img brand__logo-img--dark"
-        src="/branding/header-logo-dark.png"
+        src="/branding/logo-dark.png"
         alt=""
-        width={width}
+        width={size}
         height={size}
         priority
       />
