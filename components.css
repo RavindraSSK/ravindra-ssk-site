@@ -61,7 +61,17 @@
 
 .brand__logo {
   display: inline-flex;
+  align-items: center;
+  justify-content: center;
   height: 52px;
+}
+
+.brand__logo-img {
+  display: block;
+  height: 52px;
+  width: auto;
+  max-width: none;
+  object-fit: contain;
 }
 
 /* Theme-driven swap: no JS, no flash — html[data-theme] is set before paint. */
@@ -1363,6 +1373,7 @@ html[data-theme="dark"] .portfolio-tab.is-preview {
 
   .brand__mark,
   .brand__logo,
+  .brand__logo-img,
   .brand__mark img,
   .brand__mark-img,
   .brand__mark svg {

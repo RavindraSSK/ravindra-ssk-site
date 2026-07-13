@@ -85,7 +85,7 @@ function toPath(target) {
 
 function brandMarkHtml() {
   // Prefer site-root absolute path so Next and static hosting resolve the public asset.
-  return `<span class="brand__logo"><img class="brand__logo-img brand__logo-img--light" src="/branding/header-logo-light.png" alt="" height="52" decoding="async" /><img class="brand__logo-img brand__logo-img--dark" src="/branding/header-logo-dark.png" alt="" height="52" decoding="async" /></span>`;
+  return `<span class="brand__logo"><img class="brand__logo-img brand__logo-img--light" src="/branding/logo-light.png" alt="" height="52" decoding="async" /><img class="brand__logo-img brand__logo-img--dark" src="/branding/logo-dark.png" alt="" height="52" decoding="async" /></span>`;
 }
 
 function currentPage() {
