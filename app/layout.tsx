@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Analytics } from "@vercel/analytics/next";
 import Script from "next/script";
 import type { ReactNode } from "react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 import { SiteChrome } from "@/components/layout/site-chrome";
 import { pageMetadata } from "@/lib/content";
@@ -61,6 +62,7 @@ export default function RootLayout({ children }: Readonly<{ children: ReactNode 
       />
       <body>
         <SiteChrome>{children}</SiteChrome>
+        <SpeedInsights />
         <Analytics />
       </body>
     </html>
