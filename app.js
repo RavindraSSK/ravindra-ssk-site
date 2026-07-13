@@ -88,6 +88,10 @@ function brandMarkHtml() {
   return `<span class="brand__logo"><img class="brand__logo-img brand__logo-img--light" src="/branding/logo-light.png" alt="" height="52" decoding="async" /><img class="brand__logo-img brand__logo-img--dark" src="/branding/logo-dark.png" alt="" height="52" decoding="async" /></span>`;
 }
 
+function footerBrandMarkHtml() {
+  return `<span class="brand__logo"><img class="brand__logo-img brand__logo-img--light" src="/branding/logo-light.png" alt="" height="40" decoding="async" /><img class="brand__logo-img brand__logo-img--dark" src="/branding/logo-dark.png" alt="" height="40" decoding="async" /></span>`;
+}
+
 function currentPage() {
   return document.body.dataset.page || "";
 }
@@ -181,13 +185,18 @@ function renderChrome() {
   }
 
   if (footerMount) {
+    const year = new Date().getFullYear();
     footerMount.innerHTML = `
       <footer class="site-footer" role="contentinfo">
         <div class="container">
           <div class="site-footer__inner">
-            <div class="stack">
-              <p class="brand__name">${BRAND_NAME}</p>
+            <div class="site-footer__brand">
+              <a class="site-footer__brand-link" href="${toPath("index.html")}" aria-label="${BRAND_NAME} home">
+                <span class="site-footer__mark">${footerBrandMarkHtml()}</span>
+                <span class="brand__name">${BRAND_NAME}</span>
+              </a>
               <p class="site-footer__copy">${BRAND_ROLE} | St. Louis, MO</p>
+              <p class="site-footer__legal">© ${year} ${BRAND_NAME}. All rights reserved.</p>
             </div>
             <div class="social-links">
               <a class="icon-link" href="https://ravindrassk.com">Website</a>
