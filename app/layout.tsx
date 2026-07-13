@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Analytics } from "@vercel/analytics/next";
 import Script from "next/script";
 import type { ReactNode } from "react";
 
@@ -60,6 +61,7 @@ export default function RootLayout({ children }: Readonly<{ children: ReactNode 
       />
       <body>
         <SiteChrome>{children}</SiteChrome>
+        <Analytics />
       </body>
     </html>
   );
