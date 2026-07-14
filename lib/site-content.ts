@@ -7,6 +7,7 @@ const routeFiles = {
   home: "index.html",
   about: "about.html",
   portfolio: "portfolio.html",
+  "ssks-home-designs": "portfolio-ssks-home-designs.html",
   contact: "contact.html",
   explore: "explore.html",
   blog: path.join("explore", "blog.html"),
@@ -24,6 +25,7 @@ function normalizeLinks(html: string) {
   return html
     .replaceAll('href="index.html"', 'href="/"')
     .replaceAll('href="portfolio.html', 'href="/portfolio')
+    .replaceAll('href="portfolio-ssks-home-designs.html"', 'href="/portfolio/ssks-home-designs"')
     .replaceAll('href="about.html"', 'href="/about"')
     .replaceAll('href="contact.html"', 'href="/contact"')
     .replaceAll('href="explore.html"', 'href="/explore"')
