@@ -9,14 +9,16 @@ import { ArrowRight, ChevronDown, Menu, Moon, Sun, X } from "lucide-react";
 
 import { Logo, brandName, brandRole } from "@/components/brand/logo";
 import { SiteInteractions } from "@/components/site-interactions";
+import { email, resumePath } from "@/lib/recruiter-content";
 
 const portfolioLinks = [
-  ["Projects", "/portfolio#projects", "Research systems, products, and applied builds."],
-  ["Experience", "/portfolio#experience", "Timeline of roles, research, and internships."],
+  ["AI Projects", "/portfolio#projects", "MediTrust, Campus-Objects, SnapTune, and applied AI builds."],
+  ["MediTrust", "/portfolio/meditrust", "Explainable healthcare AI with Logistic Regression and SHAP."],
+  ["Campus-Objects", "/portfolio/campus-objects", "Object detection using LW-DETR and PyTorch."],
+  ["SnapTune", "/portfolio/snaptune", "Multimodal music recommendation project."],
+  ["Experience", "/portfolio#experience", "AI evaluation, GeoAI research, and analytics roles."],
   ["Education", "/portfolio#education", "Degrees, scholarships, and coursework."],
   ["Skills", "/portfolio#skills", "Tooling across machine learning, software, and data."],
-  ["Achievements", "/portfolio#achievements", "Awards, publications, and leadership."],
-  ["Certifications", "/portfolio#certifications", "Cloud, AI, and professional credentials."],
 ] as const;
 
 const exploreLinks = [
@@ -59,6 +61,7 @@ export function SiteChrome({ children }: { children: ReactNode }) {
   const [dropdown, setDropdown] = useState<string | null>(null);
   const [dark, setDark] = useState(false);
   const [themeReady, setThemeReady] = useState(false);
+  const resumeHref = resumePath ?? `mailto:${email}?subject=Resume%20request`;
 
   useEffect(() => {
     const isDark = document.documentElement.getAttribute("data-theme") === "dark";
@@ -130,14 +133,15 @@ export function SiteChrome({ children }: { children: ReactNode }) {
             <nav id="primary-navigation" className={`site-nav${mobileOpen ? " is-open" : ""}`} aria-label="Primary navigation">
               <ul className="nav-list list-reset">
                 <li className="nav-item"><Link className={`nav-link${pathname === "/" ? " is-active" : ""}`} href="/">Home</Link></li>
+                <li className="nav-item"><Link className={`nav-link${pathname === "/about" ? " is-active" : ""}`} href="/about">About</Link></li>
                 <Dropdown id="portfolio" title="Portfolio" links={portfolioLinks} open={dropdown === "portfolio"} setOpen={() => setDropdown(dropdown === "portfolio" ? null : "portfolio")} />
                 <Dropdown id="explore" title="Insights" links={exploreLinks} open={dropdown === "explore"} setOpen={() => setDropdown(dropdown === "explore" ? null : "explore")} />
-                <li className="nav-item"><Link className={`nav-link${pathname === "/about" ? " is-active" : ""}`} href="/about">About</Link></li>
+                <li className="nav-item"><a className="nav-link" href={resumeHref}>Resume</a></li>
                 <li className="nav-item"><Link className={`nav-link${pathname === "/contact" ? " is-active" : ""}`} href="/contact">Contact</Link></li>
               </ul>
               <div className="nav-utilities">
                 <button className="theme-toggle" type="button" aria-label={dark ? "Switch to light mode" : "Switch to dark mode"} aria-pressed={dark} data-mode={dark ? "dark" : "light"} onClick={() => setDark((value) => !value)}>{dark ? <Moon size={17} aria-hidden="true" /> : <Sun size={17} aria-hidden="true" />}</button>
-                <Link className="button button--nav" href="/contact">Say hello</Link>
+                <Link className="button button--nav" href="/portfolio#projects">AI projects</Link>
               </div>
             </nav>
           </div>
@@ -158,8 +162,8 @@ export function SiteChrome({ children }: { children: ReactNode }) {
               <span className="site-footer__mark"><Logo size={40} /></span>
               <span className="brand__name">{brandName}</span>
             </Link>
-            <p className="site-footer__copy">{brandRole} | St. Louis, MO</p>
-            <p className="site-footer__legal">© {new Date().getFullYear()} {brandName}. All rights reserved.</p>
+            <p className="site-footer__copy">{brandRole} | St. Louis, Missouri</p>
+            <p className="site-footer__legal">(c) {new Date().getFullYear()} {brandName}. All rights reserved.</p>
           </div>
           <div className="social-links"><a className="icon-link" href="https://ravindrassk.com">Website</a><a className="icon-link" href="mailto:ravindrassk1304@gmail.com">Email</a><a className="icon-link" href="https://github.com/RavindraSSK" target="_blank" rel="noopener noreferrer">GitHub</a><a className="icon-link" href="https://www.linkedin.com/in/ravindra-ssk-medicharla-45ba44123/" target="_blank" rel="noopener noreferrer">LinkedIn</a><a className="icon-link" href="https://www.researchgate.net/profile/Ravindra-Ssk-Medicharla" target="_blank" rel="noopener noreferrer">ResearchGate</a><a className="icon-link" href="https://www.instagram.com/ravindra_ssk_m_/" target="_blank" rel="noopener noreferrer">Instagram</a></div>
         </div></div>
