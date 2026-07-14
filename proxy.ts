@@ -3,7 +3,7 @@ import type { NextRequest } from "next/server";
 
 import { DEFAULT_SITE_URL, getSiteHostname, getSiteUrl, LEGACY_HOSTS } from "@/lib/site-url";
 
-export function middleware(request: NextRequest) {
+export function proxy(request: NextRequest) {
   const siteUrl = getSiteUrl();
   const primaryHost = getSiteHostname();
   const host = request.headers.get("host")?.split(":")[0] ?? "";
