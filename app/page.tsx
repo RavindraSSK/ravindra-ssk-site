@@ -5,6 +5,7 @@ import { ContactCTA, ExperienceCard, ProjectCard, SectionHeader, SkillGroup, Sta
 import {
   beyondAi,
   education,
+  educationHistory,
   experiences,
   fullName,
   heroTags,
@@ -149,6 +150,7 @@ export default function HomePage() {
             <div className="stack">
               <div className="quick-fact"><span className="quick-fact__label">Education</span><span className="quick-fact__value">{education.degree}, {education.school}</span></div>
               <div className="quick-fact"><span className="quick-fact__label">Timeline</span><span className="quick-fact__value">{education.dates} - {education.gpa}</span></div>
+              <div className="quick-fact"><span className="quick-fact__label">Foundation</span><span className="quick-fact__value">{educationHistory[1].degree}, {educationHistory[1].school}</span></div>
               <div className="quick-fact"><span className="quick-fact__label">Location</span><span className="quick-fact__value">{education.location}</span></div>
             </div>
           </article>

@@ -3,7 +3,7 @@ export const displayName = "Ravindra SSK";
 export const email = "ravindrassk1304@gmail.com";
 export const location = "St. Louis, Missouri, USA";
 
-export const resumePath: string | null = null;
+export const resumePath: string | null = "/resume/Ravindra_Resume_Final_june01.pdf";
 
 export const socialLinks = [
   { label: "GitHub", href: "https://github.com/RavindraSSK" },
@@ -33,7 +33,7 @@ export const profileCards = [
   {
     label: "Education",
     title: "Saint Louis University",
-    copy: "M.S. Artificial Intelligence - GPA 3.83 - Expected December 2026",
+    copy: "M.S. Artificial Intelligence - GPA 3.83 - AI coursework plus B.Tech foundation",
   },
   {
     label: "Location",
@@ -259,6 +259,61 @@ export const education = {
   gpa: "GPA: 3.83/4.0",
   location,
 };
+
+export const msCoursework = [
+  "Artificial Intelligence",
+  "Machine Learning",
+  "Deep Learning",
+  "Computer Vision",
+  "Natural Language Processing",
+  "Databases",
+  "Software Development",
+  "AI in Modern Software Development",
+  "Object-Oriented Programming & Data Structures",
+] as const;
+
+export const educationHistory = [
+  {
+    level: "Graduate",
+    degree: "M.S. in Artificial Intelligence",
+    school: "Saint Louis University",
+    location: "St. Louis, Missouri, USA",
+    dates: "January 2025 - December 2026",
+    result: "GPA: 3.83/4.0",
+    badge: "SLU",
+    notes: "Graduate coursework focused on AI systems, ML foundations, deep learning, computer vision, NLP, databases, and modern software development.",
+  },
+  {
+    level: "Undergraduate",
+    degree: "B.Tech in Civil Engineering",
+    school: "Vel Tech R&D Institute of Science & Tech",
+    location: "Chennai, India",
+    dates: "July 2016 - August 2020",
+    result: "GPA: 3.69/4.0",
+    badge: "VT",
+    notes: "Engineering foundation with research exposure in terrestrial laser scanning, spatial analytics, and infrastructure-focused problem solving.",
+  },
+  {
+    level: "Intermediate",
+    degree: "Intermediate - MPC",
+    school: "Sasi Junior College",
+    location: "Velivennu, India",
+    dates: "Passed 2016",
+    result: "967/1000",
+    badge: "MPC",
+    notes: "Mathematics, Physics, and Chemistry track.",
+  },
+  {
+    level: "Secondary School",
+    degree: "SSC",
+    school: "Sasi English Medium School",
+    location: "Velivennu, India",
+    dates: "Passed 2016",
+    result: "9.3/10",
+    badge: "SSC",
+    notes: "Secondary school academic foundation.",
+  },
+] as const;
 
 export const skillGroups = [
   {

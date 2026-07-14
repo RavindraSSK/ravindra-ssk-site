@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 import { ContactCTA, ExperienceCard, ProjectCard, SectionHeader, SkillGroup } from "@/components/recruiter/sections";
-import { education, experiences, projects, skillGroups } from "@/lib/recruiter-content";
+import { educationHistory, experiences, msCoursework, projects, skillGroups } from "@/lib/recruiter-content";
 
 export const metadata: Metadata = {
   title: "Portfolio",
@@ -39,12 +39,25 @@ export default function PortfolioPage() {
 
       <section className="section section--tight" id="education">
         <div className="container">
-          <SectionHeader eyebrow="Education" title="Graduate AI education" />
-          <article className="card card--glass animate-in" style={{ marginTop: "2rem" }}>
-            <div className="logo-badge logo-badge--slu">SLU</div>
-            <h3 className="edu-school">{education.school}</h3>
-            <p className="edu-degree">{education.degree}</p>
-            <p className="card-copy">{education.dates} - {education.location} - {education.gpa}</p>
+          <SectionHeader eyebrow="Education" title="Graduate AI education and academic foundation" />
+          <div className="detail-grid" style={{ marginTop: "2rem" }}>
+            {educationHistory.map((item) => (
+              <article className="card card--hover animate-in" key={`${item.level}-${item.school}`}>
+                <div className="logo-badge">{item.badge}</div>
+                <p className="quick-fact__label">{item.level}</p>
+                <h3 className="edu-school">{item.school}</h3>
+                <p className="edu-degree">{item.degree}</p>
+                <p className="card-copy">{item.dates} - {item.location}</p>
+                <p className="quick-fact__value">{item.result}</p>
+                <p className="card-copy">{item.notes}</p>
+              </article>
+            ))}
+          </div>
+          <article className="card card--glass animate-in" style={{ marginTop: "1.25rem" }}>
+            <span className="eyebrow">M.S. AI coursework</span>
+            <div className="meta-row" style={{ marginTop: "1rem" }}>
+              {msCoursework.map((course) => <span className="tag" key={course}>{course}</span>)}
+            </div>
           </article>
         </div>
       </section>

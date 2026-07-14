@@ -2,7 +2,7 @@ import Image from "next/image";
 import type { Metadata } from "next";
 
 import { ContactCTA, ExperienceCard, SectionHeader } from "@/components/recruiter/sections";
-import { education, experiences, fullName, socialLinks } from "@/lib/recruiter-content";
+import { education, educationHistory, experiences, fullName, msCoursework, socialLinks } from "@/lib/recruiter-content";
 
 export const metadata: Metadata = {
   title: "About",
@@ -50,6 +50,31 @@ export default function AboutPage() {
             <span className="eyebrow">Education</span>
             <p className="card-heading">{education.degree}</p>
             <p className="card-copy">{education.school} - {education.dates} - {education.gpa}</p>
+          </article>
+        </div>
+      </section>
+
+      <section className="section section--tight" id="education">
+        <div className="container">
+          <SectionHeader eyebrow="Education" title="Academic path from school to graduate AI" />
+          <div className="detail-grid" style={{ marginTop: "2rem" }}>
+            {educationHistory.map((item) => (
+              <article className="card card--hover animate-in" key={`${item.level}-${item.school}`}>
+                <div className="logo-badge">{item.badge}</div>
+                <p className="quick-fact__label">{item.level}</p>
+                <h2 className="card-heading">{item.degree}</h2>
+                <p className="quick-fact__value">{item.school}</p>
+                <p className="card-copy">{item.location} - {item.dates}</p>
+                <p className="card-copy">{item.result}</p>
+                <p className="card-copy">{item.notes}</p>
+              </article>
+            ))}
+          </div>
+          <article className="card card--glass animate-in" style={{ marginTop: "1.25rem" }}>
+            <span className="eyebrow">M.S. AI coursework</span>
+            <div className="meta-row" style={{ marginTop: "1rem" }}>
+              {msCoursework.map((course) => <span className="tag" key={course}>{course}</span>)}
+            </div>
           </article>
         </div>
       </section>
