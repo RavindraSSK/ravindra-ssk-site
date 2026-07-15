@@ -3,7 +3,7 @@ export const displayName = "Ravindra SSK";
 export const email = "ravindrassk1304@gmail.com";
 export const location = "St. Louis, Missouri, USA";
 
-export const resumePath: string | null = "/resume/Ravindra_SSK_Resume.pdf";
+export const resumePath: string | null = "/resume/Ravindra_Resume_Final_june01.pdf";
 
 export const socialLinks = [
   { label: "GitHub", href: "https://github.com/RavindraSSK" },

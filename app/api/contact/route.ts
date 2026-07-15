@@ -1,10 +1,6 @@
 import { NextResponse } from "next/server";
 
 const CONTACT_EMAIL = process.env.CONTACT_EMAIL ?? "ravindrassk1304@gmail.com";
-const RATE_LIMIT_WINDOW_MS = 10 * 60 * 1000;
-const RATE_LIMIT_MAX_POSTS = 5;
-
-const contactPostTimestamps = new Map<string, number[]>();
 
 type ContactPayload = {
   name?: string;
@@ -18,34 +14,7 @@ function isValidEmail(value: string) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
 }
 
-function getClientIp(request: Request) {
-  return request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || "unknown";
-}
-
-function isRateLimited(ip: string) {
-  const now = Date.now();
-  const cutoff = now - RATE_LIMIT_WINDOW_MS;
-  const recentTimestamps = (contactPostTimestamps.get(ip) ?? []).filter((timestamp) => timestamp > cutoff);
-
-  if (recentTimestamps.length >= RATE_LIMIT_MAX_POSTS) {
-    contactPostTimestamps.set(ip, recentTimestamps);
-    return true;
-  }
-
-  recentTimestamps.push(now);
-  contactPostTimestamps.set(ip, recentTimestamps);
-  return false;
-}
-
 export async function POST(request: Request) {
-  // Per-instance best-effort rate limiting is appropriate for this personal site.
-  if (isRateLimited(getClientIp(request))) {
-    return NextResponse.json(
-      { error: "Too many contact attempts. Please wait a few minutes and try again, or email directly." },
-      { status: 429 },
-    );
-  }
-
   let payload: ContactPayload;
 
   try {
