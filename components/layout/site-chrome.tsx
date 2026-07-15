@@ -17,10 +17,8 @@ const portfolioLinks = [
   ["Campus-Objects", "/portfolio/campus-objects", "Object detection using LW-DETR and PyTorch."],
   ["SnapTune", "/portfolio/snaptune", "Multimodal music recommendation project."],
   ["Experience", "/portfolio#experience", "AI evaluation, GeoAI research, and analytics roles."],
-  ["Experience Archive", "/portfolio#experience-archive", "Earlier internships and research foundations."],
   ["Education", "/portfolio#education", "Degrees, scholarships, and coursework."],
   ["Skills", "/portfolio#skills", "Tooling across machine learning, software, and data."],
-  ["Recognition", "/portfolio#publications", "Publications, awards, certifications, and leadership."],
 ] as const;
 
 const exploreLinks = [
