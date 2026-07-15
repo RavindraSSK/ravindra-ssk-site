@@ -1,8 +1,8 @@
 export const pageMetadata = {
   home: {
-    title: "Ravindra SSK | AI/ML Engineer & LLM Evaluation Specialist",
+    title: "Ravindra SSK | AI Researcher & Machine Learning Engineer",
     description:
-      "Ravindra SSK is an AI/ML engineer and M.S. Artificial Intelligence student at Saint Louis University with experience in LLM evaluation, computer vision, explainable AI, healthcare AI, and machine learning deployment.",
+      "Ravindra SSK is an ML/AI engineer and graduate researcher building end-to-end machine learning systems across computer vision, generative AI, healthcare AI, and applied AI.",
   },
   about: {
     title: "About",
@@ -15,8 +15,8 @@ export const pageMetadata = {
       "SSK AI Hub™ publications, career guides, research notes, photography, fitness, and music from Ravindra SSK.",
   },
   portfolio: {
-    title: "Portfolio",
-    description: "AI/ML projects, LLM evaluation experience, education, and technical skills from Ravindra SSK.",
+    title: "Portfolio & Credentials",
+    description: "Projects, experience, education, technical skills, achievements, and certifications from Ravindra SSK.",
   },
   contact: {
     title: "Contact",

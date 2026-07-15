@@ -55,44 +55,39 @@
 .brand__mark svg {
   display: block;
   height: 52px;
-  width: 52px;
+  width: auto;
   object-fit: contain;
 }
 
 .brand__logo {
-  position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   height: 52px;
-  width: 52px;
 }
 
 .brand__logo-img {
-  position: absolute;
-  inset: 0;
   display: block;
   height: 52px;
-  width: 52px;
+  width: auto;
   max-width: none;
   object-fit: contain;
-  transition: opacity 160ms ease;
 }
 
 /* Theme-driven swap: no JS, no flash — html[data-theme] is set before paint. */
 img.brand__logo-img--dark,
 .brand__mark img.brand__logo-img--dark {
-  opacity: 0;
+  display: none;
 }
 
 html[data-theme="dark"] img.brand__logo-img--light,
 html[data-theme="dark"] .brand__mark img.brand__logo-img--light {
-  opacity: 0;
+  display: none;
 }
 
 html[data-theme="dark"] img.brand__logo-img--dark,
 html[data-theme="dark"] .brand__mark img.brand__logo-img--dark {
-  opacity: 1;
+  display: block;
 }
 
 .brand__text {
@@ -1112,7 +1107,7 @@ html[data-theme="dark"] .brand__mark img.brand__logo-img--dark {
 .site-footer__mark .brand__logo,
 .site-footer__mark .brand__logo-img {
   height: 40px;
-  width: 40px;
+  width: auto;
 }
 
 .site-footer__legal {
@@ -1416,7 +1411,7 @@ html[data-theme="dark"] .portfolio-tab.is-preview {
   .brand__mark-img,
   .brand__mark svg {
     height: 46px;
-    width: 46px;
+    width: auto;
   }
 
   .brand__name {
@@ -1431,7 +1426,6 @@ html[data-theme="dark"] .portfolio-tab.is-preview {
   .site-footer__mark .brand__logo,
   .site-footer__mark .brand__logo-img {
     height: 36px;
-    width: 36px;
   }
 
   .social-links {
