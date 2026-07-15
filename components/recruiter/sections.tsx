@@ -81,7 +81,7 @@ export function ExperienceCard({ experience }: { experience: {
   dates: string;
   location: string;
   badge: string;
-  badgeClass: string;
+  badgeClass?: string;
   label?: string;
   bullets: readonly string[];
 } }) {
@@ -91,7 +91,7 @@ export function ExperienceCard({ experience }: { experience: {
       <div className="card timeline-content">
         <div className="timeline-meta">
           <div className="stack" style={{ gap: "0.35rem" }}>
-            <div className={`logo-badge ${experience.badgeClass}`}>{experience.badge}</div>
+            <div className={experience.badgeClass ? `logo-badge ${experience.badgeClass}` : "logo-badge"}>{experience.badge}</div>
             {experience.label ? <span className="meta-pill">{experience.label}</span> : null}
             <h3 className="timeline-role">{experience.role}</h3>
             <p className="timeline-org">{experience.org} - {experience.dates}</p>

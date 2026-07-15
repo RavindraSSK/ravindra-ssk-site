@@ -252,6 +252,44 @@ export const experiences = [
   },
 ] as const;
 
+export const additionalExperiences = [
+  {
+    org: "Excelerate",
+    role: "Data Visualization Associate - Project Lead Internship",
+    dates: "February 2025 - March 2025",
+    location: "Remote",
+    badge: "EX",
+    bullets: [
+      "Managed an end-to-end data pipeline for 5,000+ student engagement records.",
+      "Built interactive dashboards and KPI reporting in Google Data Studio for global stakeholders.",
+      "Translated analysis into actionable insights for data-driven decision making.",
+    ],
+  },
+  {
+    org: "Salesforce",
+    role: "Salesforce Administrator & Developer Internship",
+    dates: "August 2023 - October 2023",
+    location: "Remote",
+    badge: "SF",
+    bullets: [
+      "Automated CRM workflows using Salesforce Flow and Process Builder.",
+      "Customized data models, validation rules, access controls, and SOQL/SOSL-based reporting solutions.",
+    ],
+  },
+  {
+    org: "Indian Institute of Technology Bombay",
+    role: "Research Intern - Terrestrial Laser Scanning & Spatial Reconstruction",
+    dates: "June 2019 - August 2019",
+    location: "Mumbai, India",
+    badge: "IIT",
+    bullets: [
+      "Conducted research on terrestrial laser scanning and 3D point-cloud processing for spatial reconstruction.",
+      "Processed large-scale spatial datasets using registration, filtering, and feature extraction workflows.",
+      "Applied computer vision, spatial analytics, and geometric reconstruction concepts.",
+    ],
+  },
+] as const;
+
 export const education = {
   degree: "M.S. in Artificial Intelligence",
   school: "Saint Louis University",
@@ -332,6 +370,55 @@ export const skillGroups = [
     title: "GeoAI and data",
     skills: ["Rasterio", "GeoPandas", "OpenCV", "Satellite imagery", "Statistics", "R", "Minitab"],
   },
+] as const;
+
+export const publications = [
+  {
+    title: "BIM Usage in Construction Industry: Modal Integration and Clash Detection in Building Design",
+    meta: "Conference paper and poster",
+    detail: "ResearchGate DOI: 10.13140/RG.2.2.17527.24486",
+  },
+  {
+    title: "As-Built Mapping Using Terrestrial Laser Scanner (TLS)",
+    meta: "Published via Author Cafe and ResearchGate",
+    detail: "ResearchGate DOI: 10.13140/RG.2.2.19204.96645",
+  },
+  {
+    title: "TLS hardware and data-processing user manuals",
+    meta: "Technical documentation",
+    detail: "Developed manuals adopted as standard lab reference at IIT Bombay.",
+  },
+] as const;
+
+export const certifications = [
+  "AWS Certified Machine Learning Engineer - Associate",
+  "Microsoft Certified: Azure AI Engineer Associate (AI-102)",
+  "NVIDIA DLI - Introduction to Deploying RAG Pipelines at Scale",
+  "NVIDIA DLI - Fundamentals of Accelerated Computing with CUDA Python",
+  "IBM Data Science Professional Certificate",
+] as const;
+
+export const awards = [
+  {
+    title: "Quality Champ - Chegg India",
+    detail: "Recognized for outstanding accuracy and subject depth in Statistics & Probability.",
+  },
+  {
+    title: "IAS Summer Research Fellowship - IIT Bombay",
+    detail: "Selected by the Indian Academy of Sciences for research at IIT Bombay in 2019.",
+  },
+  {
+    title: "Vel Tech Mahatma Gandhi Scholarship",
+    detail: "Awarded for academic excellence; covered 75% of undergraduate tuition across the B.Tech program.",
+  },
+] as const;
+
+export const leadership = [
+  "Captained university handball team across inter-university tournaments, including All India University South Zone Handball Tournament.",
+  "Collegiate shot-put athlete with multiple first-place finishes.",
+  "Student Coordinator & Office Bearer - Indian Concrete Institute.",
+  "Volunteer - National Service Scheme.",
+  "Currently pursuing NASM Certified Personal Trainer certification.",
 ] as const;
 
 export const latestPublication = {

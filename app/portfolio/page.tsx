@@ -1,7 +1,18 @@
 import type { Metadata } from "next";
 
 import { ContactCTA, ExperienceCard, ProjectCard, SectionHeader, SkillGroup } from "@/components/recruiter/sections";
-import { educationHistory, experiences, msCoursework, projects, skillGroups } from "@/lib/recruiter-content";
+import {
+  additionalExperiences,
+  awards,
+  certifications,
+  educationHistory,
+  experiences,
+  leadership,
+  msCoursework,
+  projects,
+  publications,
+  skillGroups,
+} from "@/lib/recruiter-content";
 
 export const metadata: Metadata = {
   title: "Portfolio",
@@ -33,6 +44,19 @@ export default function PortfolioPage() {
           <SectionHeader eyebrow="Experience" title="Roles across AI evaluation, GeoAI research, and analytics" />
           <div className="timeline" style={{ marginTop: "2rem" }}>
             {experiences.map((experience) => <ExperienceCard experience={experience} key={experience.org} />)}
+          </div>
+        </div>
+      </section>
+
+      <section className="section section--tight" id="experience-archive">
+        <div className="container">
+          <SectionHeader
+            eyebrow="Experience archive"
+            title="Additional internships and research foundations"
+            copy="Earlier work is kept here so the main recruiter path stays focused while the broader background remains visible."
+          />
+          <div className="timeline" style={{ marginTop: "2rem" }}>
+            {additionalExperiences.map((experience) => <ExperienceCard experience={experience} key={experience.org} />)}
           </div>
         </div>
       </section>
@@ -73,10 +97,54 @@ export default function PortfolioPage() {
 
       <section className="section section--tight" id="certifications">
         <div className="container">
-          <article className="card animate-in">
-            <span className="eyebrow">Learning</span>
-            <h2 className="section-title">Continuous Technical Learning</h2>
+          <SectionHeader eyebrow="Learning" title="Certifications and continuous technical learning" />
+          <article className="card animate-in" style={{ marginTop: "2rem" }}>
             <p className="section-copy">Specialized training across cloud AI, deep learning, data science, machine learning, and responsible AI.</p>
+            <div className="meta-row" style={{ marginTop: "1rem" }}>
+              {certifications.map((certification) => <span className="tag" key={certification}>{certification}</span>)}
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section className="section section--tight" id="publications">
+        <div className="container">
+          <SectionHeader eyebrow="Publications & recognition" title="Research outputs, awards, and academic recognition" />
+          <div className="detail-grid" style={{ marginTop: "2rem" }}>
+            <article className="card card--glass animate-in">
+              <span className="eyebrow">Publications</span>
+              <div className="stack" style={{ marginTop: "1rem" }}>
+                {publications.map((publication) => (
+                  <div className="quick-fact" key={publication.title}>
+                    <span className="quick-fact__label">{publication.meta}</span>
+                    <span className="quick-fact__value">{publication.title}</span>
+                    <p className="card-copy">{publication.detail}</p>
+                  </div>
+                ))}
+              </div>
+            </article>
+            <article className="card card--glass animate-in">
+              <span className="eyebrow">Awards</span>
+              <div className="stack" style={{ marginTop: "1rem" }}>
+                {awards.map((award) => (
+                  <div className="quick-fact" key={award.title}>
+                    <span className="quick-fact__value">{award.title}</span>
+                    <p className="card-copy">{award.detail}</p>
+                  </div>
+                ))}
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section className="section section--tight" id="leadership">
+        <div className="container">
+          <SectionHeader eyebrow="Leadership & extracurriculars" title="Team leadership, athletics, and service" />
+          <article className="card animate-in" style={{ marginTop: "2rem" }}>
+            <ul className="bullet-list">
+              {leadership.map((item) => <li key={item}>{item}</li>)}
+            </ul>
           </article>
         </div>
       </section>
