@@ -39,7 +39,7 @@
 }
 
 .hero__lead .hero-title {
-  max-width: 13ch;
+  max-width: 18ch;
   text-wrap: balance;
 }
 
@@ -82,6 +82,7 @@
   z-index: -1;
   border-radius: 50%;
   filter: blur(2px);
+  animation: hero-orb-float 9s ease-in-out infinite;
 }
 
 .hero-orb--one {
@@ -100,6 +101,126 @@
   height: 8rem;
   background: linear-gradient(145deg, rgba(255, 255, 255, 0.9), rgba(154, 187, 245, 0.24));
   box-shadow: 0 20px 55px rgba(27, 45, 95, 0.1);
+  animation-delay: -3s;
+}
+
+.hero-orb--three {
+  top: 42%;
+  left: 48%;
+  width: 5.5rem;
+  height: 5.5rem;
+  opacity: 0.7;
+  background: radial-gradient(circle at 40% 35%, rgba(255, 255, 255, 0.85), rgba(93, 135, 217, 0.22) 55%, transparent 75%);
+  animation-delay: -5.5s;
+  animation-duration: 11s;
+}
+
+@keyframes hero-orb-float {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(0, -12px, 0) scale(1.04);
+  }
+}
+
+.availability-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: fit-content;
+  margin: 0.85rem 0 0;
+  padding: 0.45rem 0.85rem;
+  border: 1px solid rgba(15, 118, 110, 0.22);
+  border-radius: 999px;
+  background: rgba(20, 184, 166, 0.1);
+  color: #0f766e;
+  font-size: 0.84rem;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.availability-badge::before {
+  content: "";
+  width: 0.45rem;
+  height: 0.45rem;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: #14b8a6;
+  box-shadow: 0 0 0 4px rgba(20, 184, 166, 0.12);
+  animation: availability-pulse 2.4s ease-in-out infinite;
+}
+
+@keyframes availability-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 4px rgba(20, 184, 166, 0.12);
+  }
+  50% {
+    box-shadow: 0 0 0 7px rgba(20, 184, 166, 0.06);
+  }
+}
+
+.hero-role-line {
+  margin: 0.85rem 0 0;
+  min-height: 1.5rem;
+  color: var(--color-primary);
+  font-size: clamp(1rem, 1.6vw, 1.12rem);
+  font-weight: 750;
+  letter-spacing: -0.01em;
+}
+
+.hero-role-line [data-role-rotator] {
+  display: inline-block;
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 280ms ease, transform 280ms ease;
+}
+
+.hero-role-line [data-role-rotator].is-leaving {
+  opacity: 0;
+  transform: translateY(-6px);
+}
+
+.hero-role-line [data-role-rotator].is-entering {
+  opacity: 0;
+  transform: translateY(6px);
+}
+
+.hero-panel__bullets {
+  position: relative;
+  margin: 0.65rem 0 0;
+  padding-left: 1rem;
+  display: grid;
+  gap: 0.3rem;
+  color: inherit;
+  font-size: 0.86rem;
+  line-height: 1.45;
+  opacity: 0.92;
+}
+
+.hero-panel__grid > .card:first-child .hero-panel__bullets {
+  color: rgba(255, 255, 255, 0.86);
+}
+
+.project-grid--featured {
+  display: grid;
+  gap: 1.1rem;
+}
+
+.home-experience-grid {
+  display: grid;
+  gap: 1.1rem;
+}
+
+.home-explore-section--light {
+  opacity: 0.97;
+}
+
+.home-explore-section--light .home-explore-feature,
+.home-explore-section--light .home-interest-card {
+  box-shadow: 0 16px 40px rgba(27, 45, 95, 0.06);
 }
 
 .hero-panel {
@@ -273,6 +394,16 @@ html[data-theme="dark"] .hero-panel__stack span {
 html[data-theme="dark"] .hero-panel__value,
 html[data-theme="dark"] .hero-panel__topline {
   color: #e2e8f0;
+}
+
+html[data-theme="dark"] .availability-badge {
+  border-color: rgba(45, 212, 191, 0.28);
+  background: rgba(20, 184, 166, 0.14);
+  color: #5eead4;
+}
+
+html[data-theme="dark"] .hero-role-line {
+  color: #93b4f5;
 }
 
 .about-snippet {
@@ -472,6 +603,25 @@ html[data-theme="dark"] .home-interest-card {
   .home-projects-section .project-grid--three {
     grid-template-columns: 1.15fr 0.925fr 0.925fr;
     align-items: stretch;
+  }
+
+  .home-projects-section .project-grid--featured {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+  }
+
+  .home-projects-section .project-grid--featured > article:nth-child(1),
+  .home-projects-section .project-grid--featured > article:nth-child(2),
+  .home-projects-section .project-grid--featured > article:nth-child(3) {
+    grid-column: span 2;
+  }
+
+  .home-projects-section .project-grid--featured > article:nth-child(4),
+  .home-projects-section .project-grid--featured > article:nth-child(5) {
+    grid-column: span 3;
+  }
+
+  .home-experience-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .about-snippet {

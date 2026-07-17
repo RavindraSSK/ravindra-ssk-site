@@ -4,7 +4,7 @@ import { join } from "node:path";
 
 import { getSiteHostnameLabel } from "@/lib/site-url";
 
-export const alt = "Ravindra SSK | AI Researcher & Machine Learning Engineer";
+export const alt = "Ravindra SSK | ML & AI Engineer";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -39,7 +39,7 @@ export default async function OpenGraphImage() {
           <div style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
             <div style={{ fontSize: "34px", fontWeight: 800, letterSpacing: "-0.02em" }}>Ravindra SSK</div>
             <div style={{ fontSize: "22px", color: "#93B4F5" }}>
-              Researcher | Engineer | Creator
+              ML & AI Engineer
             </div>
           </div>
         </div>
@@ -53,10 +53,10 @@ export default async function OpenGraphImage() {
               letterSpacing: "-0.04em",
             }}
           >
-            Research, code, and a personal creative archive
+            I build and evaluate production ML & AI systems
           </div>
           <div style={{ fontSize: "28px", lineHeight: 1.45, color: "rgba(219, 234, 254, 0.92)" }}>
-            AI research, GeoAI, computer vision, writing, photography, fitness, and music.
+            LLM evaluation, computer vision, GeoAI, healthcare AI, and applied research.
           </div>
         </div>
 

@@ -5,7 +5,7 @@ export default function manifest(): MetadataRoute.Manifest {
     name: "Ravindra SSK",
     short_name: "Ravindra SSK",
     description:
-      "Ravindra is an ML/AI engineer and graduate researcher building end-to-end machine learning systems.",
+      "Ravindra SSK is an ML & AI Engineer building and evaluating production machine learning systems.",
     start_url: "/",
     display: "standalone",
     background_color: "#0A1023",
