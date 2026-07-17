@@ -22,6 +22,57 @@ export function SiteInteractions({ pathname }: { pathname: string }) {
       });
     });
 
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    // Hero role rotator
+    const roleEl = document.querySelector<HTMLElement>("[data-role-rotator]");
+    const roles = ["ML & AI Engineer", "LLM Evaluator", "Computer Vision Researcher", "Builder"];
+    let roleIndex = 0;
+    let roleTimer: number | undefined;
+    if (roleEl && !prefersReducedMotion) {
+      roleTimer = window.setInterval(() => {
+        roleEl.classList.add("is-leaving");
+        window.setTimeout(() => {
+          roleIndex = (roleIndex + 1) % roles.length;
+          roleEl.textContent = roles[roleIndex];
+          roleEl.classList.remove("is-leaving");
+          roleEl.classList.add("is-entering");
+          requestAnimationFrame(() => roleEl.classList.remove("is-entering"));
+        }, 280);
+      }, 2800);
+    }
+
+    // Stats count-up
+    const counters = Array.from(document.querySelectorAll<HTMLElement>("[data-count-up]"));
+    const countObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          const el = entry.target as HTMLElement;
+          countObserver.unobserve(el);
+          const target = Number(el.dataset.countValue ?? "0");
+          const decimals = Number(el.dataset.countDecimals ?? "0");
+          const suffix = el.dataset.countSuffix ?? "";
+          if (prefersReducedMotion || !Number.isFinite(target)) {
+            el.textContent = `${decimals > 0 ? target.toFixed(decimals) : String(target)}${suffix}`;
+            return;
+          }
+          const duration = 900;
+          const start = performance.now();
+          const tick = (now: number) => {
+            const t = Math.min((now - start) / duration, 1);
+            const eased = 1 - Math.pow(1 - t, 3);
+            const value = target * eased;
+            el.textContent = `${decimals > 0 ? value.toFixed(decimals) : String(Math.round(value))}${suffix}`;
+            if (t < 1) requestAnimationFrame(tick);
+          };
+          requestAnimationFrame(tick);
+        });
+      },
+      { threshold: 0.35 },
+    );
+    counters.forEach((el) => countObserver.observe(el));
+
     // Reading progress bar
     let progressEl = document.querySelector<HTMLElement>("[data-reading-progress]");
     if (!progressEl && document.querySelector(".blog-article--reading")) {
@@ -172,7 +223,7 @@ export function SiteInteractions({ pathname }: { pathname: string }) {
     const certs = Array.from(document.querySelectorAll<HTMLButtonElement>("[data-cert-card]"));
     const categoryFor = (title: string) => {
       if (/AWS|Azure/i.test(title)) return "cloud";
-      if (/RAG Agents|CUDA Python/i.test(title)) return "ai-ml";
+      if (/RAG Agents|CUDA Python|Anthropic|Claude/i.test(title)) return "ai-ml";
       if (/Remote Sensing|Fundamentals of GIS|BIM Applications|TU Delft/i.test(title)) return "gis";
       if (/Strength of Materials|Construction Management|BIM Foundations/i.test(title)) return "other";
       return "data-software";
@@ -269,6 +320,8 @@ export function SiteInteractions({ pathname }: { pathname: string }) {
 
     return () => {
       observer.disconnect();
+      countObserver.disconnect();
+      if (roleTimer) window.clearInterval(roleTimer);
       tocObserver?.disconnect();
       window.removeEventListener("scroll", onScrollProgress);
       window.removeEventListener("resize", onScrollProgress);

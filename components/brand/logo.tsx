@@ -35,4 +35,4 @@ export function Logo({ size = 52, className }: LogoProps) {
 }
 
 export const brandName = "Ravindra SSK";
-export const brandRole = "Researcher | Engineer | Creator";
+export const brandRole = "ML & AI Engineer";

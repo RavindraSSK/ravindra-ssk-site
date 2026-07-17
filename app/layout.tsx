@@ -4,16 +4,16 @@ import Script from "next/script";
 import type { ReactNode } from "react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 
+import { JsonLd } from "@/components/json-ld";
 import { SiteChrome } from "@/components/layout/site-chrome";
-import { pageMetadata } from "@/lib/content";
-import { getSiteUrl } from "@/lib/site-url";
+import { buildRootJsonLd, pageMetadata } from "@/lib/content";
+import { DEFAULT_SITE_URL } from "@/lib/site-url";
 
 import "./globals.css";
 
-const siteUrl = getSiteUrl();
-
 export const metadata: Metadata = {
-  metadataBase: new URL(siteUrl),
+  metadataBase: new URL(DEFAULT_SITE_URL),
+  alternates: { canonical: "/" },
   title: {
     default: pageMetadata.home.title,
     template: "%s | Ravindra SSK",
@@ -22,7 +22,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: siteUrl,
+    url: DEFAULT_SITE_URL,
     siteName: "Ravindra SSK",
     title: pageMetadata.home.title,
     description: pageMetadata.home.description,
@@ -61,6 +61,7 @@ export default function RootLayout({ children }: Readonly<{ children: ReactNode 
         }}
       />
       <body>
+        <JsonLd data={buildRootJsonLd()} />
         <SiteChrome>{children}</SiteChrome>
         <SpeedInsights />
         <Analytics />

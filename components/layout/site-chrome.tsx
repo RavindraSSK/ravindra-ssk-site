@@ -143,7 +143,14 @@ export function SiteChrome({ children }: { children: ReactNode }) {
           </div>
         </div>
       </motion.header>
-      {children}
+      <motion.div
+        key={pathname}
+        initial={{ opacity: 0, y: 8 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
+      >
+        {children}
+      </motion.div>
       <motion.footer
         className="site-footer"
         role="contentinfo"
