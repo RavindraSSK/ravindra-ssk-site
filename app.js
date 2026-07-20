@@ -729,3 +729,30 @@ document.addEventListener("DOMContentLoaded", () => {
   initArticleReadingChrome();
   initContactForm();
 });
+
+(function () {
+  const el = document.querySelector("[data-role-rotator]");
+  if (!el) return;
+
+  const roles = [
+    "ML & AI Engineer",
+    "Computer Vision Researcher",
+    "LLM Evaluation Specialist",
+    "GeoAI Builder",
+    "Applied ML Engineer",
+  ];
+
+  let i = 0;
+  setInterval(() => {
+    el.classList.add("is-leaving");          // fades out (your existing CSS)
+    setTimeout(() => {
+      i = (i + 1) % roles.length;
+      el.textContent = roles[i];
+      el.classList.remove("is-leaving");
+      el.classList.add("is-entering");       // enters from below
+      requestAnimationFrame(() =>
+        requestAnimationFrame(() => el.classList.remove("is-entering"))
+      );
+    }, 290);                                  // matches your 280ms transition
+  }, 2600);
+})();
