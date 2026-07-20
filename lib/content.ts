@@ -123,7 +123,7 @@ export const fitnessArticles = [
     slug: "handball-my-favorite-sport",
     title: "Handball — My Favorite Sport",
     description:
-      "Why handball is my favorite game — speed, teamwork, what the sport taught me, and a creative AI video project in progress.",
+      "The complete handball page — rules, the court, why the game matters, my journey, and match-day motion.",
     datePublished: "2026-06-01",
   },
   {
