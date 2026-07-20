@@ -1091,6 +1091,10 @@ html[data-theme="dark"] .blog-entry-card--visual .blog-entry-card__content {
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.48);
 }
 
+.article-media-figure__frame picture {
+  display: block;
+}
+
 .article-media-figure__frame img {
   display: block;
   width: 100%;
