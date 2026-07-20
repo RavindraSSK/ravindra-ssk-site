@@ -187,7 +187,27 @@
   opacity: 0;
   transform: translateY(6px);
 }
+.hero-caret {
+  display: inline-block;
+  width: 2px;
+  height: 1.05em;
+  margin-left: 3px;
+  vertical-align: -0.12em;
+  background: currentColor;
+  animation: caret-blink 1.05s step-end infinite;
+}
 
+@keyframes caret-blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-caret {
+    animation: none;
+  }
+}
 .hero-panel__bullets {
   position: relative;
   margin: 0.65rem 0 0;
