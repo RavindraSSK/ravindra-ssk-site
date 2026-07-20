@@ -1,10 +1,71 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" fill="none" role="img" aria-label="Handball court diagram">
-  <rect width="800" height="500" rx="24" fill="#EEF4FF"/>
-  <rect x="40" y="40" width="720" height="420" rx="8" stroke="#1B2D5F" stroke-width="4" fill="#F8FAFF"/>
-  <line x1="400" y1="40" x2="400" y2="460" stroke="#1B2D5F" stroke-width="3" stroke-dasharray="12 8"/>
-  <path d="M40 190h80v120H40zM680 190h80v120h-80z" fill="rgba(59,130,246,0.12)" stroke="#3B82F6" stroke-width="3"/>
-  <path d="M120 190h40v120h-40zM640 190h40v120h-40z" stroke="#1B2D5F" stroke-width="2"/>
-  <circle cx="400" cy="250" r="48" stroke="#93B4F5" stroke-width="3" fill="rgba(147,180,245,0.15)"/>
-  <circle cx="400" cy="250" r="8" fill="#3B82F6"/>
-  <text x="400" y="32" text-anchor="middle" fill="#1B2D5F" font-family="system-ui,sans-serif" font-size="18" font-weight="700">40m × 20m court</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 560" fill="none" role="img" aria-label="Animated handball court diagram showing the 6-meter zone, 9-meter line, 7-meter mark, and a fast break in motion">
+  <style>
+    .hc-ball {
+      offset-path: path('M150,430 C280,380 360,320 430,300 S 620,240 700,250 S 770,270 790,280');
+      offset-rotate: 0deg;
+      animation: hc-ball-run 6s cubic-bezier(0.45, 0, 0.55, 1) infinite alternate;
+    }
+    .hc-player-a {
+      offset-path: path('M130,410 C260,400 340,360 460,330 S 610,300 690,300');
+      animation: hc-player-run 6s cubic-bezier(0.45, 0, 0.55, 1) infinite alternate;
+      animation-delay: 0.12s;
+    }
+    .hc-player-b {
+      offset-path: path('M170,470 C300,450 400,380 500,340 S 650,300 720,310');
+      animation: hc-player-run 6s cubic-bezier(0.45, 0, 0.55, 1) infinite alternate;
+      animation-delay: 0.3s;
+    }
+    @keyframes hc-ball-run {
+      from { offset-distance: 0%; }
+      to { offset-distance: 100%; }
+    }
+    @keyframes hc-player-run {
+      from { offset-distance: 0%; }
+      to { offset-distance: 100%; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .hc-ball, .hc-player-a, .hc-player-b {
+        animation: none;
+        offset-distance: 30%;
+      }
+    }
+  </style>
+
+  <rect width="900" height="560" rx="26" fill="#EEF4FF"/>
+  <rect x="60" y="60" width="780" height="440" rx="10" stroke="#1B2D5F" stroke-width="4" fill="#F8FAFF"/>
+  <line x1="450" y1="60" x2="450" y2="500" stroke="#1B2D5F" stroke-width="3" stroke-dasharray="12 8"/>
+  <circle cx="450" cy="280" r="46" stroke="#93B4F5" stroke-width="3" fill="rgba(147,180,245,0.14)"/>
+  <circle cx="450" cy="280" r="7" fill="#3B82F6"/>
+
+  <!-- 9m free-throw arcs (dashed) -->
+  <path d="M60,140 A165,165 0 0,1 225,280 A165,165 0 0,1 60,420" fill="none" stroke="#1B2D5F" stroke-width="2" stroke-dasharray="10 8" opacity="0.65"/>
+  <path d="M840,140 A165,165 0 0,0 675,280 A165,165 0 0,0 840,420" fill="none" stroke="#1B2D5F" stroke-width="2" stroke-dasharray="10 8" opacity="0.65"/>
+
+  <!-- 6m goal area (filled) -->
+  <path d="M60,210 A110,110 0 0,1 170,280 A110,110 0 0,1 60,350 Z" fill="rgba(59,130,246,0.14)" stroke="#3B82F6" stroke-width="3"/>
+  <path d="M840,210 A110,110 0 0,0 730,280 A110,110 0 0,0 840,350 Z" fill="rgba(59,130,246,0.14)" stroke="#3B82F6" stroke-width="3"/>
+
+  <!-- 7m penalty marks -->
+  <line x1="188" y1="270" x2="188" y2="290" stroke="#1B2D5F" stroke-width="5" stroke-linecap="round"/>
+  <line x1="712" y1="270" x2="712" y2="290" stroke="#1B2D5F" stroke-width="5" stroke-linecap="round"/>
+
+  <!-- Goals -->
+  <rect x="38" y="255" width="22" height="50" rx="3" fill="none" stroke="#1B2D5F" stroke-width="3"/>
+  <rect x="840" y="255" width="22" height="50" rx="3" fill="none" stroke="#1B2D5F" stroke-width="3"/>
+
+  <!-- Substitution zone marks -->
+  <line x1="400" y1="60" x2="400" y2="44" stroke="#1B2D5F" stroke-width="3"/>
+  <line x1="500" y1="60" x2="500" y2="44" stroke="#1B2D5F" stroke-width="3"/>
+
+  <!-- Motion: fast break -->
+  <circle class="hc-player-a" r="13" fill="#1B2D5F" opacity="0.82"/>
+  <circle class="hc-player-b" r="13" fill="#1B2D5F" opacity="0.55"/>
+  <circle class="hc-ball" r="8" fill="#F97316"/>
+
+  <!-- Labels -->
+  <text x="450" y="34" text-anchor="middle" fill="#1B2D5F" font-family="system-ui,sans-serif" font-size="19" font-weight="700">40m × 20m court</text>
+  <text x="188" y="315" text-anchor="middle" fill="#1B2D5F" font-family="system-ui,sans-serif" font-size="14" font-weight="700">6m</text>
+  <text x="245" y="150" text-anchor="middle" fill="#1B2D5F" font-family="system-ui,sans-serif" font-size="14" font-weight="700" opacity="0.75">9m</text>
+  <text x="188" y="258" text-anchor="middle" fill="#1B2D5F" font-family="system-ui,sans-serif" font-size="13" font-weight="700">7m</text>
+  <text x="450" y="524" text-anchor="middle" fill="#52627A" font-family="system-ui,sans-serif" font-size="13" font-weight="700">Substitution zone</text>
 </svg>
