@@ -729,7 +729,6 @@ document.addEventListener("DOMContentLoaded", () => {
   initArticleReadingChrome();
   initContactForm();
 });
-
 (function () {
   const el = document.querySelector("[data-role-rotator]");
   if (!el) return;
@@ -742,17 +741,38 @@ document.addEventListener("DOMContentLoaded", () => {
     "Applied ML Engineer",
   ];
 
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+  const TYPE_MS = 72;
+  const DELETE_MS = 38;
+  const HOLD_MS = 1700;
+
   let i = 0;
-  setInterval(() => {
-    el.classList.add("is-leaving");          // fades out (your existing CSS)
-    setTimeout(() => {
-      i = (i + 1) % roles.length;
-      el.textContent = roles[i];
-      el.classList.remove("is-leaving");
-      el.classList.add("is-entering");       // enters from below
-      requestAnimationFrame(() =>
-        requestAnimationFrame(() => el.classList.remove("is-entering"))
-      );
-    }, 290);                                  // matches your 280ms transition
-  }, 2600);
+  let chars = roles[0].length;
+  let deleting = false;
+
+  function tick() {
+    const word = roles[i];
+
+    if (!deleting) {
+      chars += 1;
+      el.textContent = word.slice(0, chars);
+      if (chars === word.length) {
+        deleting = true;
+        setTimeout(tick, HOLD_MS);
+        return;
+      }
+      setTimeout(tick, TYPE_MS);
+    } else {
+      chars -= 1;
+      el.textContent = word.slice(0, chars);
+      if (chars === 0) {
+        deleting = false;
+        i = (i + 1) % roles.length;
+      }
+      setTimeout(tick, DELETE_MS);
+    }
+  }
+
+  setTimeout(tick, HOLD_MS);
 })();
