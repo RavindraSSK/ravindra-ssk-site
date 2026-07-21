@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Handball — My Favorite Sport | Ravindra SSK</title>
-    <meta name="description" content="The complete handball page — rules, the court, why the game matters, my journey, and match-day motion.">
+    <meta name="description" content="The complete handball page — rules, the court, why the game matters, my journey, and handball in motion.">
     <link rel="preconnect" href="https://api.fontshare.com">
     <link href="https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@400,500,700,800,900&f[]=satoshi@400,500,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../tokens.css">
@@ -20,9 +20,17 @@
 
       <section class="sport-hero">
         <div class="sport-hero__media">
-          <video class="sport-hero__video" autoplay muted loop playsinline preload="metadata" poster="/images/handball/handball-jump-shot.webp">
-            <source src="/videos/handball-hero.mp4" type="video/mp4">
-          </video>
+          <picture>
+            <source srcset="/images/handball/handball-jump-shot.webp" type="image/webp">
+            <img
+              class="sport-hero__media-img"
+              src="/images/handball/handball-jump-shot.jpg"
+              alt=""
+              style="object-position: 38% 22%;"
+              fetchpriority="high"
+              decoding="async"
+            >
+          </picture>
           <div class="sport-hero__overlay"></div>
         </div>
         <div class="container sport-hero__content">
@@ -92,7 +100,8 @@
             <span class="eyebrow">Rules</span>
             <h2 class="section-title">The rules that shape every possession</h2>
             <p class="section-copy">
-              Eight fundamentals decide how a possession unfolds — from who can stand where, to how fouls escalate.
+              Six fundamentals decide how a possession unfolds — from who can stand where, to how fouls escalate.
+              Card and suspension details are in the expandable summary below.
             </p>
           </div>
 
@@ -101,35 +110,27 @@
               <span class="sport-rule-card__icon" aria-hidden="true">
                 <svg viewBox="0 0 24 24" fill="none" width="24" height="24"><circle cx="8" cy="8" r="3" stroke="currentColor" stroke-width="1.6"/><circle cx="16" cy="8" r="3" stroke="currentColor" stroke-width="1.6"/><path d="M3 20c0-3 2.5-5 5-5s5 2 5 5M11 20c0-3 2.5-5 5-5s5 2 5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
               </span>
-              <h3 class="sport-rule-card__title">Players &amp; substitutions</h3>
+              <h3 class="sport-rule-card__title">Players</h3>
               <p class="sport-rule-card__copy">Six court players plus one goalkeeper per side, with unlimited rolling substitutions during play.</p>
             </article>
 
-            <article class="card sport-rule-card animate-in" style="--delay: 40ms;">
+            <article class="card sport-rule-card animate-in" style="--delay: 60ms;">
               <span class="sport-rule-card__icon" aria-hidden="true">
                 <svg viewBox="0 0 24 24" fill="none" width="24" height="24"><path d="M4 4v16h4a12 12 0 0 0 0-16H4Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M4 4v16" stroke="currentColor" stroke-width="1.6"/></svg>
               </span>
-              <h3 class="sport-rule-card__title">The 6-meter zone</h3>
+              <h3 class="sport-rule-card__title">6-meter area</h3>
               <p class="sport-rule-card__copy">Only the goalkeeper may stand inside the zone — attackers can jump in and release a shot before landing.</p>
-            </article>
-
-            <article class="card sport-rule-card animate-in" style="--delay: 80ms;">
-              <span class="sport-rule-card__icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" width="24" height="24"><circle cx="5" cy="11.5" r="2.4" stroke="currentColor" stroke-width="1.4"/><circle cx="12" cy="6.5" r="2.4" stroke="currentColor" stroke-width="1.4"/><circle cx="19" cy="11.5" r="2.4" stroke="currentColor" stroke-width="1.4"/></svg>
-              </span>
-              <h3 class="sport-rule-card__title">Three steps</h3>
-              <p class="sport-rule-card__copy">A player may take a maximum of three steps while holding the ball before passing, shooting, or dribbling.</p>
             </article>
 
             <article class="card sport-rule-card animate-in" style="--delay: 120ms;">
               <span class="sport-rule-card__icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" width="24" height="24"><circle cx="12" cy="13" r="8" stroke="currentColor" stroke-width="1.6"/><path d="M12 13V9M9 2h6M12 2v3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+                <svg viewBox="0 0 24 24" fill="none" width="24" height="24"><circle cx="5" cy="11.5" r="2.4" stroke="currentColor" stroke-width="1.4"/><circle cx="12" cy="6.5" r="2.4" stroke="currentColor" stroke-width="1.4"/><circle cx="19" cy="11.5" r="2.4" stroke="currentColor" stroke-width="1.4"/></svg>
               </span>
-              <h3 class="sport-rule-card__title">Three seconds</h3>
-              <p class="sport-rule-card__copy">The ball can be held for a maximum of three seconds before it must be passed, shot, or dribbled.</p>
+              <h3 class="sport-rule-card__title">Three steps and three seconds</h3>
+              <p class="sport-rule-card__copy">A player may take a maximum of three steps and hold the ball for three seconds before passing, shooting, or dribbling.</p>
             </article>
 
-            <article class="card sport-rule-card animate-in" style="--delay: 160ms;">
+            <article class="card sport-rule-card animate-in" style="--delay: 180ms;">
               <span class="sport-rule-card__icon" aria-hidden="true">
                 <svg viewBox="0 0 24 24" fill="none" width="24" height="24"><circle cx="8" cy="6" r="3" stroke="currentColor" stroke-width="1.6"/><path d="M8 9v6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path d="M12 15c2 0 4-1.5 4-4M12 21c3 0 6-2 6-6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" opacity="0.65"/></svg>
               </span>
@@ -137,23 +138,15 @@
               <p class="sport-rule-card__copy">Dribbling is unlimited, but once the ball is caught with both hands, it cannot be dribbled again.</p>
             </article>
 
-            <article class="card sport-rule-card animate-in" style="--delay: 200ms;">
+            <article class="card sport-rule-card animate-in" style="--delay: 240ms;">
               <span class="sport-rule-card__icon" aria-hidden="true">
                 <svg viewBox="0 0 24 24" fill="none" width="24" height="24"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
               </span>
-              <h3 class="sport-rule-card__title">Contact &amp; fouls</h3>
+              <h3 class="sport-rule-card__title">Contact and penalties</h3>
               <p class="sport-rule-card__copy">Frontal body contact is legal. Pushing, hitting, or holding draws a free throw — or a 7-meter penalty inside the zone.</p>
             </article>
 
-            <article class="card sport-rule-card animate-in" style="--delay: 240ms;">
-              <span class="sport-rule-card__icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" width="24" height="24"><rect x="5" y="3" width="10" height="15" rx="1.5" transform="rotate(-8 5 3)" stroke="currentColor" stroke-width="1.6"/></svg>
-              </span>
-              <h3 class="sport-rule-card__title">Cards &amp; suspensions</h3>
-              <p class="sport-rule-card__copy">Referees escalate from a yellow warning to a 2-minute suspension, up to a red card and disqualification.</p>
-            </article>
-
-            <article class="card sport-rule-card animate-in" style="--delay: 280ms;">
+            <article class="card sport-rule-card animate-in" style="--delay: 300ms;">
               <span class="sport-rule-card__icon" aria-hidden="true">
                 <svg viewBox="0 0 24 24" fill="none" width="24" height="24"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="5" stroke="currentColor" stroke-width="1.4"/><circle cx="12" cy="12" r="1.4" fill="currentColor"/></svg>
               </span>
@@ -205,15 +198,18 @@
           </div>
 
           <figure class="sport-court-diagram animate-in" style="--delay: 60ms;">
-            <img
-              src="/images/handball/handball-court.svg"
-              alt="Animated diagram of a handball court showing the 6-meter zone, 9-meter free-throw line, 7-meter penalty mark, goals, substitution zone, and a fast break in motion"
-              width="900"
-              height="560"
-              loading="lazy"
-              decoding="async"
-            >
-            <figcaption>A live look at the 6m zone, 9m line, and 7m mark — with a fast break running on loop.</figcaption>
+            <picture>
+              <source srcset="/images/handball/handball-court.svg" type="image/svg+xml">
+              <img
+                src="/images/handball/handball-court-diagram.png"
+                alt="Diagram of a handball court showing the 6-meter zone, 9-meter free-throw line, 7-meter penalty mark, goals, and substitution zone"
+                width="900"
+                height="560"
+                loading="lazy"
+                decoding="async"
+              >
+            </picture>
+            <figcaption>A look at the 6m zone, 9m line, and 7m mark — with a fast break running on loop.</figcaption>
           </figure>
 
           <div class="sport-court-tactics">
@@ -310,9 +306,12 @@
             <span class="eyebrow">My Journey</span>
             <h2 class="section-title">Why handball is my favorite game</h2>
             <p class="section-copy">
-              Handball rewards players who think one step ahead. You read the defense, commit to a lane, and trust
-              that a teammate will be in the right place when the pass leaves your hand. There is little time to
-              hesitate — which made it the perfect sport for me growing up at Vel Tech.
+              I played handball wearing jersey number 13, and it's stayed one of the clearest influences on how I
+              approach discipline and long-term work. Handball rewards players who think one step ahead — you read
+              the defense, commit to a lane, and trust that a teammate will be in the right place when the pass
+              leaves your hand. That is real, personal history from growing up around the sport at Vel Tech. The
+              images alongside this story, though, are AI-assisted visualizations created to capture that feeling —
+              not documentary match photography.
             </p>
           </div>
 
@@ -323,11 +322,12 @@
                   <source srcset="/images/handball/handball-defense.webp" type="image/webp">
                   <img
                     src="/images/handball/handball-defense.jpg"
-                    alt="Ravindra SSK wearing jersey number 13 defending against an attacking player during a Vel Tech handball match"
+                    alt="AI-assisted visualization of a defender in jersey number 13 guarding an attacking player"
                     width="1400"
                     height="1050"
                     loading="lazy"
                     decoding="async"
+                    style="object-position: 42% 38%;"
                   >
                 </picture>
               </div>
@@ -335,9 +335,9 @@
                 <span class="sport-journey-row__eyebrow">Physical honesty</span>
                 <h3 class="sport-journey-row__title">Defense at #13</h3>
                 <p class="sport-journey-row__copy">
-                  Contact is part of the game, but discipline and respect keep it competitive, not reckless. Wing,
-                  back, pivot, goalkeeper — every position has a distinct job in the system, and defense is where
-                  team trust gets tested first.
+                  I wore jersey number 13, and defense is where I learned the game's real lesson: it only works if
+                  you communicate and trust the player next to you. Contact is part of handball, but discipline and
+                  respect keep it competitive, not reckless — and defense is where that team trust gets tested first.
                 </p>
               </div>
             </article>
@@ -348,20 +348,21 @@
                   <source srcset="/images/handball/handball-vs-india.webp" type="image/webp">
                   <img
                     src="/images/handball/handball-vs-india.jpg"
-                    alt="Attacker in white jumping to shoot against India national team defenders and goalkeeper number 16"
+                    alt="AI-assisted visualization of an attacker jumping to shoot past a defensive wall and goalkeeper"
                     width="1400"
                     height="1121"
                     loading="lazy"
                     decoding="async"
+                    style="object-position: 50% 25%;"
                   >
                 </picture>
               </div>
               <div class="sport-journey-row__text">
                 <span class="sport-journey-row__eyebrow">Team over highlight</span>
-                <h3 class="sport-journey-row__title">High-stakes moments</h3>
+                <h3 class="sport-journey-row__title">Reading the defense</h3>
                 <p class="sport-journey-row__copy">
                   The best attacks are built from screens, movement, and unselfish passing — not individual highlight
-                  plays. Facing a stacked defensive wall is where that lesson lands hardest.
+                  plays. Facing a set defensive wall is where that lesson lands hardest.
                 </p>
               </div>
             </article>
@@ -372,11 +373,12 @@
                   <source srcset="/images/handball/handball-aerial.webp" type="image/webp">
                   <img
                     src="/images/handball/handball-aerial.jpg"
-                    alt="Ravindra SSK in a Vel Tech jersey leaping above defenders with the ball cocked to throw"
+                    alt="AI-assisted visualization of a player in a Vel Tech-style jersey leaping above defenders with the ball cocked to throw"
                     width="1122"
                     height="1402"
                     loading="lazy"
                     decoding="async"
+                    style="object-position: 50% 12%;"
                   >
                 </picture>
               </div>
@@ -384,9 +386,10 @@
                 <span class="sport-journey-row__eyebrow">Speed with purpose</span>
                 <h3 class="sport-journey-row__title">Commit to the shot</h3>
                 <p class="sport-journey-row__copy">
-                  Every possession has urgency; standing still is not an option. The lessons transferred far beyond
-                  sport — communicate early, adapt when the first plan breaks, and stay composed when the clock is
-                  running down. I wrote more about that mindset in
+                  Every jump shot required real commitment — once you leave your feet there's no changing your mind,
+                  only trusting the choice you already made in the air. That same commitment and confidence carried
+                  into how I approach long-term work: communicate early, adapt when the first plan breaks, and stay
+                  composed when the clock is running down. I wrote more about that mindset in
                   <a href="/explore/sport-consistency-mindset">Sport &amp; Consistency</a>.
                 </p>
               </div>
@@ -399,81 +402,69 @@
         <div class="container">
           <div class="sport-section__head animate-in" style="--delay: 0ms;">
             <span class="eyebrow">Gallery</span>
-            <h2 class="section-title">Match-day motion</h2>
+            <h2 class="section-title">Handball in Motion</h2>
             <p class="section-copy">
               Handball is not as visible in the U.S. as basketball or soccer, but it builds athleticism, spatial
               awareness, and social connection unlike almost any other indoor sport.
             </p>
+            <p class="section-copy sport-gallery-disclosure">
+              Creative AI-assisted sports visualizations inspired by my handball experience and Vel Tech team
+              identity.
+            </p>
           </div>
 
           <div class="sport-gallery-grid">
-            <a class="sport-gallery-item animate-in" href="#gallery" style="--delay: 0ms;" aria-label="Jump shot under arena lights">
+            <figure class="sport-gallery-item animate-in" style="--delay: 0ms;">
               <div class="sport-gallery-item__frame">
                 <picture>
                   <source srcset="/images/handball/handball-jump-shot.webp" type="image/webp">
-                  <img src="/images/handball/handball-jump-shot.jpg" alt="Ravindra SSK in a Vel Tech jersey mid-air, preparing a jump shot toward goal" width="1086" height="1448" loading="lazy" decoding="async">
+                  <img src="/images/handball/handball-jump-shot.jpg" alt="AI-assisted visualization of a jump shot toward goal" width="1086" height="1448" loading="lazy" decoding="async" style="object-position: 50% 20%;">
                 </picture>
               </div>
-              <span class="sport-gallery-item__caption">Jump shot under arena lights</span>
-            </a>
-            <a class="sport-gallery-item animate-in" href="#gallery" style="--delay: 60ms;" aria-label="Defense on the blue court">
+              <figcaption class="sport-gallery-item__caption">AI-assisted visualization of a jump shot</figcaption>
+            </figure>
+            <figure class="sport-gallery-item animate-in" style="--delay: 60ms;">
               <div class="sport-gallery-item__frame">
                 <picture>
                   <source srcset="/images/handball/handball-defense.webp" type="image/webp">
-                  <img src="/images/handball/handball-defense.jpg" alt="Ravindra SSK wearing jersey number 13 defending an attacker" width="1448" height="1086" loading="lazy" decoding="async">
+                  <img src="/images/handball/handball-defense.jpg" alt="AI-assisted visualization of a defender in jersey number 13 guarding an attacker" width="1448" height="1086" loading="lazy" decoding="async" style="object-position: 40% 45%;">
                 </picture>
               </div>
-              <span class="sport-gallery-item__caption">Defense on the blue court</span>
-            </a>
-            <a class="sport-gallery-item animate-in" href="#gallery" style="--delay: 120ms;" aria-label="High-stakes moment against India">
+              <figcaption class="sport-gallery-item__caption">Defensive movement study</figcaption>
+            </figure>
+            <figure class="sport-gallery-item animate-in" style="--delay: 120ms;">
               <div class="sport-gallery-item__frame">
                 <picture>
                   <source srcset="/images/handball/handball-vs-india.webp" type="image/webp">
-                  <img src="/images/handball/handball-vs-india.jpg" alt="Attacker in white shooting against India national team defenders" width="1402" height="1122" loading="lazy" decoding="async">
+                  <img src="/images/handball/handball-vs-india.jpg" alt="AI-assisted visualization of a fast break shot past a defensive wall" width="1402" height="1122" loading="lazy" decoding="async" style="object-position: 50% 30%;">
                 </picture>
               </div>
-              <span class="sport-gallery-item__caption">Against India — shot, wall, keeper</span>
-            </a>
-            <a class="sport-gallery-item animate-in" href="#gallery" style="--delay: 180ms;" aria-label="Above the defense, committing to the shot">
+              <figcaption class="sport-gallery-item__caption">Fast-break action concept</figcaption>
+            </figure>
+            <figure class="sport-gallery-item animate-in" style="--delay: 180ms;">
               <div class="sport-gallery-item__frame">
                 <picture>
                   <source srcset="/images/handball/handball-aerial.webp" type="image/webp">
-                  <img src="/images/handball/handball-aerial.jpg" alt="Ravindra SSK leaping above defenders with the ball cocked to throw" width="1122" height="1402" loading="lazy" decoding="async">
+                  <img src="/images/handball/handball-aerial.jpg" alt="AI-assisted visualization of a player leaping above defenders with the ball cocked to throw" width="1122" height="1402" loading="lazy" decoding="async" style="object-position: 50% 15%;">
                 </picture>
               </div>
-              <span class="sport-gallery-item__caption">Above the defense</span>
-            </a>
+              <figcaption class="sport-gallery-item__caption">Aerial shooting visualization</figcaption>
+            </figure>
           </div>
-
-          <aside class="article-video-card animate-in" style="--delay: 220ms;" aria-label="Creative handball video — coming soon">
-            <div class="article-video-card__inner">
-              <p class="article-video-card__eyebrow">Creative project</p>
-              <h3 class="article-video-card__title">AI handball film — coming soon</h3>
-              <p class="article-video-card__copy">
-                I am working on a short creative AI video celebrating handball — the rhythm of the court, the arc of
-                a fast break, and the energy of a team moving as one unit. It will eventually power the hero video
-                above.
-              </p>
-              <div class="article-video-card__placeholder" data-handball-video-slot>
-                <span class="article-video-card__placeholder-icon" aria-hidden="true">▶</span>
-                <span>Creative AI handball video — in progress</span>
-              </div>
-            </div>
-          </aside>
         </div>
       </section>
 
       <section class="section section--tight">
         <div class="container">
           <article class="card card--glass sport-cta animate-in" style="--delay: 0ms;">
-            <h2 class="sport-cta__title">More discipline, more consistency</h2>
+            <h2 class="sport-cta__title">What handball taught me</h2>
             <p class="sport-cta__copy">
-              Handball taught me how to compete without losing composure. I write about that carryover into research
-              and engineering in Fitness &amp; Health — or reach out directly if you want to talk shop.
+              Speed matters, but awareness, trust, and consistency decide the game. Those lessons still shape how I
+              approach research, engineering, and long-term goals.
             </p>
             <div class="sport-cta__actions">
-              <a class="button button--secondary" href="/explore/fitness-health">Back to Fitness &amp; Health</a>
-              <a class="button button--primary" href="/contact">Get in touch</a>
+              <a class="button button--secondary" href="/explore/fitness-health">Read My Fitness Journey</a>
+              <a class="button button--primary" href="/explore">Back to Insights</a>
             </div>
           </article>
         </div>

@@ -63,7 +63,7 @@
   <circle class="hc-ball" r="8" fill="#F97316"/>
 
   <!-- Labels -->
-  <text x="450" y="34" text-anchor="middle" fill="#1B2D5F" font-family="system-ui,sans-serif" font-size="19" font-weight="700">40m × 20m court</text>
+  <text x="450" y="34" text-anchor="middle" fill="#1B2D5F" font-family="system-ui,sans-serif" font-size="19" font-weight="700">40m &#215; 20m court</text>
   <text x="188" y="315" text-anchor="middle" fill="#1B2D5F" font-family="system-ui,sans-serif" font-size="14" font-weight="700">6m</text>
   <text x="245" y="150" text-anchor="middle" fill="#1B2D5F" font-family="system-ui,sans-serif" font-size="14" font-weight="700" opacity="0.75">9m</text>
   <text x="188" y="258" text-anchor="middle" fill="#1B2D5F" font-family="system-ui,sans-serif" font-size="13" font-weight="700">7m</text>
