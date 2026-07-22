@@ -74,11 +74,40 @@
             <div class="project-grid">
               <article class="card card--hover animate-in" style="--delay: 60ms;">
                 <div class="stack">
+                  <p class="card-heading">Gundata: Agentic AI</p>
+                  <p class="card-copy">Fall 2025 · Reinforcement Learning Testbed</p>
+                  <p class="card-copy">
+                    A traditional Andhra Pradesh Sankranti dice game rebuilt as a testbed for AI agents — evaluating rule-based bots against a trained reinforcement learning opponent with live explainable decision-making. Demonstrates core ML engineering: clean MDP formulation, training at scale, and interpretability for downstream analysis.
+                  </p>
+                  <ul class="project-feature-list">
+                    <li>Tabular Q-learning agent trained over 20,000 self-play episodes on an 18-state MDP with convergence analysis</li>
+                    <li>Explainability dashboard logging each agent's reasoning and top-3 Q-values per move in real time</li>
+                    <li>Clean MVC game engine with two rule variants and multiple AI opponent personalities</li>
+                    <li>Full technical report and reproducible training pipeline for agent evaluation</li>
+                  </ul>
+                  <div class="meta-row">
+                    <span class="tag">Reinforcement Learning</span><span class="tag">Q-Learning</span><span class="tag">Agentic AI</span><span class="tag">Java</span><span class="tag">Explainability</span>
+                  </div>
+                  <div class="project-card__links">
+                    <a class="inline-link" href="https://github.com/RavindraSSK/gundata-agentic-ai" target="_blank" rel="noopener noreferrer">Code <span aria-hidden="true">&rarr;</span></a>
+                    <a class="inline-link" href="https://github.com/RavindraSSK/gundata-agentic-ai/blob/main/TECHNICAL_REPORT.md" target="_blank" rel="noopener noreferrer">Technical Report <span aria-hidden="true">&rarr;</span></a>
+                  </div>
+                </div>
+              </article>
+
+              <article class="card card--hover animate-in" style="--delay: 100ms;">
+                <div class="stack">
                   <p class="card-heading">MediTrust — Explainable AI Healthcare Risk Prediction</p>
                   <p class="card-copy">Spring 2026</p>
-                  <p class="card-copy">Explainable cardiovascular risk prediction — ROC-AUC 0.87, per-patient SHAP explanations, full-stack FastAPI + React + PostgreSQL deployed on AWS with GitHub Actions CI/CD.</p>
+                  <p class="card-copy">Explainable cardiovascular risk prediction using Logistic Regression — ROC-AUC 0.87 with per-patient SHAP explanations for clinical interpretability. Full-stack deployment: FastAPI backend, React frontend, PostgreSQL database, AWS hosting, and GitHub Actions CI/CD for reproducible model serving.</p>
+                  <ul class="project-feature-list">
+                    <li>Logistic Regression model achieving ROC-AUC 0.87 on a held-out test set</li>
+                    <li>Per-patient SHAP explanations so every prediction includes a feature-contribution breakdown for clinical trust</li>
+                    <li>Full-stack production system: FastAPI backend, React UI, PostgreSQL persistence, Dockerized services</li>
+                    <li>AWS deployment with GitHub Actions CI/CD for automated testing and model versioning</li>
+                  </ul>
                   <div class="meta-row">
-                    <span class="tag">FastAPI</span><span class="tag">React</span><span class="tag">PostgreSQL</span><span class="tag">XGBoost</span><span class="tag">SHAP</span><span class="tag">Docker</span><span class="tag">AWS</span>
+                    <span class="tag">FastAPI</span><span class="tag">React</span><span class="tag">PostgreSQL</span><span class="tag">Logistic Regression</span><span class="tag">SHAP</span><span class="tag">Docker</span><span class="tag">AWS</span>
                   </div>
                   <div class="project-card__links">
                     <a class="inline-link" href="https://github.com/RavindraSSK/MediTrust" target="_blank" rel="noopener noreferrer">Code <span aria-hidden="true">&rarr;</span></a>
@@ -86,35 +115,7 @@
                 </div>
               </article>
 
-              <article class="card card--hover animate-in" style="--delay: 100ms;">
-                <div class="stack">
-                  <p class="card-heading">Campus-Objects — Multi-Class Object Detection</p>
-                  <p class="card-copy">Fall 2025</p>
-                  <p class="card-copy">LW-DETR multi-class detection on 3,000+ annotated campus images — 0.71 mAP@0.5, COCO-format pipeline with transfer learning and augmentation.</p>
-                  <div class="meta-row">
-                    <span class="tag">PyTorch</span><span class="tag">LW-DETR</span><span class="tag">COCO</span><span class="tag">Object Detection</span><span class="tag">Python</span>
-                  </div>
-                  <div class="project-card__links">
-                    <span class="inline-link inline-link--muted" title="Public repo coming soon">Code · TODO</span>
-                  </div>
-                </div>
-              </article>
-
               <article class="card card--hover animate-in" style="--delay: 140ms;">
-                <div class="stack">
-                  <p class="card-heading">Snap Tune — AI Music Recommender</p>
-                  <p class="card-copy">Spring 2025</p>
-                  <p class="card-copy">Multi-modal music recommender — BLIP image captioning + GPT mood inference + Spotify retrieval, deployed on Streamlit Cloud.</p>
-                  <div class="meta-row">
-                    <span class="tag">Streamlit</span><span class="tag">BLIP</span><span class="tag">DistilGPT2</span><span class="tag">Spotify API</span><span class="tag">Hugging Face</span>
-                  </div>
-                  <div class="project-card__links">
-                    <a class="inline-link" href="https://github.com/RavindraSSK/snaptune-streamlit" target="_blank" rel="noopener noreferrer">Code <span aria-hidden="true">&rarr;</span></a>
-                  </div>
-                </div>
-              </article>
-
-              <article class="card card--hover animate-in" style="--delay: 180ms;">
                 <div class="stack">
                   <p class="card-heading">LLM Evaluation — Handshake AI</p>
                   <p class="card-copy">Apr 2026–Present</p>
@@ -128,7 +129,61 @@
                 </div>
               </article>
 
+              <article class="card card--hover animate-in" style="--delay: 180ms;">
+                <div class="stack">
+                  <p class="card-heading">Campus-Objects — Multi-Class Object Detection</p>
+                  <p class="card-copy">Fall 2025</p>
+                  <p class="card-copy">LW-DETR multi-class detection on 3,000+ annotated campus images — 0.71 mAP@0.5, COCO-format pipeline with transfer learning and augmentation.</p>
+                  <ul class="project-feature-list">
+                    <li>Built and annotated a 3,000+ image campus dataset in COCO format with consistent labeling guidelines</li>
+                    <li>Fine-tuned LW-DETR via transfer learning, reaching 0.71 mAP@0.5 across multiple object classes</li>
+                    <li>Applied augmentation and evaluation pipelines for reproducible detection benchmarking</li>
+                  </ul>
+                  <div class="meta-row">
+                    <span class="tag">PyTorch</span><span class="tag">LW-DETR</span><span class="tag">COCO</span><span class="tag">Object Detection</span><span class="tag">Python</span>
+                  </div>
+                  <div class="project-card__links">
+                    <span class="inline-link inline-link--muted" title="Public repo coming soon">Code · TODO</span>
+                  </div>
+                </div>
+              </article>
+
               <article class="card card--hover animate-in" style="--delay: 220ms;">
+                <div class="stack">
+                  <p class="card-heading">GeoAI Flood Detection System</p>
+                  <p class="card-copy">Fall 2025</p>
+                  <p class="card-copy">Semantic segmentation for flood-affected zones using attention U-Net on Sentinel-1 SAR imagery, with Grad-CAM visualizations for interpretability.</p>
+                  <ul class="project-feature-list">
+                    <li>Attention U-Net semantic segmentation on Sentinel-1 SAR imagery for flood-zone mapping</li>
+                    <li>Grad-CAM activation maps to verify the model attends to true flood signatures, not artifacts</li>
+                    <li>Reproducible PyTorch training pipeline built during AI-CHESS Lab research</li>
+                  </ul>
+                  <div class="meta-row">
+                    <span class="tag">PyTorch</span><span class="tag">SAR</span><span class="tag">U-Net</span><span class="tag">Attention</span><span class="tag">Grad-CAM</span>
+                  </div>
+                </div>
+              </article>
+
+              <article class="card card--hover animate-in" style="--delay: 260ms;">
+                <div class="stack">
+                  <p class="card-heading">Snap Tune — AI Music Recommender</p>
+                  <p class="card-copy">Spring 2025</p>
+                  <p class="card-copy">Multi-modal music recommender — BLIP image captioning + GPT mood inference + Spotify retrieval, deployed on Streamlit Cloud.</p>
+                  <ul class="project-feature-list">
+                    <li>BLIP image captioning for semantic scene understanding from user-uploaded photos</li>
+                    <li>DistilGPT2 mood inference bridging vision output to music-relevant emotional context</li>
+                    <li>Spotify API retrieval and playlist generation, deployed as an interactive Streamlit Cloud app</li>
+                  </ul>
+                  <div class="meta-row">
+                    <span class="tag">Streamlit</span><span class="tag">BLIP</span><span class="tag">DistilGPT2</span><span class="tag">Spotify API</span><span class="tag">Hugging Face</span>
+                  </div>
+                  <div class="project-card__links">
+                    <a class="inline-link" href="https://github.com/RavindraSSK/snaptune-streamlit" target="_blank" rel="noopener noreferrer">Code <span aria-hidden="true">&rarr;</span></a>
+                  </div>
+                </div>
+              </article>
+
+              <article class="card card--hover animate-in" style="--delay: 300ms;">
                 <div class="stack">
                   <p class="card-heading">Gundata: Sankranti Dice</p>
                   <p class="card-copy">Interactive systems</p>
@@ -144,17 +199,6 @@
                   <div class="project-card__links">
                     <a class="inline-link" href="https://github.com/RavindraSSK/gundata-dice-game" target="_blank" rel="noopener noreferrer">Code <span aria-hidden="true">&rarr;</span></a>
                     <span class="inline-link inline-link--muted" title="Demo URL pending">Play · TODO</span>
-                  </div>
-                </div>
-              </article>
-
-              <article class="card card--hover animate-in" style="--delay: 260ms;">
-                <div class="stack">
-                  <p class="card-heading">GeoAI Flood Detection System</p>
-                  <p class="card-copy">Fall 2025</p>
-                  <p class="card-copy">Semantic segmentation for flood-affected zones using attention U-Net on Sentinel-1 SAR imagery, with Grad-CAM visualizations for interpretability.</p>
-                  <div class="meta-row">
-                    <span class="tag">PyTorch</span><span class="tag">SAR</span><span class="tag">U-Net</span><span class="tag">Attention</span><span class="tag">Grad-CAM</span>
                   </div>
                 </div>
               </article>
