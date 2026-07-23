@@ -26,7 +26,15 @@ export function SiteInteractions({ pathname }: { pathname: string }) {
 
     // Hero role rotator
     const roleEl = document.querySelector<HTMLElement>("[data-role-rotator]");
-    const roles = ["ML & AI Engineer", "LLM Evaluator", "Computer Vision Researcher", "Builder"];
+    const roles = [
+      "ML & AI Engineer",
+      "Applied AI Engineer",
+      "Computer Vision Engineer",
+      "Generative AI Engineer",
+      "LLM Evaluation Specialist",
+      "Forward Deployed AI Engineer",
+      "AI Research Engineer",
+    ];
     let roleIndex = 0;
     let roleTimer: number | undefined;
     if (roleEl && !prefersReducedMotion) {

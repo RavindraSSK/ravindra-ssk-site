@@ -22,7 +22,7 @@ const portfolioLinks = [
 const exploreLinks = [
   ["Career Guides", "/explore/blog", "Roles, salaries, hiring paths, and AI career roadmaps."],
   ["Technical Tutorials", "/explore/web-scraping-python", "Practical guides for building with code and data."],
-  ["Research Articles", "/explore/spatial-context-geoai", "Notes from GeoAI, computer vision, and applied ML."],
+  ["Research Articles", "/explore/spatial-context-geoai", "Notes from generative AI, computer vision, and applied ML."],
   ["Machine Learning", "/explore/grad-cam-flood-detection", "Model design, explainability, and production systems."],
   ["Photography", "/explore/photography", "Light, geometry, and visual observation."],
   ["Fitness & Health", "/explore/fitness-health", "Discipline, training, and performance habits."],
