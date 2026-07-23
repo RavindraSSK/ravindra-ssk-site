@@ -62,7 +62,7 @@ const NAV_DATA = {
   explore: [
     { title: "Career Guides", href: "explore/blog.html", copy: "Roles, salaries, hiring paths, and AI career roadmaps." },
     { title: "Technical Tutorials", href: "explore/web-scraping-python.html", copy: "Practical guides for building with code and data." },
-    { title: "Research Articles", href: "explore/spatial-context-geoai.html", copy: "Notes from GeoAI, computer vision, and applied ML." },
+    { title: "Research Articles", href: "explore/spatial-context-geoai.html", copy: "Notes from generative AI, computer vision, and applied ML." },
     { title: "Machine Learning", href: "explore/grad-cam-flood-detection.html", copy: "Model design, explainability, and production systems." },
     { title: "Photography", href: "explore/photography.html", copy: "Light, geometry, and visual observation." },
     { title: "Fitness & Health", href: "explore/fitness-health.html", copy: "Discipline, training, and performance habits." },
@@ -735,10 +735,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const roles = [
     "ML & AI Engineer",
-    "Computer Vision Researcher",
+    "Applied AI Engineer",
+    "Computer Vision Engineer",
+    "Generative AI Engineer",
     "LLM Evaluation Specialist",
-    "GeoAI Builder",
-    "Applied ML Engineer",
+    "Forward Deployed AI Engineer",
+    "AI Research Engineer",
   ];
 
   if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
