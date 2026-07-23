@@ -5,6 +5,7 @@ import { JsonLd } from "@/components/json-ld";
 import { StaticPage } from "@/components/static-page";
 import {
   buildArticleJsonLd,
+  buildPageMetadata,
   exploreArticles,
   exploreCategories,
   getExploreArticle,
@@ -31,21 +32,13 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const category = getExploreCategory(slug);
   if (category) {
-    return {
-      title: category.title,
-      description: category.description,
-      alternates: { canonical: `/explore/${category.slug}` },
-    };
+    return buildPageMetadata(category, `/explore/${category.slug}`);
   }
 
   const article = getExploreArticle(slug);
   if (!article) return {};
 
-  return {
-    title: article.title,
-    description: article.description,
-    alternates: { canonical: `/explore/${article.slug}` },
-  };
+  return buildPageMetadata(article, `/explore/${article.slug}`);
 }
 
 export default async function ExploreDetailPage({ params }: { params: Promise<{ slug: string }> }) {

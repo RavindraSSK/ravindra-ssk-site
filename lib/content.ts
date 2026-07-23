@@ -1,4 +1,37 @@
+import type { Metadata } from "next";
+
 import { DEFAULT_SITE_URL } from "@/lib/site-url";
+
+/**
+ * Every non-home route previously spread only {title, description} into its metadata export,
+ * so it inherited the root layout's openGraph/twitter objects verbatim (Next only merges metadata
+ * shallowly) — every page's social share preview showed the home page's title/description/url.
+ *
+ * Defining openGraph/twitter here also opts the route out of Next's automatic inheritance of the
+ * app/opengraph-image.tsx file-convention image (that only auto-attaches when a segment doesn't
+ * define its own openGraph object), so the image is repeated explicitly below.
+ */
+const SHARE_IMAGE = { url: "/opengraph-image", width: 1200, height: 630 };
+
+export function buildPageMetadata(entry: { title: string; description: string }, path: string): Metadata {
+  return {
+    title: entry.title,
+    description: entry.description,
+    alternates: { canonical: path },
+    openGraph: {
+      title: entry.title,
+      description: entry.description,
+      url: path,
+      images: [{ ...SHARE_IMAGE, alt: entry.title }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: entry.title,
+      description: entry.description,
+      images: [{ ...SHARE_IMAGE, alt: entry.title }],
+    },
+  };
+}
 
 export const pageMetadata = {
   home: {

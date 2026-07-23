@@ -50,7 +50,11 @@ export default function RootLayout({ children }: Readonly<{ children: ReactNode 
         id="header-offset-init"
         strategy="beforeInteractive"
         dangerouslySetInnerHTML={{
-          __html: `document.documentElement.style.setProperty("--site-header-offset","120px");`,
+          // Matches .site-header's actual rendered height per components.css (89px at <=560px where the
+          // logo/padding shrink, 98px above that). SiteChrome's ResizeObserver corrects this after mount,
+          // but seeding the real value here (instead of a flat guess) keeps that correction from being
+          // visible as layout shift.
+          __html: `(function(){var h=window.innerWidth<=560?89:98;document.documentElement.style.setProperty("--site-header-offset",h+"px");})();`,
         }}
       />
       <Script
@@ -61,6 +65,7 @@ export default function RootLayout({ children }: Readonly<{ children: ReactNode 
         }}
       />
       <body>
+        <a className="skip-link" href="#main-content">Skip to content</a>
         <JsonLd data={buildRootJsonLd()} />
         <SiteChrome>{children}</SiteChrome>
         <SpeedInsights />
