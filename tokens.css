@@ -65,6 +65,13 @@
   --transition-slow: 320ms ease-out;
 }
 
+/* .site-header measures ~89px at this width (components.css) — 120px overstates the real offset. */
+@media (max-width: 560px) {
+  :root {
+    --site-header-offset: 101px;
+  }
+}
+
 html[data-theme="dark"] {
   --color-primary: #93b4f5;
   --color-primary-mid: #bfdbfe;

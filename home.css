@@ -679,4 +679,12 @@ html[data-theme="dark"] .home-interest-card {
   .home-interest-card {
     min-height: 148px;
   }
+
+  .hero-panel__card--secondary {
+    display: none;
+  }
+
+  .hero-panel__bullets li:nth-child(n+3) {
+    display: none;
+  }
 }
