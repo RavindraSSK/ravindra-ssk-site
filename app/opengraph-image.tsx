@@ -56,7 +56,7 @@ export default async function OpenGraphImage() {
             I build and evaluate production ML & AI systems
           </div>
           <div style={{ fontSize: "28px", lineHeight: 1.45, color: "rgba(219, 234, 254, 0.92)" }}>
-            LLM evaluation, computer vision, GeoAI, healthcare AI, and applied research.
+            LLM evaluation, computer vision, generative AI, healthcare AI, and applied research.
           </div>
         </div>
 

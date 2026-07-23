@@ -237,6 +237,24 @@ html[data-theme="dark"] .eyebrow {
   border: 0;
 }
 
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: var(--space-4);
+  /* .site-header is z-index:100 (fixed); this must render above it once focused. */
+  z-index: 101;
+  padding: var(--space-2) var(--space-4);
+  background: var(--color-primary);
+  color: var(--color-on-primary);
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+  transition: top var(--transition-fast);
+}
+
+.skip-link:focus-visible {
+  top: var(--space-2);
+}
+
 .animate-in {
   opacity: 0;
   transform: translateY(16px);
