@@ -392,7 +392,7 @@ function activateTab(id) {
   });
 
   if (!targetFound && buttons.length) {
-    activateTab("projects");
+    activateTab("experience");
   }
 }
 
@@ -401,7 +401,7 @@ function initPortfolioTabs() {
   if (!tabRoot) return;
 
   const buttons = Array.from(tabRoot.querySelectorAll("[data-tab-target]"));
-  const initial = window.location.hash.replace("#", "") || "projects";
+  const initial = window.location.hash.replace("#", "") || "experience";
   activateTab(initial);
 
   buttons.forEach((button) => {
@@ -440,7 +440,7 @@ function initPortfolioTabs() {
   });
 
   window.addEventListener("hashchange", () => {
-    activateTab(window.location.hash.replace("#", "") || "projects");
+    activateTab(window.location.hash.replace("#", "") || "experience");
   });
 }
 

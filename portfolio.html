@@ -53,8 +53,8 @@
             aria-label="Portfolio sections"
             style="--delay: 80ms;"
           >
+            <button class="portfolio-tab" id="tab-experience" type="button" role="tab" data-tab-target="experience" aria-controls="experience" aria-selected="true" tabindex="0">Experience</button>
             <button class="portfolio-tab" id="tab-projects" type="button" role="tab" data-tab-target="projects" aria-controls="projects" aria-selected="false" tabindex="-1">Projects</button>
-            <button class="portfolio-tab" id="tab-experience" type="button" role="tab" data-tab-target="experience" aria-controls="experience" aria-selected="false" tabindex="-1">Experience</button>
             <button class="portfolio-tab" id="tab-education" type="button" role="tab" data-tab-target="education" aria-controls="education" aria-selected="false" tabindex="-1">Education</button>
             <button class="portfolio-tab" id="tab-skills" type="button" role="tab" data-tab-target="skills" aria-controls="skills" aria-selected="false" tabindex="-1">Skills</button>
             <button class="portfolio-tab" id="tab-achievements" type="button" role="tab" data-tab-target="achievements" aria-controls="achievements" aria-selected="false" tabindex="-1">Achievements</button>
@@ -65,7 +65,152 @@
 
       <section class="section">
         <div class="container portfolio-panels">
-          <section class="portfolio-panel" id="projects" data-tab-panel role="tabpanel" aria-labelledby="tab-projects" tabindex="0">
+          <section class="portfolio-panel" id="experience" data-tab-panel role="tabpanel" aria-labelledby="tab-experience" tabindex="0">
+            <div class="animate-in" style="--delay: 0ms;">
+              <span class="eyebrow">Experience</span>
+              <h2 class="section-title">Timeline of roles, research, and applied work</h2>
+            </div>
+
+            <div class="timeline">
+              <article class="timeline-item animate-in" style="--delay: 60ms;">
+                <div class="timeline-marker"></div>
+                <div class="card timeline-content">
+                  <div class="timeline-meta">
+                    <div class="stack" style="gap: 0.35rem;">
+                      <div class="logo-badge logo-badge--handshake">HS</div>
+                      <h3 class="timeline-role">AI Trainer — LLM Evaluation &amp; Agentic Coding</h3>
+                      <p class="timeline-org">Handshake AI · Apr 2026–Present</p>
+                    </div>
+                    <span class="meta-pill">Remote</span>
+                  </div>
+                  <ul class="bullet-list">
+                    <li>Design and execute custom evaluation tasks for frontier LLMs in an agentic coding environment, interacting with models via API to assess real-world software engineering capability</li>
+                    <li>Conduct comparative evaluations of frontier models on complex coding and reasoning tasks — ranking response quality and user experience against standardized evaluation criteria</li>
+                    <li>Author detailed qualitative rationales and comparative scores, documenting full human–model interaction traces that inform model improvement</li>
+                    <li>Analyze and refine complex software codebases as part of evaluation workflows, surfacing failure modes and capability gaps</li>
+                  </ul>
+                </div>
+              </article>
+
+              <article class="timeline-item animate-in" style="--delay: 120ms;">
+                <div class="timeline-marker"></div>
+                <div class="card timeline-content">
+                  <div class="timeline-meta">
+                    <div class="stack" style="gap: 0.35rem;">
+                      <div class="logo-badge logo-badge--slu">SLU</div>
+                      <h3 class="timeline-role">Graduate AI Researcher — Computer Vision &amp; Deep Learning</h3>
+                      <p class="timeline-org">AI-CHESS Lab, Saint Louis University · Oct 2025–Mar 2026</p>
+                    </div>
+                    <span class="meta-pill">St. Louis, MO</span>
+                  </div>
+                  <ul class="bullet-list">
+                    <li>Conducted applied research on attention-based deep learning for single-image shadow removal — an ill-posed image restoration problem — using high-resolution aerial and satellite imagery as the application domain, improving image quality for downstream tasks like object detection and semantic segmentation</li>
+                    <li>Reviewed and benchmarked state-of-the-art methods from CVPR, ICCV, ECCV, and NeurIPS spanning CNN restoration networks, encoder–decoder and U-Net variants, GAN-based image translation, Vision Transformers, and hybrid CNN–Transformer architectures — comparing loss functions, evaluation metrics, and computational trade-offs</li>
+                    <li>Engineered dataset pipelines in Python, OpenCV, and NumPy: data cleaning, normalization, patch generation, augmentation, train/validation/test splits, and quality verification of training samples</li>
+                    <li>Assisted in developing and training deep learning models in PyTorch and TensorFlow on GPU workflows — hyperparameter tuning, convergence monitoring, debugging training issues, and organizing reproducible experiment runs</li>
+                    <li>Evaluated models with quantitative image-quality metrics and qualitative visual analysis — detail preservation, artifact reduction, and cross-scene generalization — documenting comparative findings and trade-offs between accuracy and computational cost</li>
+                    <li>Presented experimental findings in weekly research discussions and iterated on research directions with faculty advisors</li>
+                  </ul>
+                </div>
+              </article>
+
+              <article class="timeline-item animate-in" style="--delay: 180ms;">
+                <div class="timeline-marker"></div>
+                <div class="card timeline-content">
+                  <div class="timeline-meta">
+                    <div class="stack" style="gap: 0.35rem;">
+                      <div class="logo-badge logo-badge--excelerate">EX</div>
+                      <h3 class="timeline-role">Data Visualization Associate — Project Lead</h3>
+                      <p class="timeline-org">Excelerate · Feb 2025–Mar 2025</p>
+                    </div>
+                    <span class="meta-pill">Internship · Remote</span>
+                  </div>
+                  <ul class="bullet-list">
+                    <li>Managed an end-to-end data pipeline for 5,000+ student engagement records, improving data quality and consistency.</li>
+                    <li>Designed interactive dashboards and KPI reporting solutions using Google Data Studio for global stakeholders.</li>
+                    <li>Translated analytical findings into actionable insights to support data-driven decision making.</li>
+                  </ul>
+                </div>
+              </article>
+
+              <article class="timeline-item animate-in" style="--delay: 240ms;">
+                <div class="timeline-marker"></div>
+                <div class="card timeline-content">
+                  <div class="timeline-meta">
+                    <div class="stack" style="gap: 0.35rem;">
+                      <div class="logo-badge logo-badge--salesforce">SF</div>
+                      <h3 class="timeline-role">Salesforce Administrator &amp; Developer</h3>
+                      <p class="timeline-org">Salesforce · Aug 2023–Oct 2023</p>
+                    </div>
+                    <span class="meta-pill">Internship · Remote</span>
+                  </div>
+                  <ul class="bullet-list">
+                    <li>Automated CRM workflows using Salesforce Flow and Process Builder, improving operational efficiency and reducing manual effort.</li>
+                    <li>Customized enterprise data models, validation rules, access controls, and SOQL/SOSL-based solutions for data management and reporting.</li>
+                  </ul>
+                </div>
+              </article>
+
+              <article class="timeline-item animate-in" style="--delay: 300ms;">
+                <div class="timeline-marker"></div>
+                <div class="card timeline-content">
+                  <div class="timeline-meta">
+                    <div class="stack" style="gap: 0.35rem;">
+                      <div class="logo-badge logo-badge--chegg">CG</div>
+                      <h3 class="timeline-role">Statistics &amp; Data Analytics Specialist</h3>
+                      <p class="timeline-org">Chegg India Pvt. Ltd. · Apr 2021–Nov 2024</p>
+                    </div>
+                    <span class="meta-pill">Remote</span>
+                  </div>
+                  <ul class="bullet-list">
+                    <li>Authored and reviewed 500+ advanced probability and statistics solutions using Minitab and R; recognized as Quality Champ for exceptional depth and consistency.</li>
+                    <li>Applied statistical modelling and inferential techniques to develop rigorous step-by-step solutions for complex data analysis problems.</li>
+                  </ul>
+                </div>
+              </article>
+
+              <article class="timeline-item animate-in" style="--delay: 360ms;">
+                <div class="timeline-marker"></div>
+                <div class="card timeline-content">
+                  <div class="timeline-meta">
+                    <div class="stack" style="gap: 0.35rem;">
+                      <div class="logo-badge logo-badge--ssks">SS</div>
+                      <h3 class="timeline-role">Interior Design Project Lead</h3>
+                      <p class="timeline-org">SSKS Home Designs · 2021–2023</p>
+                    </div>
+                    <span class="meta-pill">Client work</span>
+                  </div>
+                  <ul class="bullet-list">
+                    <li>Led project planning, client communication, and delivery across residential interior design projects.</li>
+                    <li>Built 3D models and sustainable building concepts using AutoCAD, Revit, and SketchUp.</li>
+                    <li>Published the venture on Google Maps with project photos and a portfolio website.</li>
+                  </ul>
+                  <a class="inline-link" href="/portfolio/ssks-home-designs">Open SSKS case study <span aria-hidden="true">&rarr;</span></a>
+                </div>
+              </article>
+
+              <article class="timeline-item animate-in" style="--delay: 420ms;">
+                <div class="timeline-marker"></div>
+                <div class="card timeline-content">
+                  <div class="timeline-meta">
+                    <div class="stack" style="gap: 0.35rem;">
+                      <div class="logo-badge logo-badge--iitb">IITB</div>
+                      <h3 class="timeline-role">Research Intern</h3>
+                      <p class="timeline-org">Indian Institute of Technology (IIT) Bombay · Jun 2019–Aug 2019</p>
+                    </div>
+                    <span class="meta-pill">Mumbai, India</span>
+                  </div>
+                  <ul class="bullet-list">
+                    <li>Conducted research on terrestrial laser scanning (TLS) and 3D point-cloud processing for spatial reconstruction applications.</li>
+                    <li>Processed and analyzed large-scale spatial datasets using registration, filtering, and feature extraction techniques.</li>
+                    <li>Developed technical user manuals for TLS hardware and data processing workflows adopted as standard lab reference.</li>
+                  </ul>
+                </div>
+              </article>
+            </div>
+          </section>
+
+          <section class="portfolio-panel" id="projects" data-tab-panel role="tabpanel" aria-labelledby="tab-projects" tabindex="0" hidden>
             <div class="animate-in" style="--delay: 0ms;">
               <span class="eyebrow">Projects</span>
               <h2 class="section-title">Selected builds and research projects</h2>
@@ -234,151 +379,6 @@
                 </div>
               </div>
             </article>
-          </section>
-
-          <section class="portfolio-panel" id="experience" data-tab-panel role="tabpanel" aria-labelledby="tab-experience" tabindex="0" hidden>
-            <div class="animate-in" style="--delay: 0ms;">
-              <span class="eyebrow">Experience</span>
-              <h2 class="section-title">Timeline of roles, research, and applied work</h2>
-            </div>
-
-            <div class="timeline">
-              <article class="timeline-item animate-in" style="--delay: 60ms;">
-                <div class="timeline-marker"></div>
-                <div class="card timeline-content">
-                  <div class="timeline-meta">
-                    <div class="stack" style="gap: 0.35rem;">
-                      <div class="logo-badge logo-badge--handshake">HS</div>
-                      <h3 class="timeline-role">AI Trainer — LLM Evaluation &amp; Agentic Coding</h3>
-                      <p class="timeline-org">Handshake AI · Apr 2026–Present</p>
-                    </div>
-                    <span class="meta-pill">Remote</span>
-                  </div>
-                  <ul class="bullet-list">
-                    <li>Design and execute custom evaluation tasks for frontier LLMs in an agentic coding environment, interacting with models via API to assess real-world software engineering capability</li>
-                    <li>Conduct comparative evaluations of frontier models on complex coding and reasoning tasks — ranking response quality and user experience against standardized evaluation criteria</li>
-                    <li>Author detailed qualitative rationales and comparative scores, documenting full human–model interaction traces that inform model improvement</li>
-                    <li>Analyze and refine complex software codebases as part of evaluation workflows, surfacing failure modes and capability gaps</li>
-                  </ul>
-                </div>
-              </article>
-
-              <article class="timeline-item animate-in" style="--delay: 120ms;">
-                <div class="timeline-marker"></div>
-                <div class="card timeline-content">
-                  <div class="timeline-meta">
-                    <div class="stack" style="gap: 0.35rem;">
-                      <div class="logo-badge logo-badge--slu">SLU</div>
-                      <h3 class="timeline-role">Graduate AI Researcher — Computer Vision &amp; Deep Learning</h3>
-                      <p class="timeline-org">AI-CHESS Lab, Saint Louis University · Oct 2025–Mar 2026</p>
-                    </div>
-                    <span class="meta-pill">St. Louis, MO</span>
-                  </div>
-                  <ul class="bullet-list">
-                    <li>Conducted applied research on attention-based deep learning for single-image shadow removal — an ill-posed image restoration problem — using high-resolution aerial and satellite imagery as the application domain, improving image quality for downstream tasks like object detection and semantic segmentation</li>
-                    <li>Reviewed and benchmarked state-of-the-art methods from CVPR, ICCV, ECCV, and NeurIPS spanning CNN restoration networks, encoder–decoder and U-Net variants, GAN-based image translation, Vision Transformers, and hybrid CNN–Transformer architectures — comparing loss functions, evaluation metrics, and computational trade-offs</li>
-                    <li>Engineered dataset pipelines in Python, OpenCV, and NumPy: data cleaning, normalization, patch generation, augmentation, train/validation/test splits, and quality verification of training samples</li>
-                    <li>Assisted in developing and training deep learning models in PyTorch and TensorFlow on GPU workflows — hyperparameter tuning, convergence monitoring, debugging training issues, and organizing reproducible experiment runs</li>
-                    <li>Evaluated models with quantitative image-quality metrics and qualitative visual analysis — detail preservation, artifact reduction, and cross-scene generalization — documenting comparative findings and trade-offs between accuracy and computational cost</li>
-                    <li>Presented experimental findings in weekly research discussions and iterated on research directions with faculty advisors</li>
-                  </ul>
-                </div>
-              </article>
-
-              <article class="timeline-item animate-in" style="--delay: 180ms;">
-                <div class="timeline-marker"></div>
-                <div class="card timeline-content">
-                  <div class="timeline-meta">
-                    <div class="stack" style="gap: 0.35rem;">
-                      <div class="logo-badge logo-badge--excelerate">EX</div>
-                      <h3 class="timeline-role">Data Visualization Associate — Project Lead</h3>
-                      <p class="timeline-org">Excelerate · Feb 2025–Mar 2025</p>
-                    </div>
-                    <span class="meta-pill">Internship · Remote</span>
-                  </div>
-                  <ul class="bullet-list">
-                    <li>Managed an end-to-end data pipeline for 5,000+ student engagement records, improving data quality and consistency.</li>
-                    <li>Designed interactive dashboards and KPI reporting solutions using Google Data Studio for global stakeholders.</li>
-                    <li>Translated analytical findings into actionable insights to support data-driven decision making.</li>
-                  </ul>
-                </div>
-              </article>
-
-              <article class="timeline-item animate-in" style="--delay: 240ms;">
-                <div class="timeline-marker"></div>
-                <div class="card timeline-content">
-                  <div class="timeline-meta">
-                    <div class="stack" style="gap: 0.35rem;">
-                      <div class="logo-badge logo-badge--salesforce">SF</div>
-                      <h3 class="timeline-role">Salesforce Administrator &amp; Developer</h3>
-                      <p class="timeline-org">Salesforce · Aug 2023–Oct 2023</p>
-                    </div>
-                    <span class="meta-pill">Internship · Remote</span>
-                  </div>
-                  <ul class="bullet-list">
-                    <li>Automated CRM workflows using Salesforce Flow and Process Builder, improving operational efficiency and reducing manual effort.</li>
-                    <li>Customized enterprise data models, validation rules, access controls, and SOQL/SOSL-based solutions for data management and reporting.</li>
-                  </ul>
-                </div>
-              </article>
-
-              <article class="timeline-item animate-in" style="--delay: 300ms;">
-                <div class="timeline-marker"></div>
-                <div class="card timeline-content">
-                  <div class="timeline-meta">
-                    <div class="stack" style="gap: 0.35rem;">
-                      <div class="logo-badge logo-badge--chegg">CG</div>
-                      <h3 class="timeline-role">Statistics &amp; Data Analytics Specialist</h3>
-                      <p class="timeline-org">Chegg India Pvt. Ltd. · Apr 2021–Nov 2024</p>
-                    </div>
-                    <span class="meta-pill">Remote</span>
-                  </div>
-                  <ul class="bullet-list">
-                    <li>Authored and reviewed 500+ advanced probability and statistics solutions using Minitab and R; recognized as Quality Champ for exceptional depth and consistency.</li>
-                    <li>Applied statistical modelling and inferential techniques to develop rigorous step-by-step solutions for complex data analysis problems.</li>
-                  </ul>
-                </div>
-              </article>
-
-              <article class="timeline-item animate-in" style="--delay: 360ms;">
-                <div class="timeline-marker"></div>
-                <div class="card timeline-content">
-                  <div class="timeline-meta">
-                    <div class="stack" style="gap: 0.35rem;">
-                      <div class="logo-badge logo-badge--ssks">SS</div>
-                      <h3 class="timeline-role">Interior Design Project Lead</h3>
-                      <p class="timeline-org">SSKS Home Designs · 2021–2023</p>
-                    </div>
-                    <span class="meta-pill">Client work</span>
-                  </div>
-                  <ul class="bullet-list">
-                    <li>Led project planning, client communication, and delivery across residential interior design projects.</li>
-                    <li>Built 3D models and sustainable building concepts using AutoCAD, Revit, and SketchUp.</li>
-                    <li>Published the venture on Google Maps with project photos and a portfolio website.</li>
-                  </ul>
-                  <a class="inline-link" href="/portfolio/ssks-home-designs">Open SSKS case study <span aria-hidden="true">&rarr;</span></a>
-                </div>
-              </article>
-
-              <article class="timeline-item animate-in" style="--delay: 420ms;">
-                <div class="timeline-marker"></div>
-                <div class="card timeline-content">
-                  <div class="timeline-meta">
-                    <div class="stack" style="gap: 0.35rem;">
-                      <div class="logo-badge logo-badge--iitb">IITB</div>
-                      <h3 class="timeline-role">Research Intern</h3>
-                      <p class="timeline-org">Indian Institute of Technology (IIT) Bombay · Jun 2019–Aug 2019</p>
-                    </div>
-                    <span class="meta-pill">Mumbai, India</span>
-                  </div>
-                  <ul class="bullet-list">
-                    <li>Conducted research on terrestrial laser scanning (TLS) and 3D point-cloud processing for spatial reconstruction applications.</li>
-                    <li>Processed and analyzed large-scale spatial datasets using registration, filtering, and feature extraction techniques.</li>
-                    <li>Developed technical user manuals for TLS hardware and data processing workflows adopted as standard lab reference.</li>
-                  </ul>
-                </div>
-              </article>
-            </div>
           </section>
 
           <section class="portfolio-panel" id="education" data-tab-panel role="tabpanel" aria-labelledby="tab-education" tabindex="0" hidden>
