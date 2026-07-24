@@ -1,5 +1,5 @@
 const BRAND_NAME = "Ravindra SSK";
-const BRAND_ROLE = " Engineer | Researcher | Creator";
+const BRAND_ROLE = "Engineer · Researcher · Creator";
 
 const SVG = {
   chevron: `
