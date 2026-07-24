@@ -214,7 +214,7 @@ export function SiteInteractions({ pathname }: { pathname: string }) {
       window.requestAnimationFrame(() => moveTabIndicator(selectedTab));
     };
     const hash = window.location.hash.slice(1);
-    if (tabs.length) selectTab(tabs.some((tab) => tab.dataset.tabTarget === hash) ? hash : "projects");
+    if (tabs.length) selectTab(tabs.some((tab) => tab.dataset.tabTarget === hash) ? hash : "experience");
     const tabHandlers = tabs.map((tab) => {
       const clickHandler = () => { const id = tab.dataset.tabTarget; if (id) { selectTab(id); history.replaceState(null, "", `#${id}`); } };
       const previewHandler = () => moveTabIndicator(tab);
