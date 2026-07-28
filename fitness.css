@@ -21,17 +21,16 @@ html[data-theme="dark"] .fitx {
   --hair-2: rgba(180, 205, 230, 0.28);
 }
 
-/* film grain — texture is what separates "designed" from "flat" */
-.fitx::after {
+/* film grain — hero only, BEHIND the copy so text contrast is untouched */
+.fitx .fhero__field::after {
   content: "";
   position: absolute;
   inset: 0;
   pointer-events: none;
-  z-index: 3;
-  opacity: 0.4;
-  mix-blend-mode: overlay;
+  opacity: 0.2;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.22'/%3E%3C/svg%3E");
 }
+html[data-theme="dark"] .fitx .fhero__field::after { opacity: 0.32; }
 
 .fitx .fshell { max-width: 1100px; margin: 0 auto; padding: 0 clamp(1.15rem, 5vw, 2.5rem); }
 .fitx h1, .fitx h2, .fitx h3 { font-family: var(--font-display); margin: 0; line-height: 1.03; letter-spacing: -0.03em; font-weight: 800; }
@@ -76,10 +75,15 @@ html[data-theme="dark"] .fitx .fhero__field {
   align-items: center; padding: clamp(1.5rem, 4vw, 2.2rem) 0;
 }
 .fitx .seal { width: clamp(74px, 17vw, 96px); height: clamp(74px, 17vw, 96px); flex: none; display: block; color: var(--fit); }
-.fitx .seal circle, .fitx .seal path { fill: none; stroke: currentColor; }
-.fitx .seal .rim { stroke: var(--hair-2); stroke-width: 1; }
-.fitx .seal .ridge { stroke-width: 1.6; opacity: 0.9; }
-.fitx .seal text { stroke: none; fill: currentColor; text-anchor: middle; font-family: var(--mono); font-size: 6.5px; letter-spacing: 0.22em; opacity: 0.8; }
+.fitx .seal circle, .fitx .seal path, .fitx .seal line { fill: none; stroke: currentColor; }
+.fitx .seal .rim { stroke-width: 1; opacity: 0.4; }
+.fitx .seal .rim--inner { opacity: 0.18; }
+.fitx .seal .ticks line { stroke-width: 1.4; opacity: 0.55; }
+.fitx .seal .ridge { stroke-linecap: round; }
+.fitx .seal .ridge--fade { opacity: 0.65; }
+.fitx .seal .horizon { stroke-width: 1; opacity: 0.32; }
+.fitx .seal text { stroke: none; fill: currentColor; text-anchor: middle; font-family: var(--mono); font-size: 9px; letter-spacing: 1.8px; opacity: 0.9; }
+.fitx .plate__txt { min-width: 0; }
 .fitx .plate__t { font-size: clamp(1.15rem, 3.9vw, 1.6rem); margin: 0.5rem 0 0.35rem; }
 .fitx .plate__b { margin: 0; color: var(--color-text-muted); font-size: 0.9rem; }
 .fitx .plate__b b { color: var(--fit); font-weight: 700; }
@@ -105,7 +109,7 @@ html[data-theme="dark"] .fitx .fhero__field {
   transition: background 0.3s, padding-left 0.3s;
 }
 .fitx .rung:hover { background: rgba(23, 138, 118, 0.05); padding-left: 0.6rem; }
-.fitx .rung:focus-within { outline: 1px solid var(--fit); outline-offset: -1px; }
+.fitx .rung:focus-within { outline: 2px solid var(--fit); outline-offset: -2px; }
 .fitx .rung__n { font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.16em; color: var(--color-text-faint); transition: color 0.3s; }
 .fitx .rung__t { font-family: var(--font-display); font-weight: 800; font-size: clamp(1rem, 3.4vw, 1.24rem); letter-spacing: -0.02em; color: var(--color-text-muted); transition: color 0.3s; }
 .fitx .rung__bar { width: clamp(46px, 14vw, 104px); height: 3px; background: var(--hair-2); position: relative; overflow: hidden; }
@@ -155,6 +159,7 @@ html[data-theme="dark"] .fitx .fhero__field {
 
 /* ---------- CLOSE ---------- */
 .fitx .fclose { border-top: 1px solid var(--hair-2); padding: clamp(4rem, 10vh, 6rem) 0 clamp(4rem, 10vh, 6rem); }
+.fitx .fclose .lab { margin-bottom: 1.6rem; }
 .fitx .fclose h2 { font-size: clamp(1.8rem, 5.6vw, 3.2rem); max-width: 16ch; margin-bottom: 1.4rem; }
 .fitx .fclose p { color: var(--color-text-muted); max-width: 46ch; margin: 0 0 2.2rem; }
 
@@ -171,11 +176,35 @@ html[data-theme="dark"] .fitx .fhero__field {
 
 /* ---------- responsive ---------- */
 @media (max-width: 900px) {
-  .fitx .opt { grid-template-columns: 1fr; }
-  .fitx .rec { grid-template-columns: 1fr; }
-  .fitx .week { grid-template-columns: repeat(3, 1fr); }
+  .fitx .plate { grid-template-columns: auto 1fr; row-gap: 1.2rem; }
+  .fitx .facts { grid-column: 1 / -1; text-align: left; }
+  .fitx .facts > div { max-width: 22rem; }
 }
-@media (max-width: 640px) {
-  .fitx .fstats { grid-template-columns: 1fr 1fr; }
-  .fitx .week { grid-template-columns: 1fr 1fr; }
+@media (max-width: 820px) {
+  .fitx .panel__grid { grid-template-columns: 1fr; gap: 1.7rem; }
+  .fitx .hb { grid-template-columns: 1fr; gap: 1.8rem; }
+  .fitx .fsec__head { grid-template-columns: 1fr; gap: 0.7rem; }
+  .fitx .fsec__head p { grid-column: 1; }
+  .fitx .frow { grid-template-columns: 1fr; gap: 0.6rem; padding: 1.4rem 0; }
+}
+@media (max-width: 560px) {
+  .fitx .plate { gap: 1.05rem; }
+  .fitx .rung { grid-template-columns: 2.1rem 1fr auto; gap: 0.7rem; }
+
+  /* The week becomes a legible vertical list. A 7-column load profile does not
+     survive a 375px screen, and hiding the day labels was worse. */
+  .fitx .week { grid-template-columns: 1fr; }
+  .fitx .wd {
+    display: grid; grid-template-columns: 3.1rem 1fr; column-gap: 0.9rem;
+    align-items: center; border-right: 0; border-bottom: 1px solid var(--hair);
+    padding: 0.85rem 0;
+  }
+  .fitx .wd:last-child { border-bottom: 0; }
+  .fitx .wd__meta { display: contents; }
+  .fitx .wd__d { grid-column: 1; }
+  .fitx .wd__t { grid-column: 2; font-size: 0.9rem; margin-top: 0; }
+  .fitx .wd__col {
+    grid-column: 1 / -1; height: 5px; padding-top: 0; margin-top: 0.55rem; align-items: stretch;
+  }
+  .fitx .wd__load { height: 100%; width: calc(var(--v) * 100%); }
 }
