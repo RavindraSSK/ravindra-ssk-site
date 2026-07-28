@@ -8,6 +8,7 @@
 @import "../contact.css";
 @import "../explore.css";
 @import "../sport-page.css";
+@import "../fitness.css";
 
 .cert-modal__copy {
   display: grid;
