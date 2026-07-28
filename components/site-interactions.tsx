@@ -326,6 +326,55 @@ export function SiteInteractions({ pathname }: { pathname: string }) {
 
     form?.addEventListener("submit", submitHandler);
 
+    // Fitness & Health page: readiness-tool scoring and sticky section-nav active state.
+    // Everything else on the page is pure-CSS (hidden-radio "consoles"), so this block is
+    // scoped behind [data-fitx] and only runs on that one page.
+    const fitxRoot = document.querySelector<HTMLElement>("[data-fitx]");
+    const readyForm = fitxRoot?.querySelector<HTMLFormElement>("[data-fitx-ready]");
+    const readyTitle = readyForm?.querySelector<HTMLElement>("[data-fitx-ready-title]");
+    const readyDesc = readyForm?.querySelector<HTMLElement>("[data-fitx-ready-desc]");
+    const readyMarker = readyForm?.querySelector<HTMLElement>("[data-fitx-ready-marker]");
+    const readyOutcomes = [
+      { max: 1, title: "Full session", desc: "Readiness appears supportive of the planned session." },
+      { max: 4, title: "Reduce volume", desc: "Keep the main movements but reduce total sets or accessory work." },
+      { max: 7, title: "Technique and movement", desc: "Prioritize controlled practice, mobility, and lower-intensity work." },
+      { max: 10, title: "Recovery-focused day", desc: "Use light activity or rest and reassess later." },
+    ];
+    const updateReadiness = () => {
+      if (!readyForm || !readyTitle || !readyDesc) return;
+      const fields = ["r-sleep", "r-energy", "r-soreness", "r-stress", "r-load"];
+      const score = fields.reduce((total, name) => {
+        const checked = readyForm.querySelector<HTMLInputElement>(`input[name="${name}"]:checked`);
+        return total + Number(checked?.value ?? 0);
+      }, 0);
+      const outcome = readyOutcomes.find((item) => score <= item.max) ?? readyOutcomes[readyOutcomes.length - 1];
+      readyTitle.textContent = outcome.title;
+      readyDesc.textContent = outcome.desc;
+      if (readyMarker) readyMarker.style.left = `${6 + (score / 10) * 88}%`;
+    };
+    updateReadiness();
+    readyForm?.addEventListener("change", updateReadiness);
+
+    const fitxNav = fitxRoot?.querySelector<HTMLElement>("[data-fitx-nav]");
+    const fitxNavLinks = Array.from(fitxRoot?.querySelectorAll<HTMLAnchorElement>("[data-fitx-nav-link]") ?? []);
+    const fitxSections = fitxNavLinks
+      .map((link) => document.querySelector<HTMLElement>(link.getAttribute("href") ?? ""))
+      .filter((section): section is HTMLElement => Boolean(section));
+    const fitxNavObserver =
+      fitxNav && fitxSections.length
+        ? new IntersectionObserver(
+            (entries) => {
+              entries.forEach((entry) => {
+                if (!entry.isIntersecting) return;
+                const id = `#${entry.target.id}`;
+                fitxNavLinks.forEach((link) => link.classList.toggle("is-active", link.getAttribute("href") === id));
+              });
+            },
+            { rootMargin: "-30% 0px -60% 0px", threshold: 0 },
+          )
+        : null;
+    fitxSections.forEach((section) => fitxNavObserver?.observe(section));
+
     return () => {
       observer.disconnect();
       countObserver.disconnect();
@@ -348,6 +397,8 @@ export function SiteInteractions({ pathname }: { pathname: string }) {
       filterHandlers.forEach(([filter, handler]) => filter.removeEventListener("click", handler));
       certHandlers.forEach(([card, handler]) => card.removeEventListener("click", handler));
       form?.removeEventListener("submit", submitHandler);
+      readyForm?.removeEventListener("change", updateReadiness);
+      fitxNavObserver?.disconnect();
     };
   }, [pathname]);
 
