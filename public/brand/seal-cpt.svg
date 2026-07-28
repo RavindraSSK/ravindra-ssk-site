@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none" role="img" aria-label="NASM Certified Personal Trainer">
+  <circle cx="50" cy="50" r="47.5" stroke="currentColor" stroke-width="1" opacity=".4"/>
+  <circle cx="50" cy="50" r="41" stroke="currentColor" stroke-width="1" opacity=".18"/>
+  <g stroke="currentColor" stroke-width="1.4" opacity=".55">
+    <line x1="50" y1="2.5" x2="50" y2="8"/><line x1="50" y1="92" x2="50" y2="97.5"/>
+    <line x1="2.5" y1="50" x2="8" y2="50"/><line x1="92" y1="50" x2="97.5" y2="50"/>
+  </g>
+  <g stroke="currentColor" stroke-linecap="round">
+    <path d="M38 59 A12 9.5 0 0 1 62 59" stroke-width="2"/>
+    <path d="M30 59 A20 15.8 0 0 1 70 59" stroke-width="1.9"/>
+    <path d="M22.5 59 A27.5 21.7 0 0 1 77.5 59" stroke-width="1.75"/>
+    <path d="M15.5 59 A34.5 27.2 0 0 1 84.5 59" stroke-width="1.6" opacity=".65"/>
+  </g>
+  <line x1="24" y1="65" x2="76" y2="65" stroke="currentColor" stroke-width="1" opacity=".32"/>
+  <text x="50" y="79" text-anchor="middle" fill="currentColor" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="9" letter-spacing="1.8" opacity=".9">CPT</text>
+</svg>

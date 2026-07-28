@@ -19,30 +19,30 @@
     <main class="page-shell">
       <div class="fitx">
 
-        <!-- HERO -->
         <header class="fhero">
-          <div class="fhero__aurora"></div>
-          <div class="fhero__grid"></div>
-          <div class="fwrap">
-            <span class="fhero__chip"><span class="dot"></span> NASM Certified Personal Trainer · CPT</span>
-            <h1>Training built like a <em>system</em>.</h1>
-            <p class="fhero__dek">Strength, recovery, and discipline engineered the same way I build models — assessed honestly, structured in phases, and repeated until it holds under load.</p>
-            <svg class="fhero__pulse" viewBox="0 0 560 56" preserveAspectRatio="none" aria-hidden="true">
-              <path d="M0 28 H120 L140 28 L152 10 L166 46 L180 20 L192 28 H300 L318 28 L330 6 L344 50 L358 22 L370 28 H560"/>
-            </svg>
-          </div>
-        </header>
-
+          <div class="fhero__field"></div>
+          <div class="fshell">
+            <div class="kicker"><span class="sig"></span><span>NASM-CPT · Certified Personal Trainer</span></div>
+            <h1><span class="l">Training,</span><span class="l">written like</span><span class="l">a protocol.</span></h1>
+            <p class="fhero__dek">Assessed honestly, structured in phases, and repeated until it holds under load — the same way I build anything else that has to work.</p>
             <div class="plate">
               <svg class="seal" viewBox="0 0 100 100" role="img" aria-label="NASM Certified Personal Trainer">
-                <circle class="rim" cx="50" cy="50" r="47"></circle>
-                <path class="ridge" d="M40 62 A10 8.2 0 0 1 60 62"></path>
-                <path class="ridge" d="M32 62 A18 14.8 0 0 1 68 62"></path>
-                <path class="ridge" d="M24 62 A26 21.3 0 0 1 76 62"></path>
-                <path class="ridge" d="M16 62 A34 27.9 0 0 1 84 62"></path>
-                <text x="50" y="79">CPT · NASM</text>
+                <circle class="rim" cx="50" cy="50" r="47.5"></circle>
+                <circle class="rim rim--inner" cx="50" cy="50" r="41"></circle>
+                <g class="ticks">
+                  <line x1="50" y1="2.5" x2="50" y2="8"></line>
+                  <line x1="50" y1="92" x2="50" y2="97.5"></line>
+                  <line x1="2.5" y1="50" x2="8" y2="50"></line>
+                  <line x1="92" y1="50" x2="97.5" y2="50"></line>
+                </g>
+                <path class="ridge" style="stroke-width:2" d="M38 59 A12 9.5 0 0 1 62 59"></path>
+                <path class="ridge" style="stroke-width:1.9" d="M30 59 A20 15.8 0 0 1 70 59"></path>
+                <path class="ridge" style="stroke-width:1.75" d="M22.5 59 A27.5 21.7 0 0 1 77.5 59"></path>
+                <path class="ridge ridge--fade" style="stroke-width:1.6" d="M15.5 59 A34.5 27.2 0 0 1 84.5 59"></path>
+                <line class="horizon" x1="24" y1="65" x2="76" y2="65"></line>
+                <text x="50" y="79">CPT</text>
               </svg>
-              <div>
+              <div class="plate__txt">
                 <span class="lab">Credential</span>
                 <h2 class="plate__t">Certified Personal Trainer</h2>
                 <p class="plate__b">National Academy of Sports Medicine · <b>NASM-CPT</b></p>
@@ -55,114 +55,140 @@
           </div>
         </header>
 
-        <!-- METHOD -->
-        <section class="fsec"><div class="fshell">
-          <div class="fsec__head rv">
-            <span class="lab">01 / Method</span>
-            <div><h2>The OPT model, phase by phase.</h2>
-            <p>NASM builds capacity in order — stability earns strength, strength earns power. Select a phase to read its prescription.</p></div>
-          </div>
-          <div class="console rv">
-            <input type="radio" name="ph" id="c1" checked>
-            <input type="radio" name="ph" id="c2">
-            <input type="radio" name="ph" id="c3">
-            <input type="radio" name="ph" id="c4">
-            <input type="radio" name="ph" id="c5">
-            <div class="ladder">
-              <label class="rung r1" for="c1"><span class="rung__n">P1</span><span class="rung__t">Stabilization</span><span class="rung__bar" style="--i:.25"></span></label>
-              <div class="panel p1"><div class="panel__grid">
-                <div><h3>Earn control before load</h3><p>Movement quality, joint stability, and endurance first. Higher reps under slow tempo — the base every later phase stands on.</p></div>
-                <div class="meters">
-                  <div class="meter"><span class="lab">Intensity</span><div class="meter__track"><span class="meter__fill" style="--v:.25"></span></div><span class="meter__v">LOW · 12–20 reps</span></div>
-                  <div class="meter"><span class="lab">Tempo</span><div class="meter__track"><span class="meter__fill" style="--v:.9"></span></div><span class="meter__v">SLOW · controlled</span></div>
+        <section class="fsec">
+          <div class="fshell">
+            <div class="fsec__head rv">
+              <span class="lab">01 / Method</span>
+              <div>
+                <h2>The OPT model, phase by phase.</h2>
+                <p>NASM builds capacity in order — stability earns strength, strength earns power. Select a phase to read its prescription.</p>
+              </div>
+            </div>
+            <div class="console rv">
+              <input type="radio" name="ph" id="c1" checked>
+              <input type="radio" name="ph" id="c2">
+              <input type="radio" name="ph" id="c3">
+              <input type="radio" name="ph" id="c4">
+              <input type="radio" name="ph" id="c5">
+              <div class="ladder">
+                <label class="rung r1" for="c1"><span class="rung__n">P1</span><span class="rung__t">Stabilization</span><span class="rung__bar" style="--i:.25"></span></label>
+                <div class="panel p1">
+                  <div class="panel__grid">
+                    <div><h3>Earn control before load</h3><p>Movement quality, joint stability, and endurance first. Higher reps under slow tempo — the base every later phase stands on.</p></div>
+                    <div class="meters">
+                      <div class="meter"><span class="lab">Intensity</span><div class="meter__track"><span class="meter__fill" style="--v:.25"></span></div><span class="meter__v">LOW · 12–20 reps</span></div>
+                      <div class="meter"><span class="lab">Tempo</span><div class="meter__track"><span class="meter__fill" style="--v:.9"></span></div><span class="meter__v">SLOW · controlled</span></div>
+                    </div>
+                  </div>
                 </div>
-              </div></div>
-              <label class="rung r2" for="c2"><span class="rung__n">P2</span><span class="rung__t">Strength endurance</span><span class="rung__bar" style="--i:.45"></span></label>
-              <div class="panel p2"><div class="panel__grid">
-                <div><h3>Hold control under load</h3><p>Stable and heavy movements paired in supersets, so newly built strength keeps the control that phase one taught it.</p></div>
-                <div class="meters">
-                  <div class="meter"><span class="lab">Intensity</span><div class="meter__track"><span class="meter__fill" style="--v:.45"></span></div><span class="meter__v">MODERATE · 8–12 reps</span></div>
-                  <div class="meter"><span class="lab">Structure</span><div class="meter__track"><span class="meter__fill" style="--v:.7"></span></div><span class="meter__v">SUPERSET PAIRS</span></div>
+                <label class="rung r2" for="c2"><span class="rung__n">P2</span><span class="rung__t">Strength endurance</span><span class="rung__bar" style="--i:.45"></span></label>
+                <div class="panel p2">
+                  <div class="panel__grid">
+                    <div><h3>Hold control under load</h3><p>Stable and heavy movements paired in supersets, so newly built strength keeps the control that phase one taught it.</p></div>
+                    <div class="meters">
+                      <div class="meter"><span class="lab">Intensity</span><div class="meter__track"><span class="meter__fill" style="--v:.45"></span></div><span class="meter__v">MODERATE · 8–12 reps</span></div>
+                      <div class="meter"><span class="lab">Structure</span><div class="meter__track"><span class="meter__fill" style="--v:.7"></span></div><span class="meter__v">SUPERSET PAIRS</span></div>
+                    </div>
+                  </div>
                 </div>
-              </div></div>
-              <label class="rung r3" for="c3"><span class="rung__n">P3</span><span class="rung__t">Muscular development</span><span class="rung__bar" style="--i:.62"></span></label>
-              <div class="panel p3"><div class="panel__grid">
-                <div><h3>Build what strength will use</h3><p>Hypertrophy focus. Accumulate volume to build the tissue that maximal strength and power will later express.</p></div>
-                <div class="meters">
-                  <div class="meter"><span class="lab">Intensity</span><div class="meter__track"><span class="meter__fill" style="--v:.62"></span></div><span class="meter__v">MODERATE–HIGH · 6–12</span></div>
-                  <div class="meter"><span class="lab">Volume</span><div class="meter__track"><span class="meter__fill" style="--v:.95"></span></div><span class="meter__v">HIGH · short rest</span></div>
+                <label class="rung r3" for="c3"><span class="rung__n">P3</span><span class="rung__t">Muscular development</span><span class="rung__bar" style="--i:.62"></span></label>
+                <div class="panel p3">
+                  <div class="panel__grid">
+                    <div><h3>Build what strength will use</h3><p>Hypertrophy focus. Accumulate volume to build the tissue that maximal strength and power will later express.</p></div>
+                    <div class="meters">
+                      <div class="meter"><span class="lab">Intensity</span><div class="meter__track"><span class="meter__fill" style="--v:.62"></span></div><span class="meter__v">MODERATE–HIGH · 6–12</span></div>
+                      <div class="meter"><span class="lab">Volume</span><div class="meter__track"><span class="meter__fill" style="--v:.95"></span></div><span class="meter__v">HIGH · short rest</span></div>
+                    </div>
+                  </div>
                 </div>
-              </div></div>
-              <label class="rung r4" for="c4"><span class="rung__n">P4</span><span class="rung__t">Maximal strength</span><span class="rung__bar" style="--i:.85"></span></label>
-              <div class="panel p4"><div class="panel__grid">
-                <div><h3>Raise the ceiling</h3><p>Heavy load, low reps, full recovery. Trains the nervous system to recruit force — the ceiling that power sits on top of.</p></div>
-                <div class="meters">
-                  <div class="meter"><span class="lab">Intensity</span><div class="meter__track"><span class="meter__fill" style="--v:.92"></span></div><span class="meter__v">HIGH · 1–5 reps</span></div>
-                  <div class="meter"><span class="lab">Rest</span><div class="meter__track"><span class="meter__fill" style="--v:.85"></span></div><span class="meter__v">LONG · full recovery</span></div>
+                <label class="rung r4" for="c4"><span class="rung__n">P4</span><span class="rung__t">Maximal strength</span><span class="rung__bar" style="--i:.85"></span></label>
+                <div class="panel p4">
+                  <div class="panel__grid">
+                    <div><h3>Raise the ceiling</h3><p>Heavy load, low reps, full recovery. Trains the nervous system to recruit force — the ceiling that power sits on top of.</p></div>
+                    <div class="meters">
+                      <div class="meter"><span class="lab">Intensity</span><div class="meter__track"><span class="meter__fill" style="--v:.92"></span></div><span class="meter__v">HIGH · 1–5 reps</span></div>
+                      <div class="meter"><span class="lab">Rest</span><div class="meter__track"><span class="meter__fill" style="--v:.85"></span></div><span class="meter__v">LONG · full recovery</span></div>
+                    </div>
+                  </div>
                 </div>
-              </div></div>
-              <label class="rung r5" for="c5"><span class="rung__n">P5</span><span class="rung__t">Power</span><span class="rung__bar" style="--i:1"></span></label>
-              <div class="panel p5"><div class="panel__grid">
-                <div><h3>Make it fast</h3><p>Move well-owned patterns quickly. Rate of force development — strength made explosive, and the phase that sits closest to sport.</p></div>
-                <div class="meters">
-                  <div class="meter"><span class="lab">Velocity</span><div class="meter__track"><span class="meter__fill" style="--v:1"></span></div><span class="meter__v">MAXIMAL · explosive</span></div>
-                  <div class="meter"><span class="lab">Recovery</span><div class="meter__track"><span class="meter__fill" style="--v:.9"></span></div><span class="meter__v">FULL between sets</span></div>
+                <label class="rung r5" for="c5"><span class="rung__n">P5</span><span class="rung__t">Power</span><span class="rung__bar" style="--i:1"></span></label>
+                <div class="panel p5">
+                  <div class="panel__grid">
+                    <div><h3>Make it fast</h3><p>Move well-owned patterns quickly. Rate of force development — strength made explosive, and the phase that sits closest to sport.</p></div>
+                    <div class="meters">
+                      <div class="meter"><span class="lab">Velocity</span><div class="meter__track"><span class="meter__fill" style="--v:1"></span></div><span class="meter__v">MAXIMAL · explosive</span></div>
+                      <div class="meter"><span class="lab">Recovery</span><div class="meter__track"><span class="meter__fill" style="--v:.9"></span></div><span class="meter__v">FULL between sets</span></div>
+                    </div>
+                  </div>
                 </div>
-              </div></div>
+              </div>
             </div>
           </div>
-        </div></section>
+        </section>
 
-        <!-- WEEK -->
-        <section class="fsec"><div class="fshell">
-          <div class="fsec__head rv">
-            <span class="lab">02 / Rhythm</span>
-            <div><h2>A week shaped to add energy, not take it.</h2>
-            <p>Four loaded days against three light ones. Bar height reads as relative training load.</p></div>
+        <section class="fsec">
+          <div class="fshell">
+            <div class="fsec__head rv">
+              <span class="lab">02 / Rhythm</span>
+              <div>
+                <h2>A week shaped to add energy, not take it.</h2>
+                <p>Four loaded days against three light ones. Bar length reads as relative training load.</p>
+              </div>
+            </div>
+            <div class="week rv">
+              <div class="wd"><div class="wd__col"><span class="wd__load" style="--v:.85"></span></div><div class="wd__meta"><span class="wd__d">MON</span><span class="wd__t">Upper strength</span></div></div>
+              <div class="wd"><div class="wd__col"><span class="wd__load" style="--v:.35"></span></div><div class="wd__meta"><span class="wd__d">TUE</span><span class="wd__t">Mobility</span></div></div>
+              <div class="wd"><div class="wd__col"><span class="wd__load" style="--v:.95"></span></div><div class="wd__meta"><span class="wd__d">WED</span><span class="wd__t">Lower strength</span></div></div>
+              <div class="wd wd--rest"><div class="wd__col"><span class="wd__load" style="--v:.12"></span></div><div class="wd__meta"><span class="wd__d">THU</span><span class="wd__t">Walk</span></div></div>
+              <div class="wd"><div class="wd__col"><span class="wd__load" style="--v:.7"></span></div><div class="wd__meta"><span class="wd__d">FRI</span><span class="wd__t">Full body</span></div></div>
+              <div class="wd"><div class="wd__col"><span class="wd__load" style="--v:.5"></span></div><div class="wd__meta"><span class="wd__d">SAT</span><span class="wd__t">By feel</span></div></div>
+              <div class="wd wd--rest"><div class="wd__col"><span class="wd__load" style="--v:.06"></span></div><div class="wd__meta"><span class="wd__d">SUN</span><span class="wd__t">Rest</span></div></div>
+            </div>
           </div>
-          <div class="week rv">
-            <div class="wd"><div class="wd__col"><span class="wd__load" style="--v:.85"></span></div><div class="wd__meta"><span class="wd__d">MON</span><span class="wd__t">Upper strength</span></div></div>
-            <div class="wd"><div class="wd__col"><span class="wd__load" style="--v:.35"></span></div><div class="wd__meta"><span class="wd__d">TUE</span><span class="wd__t">Mobility</span></div></div>
-            <div class="wd"><div class="wd__col"><span class="wd__load" style="--v:.95"></span></div><div class="wd__meta"><span class="wd__d">WED</span><span class="wd__t">Lower strength</span></div></div>
-            <div class="wd wd--rest"><div class="wd__col"><span class="wd__load" style="--v:.12"></span></div><div class="wd__meta"><span class="wd__d">THU</span><span class="wd__t">Walk</span></div></div>
-            <div class="wd"><div class="wd__col"><span class="wd__load" style="--v:.7"></span></div><div class="wd__meta"><span class="wd__d">FRI</span><span class="wd__t">Full body</span></div></div>
-            <div class="wd"><div class="wd__col"><span class="wd__load" style="--v:.5"></span></div><div class="wd__meta"><span class="wd__d">SAT</span><span class="wd__t">By feel</span></div></div>
-            <div class="wd wd--rest"><div class="wd__col"><span class="wd__load" style="--v:.06"></span></div><div class="wd__meta"><span class="wd__d">SUN</span><span class="wd__t">Rest</span></div></div>
-          </div>
-        </div></section>
+        </section>
 
-        <!-- INPUTS -->
-        <section class="fsec"><div class="fshell">
-          <div class="fsec__head rv"><span class="lab">03 / Inputs</span><div><h2>Recovery is programmed, not left over.</h2></div></div>
-          <div class="rows rv">
-            <div class="frow"><div class="frow__k"><h3>Sleep</h3><span class="frow__v">7H MINIMUM</span></div><p>The single input with the widest effect. A short night lowers the next day's load — that's a rule, not a preference.</p></div>
-            <div class="frow"><div class="frow__k"><h3>Fuel</h3><span class="frow__v">REGULAR MEALS</span></div><p>Consistent meals on long research days. I don't run experiments hungry, and I don't lift hungry either.</p></div>
-            <div class="frow"><div class="frow__k"><h3>Reset</h3><span class="frow__v">1 LIGHT DAY / WEEK</span></div><p>Walks, stretching, and one deliberately light day before heavy weeks. It keeps the whole thing repeatable.</p></div>
+        <section class="fsec">
+          <div class="fshell">
+            <div class="fsec__head rv">
+              <span class="lab">03 / Inputs</span>
+              <div><h2>Recovery is programmed, not left over.</h2></div>
+            </div>
+            <div class="rows rv">
+              <div class="frow"><div class="frow__k"><h3>Sleep</h3><span class="frow__v">7H MINIMUM</span></div><p>The single input with the widest effect. A short night lowers the next day's load — that's a rule, not a preference.</p></div>
+              <div class="frow"><div class="frow__k"><h3>Fuel</h3><span class="frow__v">REGULAR MEALS</span></div><p>Consistent meals on long research days. I don't run experiments hungry, and I don't lift hungry either.</p></div>
+              <div class="frow"><div class="frow__k"><h3>Reset</h3><span class="frow__v">1 LIGHT DAY / WEEK</span></div><p>Walks, stretching, and one deliberately light day before heavy weeks. It keeps the whole thing repeatable.</p></div>
+            </div>
           </div>
-        </div></section>
+        </section>
 
-        <!-- HANDBALL -->
-        <section class="fsection"><div class="fwrap">
-          <div class="fhead reveal">
-            <span class="eyebrow">The Sport</span>
-            <h2>It started with handball.</h2>
-            <p>Court sport, jersey #13. Handball is where the training habit came from — and it still shapes how I structure a week.</p>
+        <section class="fsec">
+          <div class="fshell">
+            <div class="fsec__head rv">
+              <span class="lab">04 / Origin</span>
+              <div><h2>It started on a handball court.</h2></div>
+            </div>
+            <div class="hb rv">
+              <div>
+                <span class="jersey">13</span>
+                <p class="hb__q">Sprint, jump, throw, <em>reset</em>. Repeat for sixty minutes.</p>
+              </div>
+              <div class="hb__body">
+                <p>Handball is where the habit came from. It's a game of short hard efforts stitched together by recovery — which is, more or less, the argument this whole page is making.</p>
+                <p>It also taught the part that has nothing to do with fitness: individual capacity only counts if it holds up inside a system other people depend on.</p>
+                <a class="flink" href="/explore/handball-my-favorite-sport">Read the handball page →</a>
+              </div>
+            </div>
           </div>
-          <div class="rec reveal">
-            <div class="rcard"><div class="ic">⚡</div><h3>Explosive by nature</h3><p>Sprints, jumps, and throws in short bursts — the reason power sits at the top of how I train.</p></div>
-            <div class="rcard"><div class="ic">⛓</div><h3>Built on a team</h3><p>Seven players who have to read each other. Individual fitness only matters if it holds up inside the system.</p></div>
-            <div class="rcard"><div class="ic">↺</div><h3>Repetition wins</h3><p>The habit transferred directly: show up, repeat the work, trust the compounding.</p></div>
-          </div>
-          <p style="margin-top:1.6rem;"><a class="fbtn" href="/explore/handball-my-favorite-sport">More on handball →</a></p>
-        </div></section>
+        </section>
 
-        <!-- CLOSE -->
-        <section class="fclose"><div class="fshell">
-          <span class="lab" style="margin-bottom:1.6rem">05 / Close</span>
-          <h2>The same discipline that ships models.</h2>
-          <p>Assess honestly. Structure the work. Progress in phases. Whether it's a training block or a research problem, the method doesn't change.</p>
-          <a class="flink" href="/contact">Get in touch →</a>
-        </div></section>
+        <section class="fclose">
+          <div class="fshell">
+            <span class="lab">05 / Close</span>
+            <h2>The same discipline that ships models.</h2>
+            <p>Assess honestly. Structure the work. Progress in phases. Whether it's a training block or a research problem, the method doesn't change.</p>
+            <a class="flink" href="/contact">Get in touch →</a>
+          </div>
+        </section>
 
       </div>
     </main>
