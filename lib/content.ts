@@ -153,13 +153,6 @@ export const blogArticles = [
 
 export const fitnessArticles = [
   {
-    slug: "nasm-cpt-certification",
-    title: "Earning the NASM-CPT",
-    description:
-      "Why I certified through NASM, what the CPT covers, and how the OPT model reshaped my own training and recovery.",
-    datePublished: "2026-07-01",
-  },
-  {
     slug: "handball-my-favorite-sport",
     title: "Handball — My Favorite Sport",
     description:
