@@ -71,7 +71,7 @@ export const staticPageDates = {
   contact: "2026-05-01",
   blog: "2026-07-09",
   photography: "2026-04-01",
-  "fitness-health": "2026-06-01",
+  "fitness-health": "2026-07-28",
   music: "2026-04-01",
 } as const;
 
@@ -95,8 +95,9 @@ export const exploreCategories = [
     id: "fitness-health",
     slug: "fitness-health",
     href: "/explore/fitness-health",
-    title: "Fitness & Health",
-    description: "Training, recovery, routines, and sustainable health practices.",
+    title: "Fitness, Strength & Human Performance",
+    description:
+      "A visual exploration of structured strength, movement quality, recovery, handball, and NASM-informed fitness programming.",
   },
   {
     id: "music",
