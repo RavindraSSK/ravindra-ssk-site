@@ -608,8 +608,7 @@ html[data-theme="dark"] .brand__mark img.brand__logo-img--dark {
   box-shadow: var(--shadow-soft);
 }
 
-.logo-badge,
-.skill-chip__icon {
+.logo-badge {
   position: relative;
   display: inline-flex;
   align-items: center;
@@ -670,47 +669,8 @@ html[data-theme="dark"] .brand__mark img.brand__logo-img--dark {
   background: #c41e3a;
 }
 
-.logo-badge--aws {
-  background: #232f3e;
-  color: #ffffff;
-}
-
-.logo-badge--aws::after {
-  content: "";
-  position: absolute;
-  right: 0.48rem;
-  bottom: 0.38rem;
-  width: 1.1rem;
-  height: 0.28rem;
-  border-bottom: 2px solid #ff9900;
-  border-radius: 0 0 999px 999px;
-}
-
-.logo-badge--azure {
-  background: linear-gradient(135deg, #0078d4, #50a7f2);
-}
-
-.logo-badge--azure::before {
-  content: "";
-  width: 0.58rem;
-  height: 0.58rem;
-  margin-right: 0.28rem;
-  background: #ffffff;
-  clip-path: polygon(42% 0, 100% 100%, 0 100%);
-  opacity: 0.95;
-}
-
-.logo-badge--nvidia {
-  background: #76b900;
-  color: #101820;
-}
-
 .logo-badge--ibm {
   background: #0f62fe;
-}
-
-.logo-badge--coursera {
-  background: #0056d2;
 }
 
 .logo-badge--nptel {
@@ -729,16 +689,37 @@ html[data-theme="dark"] .brand__mark img.brand__logo-img--dark {
   background: #00a6d6;
 }
 
-.logo-badge--linkedin {
-  background: #0a66c2;
-}
-
 .logo-badge--amcat {
   background: #5b21b6;
 }
 
 .logo-badge--ucsc {
   background: linear-gradient(135deg, #003c6c, #f1b82d);
+}
+
+/* Neutral tile for official brand-logo images (skill chips + cert cards). Always a light
+   swatch, even in dark mode, since several brand marks (GitHub, AWS, Anthropic, Esri) are
+   near-black and unreadable directly on a dark card background. */
+.cert-logo {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 0.3rem;
+  border-radius: 12px;
+  background: var(--logo-tile-bg);
+  border: 1px solid var(--logo-tile-border);
+  box-shadow: var(--shadow-soft);
+}
+
+.cert-logo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 
 .timeline-content {
@@ -926,68 +907,36 @@ html[data-theme="dark"] .brand__mark img.brand__logo-img--dark {
   font-weight: 700;
 }
 
+/* Chips for concepts/tools with no verifiable official logo asset (e.g. Transfer Learning,
+   REST APIs) stay text-only rather than faking a mark for them. */
+.skill-chip--plain {
+  padding: 0.35rem 0.95rem;
+}
+
 .skill-chip__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
   width: 1.85rem;
   height: 1.85rem;
-  color: #ffffff;
+  padding: 3px;
+  border-radius: 9px;
+  background: var(--logo-tile-bg);
+  border: 1px solid var(--logo-tile-border);
 }
 
-.skill-chip__icon svg {
-  width: 1rem;
-  height: 1rem;
+.skill-chip__icon img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 
-.skill-chip--brand .skill-chip__icon {
+.skill-chip__icon--duo {
   width: auto;
-  min-width: 2.65rem;
-  padding: 0 0.45rem;
-  font-size: 0.66rem;
-  font-weight: 900;
-  letter-spacing: 0.02em;
-}
-
-.skill-chip--aws .skill-chip__icon {
-  background: #232f3e;
-}
-
-.skill-chip--azure .skill-chip__icon {
-  background: linear-gradient(135deg, #0078d4, #50a7f2);
-}
-
-.skill-chip--gcp .skill-chip__icon {
-  background: linear-gradient(135deg, #4285f4, #34a853 46%, #fbbc05 70%, #ea4335);
-}
-
-.skill-theme--navy .skill-chip__icon {
-  background: #1e3a8a;
-}
-
-.skill-theme--indigo .skill-chip__icon {
-  background: #4338ca;
-}
-
-.skill-theme--green .skill-chip__icon {
-  background: #166534;
-}
-
-.skill-theme--orange .skill-chip__icon {
-  background: #c2410c;
-}
-
-.skill-theme--blue .skill-chip__icon {
-  background: #2563eb;
-}
-
-.skill-theme--purple .skill-chip__icon {
-  background: #7c3aed;
-}
-
-.skill-theme--red .skill-chip__icon {
-  background: #dc2626;
-}
-
-.skill-theme--slate .skill-chip__icon {
-  background: #334155;
+  gap: 3px;
+  padding: 3px 5px;
 }
 
 .cert-group {

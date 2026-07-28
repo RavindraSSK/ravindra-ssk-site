@@ -21,6 +21,11 @@
   --surface-shine: rgba(255, 255, 255, 0.36);
   --surface-shine-strong: rgba(255, 255, 255, 0.94);
 
+  /* Always-light swatch for official brand-logo images, so dark-ink marks (GitHub, AWS,
+     Anthropic, Esri) stay legible without recoloring the source logo. */
+  --logo-tile-bg: rgba(255, 255, 255, 0.94);
+  --logo-tile-border: rgba(15, 23, 42, 0.1);
+
   --ambient-bg: #f8fbff;
   --ambient-surface: rgba(255, 255, 255, 0.86);
   --ambient-surface-strong: rgba(255, 255, 255, 0.94);
@@ -90,6 +95,9 @@ html[data-theme="dark"] {
   --color-on-primary: #f8fbff;
   --surface-shine: rgba(147, 180, 245, 0.1);
   --surface-shine-strong: rgba(226, 232, 240, 0.12);
+
+  --logo-tile-bg: rgba(248, 250, 255, 0.96);
+  --logo-tile-border: rgba(255, 255, 255, 0.18);
 
   --ambient-bg: #0d1729;
   --ambient-surface: rgba(18, 29, 52, 0.84);
