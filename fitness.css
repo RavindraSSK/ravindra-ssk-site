@@ -220,24 +220,6 @@ html[data-theme="dark"] .fitx .rcard .ic { color: var(--fit); }
 .fitx .rcard h3 { font-family: var(--font-display); font-size: 1.2rem; font-weight: 900; margin: 0; }
 .fitx .rcard p { margin: 0.5rem 0 0; color: var(--color-text-muted); font-size: 0.95rem; }
 
-/* ---------- ARTICLES ---------- */
-.fitx .arts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; }
-.fitx .art {
-  display: flex; flex-direction: column; padding: 1.5rem; border-radius: var(--radius-lg);
-  border: 1px solid var(--ambient-line); border-left: 4px solid var(--fit-deep);
-  background: var(--ambient-surface-strong); box-shadow: var(--shadow-card);
-  transition: transform 0.25s, box-shadow 0.25s; text-decoration: none; color: inherit;
-}
-.fitx .art:hover { transform: translateY(-6px); box-shadow: var(--shadow-hover); }
-.fitx .art__top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.9rem; }
-.fitx .art__pill { font-size: 0.72rem; font-weight: 800; padding: 0.3rem 0.7rem; border-radius: var(--radius-pill); background: rgba(47, 157, 138, 0.12); color: var(--fit-deep); }
-html[data-theme="dark"] .fitx .art__pill { color: var(--fit); }
-.fitx .art__read { font-size: 0.75rem; color: var(--color-text-faint); font-weight: 700; }
-.fitx .art h3 { font-family: var(--font-display); font-size: 1.2rem; font-weight: 900; letter-spacing: -0.01em; margin: 0; }
-.fitx .art p { margin: 0.6rem 0 1rem; color: var(--color-text-muted); font-size: 0.92rem; }
-.fitx .art__go { margin-top: auto; font-weight: 800; color: var(--fit-deep); font-size: 0.88rem; }
-html[data-theme="dark"] .fitx .art__go { color: var(--fit); }
-
 /* ---------- CLOSE ---------- */
 .fitx .close {
   text-align: center; padding: clamp(3rem, 7vw, 5rem) 2rem; border-radius: var(--radius-xl);
@@ -268,12 +250,10 @@ html[data-theme="dark"] .fitx .art__go { color: var(--fit); }
 /* ---------- responsive ---------- */
 @media (max-width: 900px) {
   .fitx .opt { grid-template-columns: 1fr; }
-  .fitx .arts { grid-template-columns: 1fr 1fr; }
   .fitx .rec { grid-template-columns: 1fr; }
   .fitx .week { grid-template-columns: repeat(3, 1fr); }
 }
 @media (max-width: 640px) {
   .fitx .fstats { grid-template-columns: 1fr 1fr; }
-  .fitx .arts { grid-template-columns: 1fr; }
   .fitx .week { grid-template-columns: 1fr 1fr; }
 }
