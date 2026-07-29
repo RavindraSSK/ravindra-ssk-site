@@ -926,68 +926,46 @@ html[data-theme="dark"] .brand__mark img.brand__logo-img--dark {
   font-weight: 700;
 }
 
-.skill-chip__icon {
-  width: 1.85rem;
-  height: 1.85rem;
-  color: #ffffff;
+.skill-chip__icon,
+.logo-badge--logo {
+  background: #ffffff;
+  border: 1px solid rgba(15, 23, 42, 0.12);
+  overflow: hidden;
 }
 
-.skill-chip__icon svg {
-  width: 1rem;
-  height: 1rem;
+.skill-chip__icon img,
+.logo-badge--logo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  padding: 0.24rem;
+  object-fit: contain;
 }
 
-.skill-chip--brand .skill-chip__icon {
+html[data-theme="dark"] .skill-chip__icon,
+html[data-theme="dark"] .logo-badge--logo {
+  border-color: rgba(255, 255, 255, 0.16);
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.04);
+}
+
+/* Wide "wordmark" logos (e.g. AWS) need a fixed height, not a square crop. */
+.skill-chip--brand .skill-chip__icon,
+.logo-badge--wordmark.logo-badge--logo {
   width: auto;
-  min-width: 2.65rem;
-  padding: 0 0.45rem;
-  font-size: 0.66rem;
-  font-weight: 900;
-  letter-spacing: 0.02em;
+  min-width: 3.1rem;
+  padding: 0 0.5rem;
 }
 
-.skill-chip--aws .skill-chip__icon {
-  background: #232f3e;
+.skill-chip--brand .skill-chip__icon img,
+.logo-badge--wordmark.logo-badge--logo img {
+  width: auto;
+  height: 60%;
+  padding: 0;
 }
 
-.skill-chip--azure .skill-chip__icon {
-  background: linear-gradient(135deg, #0078d4, #50a7f2);
-}
-
-.skill-chip--gcp .skill-chip__icon {
-  background: linear-gradient(135deg, #4285f4, #34a853 46%, #fbbc05 70%, #ea4335);
-}
-
-.skill-theme--navy .skill-chip__icon {
-  background: #1e3a8a;
-}
-
-.skill-theme--indigo .skill-chip__icon {
-  background: #4338ca;
-}
-
-.skill-theme--green .skill-chip__icon {
-  background: #166534;
-}
-
-.skill-theme--orange .skill-chip__icon {
-  background: #c2410c;
-}
-
-.skill-theme--blue .skill-chip__icon {
-  background: #2563eb;
-}
-
-.skill-theme--purple .skill-chip__icon {
-  background: #7c3aed;
-}
-
-.skill-theme--red .skill-chip__icon {
-  background: #dc2626;
-}
-
-.skill-theme--slate .skill-chip__icon {
-  background: #334155;
+/* Skill chips with no matching brand logo (concepts, techniques) show text only. */
+.skill-chip--text-only {
+  padding-left: 0.85rem;
 }
 
 .cert-group {
