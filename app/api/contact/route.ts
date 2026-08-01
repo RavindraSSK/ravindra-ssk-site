@@ -14,6 +14,33 @@ function isValidEmail(value: string) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
 }
 
+const RATE_LIMIT_WINDOW_MS = 10 * 60 * 1000;
+const RATE_LIMIT_MAX_REQUESTS = 5;
+const rateLimitHits = new Map<string, number[]>();
+
+function isRateLimited(key: string): boolean {
+  const now = Date.now();
+  const windowStart = now - RATE_LIMIT_WINDOW_MS;
+
+  for (const [mapKey, timestamps] of rateLimitHits) {
+    const pruned = timestamps.filter((t) => t > windowStart);
+    if (pruned.length === 0) {
+      rateLimitHits.delete(mapKey);
+    } else {
+      rateLimitHits.set(mapKey, pruned);
+    }
+  }
+
+  const hits = rateLimitHits.get(key) ?? [];
+  if (hits.length >= RATE_LIMIT_MAX_REQUESTS) {
+    return true;
+  }
+
+  hits.push(now);
+  rateLimitHits.set(key, hits);
+  return false;
+}
+
 export async function POST(request: Request) {
   let payload: ContactPayload;
 
@@ -27,6 +54,13 @@ export async function POST(request: Request) {
     return NextResponse.json({ ok: true });
   }
 
+  const forwardedFor = request.headers.get("x-forwarded-for");
+  const ip = forwardedFor?.split(",")[0]?.trim() || "unknown";
+
+  if (isRateLimited(ip)) {
+    return NextResponse.json({ error: "Too many messages. Please try again later." }, { status: 429 });
+  }
+
   const name = payload.name?.trim() ?? "";
   const email = payload.email?.trim() ?? "";
   const topic = payload.topic?.trim() || "General inquiry";
@@ -34,6 +68,18 @@ export async function POST(request: Request) {
 
   if (!name || !email || !message) {
     return NextResponse.json({ error: "Name, email, and message are required." }, { status: 400 });
+  }
+
+  if (name.length > 120) {
+    return NextResponse.json({ error: "Name is too long." }, { status: 400 });
+  }
+
+  if (email.length > 254) {
+    return NextResponse.json({ error: "Email is too long." }, { status: 400 });
+  }
+
+  if (topic.length > 200) {
+    return NextResponse.json({ error: "Topic is too long." }, { status: 400 });
   }
 
   if (!isValidEmail(email)) {

@@ -1,9 +1,50 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
+import { X } from "lucide-react";
 
 export function SiteInteractions({ pathname }: { pathname: string }) {
-  const [certificate, setCertificate] = useState<{ title: string; issuer: string } | null>(null);
+  const [certificate, setCertificate] = useState<{ title: string; issuer: string; url: string | null } | null>(null);
+  const certTriggerRef = useRef<HTMLElement | null>(null);
+
+  const closeCertificate = useCallback(() => {
+    setCertificate(null);
+    certTriggerRef.current?.focus();
+    certTriggerRef.current = null;
+  }, []);
+
+  useEffect(() => {
+    if (!certificate) return;
+    const panel = document.querySelector<HTMLElement>(".modal__panel");
+    if (!panel) return;
+
+    const focusableSelector = 'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])';
+    const getFocusable = () => Array.from(panel.querySelectorAll<HTMLElement>(focusableSelector));
+    getFocusable()[0]?.focus();
+
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        event.preventDefault();
+        closeCertificate();
+        return;
+      }
+      if (event.key !== "Tab") return;
+      const items = getFocusable();
+      if (items.length === 0) return;
+      const first = items[0];
+      const last = items[items.length - 1];
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    };
+
+    document.addEventListener("keydown", onKeyDown);
+    return () => document.removeEventListener("keydown", onKeyDown);
+  }, [certificate, closeCertificate]);
 
   useEffect(() => {
     const animated = Array.from(document.querySelectorAll<HTMLElement>(".animate-in"));
@@ -246,6 +287,7 @@ export function SiteInteractions({ pathname }: { pathname: string }) {
       const footer = card.querySelector<HTMLElement>(".cert-card__footer span:first-child");
       const hasUrl = Boolean(card.dataset.certUrl?.trim());
       if (footer) footer.textContent = hasUrl ? "View credential" : badge?.textContent?.trim() === "Planned" ? "Planned credential" : "Credential details";
+      if (!hasUrl) card.style.cursor = "default";
     });
     const filters = Array.from(document.querySelectorAll<HTMLButtonElement>("[data-cert-filter]"));
     const filterHandlers = filters.map((filter) => {
@@ -261,7 +303,16 @@ export function SiteInteractions({ pathname }: { pathname: string }) {
       filter.addEventListener("click", handler);
       return [filter, handler] as const;
     });
-    const certHandlers = certs.map((card) => { const handler = () => setCertificate({ title: card.dataset.certTitle || "Certificate", issuer: card.dataset.certIssuer || "Issuer" }); card.addEventListener("click", handler); return [card, handler] as const; });
+    const certHandlers = certs
+      .filter((card) => Boolean(card.dataset.certUrl?.trim()))
+      .map((card) => {
+        const handler = () => {
+          certTriggerRef.current = card;
+          setCertificate({ title: card.dataset.certTitle || "Certificate", issuer: card.dataset.certIssuer || "Issuer", url: card.dataset.certUrl?.trim() || null });
+        };
+        card.addEventListener("click", handler);
+        return [card, handler] as const;
+      });
 
     const form = document.querySelector<HTMLFormElement>("[data-contact-form]");
     const submitHandler = async (event: SubmitEvent) => {
@@ -404,10 +455,20 @@ export function SiteInteractions({ pathname }: { pathname: string }) {
 
   if (!certificate) return null;
   return (
-    <div className="modal is-open" aria-hidden="false" role="dialog" aria-modal="true" onClick={() => setCertificate(null)}>
+    <div className="modal is-open" aria-hidden="false" role="dialog" aria-modal="true" onClick={closeCertificate}>
       <div className="modal__panel" onClick={(event) => event.stopPropagation()}>
-        <div className="modal__bar"><h2 className="modal__title">{certificate.title}</h2><button className="modal__close" type="button" onClick={() => setCertificate(null)} aria-label="Close certificate preview">x</button></div>
-        <div className="modal__media cert-modal__copy"><strong>{certificate.title}</strong><span>{certificate.issuer}</span><p className="card-copy">Verification link will appear here when a public credential URL is available.</p></div>
+        <div className="modal__bar"><h2 className="modal__title">{certificate.title}</h2><button className="modal__close" type="button" onClick={closeCertificate} aria-label="Close certificate preview"><X size={18} aria-hidden="true" /></button></div>
+        <div className="modal__media cert-modal__copy">
+          <strong>{certificate.title}</strong>
+          <span>{certificate.issuer}</span>
+          {certificate.url ? (
+            <a className="button button--primary" href={certificate.url} target="_blank" rel="noopener noreferrer">
+              View credential
+            </a>
+          ) : (
+            <p className="card-copy">Verification link will appear here when a public credential URL is available.</p>
+          )}
+        </div>
       </div>
     </div>
   );
