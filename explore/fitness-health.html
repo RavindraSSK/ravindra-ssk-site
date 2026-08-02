@@ -92,8 +92,10 @@
           <div class="fshell fnav__shell">
             <a href="#system" data-fitx-nav-link>System</a>
             <a href="#progression" data-fitx-nav-link>Progression</a>
+            <a href="#fuel" data-fitx-nav-link>Fuel</a>
             <a href="#rhythm" data-fitx-nav-link>Week</a>
             <a href="#readiness" data-fitx-nav-link>Recovery</a>
+            <a href="#health" data-fitx-nav-link>Health</a>
             <a href="#origin" data-fitx-nav-link>Handball</a>
           </div>
         </nav>
@@ -457,11 +459,87 @@
           </div>
         </section>
 
-        <!-- ============ 05 WEEKLY TRAINING RHYTHM ============ -->
+        <!-- ============ 05 FUEL AND HYDRATION ============ -->
+        <section class="fsec ffuel" id="fuel" aria-labelledby="fuel-h" data-fuel-system>
+          <div class="fshell">
+            <div class="fsec__head rv">
+              <span class="lab">05 / Fuel</span>
+              <div>
+                <h2 id="fuel-h">Training uses energy. Recovery rebuilds capacity.</h2>
+                <p>Food and hydration support daily energy, training quality, recovery, and long-term consistency. The goal is not a perfect diet—it is a sustainable way to fuel the work.</p>
+              </div>
+            </div>
+            <div class="fuel-board rv">
+              <div class="fuel-board__visual" aria-hidden="true">
+                <svg viewBox="0 0 620 430" role="presentation">
+                  <g class="fuel-links" fill="none" stroke="currentColor" stroke-width="2">
+                    <path data-fuel-path="carbohydrates" d="M310 215 C230 180 190 100 110 80"></path>
+                    <path data-fuel-path="protein" d="M310 215 C390 175 430 95 510 80"></path>
+                    <path data-fuel-path="fats" d="M310 215 C220 240 165 260 82 270"></path>
+                    <path data-fuel-path="micronutrients" d="M310 215 C400 235 455 255 538 270"></path>
+                    <path data-fuel-path="hydration" d="M310 215 C310 285 310 325 310 380"></path>
+                  </g>
+                  <circle class="fuel-core" cx="310" cy="215" r="74"></circle>
+                  <g class="fuel-glyph" data-fuel-glyph="carbohydrates"><path d="M86 91c18-30 45-30 54-6-23-3-36 8-43 23m13-39v49"></path></g>
+                  <g class="fuel-glyph" data-fuel-glyph="protein"><path d="M485 72c18-20 34 20 52 0M485 94c18-20 34 20 52 0M493 66l36 36"></path></g>
+                  <g class="fuel-glyph" data-fuel-glyph="fats"><path d="M82 235c-31 40-29 62 0 62s31-22 0-62Z"></path></g>
+                  <g class="fuel-glyph" data-fuel-glyph="micronutrients"><circle cx="520" cy="267" r="27"></circle><path d="M520 240v54m-27-27h54m-46-19 38 38m0-38-38 38"></path></g>
+                  <g class="fuel-glyph" data-fuel-glyph="hydration"><path d="M310 342c-28 35-26 57 0 57s28-22 0-57Z"></path></g>
+                </svg>
+                <div class="fuel-core-copy"><strong>Daily capacity</strong><span>Energy · repair · function</span></div>
+              </div>
+              <fieldset class="fuel-selectors">
+                <legend>The fuel system</legend>
+                <button type="button" class="is-active" aria-pressed="true" data-fuel="carbohydrates"><span>Energy</span><strong>Carbohydrates</strong></button>
+                <button type="button" aria-pressed="false" data-fuel="protein"><span>Repair</span><strong>Protein</strong></button>
+                <button type="button" aria-pressed="false" data-fuel="fats"><span>Function</span><strong>Fats</strong></button>
+                <button type="button" aria-pressed="false" data-fuel="micronutrients"><span>Regulation</span><strong>Micronutrients</strong></button>
+                <button type="button" aria-pressed="false" data-fuel="hydration"><span>Hydration</span><strong>Fluids</strong></button>
+              </fieldset>
+              <div class="fuel-detail" aria-live="polite">
+                <span class="lab" data-fuel-role>Energy</span><h3 data-fuel-title>Carbohydrates</h3>
+                <p data-fuel-desc>A primary source of energy for moderate and higher-intensity activity.</p>
+              </div>
+            </div>
+            <ol class="energy-flow rv" aria-label="Energy flow from fuel to adaptation">
+              <li>Fuel</li><li>Daily activity</li><li>Training</li><li>Recovery</li><li>Adaptation</li>
+            </ol>
+            <div class="fuel-tools rv">
+              <figure class="flex-plate">
+                <figcaption><span class="lab">Flexible composition</span><h3>Build a visual plate—without a prescription.</h3></figcaption>
+                <div class="plate-wrap">
+                  <div class="plate" role="img" aria-label="A flexible meal illustration with energy, build, color, and hydrate zones">
+                    <span class="plate__zone plate__energy"><b>Energy</b><small>Foods that support activity and training.</small></span>
+                    <span class="plate__zone plate__build"><b>Build</b><small>Protein-rich foods supporting repair and maintenance.</small></span>
+                    <span class="plate__zone plate__color"><b>Color</b><small>Fruits and vegetables adding nutrients and variety.</small></span>
+                    <span class="plate__zone plate__hydrate"><b>Hydrate</b><small>Appropriate fluids for activity and conditions.</small></span>
+                    <span class="plate__center">Balance + variety</span>
+                  </div>
+                </div>
+                <p>Build meals around energy needs, food variety, personal preferences, and consistency.</p>
+              </figure>
+              <form class="hydration" data-hydration>
+                <fieldset><legend>Hydration demand explorer</legend>
+                  <label>Ambient temperature <input type="range" min="0" max="2" value="0" data-hydration-input><output>Comfortable</output></label>
+                  <label>Session duration <input type="range" min="0" max="2" value="0" data-hydration-input><output>Brief</output></label>
+                  <label>Activity intensity <input type="range" min="0" max="2" value="0" data-hydration-input><output>Light</output></label>
+                </fieldset>
+                <div class="hydration__result" role="status" aria-live="polite">
+                  <div class="fluid-gauge" aria-hidden="true"><span data-hydration-level></span></div>
+                  <div><span class="lab" data-hydration-demand>Lower demand</span><p data-hydration-guidance>Regular fluid intake across the day may be sufficient for many routine activities.</p></div>
+                </div>
+                <p class="fnote">Hydration needs vary with body size, environment, activity duration, intensity, health, and individual response.</p>
+              </form>
+            </div>
+            <p class="fnote">General nutrition education only. Individual nutrition needs may differ, and medical nutrition therapy belongs with qualified healthcare professionals.</p>
+          </div>
+        </section>
+
+        <!-- ============ 06 WEEKLY TRAINING RHYTHM ============ -->
         <section class="fsec" id="rhythm" aria-labelledby="rhythm-h">
           <div class="fshell">
             <div class="fsec__head rv">
-              <span class="lab">05 / Rhythm</span>
+              <span class="lab">06 / Rhythm</span>
               <div>
                 <h2 id="rhythm-h">A week designed to build capacity without draining it.</h2>
                 <p>The schedule balances demanding sessions with movement, flexible training, and recovery.</p>
@@ -504,11 +582,11 @@
           </div>
         </section>
 
-        <!-- ============ 06 READINESS AND RECOVERY DEMO ============ -->
+        <!-- ============ 07 READINESS AND RECOVERY DEMO ============ -->
         <section class="fsec" id="readiness" aria-labelledby="readiness-h">
           <div class="fshell">
             <div class="fsec__head rv">
-              <span class="lab">06 / Readiness</span>
+              <span class="lab">07 / Readiness</span>
               <div>
                 <h2 id="readiness-h">The plan gives direction. Readiness guides the adjustment.</h2>
               </div>
@@ -559,7 +637,24 @@
           </div>
         </section>
 
-        <!-- ============ 07 HANDBALL ORIGIN ============ -->
+        <!-- ============ 08 HEALTH IMPACT ============ -->
+        <section class="fsec fhealth" id="health" aria-labelledby="health-h" data-health-map>
+          <div class="fshell">
+            <div class="fsec__head rv"><span class="lab">08 / Health Impact</span><div><h2 id="health-h">Training reaches beyond the workout.</h2><p>Regular physical activity can support multiple systems that influence how people feel, function, recover, and live.</p></div></div>
+            <div class="health-map rv">
+              <div class="health-map__figure" aria-hidden="true">
+                <svg viewBox="0 0 420 560"><g class="body"><circle cx="210" cy="72" r="38"></circle><path d="M176 120 Q210 102 244 120 L268 265 246 350 259 520 M176 120 152 265 174 350 161 520 M153 155 88 300 M267 155 332 300"></path></g><g class="health-paths" fill="none"><path data-health-path="heart" d="M202 171 C150 150 98 118 48 88"></path><path data-health-path="muscle" d="M164 255 C112 250 80 245 35 230"></path><path data-health-path="brain" d="M210 70 C290 55 330 55 385 80"></path><path data-health-path="sleep" d="M242 120 C310 130 344 155 390 185"></path><path data-health-path="metabolism" d="M210 280 C300 290 337 320 388 350"></path><path data-health-path="function" d="M205 430 C140 455 95 480 44 505"></path></g></svg>
+              </div>
+              <fieldset class="health-nodes"><legend>Whole-body impact map</legend>
+                <button type="button" class="is-active" aria-pressed="true" data-health="heart">Heart</button><button type="button" aria-pressed="false" data-health="muscle">Muscle and bone</button><button type="button" aria-pressed="false" data-health="brain">Brain</button><button type="button" aria-pressed="false" data-health="sleep">Sleep</button><button type="button" aria-pressed="false" data-health="metabolism">Metabolism</button><button type="button" aria-pressed="false" data-health="function">Daily function</button>
+              </fieldset>
+              <div class="health-detail" aria-live="polite"><span class="lab" data-health-label>Heart and circulation</span><h3 data-health-title>Cardiovascular support</h3><p data-health-desc>Regular activity supports cardiovascular fitness and healthy circulation.</p><div class="health-micro" data-health-micro="heart" aria-hidden="true"><svg viewBox="0 0 240 64"><path d="M4 34h40l12-20 20 42 18-32 14 10h128"></path></svg></div></div>
+            </div>
+            <p class="fnote">General educational information only. Physical activity needs and appropriate exercise choices differ between individuals.</p>
+          </div>
+        </section>
+
+        <!-- ============ 09 HANDBALL ORIGIN ============ -->
         <section class="fsec horigin" id="origin" aria-labelledby="origin-h">
           <div class="fshell horigin__shell">
             <div class="horigin__art">
@@ -579,7 +674,7 @@
               <span class="jersey">13</span>
             </div>
             <div class="horigin__copy">
-              <span class="lab" id="origin-h">07 / Origin</span>
+              <span class="lab" id="origin-h">09 / Origin</span>
               <h2>It started on a handball court.</h2>
               <p class="horigin__lede">Handball shaped how I understand movement, reaction, resilience, and performance under pressure.</p>
               <p class="sr-only">Diagram: a handball court with center line and goal-area arcs, overlaid with a curved ball-trajectory path and the number 13, representing player position and movement under pressure.</p>
@@ -594,11 +689,11 @@
           </div>
         </section>
 
-        <!-- ============ 08 TRAIN WITH LIMITED TIME ============ -->
+        <!-- ============ 10 TRAIN WITH LIMITED TIME ============ -->
         <section class="fsec" id="time" aria-labelledby="time-h">
           <div class="fshell">
             <div class="fsec__head rv">
-              <span class="lab">08 / Time</span>
+              <span class="lab">10 / Time</span>
               <div>
                 <h2 id="time-h">Useful training can fit real schedules.</h2>
                 <p>The available time changes the session structure, not the need for movement quality.</p>
@@ -637,28 +732,13 @@
           </div>
         </section>
 
-        <!-- ============ 09 PERSONAL TRAINING PRINCIPLES ============ -->
-        <section class="fsec" id="principles" aria-labelledby="principles-h">
-          <div class="fshell">
-            <div class="fsec__head rv">
-              <span class="lab">09 / Principles</span>
-              <div><h2 id="principles-h">Simple rules keep the system useful.</h2></div>
-            </div>
-            <ol class="manifesto rv">
-              <li><span class="manifesto__n">01</span><p>Movement quality comes before added load.</p></li>
-              <li><span class="manifesto__n">02</span><p>Progression should be earned, not forced.</p></li>
-              <li><span class="manifesto__n">03</span><p>Recovery must match training demand.</p></li>
-              <li><span class="manifesto__n">04</span><p>The program must fit the person's real schedule.</p></li>
-              <li><span class="manifesto__n">05</span><p>Consistency is more useful than occasional extremes.</p></li>
-              <li><span class="manifesto__n">06</span><p>The plan should adapt when circumstances change.</p></li>
-            </ol>
-          </div>
-        </section>
-
         <!-- ============ CLOSING ============ -->
         <section class="fclose" aria-labelledby="close-h">
           <div class="fshell">
-            <span class="lab">10 / Close</span>
+            <span class="lab">Closing principles</span>
+            <ol class="manifesto manifesto--compact rv">
+              <li><span class="manifesto__n">01</span><p>Movement quality before added load.</p></li><li><span class="manifesto__n">02</span><p>Progression should be earned, not forced.</p></li><li><span class="manifesto__n">03</span><p>Recovery should match training demand.</p></li><li><span class="manifesto__n">04</span><p>Nutrition supports the work—it does not punish or reward it.</p></li><li><span class="manifesto__n">05</span><p>The program must fit real life.</p></li><li><span class="manifesto__n">06</span><p>Consistency is more useful than occasional extremes.</p></li>
+            </ol>
             <h2 id="close-h">Train with structure.<br>Adapt with awareness.<br>Continue with consistency.</h2>
             <p>Effective training does not require every day to be perfect. It requires a system that can respond, recover, and continue.</p>
             <div class="fclose__cta">
