@@ -486,6 +486,80 @@ html[data-theme="dark"] .fitx .horigin__art { background-image: linear-gradient(
 .fitx .fclose p { color: var(--color-text-muted); max-width: 46ch; margin: 0 0 2.2rem; }
 .fitx .fclose__cta { display: flex; flex-wrap: wrap; gap: 0.8rem; }
 
+/* Fuel system */
+.fitx .ffuel { border-top: 1px solid var(--hair-2); background: linear-gradient(180deg, rgba(23,138,118,.035), transparent 24%); }
+.fitx .fuel-board { display: grid; grid-template-columns: minmax(0,1.4fr) minmax(230px,.75fr); gap: 1.4rem 2rem; align-items: center; }
+.fitx .fuel-board__visual { position: relative; min-height: 420px; border: 1px solid var(--hair-2); border-radius: var(--radius-lg); background: radial-gradient(circle at 50% 50%, rgba(23,138,118,.12), transparent 38%), var(--ambient-editorial); overflow: hidden; }
+.fitx .fuel-board__visual svg { width: 100%; height: 100%; position: absolute; inset: 0; color: var(--hair-2); }
+.fitx .fuel-links path { transition: color .3s, stroke-width .3s, opacity .3s; }
+.fitx .fuel-links path.is-active { color: var(--fit); stroke-width: 4; }
+.fitx .fuel-core { fill: var(--color-surface); stroke: var(--fit); stroke-width: 2; }
+.fitx .fuel-core-copy { position: absolute; inset: 50% auto auto 50%; transform: translate(-50%,-50%); display: grid; text-align: center; gap: .25rem; width: 130px; }
+.fitx .fuel-core-copy strong { font-family: var(--font-display); font-size: 1.05rem; }
+.fitx .fuel-core-copy span { font-family: var(--mono); color: var(--color-text-faint); font-size: .57rem; text-transform: uppercase; letter-spacing: .08em; }
+.fitx .fuel-glyph { fill: none; stroke: var(--fit-blue); stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; opacity: .58; transition: opacity .3s, stroke .3s; }
+.fitx .fuel-glyph.is-active { opacity: 1; stroke: var(--fit); }
+.fitx .fuel-selectors, .fitx .hydration fieldset, .fitx .health-nodes { border: 0; padding: 0; margin: 0; display: grid; gap: .55rem; }
+.fitx .fuel-selectors legend, .fitx .hydration legend, .fitx .health-nodes legend { font-family: var(--mono); text-transform: uppercase; letter-spacing: .16em; font-size: .66rem; color: var(--color-text-faint); margin-bottom: .55rem; }
+.fitx .fuel-selectors button, .fitx .health-nodes button { min-height: 48px; border: 1px solid var(--hair-2); border-radius: 12px; background: var(--ambient-surface); color: var(--color-text-muted); text-align: left; padding: .65rem .9rem; cursor: pointer; transition: border-color .2s, background .2s, transform .2s; }
+.fitx .fuel-selectors button { display: grid; grid-template-columns: 5.5rem 1fr; align-items: center; gap: .7rem; }
+.fitx .fuel-selectors button span { font-family: var(--mono); font-size: .62rem; text-transform: uppercase; letter-spacing: .1em; }
+.fitx .fuel-selectors button strong { font-family: var(--font-display); color: inherit; }
+.fitx .fuel-selectors button:hover, .fitx .health-nodes button:hover { transform: translateX(3px); border-color: var(--fit); }
+.fitx .fuel-selectors button.is-active, .fitx .health-nodes button.is-active { border-color: var(--fit); background: rgba(23,138,118,.1); color: var(--fit); }
+.fitx .fuel-selectors button:focus-visible, .fitx .health-nodes button:focus-visible { outline: 2px solid var(--fit); outline-offset: 2px; }
+.fitx .fuel-detail { grid-column: 1/-1; border-top: 1px solid var(--hair-2); padding-top: 1.3rem; min-height: 116px; }
+.fitx .fuel-detail h3, .fitx .health-detail h3, .fitx .flex-plate h3 { font-size: clamp(1.2rem,3vw,1.55rem); margin: .45rem 0 .5rem; }
+.fitx .fuel-detail p, .fitx .health-detail p, .fitx .flex-plate > p { color: var(--color-text-muted); margin: 0; max-width: 58ch; }
+.fitx .energy-flow { list-style: none; display: grid; grid-template-columns: repeat(5,1fr); margin: 2.2rem 0; padding: 1rem 0; border-block: 1px solid var(--hair-2); }
+.fitx .energy-flow li { position: relative; font-family: var(--mono); font-size: .7rem; letter-spacing: .08em; text-transform: uppercase; text-align: center; color: var(--color-text-muted); }
+.fitx .energy-flow li:not(:last-child)::after { content: "→"; position: absolute; right: -.25rem; color: var(--fit); }
+.fitx .fuel-tools { display: grid; grid-template-columns: 1.12fr .88fr; gap: 1.4rem; }
+.fitx .flex-plate, .fitx .hydration { margin: 0; padding: clamp(1.1rem,3vw,1.6rem); border: 1px solid var(--hair-2); border-radius: var(--radius-lg); background: var(--ambient-surface); }
+.fitx .plate-wrap { display: grid; place-items: center; padding: 1.4rem 0; }
+.fitx .plate { width: min(100%,390px); aspect-ratio: 1; border-radius: 50%; border: 10px solid var(--color-surface); box-shadow: 0 0 0 1px var(--hair-2), 0 18px 40px rgba(18,56,48,.1); display: grid; grid-template-columns: 1fr 1fr; overflow: hidden; position: relative; transform: rotate(-5deg); }
+.fitx .plate__zone { display: flex; flex-direction: column; justify-content: center; padding: 1rem; text-align: center; color: var(--color-text); transform: rotate(5deg); }
+.fitx .plate__zone b { font-family: var(--mono); text-transform: uppercase; letter-spacing: .1em; font-size: .7rem; }
+.fitx .plate__zone small { font-size: .7rem; color: var(--color-text-muted); margin-top: .3rem; }
+.fitx .plate__energy { background: rgba(58,95,168,.12); }.fitx .plate__build { background: rgba(23,138,118,.15); }.fitx .plate__color { background: rgba(110,151,91,.15); }.fitx .plate__hydrate { background: rgba(79,151,205,.15); }
+.fitx .plate__center { position: absolute; inset: 50% auto auto 50%; transform: translate(-50%,-50%) rotate(5deg); width: 94px; aspect-ratio: 1; border-radius: 50%; display: grid; place-items: center; text-align: center; padding: .6rem; background: var(--color-surface); border: 1px solid var(--hair-2); font-family: var(--font-display); font-weight: 700; font-size: .8rem; }
+.fitx .hydration label { display: grid; gap: .5rem; padding-bottom: 1rem; color: var(--color-text-muted); font-size: .84rem; }
+.fitx .hydration input { accent-color: var(--fit); width: 100%; min-height: 28px; }.fitx .hydration output { font-family: var(--mono); color: var(--fit); font-size: .66rem; text-transform: uppercase; }
+.fitx .hydration__result { display: grid; grid-template-columns: 36px 1fr; gap: 1rem; padding-top: 1rem; border-top: 1px solid var(--hair-2); }
+.fitx .hydration__result p { margin: .5rem 0 0; color: var(--color-text-muted); font-size: .88rem; }
+.fitx .fluid-gauge { height: 116px; border: 2px solid var(--fit-blue); border-radius: 18px 18px 12px 12px; padding: 4px; display: flex; align-items: flex-end; overflow: hidden; }
+.fitx .fluid-gauge span { display: block; width: 100%; height: 28%; border-radius: 10px; background: linear-gradient(var(--fit-blue),var(--fit)); transition: height .45s ease; }
+
+/* Whole-body impact map */
+.fitx .fhealth { border-top: 1px solid var(--hair-2); }
+.fitx .health-map { display: grid; grid-template-columns: minmax(260px,.8fr) minmax(190px,.62fr) minmax(240px,.8fr); gap: 1.5rem; align-items: center; }
+.fitx .health-map__figure { min-height: 520px; border-radius: var(--radius-lg); background: radial-gradient(circle at 50% 40%, rgba(58,95,168,.11), transparent 50%), var(--ambient-editorial); border: 1px solid var(--hair-2); }
+.fitx .health-map__figure svg { width: 100%; height: 100%; }.fitx .body { fill: rgba(23,138,118,.08); stroke: var(--fit); stroke-width: 5; stroke-linecap: round; stroke-linejoin: round; }
+.fitx .health-paths { stroke: var(--hair-2); stroke-width: 2; }.fitx .health-paths path.is-active { stroke: var(--fit-blue); stroke-width: 4; }
+.fitx .health-detail { min-height: 240px; padding: 1.3rem; border: 1px solid var(--hair-2); border-radius: var(--radius-lg); background: var(--ambient-surface); }
+.fitx .health-micro { margin-top: 1.5rem; color: var(--fit); }.fitx .health-micro svg { width: 100%; max-width: 240px; }.fitx .health-micro path, .fitx .health-micro circle, .fitx .health-micro line { fill: none; stroke: currentColor; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+.fitx .manifesto--compact { display: grid; grid-template-columns: repeat(2,1fr); margin-bottom: clamp(3rem,7vw,4.5rem); }.fitx .manifesto--compact li { padding-right: 1.5rem; }.fitx .manifesto--compact p { font-size: clamp(.92rem,2vw,1.08rem); }
+
+@media (prefers-reduced-motion: no-preference) {
+  .fitx .fuel-board.is-inview .fuel-links path, .fitx .health-map.is-inview .health-paths path { stroke-dasharray: 1; stroke-dashoffset: 1; animation: fDraw .9s ease forwards; }
+  .fitx .energy-flow.is-inview li { animation: fUpIn .45s ease both; animation-delay: calc(var(--flow-index,0) * .08s); }
+  .fitx .health-paths path.is-active { animation: healthPulse .7s ease; }
+}
+@keyframes healthPulse { 50% { stroke-width: 7; } }
+
+@media (max-width: 900px) {
+  .fitx .fuel-board { grid-template-columns: 1fr; }.fitx .fuel-board__visual { min-height: 360px; }.fitx .fuel-tools { grid-template-columns: 1fr; }
+  .fitx .health-map { grid-template-columns: 1fr 1fr; }.fitx .health-map__figure { grid-column: 1/-1; min-height: 430px; }.fitx .health-detail { min-height: 0; }
+}
+@media (max-width: 600px) {
+  .fitx .fnav__shell { gap: 1.2rem; }.fitx .fnav a { min-height: 44px; display: flex; align-items: center; }
+  .fitx .fuel-board__visual { min-height: 300px; }.fitx .fuel-selectors { grid-template-columns: 1fr 1fr; }.fitx .fuel-selectors button { grid-template-columns: 1fr; gap: .2rem; }
+  .fitx .energy-flow { grid-template-columns: 1fr; gap: .65rem; }.fitx .energy-flow li:not(:last-child)::after { content: "↓"; right: 1rem; }
+  .fitx .plate__zone { padding: .55rem; }.fitx .plate__zone small { display: none; }.fitx .plate__center { width: 78px; font-size: .7rem; }
+  .fitx .health-map { grid-template-columns: 1fr; }.fitx .health-map__figure { min-height: 390px; }.fitx .health-nodes { grid-template-columns: 1fr 1fr; }
+  .fitx .manifesto--compact { grid-template-columns: 1fr; }
+}
+
 /* ---------- reveal (progressive enhancement) ---------- */
 @supports (animation-timeline: view()) {
   @media (prefers-reduced-motion: no-preference) {

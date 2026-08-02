@@ -355,6 +355,66 @@ export function SiteInteractions({ pathname }: { pathname: string }) {
     updateReadiness();
     readyForm?.addEventListener("change", updateReadiness);
 
+    const fuelData: Record<string, { role: string; title: string; desc: string }> = {
+      carbohydrates: { role: "Energy", title: "Carbohydrates", desc: "A primary source of energy for moderate and higher-intensity activity." },
+      protein: { role: "Repair", title: "Protein", desc: "Supports the maintenance, repair, and development of body tissues." },
+      fats: { role: "Function", title: "Fats", desc: "Provide energy and support normal physiological functions." },
+      micronutrients: { role: "Regulation", title: "Micronutrients", desc: "Vitamins and minerals contribute to energy metabolism, recovery, and normal body function." },
+      hydration: { role: "Hydration", title: "Hydration", desc: "Supports circulation, temperature regulation, concentration, and physical performance." },
+    };
+    const fuelRoot = fitxRoot?.querySelector<HTMLElement>("[data-fuel-system]");
+    const fuelButtons = Array.from(fuelRoot?.querySelectorAll<HTMLButtonElement>("[data-fuel]") ?? []);
+    const fuelRole = fuelRoot?.querySelector<HTMLElement>("[data-fuel-role]");
+    const fuelTitle = fuelRoot?.querySelector<HTMLElement>("[data-fuel-title]");
+    const fuelDesc = fuelRoot?.querySelector<HTMLElement>("[data-fuel-desc]");
+    const selectFuel = (key: string) => {
+      const item = fuelData[key];
+      if (!item) return;
+      fuelButtons.forEach((button) => { const active = button.dataset.fuel === key; button.classList.toggle("is-active", active); button.setAttribute("aria-pressed", String(active)); });
+      fuelRoot?.querySelectorAll<SVGElement>("[data-fuel-path], [data-fuel-glyph]").forEach((node) => node.classList.toggle("is-active", node.dataset.fuelPath === key || node.dataset.fuelGlyph === key));
+      if (fuelRole) fuelRole.textContent = item.role;
+      if (fuelTitle) fuelTitle.textContent = item.title;
+      if (fuelDesc) fuelDesc.textContent = item.desc;
+    };
+    const fuelHandlers = fuelButtons.map((button) => { const handler = () => selectFuel(button.dataset.fuel ?? "carbohydrates"); button.addEventListener("click", handler); return [button, handler] as const; });
+    selectFuel("carbohydrates");
+
+    const hydration = fitxRoot?.querySelector<HTMLFormElement>("[data-hydration]");
+    const hydrationInputs = Array.from(hydration?.querySelectorAll<HTMLInputElement>("[data-hydration-input]") ?? []);
+    const hydrationDemand = hydration?.querySelector<HTMLElement>("[data-hydration-demand]");
+    const hydrationGuidance = hydration?.querySelector<HTMLElement>("[data-hydration-guidance]");
+    const hydrationLevel = hydration?.querySelector<HTMLElement>("[data-hydration-level]");
+    const inputWords = [["Comfortable", "Warm", "Hot"], ["Brief", "Moderate", "Longer"], ["Light", "Moderate", "Demanding"]];
+    const updateHydration = () => {
+      const score = hydrationInputs.reduce((total, input, index) => { const value = Number(input.value); const output = input.parentElement?.querySelector("output"); if (output) output.textContent = inputWords[index][value]; return total + value; }, 0);
+      const tier = score >= 4 ? 2 : score >= 2 ? 1 : 0;
+      const results = [
+        ["Lower demand", "Regular fluid intake across the day may be sufficient for many routine activities."],
+        ["Moderate demand", "Pay closer attention to fluid availability before, during, and after activity."],
+        ["Higher demand", "Longer, hotter, or more demanding activity may require more deliberate hydration planning."],
+      ];
+      if (hydrationDemand) hydrationDemand.textContent = results[tier][0]; if (hydrationGuidance) hydrationGuidance.textContent = results[tier][1]; if (hydrationLevel) hydrationLevel.style.height = `${28 + tier * 30}%`;
+    };
+    updateHydration(); hydration?.addEventListener("input", updateHydration);
+
+    const healthData: Record<string, { label: string; title: string; desc: string; svg: string }> = {
+      heart: { label: "Heart and circulation", title: "Cardiovascular support", desc: "Regular activity supports cardiovascular fitness and healthy circulation.", svg: '<svg viewBox="0 0 240 64"><path d="M4 34h40l12-20 20 42 18-32 14 10h128"/></svg>' },
+      muscle: { label: "Muscle and bone", title: "Structural capacity", desc: "Resistance and weight-bearing activity support muscular capacity and bone health.", svg: '<svg viewBox="0 0 240 64"><path d="M18 50V26m28 24V14m28 36V22m44 0 24 28 28-40 34 40 30-22"/></svg>' },
+      brain: { label: "Brain and mood", title: "Cognition and well-being", desc: "Movement can support cognition, attention, mood, and emotional well-being.", svg: '<svg viewBox="0 0 240 64"><circle cx="35" cy="32" r="6"/><circle cx="90" cy="14" r="6"/><circle cx="130" cy="48" r="6"/><circle cx="195" cy="24" r="6"/><path d="M40 30 84 16m12 2 29 26m11 1 53-18M41 35l83 11"/></svg>' },
+      sleep: { label: "Sleep and recovery", title: "Recovery quality", desc: "Regular physical activity can support better sleep and recovery quality.", svg: '<svg viewBox="0 0 240 64"><path d="M25 42c18-3 28-17 28-34 12 15 31 20 47 10-4 24-34 39-56 24m72 4c15-22 29 22 44 0s29 22 44 0"/></svg>' },
+      metabolism: { label: "Metabolic health", title: "Energy regulation", desc: "Activity supports energy regulation, blood-sugar management, and healthy body-weight maintenance.", svg: '<svg viewBox="0 0 240 64"><path d="M72 17a42 42 0 0 1 77 7m-3-13 5 15 15-6M168 47a42 42 0 0 1-77-7m3 13-5-15-15 6"/></svg>' },
+      function: { label: "Daily function", title: "Capacity for daily life", desc: "Strength, mobility, balance, and endurance support physical function and quality of life.", svg: '<svg viewBox="0 0 240 64"><path d="M12 48c35 0 46-30 74-30s37 31 66 31 35-25 76-25"/><circle cx="12" cy="48" r="4"/><circle cx="228" cy="24" r="4"/></svg>' },
+    };
+    const healthRoot = fitxRoot?.querySelector<HTMLElement>("[data-health-map]");
+    const healthButtons = Array.from(healthRoot?.querySelectorAll<HTMLButtonElement>("[data-health]") ?? []);
+    const healthLabel = healthRoot?.querySelector<HTMLElement>("[data-health-label]"); const healthTitle = healthRoot?.querySelector<HTMLElement>("[data-health-title]"); const healthDesc = healthRoot?.querySelector<HTMLElement>("[data-health-desc]"); const healthMicro = healthRoot?.querySelector<HTMLElement>("[data-health-micro]");
+    const selectHealth = (key: string) => { const item = healthData[key]; if (!item) return; healthButtons.forEach((button) => { const active = button.dataset.health === key; button.classList.toggle("is-active", active); button.setAttribute("aria-pressed", String(active)); }); healthRoot?.querySelectorAll<SVGPathElement>("[data-health-path]").forEach((path) => path.classList.toggle("is-active", path.dataset.healthPath === key)); if (healthLabel) healthLabel.textContent = item.label; if (healthTitle) healthTitle.textContent = item.title; if (healthDesc) healthDesc.textContent = item.desc; if (healthMicro) { healthMicro.dataset.healthMicro = key; healthMicro.innerHTML = item.svg; } };
+    const healthHandlers = healthButtons.map((button) => { const handler = () => selectHealth(button.dataset.health ?? "heart"); button.addEventListener("click", handler); return [button, handler] as const; });
+    selectHealth("heart");
+
+    const visualObserver = typeof IntersectionObserver === "undefined" ? null : new IntersectionObserver((entries, obs) => entries.forEach((entry) => { if (entry.isIntersecting) { entry.target.classList.add("is-inview"); obs.unobserve(entry.target); } }), { threshold: .18 });
+    const visualTargets = Array.from(fitxRoot?.querySelectorAll<HTMLElement>(".fuel-board, .energy-flow, .health-map") ?? []); visualTargets.forEach((target, index) => { if (target.classList.contains("energy-flow")) target.querySelectorAll("li").forEach((li, itemIndex) => (li as HTMLElement).style.setProperty("--flow-index", String(itemIndex))); visualObserver?.observe(target); if (!visualObserver) target.classList.add("is-inview"); });
+
     const fitxNav = fitxRoot?.querySelector<HTMLElement>("[data-fitx-nav]");
     const fitxNavLinks = Array.from(fitxRoot?.querySelectorAll<HTMLAnchorElement>("[data-fitx-nav-link]") ?? []);
     const fitxSections = fitxNavLinks
@@ -398,6 +458,10 @@ export function SiteInteractions({ pathname }: { pathname: string }) {
       certHandlers.forEach(([card, handler]) => card.removeEventListener("click", handler));
       form?.removeEventListener("submit", submitHandler);
       readyForm?.removeEventListener("change", updateReadiness);
+      fuelHandlers.forEach(([button, handler]) => button.removeEventListener("click", handler));
+      hydration?.removeEventListener("input", updateHydration);
+      healthHandlers.forEach(([button, handler]) => button.removeEventListener("click", handler));
+      visualObserver?.disconnect();
       fitxNavObserver?.disconnect();
     };
   }, [pathname]);
