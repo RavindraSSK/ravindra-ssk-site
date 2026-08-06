@@ -111,13 +111,13 @@ html[data-theme="dark"] .fitx .fhero__field {
 .fitx .fhero__art {
   position: absolute; right: clamp(-4%, 0%, 0%); bottom: -2%; width: min(46vw, 480px); height: min(52vh, 500px);
   z-index: 1; pointer-events: none; opacity: 0.94; border-radius: var(--radius-lg); overflow: hidden;
-  background-image: linear-gradient(200deg, rgba(23, 138, 118, 0.08), transparent 60%), url("/images/fitness/fitness-hero-desktop.webp");
-  background-size: cover; background-position: center;
+  background-image: radial-gradient(120% 120% at 20% 0%, rgba(23, 138, 118, 0.16), transparent 55%),
+    linear-gradient(200deg, rgba(58, 95, 168, 0.1), transparent 70%);
+  background-color: var(--ambient-editorial);
 }
-html[data-theme="dark"] .fitx .fhero__art { background-image: linear-gradient(200deg, rgba(79, 209, 181, 0.1), transparent 60%), url("/images/fitness/fitness-hero-desktop.webp"); }
-@media (max-width: 720px) {
-  .fitx .fhero__art { background-image: linear-gradient(200deg, rgba(23, 138, 118, 0.08), transparent 60%), url("/images/fitness/fitness-hero-mobile.webp"); }
-  html[data-theme="dark"] .fitx .fhero__art { background-image: linear-gradient(200deg, rgba(79, 209, 181, 0.1), transparent 60%), url("/images/fitness/fitness-hero-mobile.webp"); }
+html[data-theme="dark"] .fitx .fhero__art {
+  background-image: radial-gradient(120% 120% at 20% 0%, rgba(79, 209, 181, 0.2), transparent 55%),
+    linear-gradient(200deg, rgba(127, 164, 232, 0.14), transparent 70%);
 }
 .fitx .fhero__svg { width: 100%; height: 100%; }
 .fitx .fhero__svg .figure { opacity: 0.75; }
@@ -343,10 +343,10 @@ html[data-theme="dark"] .fitx .fhero__art { background-image: linear-gradient(20
 
 .fitx .pillar__media { border: 1px solid var(--hair-2); border-radius: var(--radius-lg); aspect-ratio: 5 / 3; display: flex; align-items: center; justify-content: center; overflow: hidden; background: var(--ambient-editorial); position: relative; }
 .fitx .pillar__media svg { width: 78%; height: 78%; }
-.fitx .pillar__media--strength { background-image: linear-gradient(160deg, rgba(23, 138, 118, 0.1), transparent 60%), url("/images/fitness/strength.webp"); background-size: cover; background-position: center; }
-.fitx .pillar__media--movement { background-image: linear-gradient(160deg, rgba(58, 95, 168, 0.1), transparent 60%), url("/images/fitness/movement.webp"); background-size: cover; background-position: center; }
-.fitx .pillar__media--conditioning { background-image: linear-gradient(160deg, rgba(23, 138, 118, 0.1), transparent 60%), url("/images/fitness/conditioning.webp"); background-size: cover; background-position: center; }
-.fitx .pillar__media--recovery { background-image: linear-gradient(160deg, rgba(58, 95, 168, 0.1), transparent 60%), url("/images/fitness/recovery.webp"); background-size: cover; background-position: center; }
+.fitx .pillar__media--strength { background-image: linear-gradient(160deg, rgba(23, 138, 118, 0.22), rgba(23, 138, 118, 0.03) 65%); }
+.fitx .pillar__media--movement { background-image: linear-gradient(200deg, rgba(58, 95, 168, 0.22), rgba(58, 95, 168, 0.03) 65%); }
+.fitx .pillar__media--conditioning { background-image: linear-gradient(160deg, rgba(23, 138, 118, 0.22), rgba(23, 138, 118, 0.03) 65%); }
+.fitx .pillar__media--recovery { background-image: linear-gradient(200deg, rgba(58, 95, 168, 0.22), rgba(58, 95, 168, 0.03) 65%); }
 .fitx .pillar__media svg { position: relative; z-index: 1; }
 .fitx .pillar__media::after { content: ""; position: absolute; inset: 0; background: var(--ambient-editorial); opacity: 0.001; }
 
@@ -423,8 +423,8 @@ html[data-theme="dark"] .fitx .fhero__art { background-image: linear-gradient(20
 .fitx .horigin { border-top: 1px solid var(--hair-2); background: linear-gradient(180deg, transparent, rgba(23, 138, 118, 0.03)); }
 .fitx .horigin__shell { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(2rem, 5vw, 3.5rem); align-items: center; }
 .fitx .horigin__art { position: relative; border: 1px solid var(--hair-2); border-radius: var(--radius-lg); overflow: hidden; aspect-ratio: 400 / 260;
-  background-image: linear-gradient(160deg, rgba(15, 30, 26, 0.06), transparent 55%), url("/images/fitness/handball-origin.webp"); background-size: cover; background-position: center; }
-html[data-theme="dark"] .fitx .horigin__art { background-image: linear-gradient(160deg, rgba(0, 0, 0, 0.35), transparent 60%), url("/images/fitness/handball-origin.webp"); }
+  background-image: linear-gradient(160deg, rgba(23, 138, 118, 0.12), rgba(58, 95, 168, 0.06) 55%, transparent 80%); }
+html[data-theme="dark"] .fitx .horigin__art { background-image: linear-gradient(160deg, rgba(79, 209, 181, 0.14), rgba(127, 164, 232, 0.08) 55%, transparent 80%); }
 .fitx .horigin__art svg { position: relative; z-index: 1; width: 100%; height: 100%; }
 .fitx .hcourt__field { fill: var(--ambient-editorial); }
 .fitx .hcourt__lines path { opacity: 0.85; }
