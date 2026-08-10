@@ -60,25 +60,30 @@ export default function RootLayout({ children }: Readonly<{ children: ReactNode 
         precedence="high"
         href="https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@400,500,700,800,900&f[]=satoshi@400,500,700&display=swap"
       />
-      <Script
-        id="header-offset-init"
-        strategy="beforeInteractive"
-        dangerouslySetInnerHTML={{
-          // Matches .site-header's actual rendered height per components.css (89px at <=560px where the
-          // logo/padding shrink, 98px above that). SiteChrome's ResizeObserver corrects this after mount,
-          // but seeding the real value here (instead of a flat guess) keeps that correction from being
-          // visible as layout shift.
-          __html: `(function(){var h=window.innerWidth<=560?89:98;document.documentElement.style.setProperty("--site-header-offset",h+"px");})();`,
-        }}
-      />
-      <Script
-        id="theme-init"
-        strategy="beforeInteractive"
-        dangerouslySetInnerHTML={{
-          __html: `try{var t=localStorage.getItem("theme");var d=t?t==="dark":window.matchMedia("(prefers-color-scheme: dark)").matches;if(d){document.documentElement.setAttribute("data-theme","dark")}else{document.documentElement.removeAttribute("data-theme")}}catch(e){}`,
-        }}
-      />
       <body>
+        {/*
+         * These beforeInteractive scripts must be direct children of <body> (or <head>), not <html>,
+         * per Next.js's Script docs — rendering them as children of <html> is invalid HTML and triggers
+         * a React DOM-nesting hydration warning, even though beforeInteractive still runs them pre-hydration.
+         */}
+        <Script
+          id="header-offset-init"
+          strategy="beforeInteractive"
+          dangerouslySetInnerHTML={{
+            // Matches .site-header's actual rendered height per components.css (89px at <=560px where the
+            // logo/padding shrink, 98px above that). SiteChrome's ResizeObserver corrects this after mount,
+            // but seeding the real value here (instead of a flat guess) keeps that correction from being
+            // visible as layout shift.
+            __html: `(function(){var h=window.innerWidth<=560?89:98;document.documentElement.style.setProperty("--site-header-offset",h+"px");})();`,
+          }}
+        />
+        <Script
+          id="theme-init"
+          strategy="beforeInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `try{var t=localStorage.getItem("theme");var d=t?t==="dark":window.matchMedia("(prefers-color-scheme: dark)").matches;if(d){document.documentElement.setAttribute("data-theme","dark")}else{document.documentElement.removeAttribute("data-theme")}}catch(e){}`,
+          }}
+        />
         <a className="skip-link" href="#main-content">Skip to content</a>
         <JsonLd data={buildRootJsonLd()} />
         <SiteChrome>{children}</SiteChrome>
