@@ -9,6 +9,7 @@
   inset: 7rem auto auto 8%;
   z-index: -1;
   width: 34rem;
+  max-width: 92%;
   height: 16rem;
   border-radius: 999px;
   background: var(--ambient-glow-strong);
