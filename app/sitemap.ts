@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 
 import { exploreArticles, exploreCategories, staticPageDates } from "@/lib/content";
+import { getAllIssues, getLatestIssue, SSK_AI } from "@/lib/ssk-ai";
 import { DEFAULT_SITE_URL } from "@/lib/site-url";
 
 function toDate(iso: string) {
@@ -22,6 +23,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     { url: `${siteUrl}/explore`, lastModified: toDate(staticPageDates.explore), changeFrequency: "weekly", priority: 0.7 },
     { url: `${siteUrl}/contact`, lastModified: toDate(staticPageDates.contact), changeFrequency: "yearly", priority: 0.5 },
+    { url: `${siteUrl}${SSK_AI.path}`, lastModified: toDate(getLatestIssue().datePublished), changeFrequency: "weekly", priority: 0.8 },
   ];
 
   const categoryRoutes: MetadataRoute.Sitemap = exploreCategories.map((category) => ({
@@ -38,5 +40,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.6,
   }));
 
-  return [...staticRoutes, ...categoryRoutes, ...articleRoutes];
+  const sskAiIssueRoutes: MetadataRoute.Sitemap = getAllIssues().map((issue) => ({
+    url: `${siteUrl}${SSK_AI.path}/${issue.slug}`,
+    lastModified: toDate(issue.datePublished),
+    changeFrequency: "monthly" as const,
+    priority: 0.7,
+  }));
+
+  return [...staticRoutes, ...categoryRoutes, ...articleRoutes, ...sskAiIssueRoutes];
 }
