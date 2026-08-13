@@ -32,7 +32,6 @@ export function SskAiLanding({ issues }: { issues: readonly SskAiIssue[] }) {
       <section className="section section--tight">
         <div className="container ssk-landing-hero">
           <div className="ssk-landing-hero__copy">
-            <span className="eyebrow">{SSK_AI.name}</span>
             <h1 className="page-title">{SSK_AI.name}</h1>
             <p className="ssk-landing-hero__tagline">{SSK_AI.tagline}</p>
             <p className="page-copy">{SSK_AI.seoDescription}</p>
