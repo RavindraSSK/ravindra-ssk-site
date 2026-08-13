@@ -1,0 +1,126 @@
+export type ApplicationKind = "demonstrated" | "potential";
+
+export type StoryApplication = {
+  text: string;
+  kind: ApplicationKind;
+  attribution?: string;
+};
+
+export type BeforeChangeResult = {
+  before: string;
+  change: string;
+  result: string;
+};
+
+export type CodedDiagramId =
+  | "qwen-moe"
+  | "mai-thinking"
+  | "nvidia-switchyard"
+  | "openai-daybreak"
+  | "tiered-ops";
+
+export type StoryVisual =
+  | {
+      kind: "coded-diagram";
+      diagram: CodedDiagramId;
+      caption: string;
+    }
+  | {
+      kind: "editorial-image";
+      src: string;
+      width: number;
+      height: number;
+      alt: string;
+      caption: string;
+      description: string;
+    };
+
+export type StorySource = {
+  heading: string;
+  body: string;
+};
+
+export type SskAiStory = {
+  rank: number;
+  id: string;
+  headline: string;
+  posterHeadline: string;
+  status: string;
+  type: string;
+  buildability: string;
+  buildabilityNote?: string;
+  audienceTags: string[];
+  whatHappened: string[];
+  whatsActuallyNew: string[];
+  whyItMatters: string;
+  applications: StoryApplication[];
+  realWorldExample: string;
+  developerTakeaway: string;
+  beforeChangeResult: BeforeChangeResult;
+  visual: StoryVisual;
+  source: StorySource;
+};
+
+export type ProjectConcept = {
+  slug: string;
+  name: string;
+  summary: string;
+  featured: boolean;
+  problem: string;
+  fromThisIssue: string;
+  howItWorks: string;
+  who: string;
+  whyUseful: string;
+  difficulty: string;
+};
+
+export type FeaturedPipelineStage = {
+  id: string;
+  label: string;
+  body: string;
+};
+
+export type SskAiIssuePoster = {
+  brand: string;
+  title: string;
+  dateLabel: string;
+  headlines: string[];
+  theme: string;
+};
+
+export type SskAiIssue = {
+  slug: string;
+  datePublished: string;
+  dateLabel: string;
+  cardTitle: string;
+  title: string;
+  seoTitle: string;
+  seoDescription: string;
+  theme: string;
+  opening: string[];
+  stories: SskAiStory[];
+  biggerPicture: {
+    heading: string;
+    lede: string;
+    sections: { title: string; body: string }[];
+    watchNext: string;
+  };
+  projectsIntro: string;
+  projects: ProjectConcept[];
+  featuredProject: {
+    name: string;
+    caption: string;
+    stages: FeaturedPipelineStage[];
+  };
+  poster: SskAiIssuePoster;
+  linkedInPost: string;
+  generalSourceNote: string;
+};
+
+export type SskAiPublication = {
+  name: string;
+  tagline: string;
+  path: string;
+  seoTitle: string;
+  seoDescription: string;
+};

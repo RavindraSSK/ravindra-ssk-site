@@ -6,7 +6,7 @@ const config = [
   },
   ...nextCoreWebVitals,
   {
-    files: ["app/opengraph-image.tsx"],
+    files: ["app/opengraph-image.tsx", "app/ssk-ai/opengraph-image.tsx", "app/ssk-ai/[slug]/opengraph-image.tsx"],
     rules: {
       "@next/next/no-img-element": "off",
     },

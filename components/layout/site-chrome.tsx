@@ -20,6 +20,7 @@ const portfolioLinks = [
 ] as const;
 
 const exploreLinks = [
+  ["SSK AI", "/ssk-ai", "What changed in AI and what you can build."],
   ["Career Guides", "/explore/blog", "Roles, salaries, hiring paths, and AI career roadmaps."],
   ["Technical Tutorials", "/explore/web-scraping-python", "Practical guides for building with code and data."],
   ["Research Articles", "/explore/spatial-context-geoai", "Notes from generative AI, computer vision, and applied ML."],
@@ -132,6 +133,7 @@ export function SiteChrome({ children }: { children: ReactNode }) {
                 <li className="nav-item"><Link className={`nav-link${pathname === "/" ? " is-active" : ""}`} href="/">Home</Link></li>
                 <Dropdown id="portfolio" title="Portfolio" links={portfolioLinks} open={dropdown === "portfolio"} setOpen={() => setDropdown(dropdown === "portfolio" ? null : "portfolio")} />
                 <Dropdown id="explore" title="Insights" links={exploreLinks} open={dropdown === "explore"} setOpen={() => setDropdown(dropdown === "explore" ? null : "explore")} />
+                <li className="nav-item"><Link className={`nav-link${pathname === "/ssk-ai" || pathname.startsWith("/ssk-ai/") ? " is-active" : ""}`} href="/ssk-ai">SSK AI</Link></li>
                 <li className="nav-item"><Link className={`nav-link${pathname === "/about" ? " is-active" : ""}`} href="/about">About</Link></li>
                 <li className="nav-item"><Link className={`nav-link${pathname === "/contact" ? " is-active" : ""}`} href="/contact">Contact</Link></li>
               </ul>
