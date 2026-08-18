@@ -35,12 +35,12 @@ export function buildPageMetadata(entry: { title: string; description: string },
 
 export const pageMetadata = {
   home: {
-    title: "Ravindra SSK | ML & AI Engineer",
+    title: "Ravindra SSK — AI/ML Engineer | Computer Vision & LLMs",
     description:
-      "Ravindra SSK is an ML & AI Engineer and graduate researcher building and evaluating production machine learning systems across computer vision, generative AI, healthcare AI, and LLM evaluation.",
+      "ML & AI Engineer and graduate researcher building production machine learning systems across computer vision, generative AI, and LLM evaluation.",
   },
   about: {
-    title: "About",
+    title: "About — AI/ML Engineer & Researcher",
     description:
       "About Ravindra SSK's ML & AI work, current research, technical interests, and professional profiles.",
   },
@@ -55,7 +55,7 @@ export const pageMetadata = {
       "Projects, experience, education, technical skills, achievements, and certifications from Ravindra SSK.",
   },
   contact: {
-    title: "Contact",
+    title: "Contact — AI/ML Roles & Collaboration",
     description:
       "Contact Ravindra SSK for ML & AI roles, research collaborations, internships, and interesting technical problems.",
   },
@@ -88,8 +88,9 @@ export const exploreCategories = [
     id: "photography",
     slug: "photography",
     href: "/explore/photography",
-    title: "Photography",
-    description: "Photography, visual studies, and image collections from Ravindra.",
+    title: "Photography & Visual Studies",
+    description:
+      "Photography and visual studies — light, structure, and geometry from morning walks, roadside stops, and built environments.",
   },
   {
     id: "fitness-health",
@@ -103,8 +104,9 @@ export const exploreCategories = [
     id: "music",
     slug: "music",
     href: "/explore/music",
-    title: "Music",
-    description: "Playlists, listening notes, and ongoing music discovery.",
+    title: "Music, Playlists & Listening Notes",
+    description:
+      "Playlists, listening notes, and ongoing discovery — the rotations behind focused work, records that carry weight, and new finds.",
   },
 ] as const;
 
@@ -118,7 +120,7 @@ export function getExploreCategory(slug: string) {
 export const blogArticles = [
   {
     slug: "us-ai-job-market-guide",
-    title: "The U.S. AI Job Market: A Complete Career Guide",
+    title: "U.S. AI Job Market: Complete Career Guide",
     description:
       "Roles, salaries, in-demand skills, and the gap between what universities teach and what employers actually hire for in the U.S. AI job market.",
     datePublished: "2026-07-09",
