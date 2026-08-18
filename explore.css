@@ -16,6 +16,14 @@
   filter: blur(36px);
 }
 
+.explore-hero__latest {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin: 0;
+}
+
 .explore-grid {
   display: grid;
   gap: clamp(1rem, 2vw, 1.5rem);
@@ -738,6 +746,73 @@ html[data-theme="dark"] .blog-entry-card--visual .blog-entry-card__content {
 .article-back-link:hover {
   border-color: var(--ambient-line-strong);
   box-shadow: 0 14px 32px rgba(27, 45, 95, 0.11);
+}
+
+/* Related-article navigation at the foot of every explore article. Pure CSS —
+   these pages are injected via dangerouslySetInnerHTML in components/static-page.tsx,
+   which strips inline <script>. */
+.article-related {
+  margin-top: clamp(2.5rem, 6vw, 4rem);
+  padding-top: clamp(1.5rem, 4vw, 2.5rem);
+  border-top: 1px solid var(--ambient-line);
+}
+
+.article-related__heading {
+  font-family: var(--font-display);
+  font-size: 0.78rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  margin: 0 0 1.25rem;
+}
+
+.article-related__grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: clamp(0.75rem, 2vw, 1rem);
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+}
+
+.article-related__card {
+  display: grid;
+  gap: 0.4rem;
+  height: 100%;
+  padding: 1.1rem 1.15rem;
+  border: 1px solid var(--ambient-line);
+  border-radius: 16px;
+  text-decoration: none;
+  transition: border-color 200ms ease, transform 200ms ease, background 200ms ease;
+}
+
+.article-related__card:hover {
+  border-color: var(--ambient-line-strong);
+  background: var(--ambient-editorial);
+  transform: translateY(-2px);
+}
+
+.article-related__card:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 3px;
+}
+
+.article-related__title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--color-text);
+}
+
+.article-related__desc {
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: var(--color-text-muted);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .article-related__card { transition: none; }
+  .article-related__card:hover { transform: none; }
 }
 
 .article-end-nav {
