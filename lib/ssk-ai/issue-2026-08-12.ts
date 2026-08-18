@@ -10,9 +10,9 @@ export const issueAugust12_2026: SskAiIssue = {
   dateLabel: "August 12, 2026",
   cardTitle: "SSK AI: The Week AI Split Into Specialists",
   title: "SSK AI — What Changed in AI & What You Can Build | August 12, 2026",
-  seoTitle: "AI Technology Updates: Qwen, Microsoft, NVIDIA, OpenAI & Google | SSK AI",
+  seoTitle: "AI Updates — Aug 12, 2026: Qwen, Microsoft, NVIDIA | SSK AI",
   seoDescription:
-    "SSK AI, August 12, 2026: Qwen's 2.4T open-weight model, Microsoft's MAI-Thinking-1, NVIDIA Lightning and Switchyard, OpenAI Daybreak, and Google AMIE — what changed technically, why it matters, and what you can build.",
+    "August 12, 2026: Qwen's 2.4T open-weight model, Microsoft MAI-Thinking-1, NVIDIA Lightning, OpenAI Daybreak, and Google AMIE — what changed and why.",
   theme: "From one giant model to systems of specialized, cooperating intelligence.",
   opening: [
     "For years, the default mental model of AI progress was simple: one enormous general model gets smarter, and everything downstream improves. This week suggests that model is becoming obsolete. What's emerging is a division of labor — frontier reasoners for hard thinking, small efficient models for repetitive execution, domain specialists for regulated professions, and multimodal systems that engage with the world the way people do.",
