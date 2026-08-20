@@ -118,3 +118,51 @@
   .visitor-map__bar { display: none; }
   .visitor-map__live { margin-left: 0; }
 }
+
+/* Footer call-to-action linking to /analytics. Builds on .button for the
+   shared sheen/hover behaviour; palette matches the visitor map gradient. */
+.footer-analytics {
+  gap: 0.55rem;
+  padding: 0 1.4rem;
+  border: 1px solid transparent;
+  background:
+    linear-gradient(var(--ambient-surface, #fff), var(--ambient-surface, #fff)) padding-box,
+    linear-gradient(90deg, #06b6d4, #6366f1, #a855f7) border-box;
+  color: inherit;
+  font-size: 0.95rem;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+}
+
+.footer-analytics:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(99, 102, 241, 0.25);
+}
+
+.footer-analytics__pulse {
+  width: 0.55rem;
+  height: 0.55rem;
+  border-radius: 50%;
+  background: #2ea043;
+  box-shadow: 0 0 0 0 rgba(46, 160, 67, 0.5);
+  animation: footer-analytics-pulse 2s ease-out infinite;
+}
+
+@keyframes footer-analytics-pulse {
+  0% { box-shadow: 0 0 0 0 rgba(46, 160, 67, 0.5); }
+  70% { box-shadow: 0 0 0 8px rgba(46, 160, 67, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(46, 160, 67, 0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .footer-analytics__pulse { animation: none; }
+  .footer-analytics:hover { transform: none; }
+}
+
+.footer-analytics__arrow {
+  transition: transform var(--transition-base, 0.2s ease);
+}
+
+.footer-analytics:hover .footer-analytics__arrow {
+  transform: translateX(3px);
+}
