@@ -32,6 +32,7 @@ export const issueAugust12_2026: SskAiIssue = {
     {
       rank: 1,
       id: "qwen-open-weights",
+      date: "2026-08-12",
       headline: "Qwen Brings a 2.4-Trillion-Parameter Model to Open Weights",
       posterHeadline: "Qwen opens a 2.4-trillion-parameter frontier model",
       status: "Available Now",
@@ -86,6 +87,7 @@ export const issueAugust12_2026: SskAiIssue = {
     {
       rank: 2,
       id: "mai-thinking-1",
+      date: "2026-08-12",
       headline: "Microsoft Launches MAI-Thinking-1, a First-Party 1T-Parameter Reasoner",
       posterHeadline: "Microsoft debuts its own trillion-parameter reasoner",
       status: "Public Preview",
@@ -139,6 +141,7 @@ export const issueAugust12_2026: SskAiIssue = {
     {
       rank: 3,
       id: "nvidia-lightning-switchyard",
+      date: "2026-08-11",
       headline: "NVIDIA Builds a Small Model for Agents' Grunt Work — and a Router to Match",
       posterHeadline: "NVIDIA's tiny model powers long-running agents",
       status: "Available Now",
@@ -192,6 +195,7 @@ export const issueAugust12_2026: SskAiIssue = {
     {
       rank: 4,
       id: "openai-daybreak",
+      date: "2026-08-10",
       headline: "OpenAI Ships a Cybersecurity-Specialized Model Behind Controlled Doors",
       posterHeadline: "OpenAI gates cybersecurity AI behind Daybreak",
       status: "Restricted Access",
@@ -245,6 +249,7 @@ export const issueAugust12_2026: SskAiIssue = {
     {
       rank: 5,
       id: "google-amie",
+      date: "2026-08-11",
       headline: "Google's AMIE Moves Medical AI Research Into Real-Time Audio-Visual Consultation",
       posterHeadline: "Google's medical AI goes real-time audio-visual",
       status: "Research Only",
