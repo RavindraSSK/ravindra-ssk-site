@@ -45,6 +45,14 @@ export type StorySource = {
 export type SskAiStory = {
   rank: number;
   id: string;
+  /**
+   * ISO date the story's event happened, which is what the newsroom calendar indexes
+   * days by. It is not a new editorial claim: every story already states its own date
+   * in `whatHappened` ("On August 11, 2026, NVIDIA announced..."), and this field
+   * carries that same date in machine-readable form. Where a story spans days, use the
+   * date of the development it leads with.
+   */
+  date: string;
   headline: string;
   posterHeadline: string;
   status: string;

@@ -9,14 +9,26 @@ import {
   getCurrentMonthPlan,
   TECH_NEWS,
 } from "@/lib/ssk-ai";
+import { buildCalendarRange, defaultMonthIndex, defaultSelectedDate } from "@/lib/ssk-ai/calendar";
 
 export const metadata: Metadata = buildSectionMetadata(TECH_NEWS);
 
 export default function TechNewsPage() {
+  const issues = getAllIssues();
+  const months = buildCalendarRange(issues, TECH_NEWS.path);
+
   return (
     <>
       <JsonLd data={buildTechNewsJsonLd()} />
-      <TechNewsDesk issues={getAllIssues()} plan={getCurrentMonthPlan()} />
+      <TechNewsDesk
+        issues={issues}
+        plan={getCurrentMonthPlan()}
+        calendar={{
+          months,
+          initialIndex: defaultMonthIndex(months, issues),
+          initialSelected: defaultSelectedDate(months),
+        }}
+      />
     </>
   );
 }

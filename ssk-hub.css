@@ -548,3 +548,380 @@
 .ssk-cadence__table tbody tr:last-child td {
   border-bottom: 0;
 }
+
+/* --------------------------------------------------------- newsroom calendar
+   The interactive month grid on the Tech News desk. States are painted, never
+   implied: a story day carries the accent, a covered day a soft tint, an
+   unwritten day stays visibly inert. Everything transitions but nothing moves
+   far — the calm is the design. */
+
+.ssk-newsroom__note {
+  margin: calc(var(--space-6) * -1 + 0.4rem) 0 var(--space-6);
+  max-width: 62ch;
+  color: var(--color-text-muted);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.ssk-newsroom {
+  display: grid;
+  gap: var(--space-6);
+  align-items: start;
+}
+
+@media (min-width: 960px) {
+  .ssk-newsroom {
+    grid-template-columns: minmax(0, 1.45fr) minmax(18rem, 1fr);
+  }
+}
+
+.ssk-newsroom__calendar {
+  display: grid;
+  gap: var(--space-4);
+  padding: clamp(1.2rem, 2.6vw, 1.8rem);
+}
+
+.ssk-newsroom__toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  padding-bottom: var(--space-3);
+  border-bottom: 1px solid var(--ssk-rule-soft);
+}
+
+.ssk-newsroom__month {
+  display: grid;
+  gap: 0.15rem;
+}
+
+.ssk-newsroom__month-label {
+  color: var(--color-text);
+  font-family: var(--font-display);
+  font-size: clamp(1.15rem, 2.2vw, 1.45rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+.ssk-newsroom__month-meta {
+  color: var(--color-text-faint);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  font-variant-numeric: tabular-nums;
+}
+
+.ssk-newsroom__nav {
+  display: inline-flex;
+  gap: var(--space-2);
+}
+
+.ssk-newsroom__nav-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--ambient-line-strong);
+  border-radius: var(--radius-sm);
+  background: var(--ambient-surface);
+  color: var(--color-text-muted);
+  cursor: pointer;
+  transition: border-color var(--transition-fast), color var(--transition-fast),
+    background var(--transition-fast);
+}
+
+.ssk-newsroom__nav-button:hover:not(:disabled) {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+.ssk-newsroom__nav-button:disabled {
+  opacity: 0.38;
+  cursor: default;
+}
+
+.ssk-newsroom__weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 4px;
+}
+
+.ssk-newsroom__weekdays span {
+  padding: 0.15rem 0;
+  color: var(--color-text-faint);
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.ssk-newsroom__grid {
+  display: grid;
+  gap: 4px;
+}
+
+.ssk-newsroom__row {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 4px;
+}
+
+.ssk-newsroom__cellwrap {
+  min-width: 0;
+}
+
+.ssk-newsroom__day {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.2rem;
+  width: 100%;
+  aspect-ratio: 1;
+  min-height: 44px;
+  padding: 0;
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--color-text-muted);
+  font-family: var(--font-body);
+  font-size: 0.92rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  cursor: pointer;
+  transition: background var(--transition-fast), border-color var(--transition-fast),
+    color var(--transition-fast), transform var(--transition-fast);
+}
+
+.ssk-newsroom__day:hover:not(.is-outside) {
+  transform: translateY(-1px);
+}
+
+/* A day inside a published week — quietly tinted, clearly clickable. */
+.ssk-newsroom__day.is-edition,
+.ssk-newsroom__day.is-monthly {
+  background: var(--color-primary-light);
+  color: var(--color-text);
+}
+
+.ssk-newsroom__day.is-edition:hover,
+.ssk-newsroom__day.is-monthly:hover {
+  border-color: var(--ambient-line-strong);
+}
+
+/* A day with a story filed — the loudest thing on the grid, and rightly so. */
+.ssk-newsroom__day.is-story {
+  background: var(--color-primary);
+  color: var(--color-on-primary-ink);
+  font-weight: 800;
+}
+
+.ssk-newsroom__day.is-story:hover {
+  box-shadow: var(--shadow-hover);
+}
+
+/* A day whose edition hasn't been written — present, dated, visibly inert. */
+.ssk-newsroom__day.is-scheduled {
+  color: var(--color-text-faint);
+  background:
+    repeating-linear-gradient(
+      -45deg,
+      transparent 0 5px,
+      var(--ambient-grid) 5px 6px
+    );
+}
+
+.ssk-newsroom__day.is-outside {
+  color: var(--color-text-faint);
+  opacity: 0.34;
+  cursor: default;
+}
+
+.ssk-newsroom__day.is-selected:not(.is-outside) {
+  border-color: var(--color-primary);
+}
+
+.ssk-newsroom__day.is-today::after {
+  content: "";
+  position: absolute;
+  inset: 3px;
+  border: 1.5px solid currentColor;
+  border-radius: calc(var(--radius-sm) - 3px);
+  opacity: 0.55;
+  pointer-events: none;
+}
+
+.ssk-newsroom__dots {
+  display: inline-flex;
+  gap: 3px;
+}
+
+.ssk-newsroom__dots i {
+  width: 4px;
+  height: 4px;
+  border-radius: 999px;
+  background: currentColor;
+}
+
+.ssk-newsroom__legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3) var(--space-5);
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--ssk-rule-soft);
+}
+
+.ssk-newsroom__legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  color: var(--color-text-muted);
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.ssk-newsroom__swatch {
+  width: 12px;
+  height: 12px;
+  border-radius: 4px;
+}
+
+.ssk-newsroom__swatch--story {
+  background: var(--color-primary);
+}
+
+.ssk-newsroom__swatch--edition {
+  background: var(--color-primary-light);
+  border: 1px solid var(--ambient-line-strong);
+}
+
+.ssk-newsroom__swatch--scheduled {
+  border: 1px solid var(--ambient-line-strong);
+  background: repeating-linear-gradient(-45deg, transparent 0 3px, var(--ambient-grid) 3px 4px);
+}
+
+/* ------------------------------------------------------------- day brief */
+
+.ssk-newsroom__brief {
+  position: sticky;
+  top: calc(var(--site-header-offset, 98px) + 1rem);
+  padding: clamp(1.2rem, 2.6vw, 1.8rem);
+  min-height: 16rem;
+}
+
+.ssk-newsroom__brief-body {
+  display: grid;
+  gap: var(--space-3);
+  align-content: start;
+}
+
+.ssk-newsroom__brief-kicker {
+  margin: 0;
+  color: var(--color-text-faint);
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.ssk-newsroom__brief-date {
+  margin: 0;
+  color: var(--color-text);
+  font-family: var(--font-display);
+  font-size: clamp(1.3rem, 2.4vw, 1.65rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+.ssk-newsroom__brief-window {
+  margin: 0;
+  padding-bottom: var(--space-3);
+  border-bottom: 1px solid var(--ssk-rule-soft);
+  color: var(--color-text-muted);
+  font-size: 0.82rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.ssk-newsroom__stories {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.ssk-newsroom__story {
+  display: grid;
+  gap: 0.25rem;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--ssk-rule-soft);
+  border-radius: var(--radius-sm);
+  background: var(--ambient-surface);
+  text-decoration: none;
+  transition: border-color var(--transition-fast), transform var(--transition-fast);
+}
+
+.ssk-newsroom__story:hover {
+  border-color: var(--color-primary);
+  transform: translateY(-1px);
+}
+
+.ssk-newsroom__story-type {
+  color: var(--color-text-faint);
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+.ssk-newsroom__story-headline {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.3rem;
+  color: var(--color-text);
+  font-size: 0.94rem;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.ssk-newsroom__story-headline svg {
+  flex: none;
+  align-self: center;
+  color: var(--color-primary);
+}
+
+.ssk-newsroom__brief-empty {
+  margin: 0;
+  color: var(--color-text-muted);
+  font-size: 0.94rem;
+  line-height: 1.6;
+}
+
+.ssk-newsroom__brief-cta {
+  justify-self: start;
+  margin-top: var(--space-2);
+}
+
+.ssk-newsroom__brief-edition {
+  margin: 0;
+  color: var(--color-text-faint);
+  font-size: 0.82rem;
+  line-height: 1.5;
+}
+
+.ssk-newsroom__brief-edition strong {
+  color: var(--color-text-muted);
+  font-weight: 700;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ssk-newsroom__day,
+  .ssk-newsroom__day:hover:not(.is-outside),
+  .ssk-newsroom__story:hover {
+    transition: none;
+    transform: none;
+  }
+}

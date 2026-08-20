@@ -1,7 +1,9 @@
 import Link from "next/link";
 
+import { NewsroomCalendar } from "@/components/ssk-ai/newsroom-calendar";
 import { SskAiPoster } from "@/components/ssk-ai/poster";
 import { getIssuePath, SSK_AI_HUB, TECH_NEWS, type SskAiIssue } from "@/lib/ssk-ai";
+import type { MonthCalendar } from "@/lib/ssk-ai/calendar";
 import { CADENCE_RULES, formatLongDate, monthName, type PlannedEdition } from "@/lib/ssk-ai/schedule";
 
 function editionLabel(issue: SskAiIssue) {
@@ -79,9 +81,11 @@ function PublishingCalendar({ year, month, windows }: { year: number; month: num
 export function TechNewsDesk({
   issues,
   plan,
+  calendar,
 }: {
   issues: readonly SskAiIssue[];
   plan: { year: number; month: number; windows: PlannedEdition[] };
+  calendar: { months: MonthCalendar[]; initialIndex: number; initialSelected: string | null };
 }) {
   const [latest, ...previous] = issues;
 
@@ -119,6 +123,19 @@ export function TechNewsDesk({
           </div>
         </section>
       ) : null}
+
+      <section className="section section--tight" aria-labelledby="ssk-newsroom-title">
+        <div className="container">
+          <h2 id="ssk-newsroom-title" className="ssk-hub__section-title">
+            Browse by date
+          </h2>
+          <p className="ssk-newsroom__note">
+            Every day resolves to its news: a date with a story jumps straight to it, a quieter day opens the
+            week&apos;s edition, and an unwritten window says when its edition is due.
+          </p>
+          <NewsroomCalendar {...calendar} />
+        </div>
+      </section>
 
       <section className="section section--tight" aria-labelledby="ssk-calendar-title">
         <div className="container">
