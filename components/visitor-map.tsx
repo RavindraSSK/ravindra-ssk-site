@@ -1,33 +1,21 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
-import { countryLabel, lookupCountry } from "@/lib/country-centroids";
+import { countryLabel } from "@/lib/country-centroids";
+import { COUNTRY_PINS, DOT_MAP_H, DOT_MAP_W, LAND_DOTS } from "@/lib/world-dots";
 
-const MAP_W = 720;
-const MAP_H = 360;
 const POLL_MS = 15_000;
 
+/** Origin node the connection beams converge on (St. Louis, MO). */
+const HUB: readonly [number, number] = [28, 21.7];
+
 type Stats = { total: number; countries: Array<{ code: string; count: number }> };
-type State = { status: "loading" | "ready" | "unconfigured" | "error"; stats?: Stats; message?: string };
-
-/** Equirectangular projection onto the MAP_W x MAP_H viewBox. */
-function project(lat: number, lon: number) {
-  return { x: ((lon + 180) / 360) * MAP_W, y: ((90 - lat) / 180) * MAP_H };
-}
-
-function graticule() {
-  const lines = [];
-  for (let lon = -150; lon <= 150; lon += 30) {
-    const { x } = project(0, lon);
-    lines.push(<line key={`m${lon}`} x1={x} y1={0} x2={x} y2={MAP_H} />);
-  }
-  for (let lat = -60; lat <= 60; lat += 30) {
-    const { y } = project(lat, 0);
-    lines.push(<line key={`p${lat}`} x1={0} y1={y} x2={MAP_W} y2={y} />);
-  }
-  return lines;
-}
+type State =
+  | { status: "loading" }
+  | { status: "unconfigured"; message?: string }
+  | { status: "error"; message?: string }
+  | { status: "ready"; stats: Stats; fetchedAt: Date };
 
 /** Pure I/O: resolves to the next view state, never touches React state itself. */
 async function fetchState(): Promise<State> {
@@ -40,14 +28,71 @@ async function fetchState(): Promise<State> {
     if (!response.ok) {
       return { status: "error", message: "Could not load visitor stats." };
     }
-    return { status: "ready", stats: (await response.json()) as Stats };
+    return { status: "ready", stats: (await response.json()) as Stats, fetchedAt: new Date() };
   } catch {
     return { status: "error", message: "Could not reach the analytics endpoint." };
   }
 }
 
+/** Quadratic arc between two grid points, bowed upward like a flight path. */
+function arcPath(a: readonly [number, number], b: readonly [number, number]): string {
+  const [x1, y1] = a;
+  const [x2, y2] = b;
+  const dx = x2 - x1;
+  const dy = y2 - y1;
+  const dist = Math.hypot(dx, dy) || 1;
+  const lift = Math.min(13, 3 + dist * 0.32);
+  let px = -dy / dist;
+  let py = dx / dist;
+  if (py > 0) {
+    px = -px;
+    py = -py;
+  }
+  const cx = (x1 + x2) / 2 + px * lift;
+  const cy = (y1 + y2) / 2 + py * lift;
+  return `M ${x1} ${y1} Q ${cx} ${cy} ${x2} ${y2}`;
+}
+
+/** Deterministic PRNG so the ambient background traffic is stable per mount. */
+function mulberry32(seed: number) {
+  let a = seed;
+  return () => {
+    a |= 0;
+    a = (a + 0x6d2b79f5) | 0;
+    let t = Math.imul(a ^ (a >>> 15), 1 | a);
+    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  };
+}
+
+/** Faint decorative arcs between random landmass points — background noise for the board. */
+function useAmbientArcs(count: number) {
+  return useMemo(() => {
+    const rand = mulberry32(1304);
+    const arcs: Array<{ d: string; dur: number; delay: number }> = [];
+    let guard = 0;
+    while (arcs.length < count && guard < 200) {
+      guard += 1;
+      const a = LAND_DOTS[Math.floor(rand() * LAND_DOTS.length)];
+      const b = LAND_DOTS[Math.floor(rand() * LAND_DOTS.length)];
+      if (Math.hypot(a[0] - b[0], a[1] - b[1]) < 22) continue;
+      arcs.push({ d: arcPath(a, b), dur: 7 + rand() * 8, delay: -rand() * 12 });
+    }
+    return arcs;
+  }, [count]);
+}
+
+function pad(n: number) {
+  return n.toString().padStart(2, "0");
+}
+
+function utcClock(date: Date) {
+  return `${pad(date.getUTCHours())}:${pad(date.getUTCMinutes())}:${pad(date.getUTCSeconds())}`;
+}
+
 export function VisitorMap() {
   const [state, setState] = useState<State>({ status: "loading" });
+  const ambient = useAmbientArcs(7);
 
   useEffect(() => {
     let cancelled = false;
@@ -67,12 +112,16 @@ export function VisitorMap() {
   }, []);
 
   if (state.status === "loading") {
-    return <p className="visitor-map__note">Loading live visitor data…</p>;
+    return (
+      <div className="vmap__note" role="status">
+        <span className="vmap__cursor" aria-hidden="true" /> ESTABLISHING DATA-LINK…
+      </div>
+    );
   }
 
   if (state.status === "unconfigured") {
     return (
-      <div className="visitor-map__note visitor-map__note--setup">
+      <div className="vmap__note vmap__note--setup">
         <p>{state.message}</p>
         <p>
           Create a Vercel KV (or Upstash Redis) store, then add <code>KV_REST_API_URL</code> and{" "}
@@ -82,66 +131,182 @@ export function VisitorMap() {
     );
   }
 
-  if (state.status === "error" || !state.stats) {
-    return <p className="visitor-map__note">{state.message ?? "Visitor data unavailable."}</p>;
+  if (state.status === "error") {
+    return (
+      <div className="vmap__note" role="status">
+        ▲ LINK DOWN — {state.message ?? "visitor data unavailable."} Retrying…
+      </div>
+    );
   }
 
   const { total, countries } = state.stats;
-  const plotted = countries.filter((c) => lookupCountry(c.code));
-  const peak = plotted.reduce((max, c) => Math.max(max, c.count), 0) || 1;
+  const clock = utcClock(state.fetchedAt);
+  const plotted = countries.filter((c) => COUNTRY_PINS[c.code]);
+  const peak = countries.reduce((max, c) => Math.max(max, c.count), 0) || 1;
+  const top = countries[0];
 
   return (
-    <div className="visitor-map">
-      <div className="visitor-map__stats">
-        <div className="visitor-map__stat">
-          <span className="visitor-map__value">{total.toLocaleString()}</span>
-          <span className="visitor-map__label">Total visits</span>
+    <div className="vmap">
+      <div className="vmap__readouts">
+        <div className="vmap__readout">
+          <span className="vmap__readout-label">Total visits</span>
+          <span className="vmap__readout-value">{total.toLocaleString()}</span>
         </div>
-        <div className="visitor-map__stat">
-          <span className="visitor-map__value">{countries.length.toLocaleString()}</span>
-          <span className="visitor-map__label">Countries</span>
+        <div className="vmap__readout">
+          <span className="vmap__readout-label">Countries</span>
+          <span className="vmap__readout-value">{countries.length.toLocaleString()}</span>
         </div>
-        <p className="visitor-map__live" aria-live="polite">
-          <span className="visitor-map__pulse" aria-hidden="true" /> Live · refreshes every 15s
-        </p>
+        <div className="vmap__readout">
+          <span className="vmap__readout-label">Top node</span>
+          <span className="vmap__readout-value">{top ? top.code : "——"}</span>
+        </div>
+        <div className="vmap__readout">
+          <span className="vmap__readout-label">Uplink</span>
+          <span className="vmap__readout-value vmap__readout-value--ok" aria-live="polite">
+            <span className="vmap__blip" aria-hidden="true" /> 15s
+          </span>
+        </div>
       </div>
 
-      <svg
-        className="visitor-map__canvas"
-        viewBox={`0 0 ${MAP_W} ${MAP_H}`}
-        role="img"
-        aria-label={`World map showing visitors from ${countries.length} countries`}
-      >
-        <g className="visitor-map__grid">{graticule()}</g>
-        <g>
-          {plotted.map(({ code, count }) => {
-            const centroid = lookupCountry(code);
-            if (!centroid) return null;
-            const { x, y } = project(centroid.lat, centroid.lon);
-            const r = 3 + Math.sqrt(count / peak) * 15;
-            return (
-              <g key={code} className="visitor-map__dot">
-                <circle cx={x} cy={y} r={r} />
-                <title>{`${centroid.name}: ${count.toLocaleString()} visit${count === 1 ? "" : "s"}`}</title>
-              </g>
-            );
-          })}
-        </g>
-      </svg>
+      <div className="vmap__stage">
+        <svg
+          className="vmap__canvas"
+          viewBox={`-2 -2 ${DOT_MAP_W + 4} ${DOT_MAP_H + 4}`}
+          role="img"
+          aria-label={`World map showing live visitor connections from ${countries.length} countries`}
+        >
+          <defs>
+            <linearGradient id="vmap-arc" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0" stopColor="#28f2a0" stopOpacity="0" />
+              <stop offset="0.5" stopColor="#28f2a0" stopOpacity="0.9" />
+              <stop offset="1" stopColor="#59f5ff" stopOpacity="0.9" />
+            </linearGradient>
+            <radialGradient id="vmap-hub" cx="0.5" cy="0.5" r="0.5">
+              <stop offset="0" stopColor="#b9ffe0" />
+              <stop offset="1" stopColor="#28f2a0" stopOpacity="0" />
+            </radialGradient>
+            <filter id="vmap-glow" x="-80%" y="-80%" width="260%" height="260%">
+              <feGaussianBlur stdDeviation="0.7" result="b" />
+              <feMerge>
+                <feMergeNode in="b" />
+                <feMergeNode in="SourceGraphic" />
+              </feMerge>
+            </filter>
+          </defs>
 
-      {countries.length > 0 ? (
-        <ol className="visitor-map__list">
-          {countries.slice(0, 12).map(({ code, count }) => (
-            <li key={code}>
-              <span>{countryLabel(code)}</span>
-              <span className="visitor-map__bar" style={{ "--share": `${(count / peak) * 100}%` } as React.CSSProperties} />
-              <span>{count.toLocaleString()}</span>
-            </li>
+          {/* Landmass dot matrix */}
+          <g className="vmap__land">
+            {LAND_DOTS.map(([x, y], i) => (
+              <circle key={i} cx={x} cy={y} r={0.32} />
+            ))}
+          </g>
+
+          {/* Ambient background traffic (decorative) */}
+          <g className="vmap__ambient" aria-hidden="true">
+            {ambient.map((arc, i) => (
+              <path
+                key={i}
+                d={arc.d}
+                pathLength={100}
+                style={{ animationDuration: `${arc.dur}s`, animationDelay: `${arc.delay}s` }}
+              />
+            ))}
+          </g>
+
+          {/* Live connection beams: each visitor country -> origin node */}
+          <g className="vmap__beams" aria-hidden="true">
+            {plotted.map(({ code }, i) => {
+              const pin = COUNTRY_PINS[code];
+              const d = arcPath(pin, HUB);
+              return (
+                <g key={code}>
+                  <path className="vmap__beam" d={d} pathLength={100} filter="url(#vmap-glow)" />
+                  <circle
+                    className="vmap__packet"
+                    r={0.62}
+                    style={{
+                      offsetPath: `path("${d}")`,
+                      animationDuration: `${3.2 + (i % 5) * 0.55}s`,
+                      animationDelay: `${-(i * 1.1)}s`,
+                    }}
+                  />
+                </g>
+              );
+            })}
+          </g>
+
+          {/* Origin node */}
+          <g className="vmap__hubnode" aria-hidden="true">
+            <circle cx={HUB[0]} cy={HUB[1]} r={4.5} fill="url(#vmap-hub)" opacity={0.35} />
+            <circle className="vmap__hub-ring" cx={HUB[0]} cy={HUB[1]} r={1} />
+            <circle cx={HUB[0]} cy={HUB[1]} r={0.75} className="vmap__hub-core" />
+          </g>
+
+          {/* Visitor nodes with radar pings */}
+          <g>
+            {plotted.map(({ code, count }, i) => {
+              const [x, y] = COUNTRY_PINS[code];
+              const r = 0.8 + Math.sqrt(count / peak) * 1.3;
+              return (
+                <g key={code} className="vmap__node">
+                  <circle
+                    className="vmap__ping"
+                    cx={x}
+                    cy={y}
+                    r={r}
+                    style={{ animationDelay: `${(i % 6) * 0.4}s` }}
+                  />
+                  <circle
+                    className="vmap__ping vmap__ping--late"
+                    cx={x}
+                    cy={y}
+                    r={r}
+                    style={{ animationDelay: `${(i % 6) * 0.4 + 1.1}s` }}
+                  />
+                  <circle className="vmap__node-core" cx={x} cy={y} r={r} filter="url(#vmap-glow)" />
+                  <title>{`${countryLabel(code)}: ${count.toLocaleString()} visit${count === 1 ? "" : "s"}`}</title>
+                </g>
+              );
+            })}
+          </g>
+        </svg>
+        <div className="vmap__scan" aria-hidden="true" />
+        <span className="vmap__corner vmap__corner--tl" aria-hidden="true" />
+        <span className="vmap__corner vmap__corner--tr" aria-hidden="true" />
+        <span className="vmap__corner vmap__corner--bl" aria-hidden="true" />
+        <span className="vmap__corner vmap__corner--br" aria-hidden="true" />
+      </div>
+
+      <div className="vmap__bottom">
+        <div className="vmap__log" role="log" aria-label="Connection log">
+          <p className="vmap__log-line vmap__log-line--dim">{`> ${clock} UTC ── uplink sync ok · ${total.toLocaleString()} packets total`}</p>
+          {countries.slice(0, 6).map(({ code, count }) => (
+            <p key={code} className="vmap__log-line">
+              {`> ${clock} UTC ── inbound ▸ ${code} · ${countryLabel(code)} · ${count.toLocaleString()} visit${count === 1 ? "" : "s"}`}
+            </p>
           ))}
-        </ol>
-      ) : (
-        <p className="visitor-map__note">No visits recorded yet — the first page view will appear here.</p>
-      )}
+          {countries.length === 0 ? (
+            <p className="vmap__log-line">{"> awaiting first inbound connection…"}</p>
+          ) : null}
+          <p className="vmap__log-line" aria-hidden="true">
+            {"> "}
+            <span className="vmap__cursor" />
+          </p>
+        </div>
+
+        {countries.length > 0 ? (
+          <ol className="vmap__rank" aria-label="Visits by country">
+            {countries.slice(0, 10).map(({ code, count }) => (
+              <li key={code}>
+                <span className="vmap__rank-code">{code}</span>
+                <span className="vmap__rank-name">{countryLabel(code)}</span>
+                <span className="vmap__rank-bar" style={{ "--share": `${(count / peak) * 100}%` } as React.CSSProperties} />
+                <span className="vmap__rank-count">{count.toLocaleString()}</span>
+              </li>
+            ))}
+          </ol>
+        ) : null}
+      </div>
     </div>
   );
 }
