@@ -329,10 +329,13 @@
 }
 
 .ssk-badge__label {
-  color: var(--color-text-faint);
+  /* --color-text-faint is tuned for card surfaces; on the badge's --color-primary-light
+     tint it lands at 4.25:1, under AA for text this small. --color-text-muted clears it.
+     Size raised off 0.68rem for the same reason the logo badges were: 12px floor. */
+  color: var(--color-text-muted);
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  font-size: 0.68rem;
+  font-size: 0.75rem;
 }
 
 .ssk-badge--status {

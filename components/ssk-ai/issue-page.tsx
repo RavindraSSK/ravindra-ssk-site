@@ -4,7 +4,7 @@ import { SskAiPoster } from "@/components/ssk-ai/poster";
 import { WhatWeCanBuild } from "@/components/ssk-ai/projects";
 import { RichText, richText } from "@/components/ssk-ai/rich-text";
 import { StorySection } from "@/components/ssk-ai/story";
-import { SSK_AI } from "@/lib/ssk-ai";
+import { SSK_AI_HUB, TECH_NEWS } from "@/lib/ssk-ai";
 import type { SskAiIssue } from "@/lib/ssk-ai/types";
 
 export function SskAiIssuePage({ issue }: { issue: SskAiIssue }) {
@@ -14,11 +14,22 @@ export function SskAiIssuePage({ issue }: { issue: SskAiIssue }) {
         <header className="section section--tight">
           <div className="container ssk-issue-hero">
             <p className="ssk-kicker">
-              <Link href={SSK_AI.path}>{SSK_AI.name}</Link>
+              <Link href={SSK_AI_HUB.path}>{SSK_AI_HUB.name}</Link>
+              <span aria-hidden="true"> · </span>
+              <Link href={TECH_NEWS.path}>{TECH_NEWS.name}</Link>
               <span aria-hidden="true"> · </span>
               <time dateTime={issue.datePublished}>{issue.dateLabel}</time>
             </p>
             <h1 className="page-title ssk-issue-h1">{issue.title}</h1>
+            <p className="ssk-edition-rule">
+              <span>Vol. {issue.edition.volume}</span>
+              <span aria-hidden="true">·</span>
+              <span>
+                {issue.edition.kind === "monthly" ? "Month in review" : `Weekly No. ${issue.edition.number}`}
+              </span>
+              <span aria-hidden="true">·</span>
+              <span>Covering {issue.edition.periodLabel}</span>
+            </p>
             <p className="ssk-issue-theme">{issue.theme}</p>
             <SskAiPoster poster={issue.poster} datePublished={issue.datePublished} />
             <nav className="ssk-toc" aria-label="Stories in this issue">
@@ -92,8 +103,8 @@ export function SskAiIssuePage({ issue }: { issue: SskAiIssue }) {
               <p className="ssk-prose">{issue.generalSourceNote}</p>
             </div>
             <p className="ssk-back">
-              <Link className="inline-link" href={SSK_AI.path}>
-                Back to the SSK AI archive <span aria-hidden="true">→</span>
+              <Link className="inline-link" href={TECH_NEWS.path}>
+                Back to the {TECH_NEWS.name} archive <span aria-hidden="true">→</span>
               </Link>
             </p>
           </div>
