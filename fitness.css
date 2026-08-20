@@ -101,6 +101,7 @@ html[data-theme="dark"] .fitx .fhero__field {
 .fitx .fpanel {
   margin: 0; border: 1px solid var(--hair-2); border-radius: var(--radius-lg);
   background: var(--surface); backdrop-filter: blur(14px) saturate(140%);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
   padding: clamp(1.2rem, 3vw, 1.6rem); display: grid; gap: 0.95rem;
 }
 .fitx .fpanel > div { display: grid; gap: 0.3rem; border-bottom: 1px solid var(--hair); padding-bottom: 0.75rem; }
@@ -165,6 +166,7 @@ html[data-theme="dark"] .fitx .fhero__art {
 .fitx .fnav {
   position: sticky; top: var(--site-header-offset, 98px); z-index: 5;
   background: var(--ambient-surface-strong); backdrop-filter: blur(14px) saturate(140%);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
   border-top: 1px solid var(--hair-2); border-bottom: 1px solid var(--hair-2);
 }
 .fitx .fnav__shell { display: flex; gap: clamp(1rem, 3vw, 2rem); overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; padding-block: 0.1rem; }
@@ -292,6 +294,7 @@ html[data-theme="dark"] .fitx .fhero__art {
   position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: clamp(150px, 24vw, 210px);
   text-align: center; padding: 0.9rem; border: 1px solid var(--hair-2); border-radius: 50%; aspect-ratio: 1;
   display: flex; align-items: center; justify-content: center; background: var(--surface); backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
 .fitx .matrix__hub p { margin: 0; font-family: var(--font-display); font-weight: 700; font-size: clamp(0.78rem, 1.6vw, 0.92rem); letter-spacing: -0.01em; line-height: 1.3; }
 .fitx .mvar {
@@ -411,6 +414,7 @@ html[data-theme="dark"] .fitx .fhero__art {
 .fitx .ready__result {
   border: 1px solid var(--hair-2); border-radius: var(--radius-lg); padding: clamp(1.3rem, 3vw, 1.8rem);
   background: var(--surface); backdrop-filter: blur(12px); position: sticky; top: calc(var(--site-header-offset, 98px) + 60px);
+  -webkit-backdrop-filter: blur(12px);
 }
 .fitx .ready__result h3 { font-size: clamp(1.3rem, 3vw, 1.6rem); margin: 0.5rem 0 0.6rem; transition: opacity 0.25s; }
 .fitx .ready__result p { margin: 0; color: var(--color-text-muted); font-size: 0.92rem; transition: opacity 0.25s; }

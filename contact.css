@@ -4,10 +4,11 @@
   position: relative;
 }
 
+/* right inset kept at 0 so this decorative blob cannot widen the document */
 .contact-layout::before {
   content: "";
   position: absolute;
-  inset: -4rem -2rem auto auto;
+  inset: -4rem 0 auto auto;
   width: min(34vw, 24rem);
   aspect-ratio: 1;
   border-radius: 999px;
@@ -144,6 +145,7 @@
     var(--ambient-surface-strong);
   box-shadow: var(--shadow-card);
   backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
   overflow: hidden;
 }
 

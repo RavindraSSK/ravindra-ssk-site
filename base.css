@@ -100,7 +100,7 @@ textarea {
 }
 
 :focus-visible {
-  outline: 3px solid rgba(30, 58, 138, 0.28);
+  outline: 3px solid var(--focus-ring);
   outline-offset: 3px;
 }
 
@@ -150,6 +150,7 @@ main {
   background: rgba(255, 255, 255, 0.58);
   box-shadow: 0 8px 22px rgba(27, 45, 95, 0.05);
   backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   color: var(--color-primary);
   font-size: 0.8rem;
   font-weight: 700;
@@ -179,7 +180,7 @@ main {
 }
 
 .hero-title {
-  font-size: clamp(3rem, 7vw, 5.75rem);
+  font-size: clamp(2.75rem, 5.6vw, 4.5rem);
   font-weight: 900;
 }
 
@@ -245,7 +246,7 @@ html[data-theme="dark"] .eyebrow {
   z-index: 101;
   padding: var(--space-2) var(--space-4);
   background: var(--color-primary);
-  color: var(--color-on-primary);
+  color: var(--color-on-primary-ink);
   border-radius: var(--radius-sm);
   text-decoration: none;
   transition: top var(--transition-fast);
