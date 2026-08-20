@@ -4,6 +4,8 @@ import Script from "next/script";
 import type { ReactNode } from "react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 
+import { VisitBeacon } from "@/components/visit-beacon";
+
 import { JsonLd } from "@/components/json-ld";
 import { SiteChrome } from "@/components/layout/site-chrome";
 import { buildRootJsonLd, pageMetadata } from "@/lib/content";
@@ -89,6 +91,7 @@ export default function RootLayout({ children }: Readonly<{ children: ReactNode 
         <SiteChrome>{children}</SiteChrome>
         <SpeedInsights />
         <Analytics />
+        <VisitBeacon />
       </body>
     </html>
   );

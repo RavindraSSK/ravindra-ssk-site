@@ -10,6 +10,7 @@
 @import "../fitness.css";
 @import "../ssk-ai.css";
 @import "../ssk-hub.css";
+@import "../analytics.css";
 
 .cert-modal__copy {
   display: grid;
