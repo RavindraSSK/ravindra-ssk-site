@@ -1,8 +1,8 @@
 import { ImageResponse } from "next/og";
 
-import { SSK_AI, getLatestIssue } from "@/lib/ssk-ai";
+import { SSK_AI_HUB, getLatestIssue } from "@/lib/ssk-ai";
 
-export const alt = `${SSK_AI.name} — ${SSK_AI.tagline}`;
+export const alt = `${SSK_AI_HUB.name} — ${SSK_AI_HUB.tagline}`;
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -25,11 +25,11 @@ export default async function SskAiOpenGraphImage() {
         }}
       >
         <div style={{ display: "flex", justifyContent: "space-between", fontSize: 22, fontWeight: 800, letterSpacing: 4, textTransform: "uppercase", color: "#1b2d5f" }}>
-          <span>{SSK_AI.name}</span>
+          <span>{SSK_AI_HUB.name}</span>
           <span>{latest.dateLabel}</span>
         </div>
         <div style={{ display: "flex", flexDirection: "column", gap: 18, maxWidth: 860 }}>
-          <div style={{ fontSize: 54, fontWeight: 800, letterSpacing: -2, lineHeight: 1.05 }}>{SSK_AI.tagline}</div>
+          <div style={{ fontSize: 54, fontWeight: 800, letterSpacing: -2, lineHeight: 1.05 }}>{SSK_AI_HUB.tagline}</div>
           <div style={{ fontSize: 26, color: "#52627a", lineHeight: 1.35 }}>{latest.theme}</div>
         </div>
         <div style={{ display: "flex", flexDirection: "column", gap: 10, fontSize: 22, color: "#1b2d5f" }}>

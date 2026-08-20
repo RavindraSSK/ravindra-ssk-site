@@ -14,7 +14,6 @@ import {
 import type { SiteContentKey } from "@/lib/site-content";
 
 const pages = {
-  blog: "blog",
   photography: "photography",
   "fitness-health": "fitness-health",
   music: "music",

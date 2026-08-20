@@ -2,6 +2,7 @@ import fs from "node:fs";
 import path from "node:path";
 
 import { exploreArticles } from "@/lib/content";
+import { techContentArticles } from "@/lib/ssk-ai/tech-content";
 
 const routeFiles = {
   home: "index.html",
@@ -10,12 +11,19 @@ const routeFiles = {
   "ssks-home-designs": "portfolio-ssks-home-designs.html",
   contact: "contact.html",
   explore: "explore.html",
-  blog: path.join("explore", "blog.html"),
   photography: path.join("explore", "photography.html"),
   "fitness-health": path.join("explore", "fitness-health.html"),
   music: path.join("explore", "music.html"),
   ...Object.fromEntries(
     exploreArticles.map((article) => [article.slug, path.join("explore", `${article.slug}.html`)]),
+  ),
+  // The Tech Content half of SSK AI Hub. These bodies moved out of explore/ when the hub
+  // absorbed the publication; their URLs are /ssk-ai/tech-content/<slug>.
+  ...Object.fromEntries(
+    techContentArticles.map((article) => [
+      article.slug,
+      path.join("ssk-ai", "tech-content", `${article.slug}.html`),
+    ]),
   ),
 } as const;
 
@@ -29,7 +37,6 @@ function normalizeLinks(html: string) {
     .replaceAll('href="about.html"', 'href="/about"')
     .replaceAll('href="contact.html"', 'href="/contact"')
     .replaceAll('href="explore.html"', 'href="/explore"')
-    .replaceAll('href="explore/blog.html"', 'href="/explore/blog"')
     .replaceAll('href="explore/photography.html"', 'href="/explore/photography"')
     .replaceAll('href="explore/fitness-health.html"', 'href="/explore/fitness-health"')
     .replaceAll('href="explore/music.html"', 'href="/explore/music"')
@@ -38,7 +45,6 @@ function normalizeLinks(html: string) {
     .replaceAll('href="../about.html"', 'href="/about"')
     .replaceAll('href="../contact.html"', 'href="/contact"')
     .replaceAll('href="../explore.html"', 'href="/explore"')
-    .replaceAll('href="../explore/blog.html"', 'href="/explore/blog"')
     .replaceAll('href="../explore/fitness-health.html"', 'href="/explore/fitness-health"')
     .replaceAll('href="../explore/music.html"', 'href="/explore/music"')
     .replaceAll(

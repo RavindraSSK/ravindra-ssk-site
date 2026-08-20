@@ -20,14 +20,18 @@ const portfolioLinks = [
 ] as const;
 
 const exploreLinks = [
-  ["SSK AI", "/ssk-ai", "What changed in AI and what you can build."],
-  ["Career Guides", "/explore/blog", "Roles, salaries, hiring paths, and AI career roadmaps."],
-  ["Technical Tutorials", "/explore/web-scraping-python", "Practical guides for building with code and data."],
-  ["Research Articles", "/explore/spatial-context-geoai", "Notes from generative AI, computer vision, and applied ML."],
-  ["Machine Learning", "/explore/grad-cam-flood-detection", "Model design, explainability, and production systems."],
   ["Photography", "/explore/photography", "Light, geometry, and visual observation."],
   ["Fitness & Health", "/explore/fitness-health", "Discipline, training, and performance habits."],
   ["Music", "/explore/music", "Listening, discovery, and creative energy."],
+] as const;
+
+const sskAiLinks = [
+  ["Tech Content", "/ssk-ai/tech-content", "Career guides, tutorials, research notes, and ML field notes."],
+  ["Tech News", "/ssk-ai/tech-news", "Weekly and monthly AI editions — what changed and why."],
+  ["Career Guides", "/ssk-ai/tech-content/us-ai-job-market-guide", "Roles, salaries, hiring paths, and AI career roadmaps."],
+  ["Technical Tutorials", "/ssk-ai/tech-content/web-scraping-python", "Practical guides for building with code and data."],
+  ["Research Articles", "/ssk-ai/tech-content/spatial-context-geoai", "Notes from generative AI, computer vision, and applied ML."],
+  ["Machine Learning", "/ssk-ai/tech-content/grad-cam-flood-detection", "Model design, explainability, and production systems."],
 ] as const;
 
 function Dropdown({ id, title, links, open, setOpen }: { id: string; title: string; links: readonly (readonly [string, string, string])[]; open: boolean; setOpen: () => void }) {
@@ -133,7 +137,7 @@ export function SiteChrome({ children }: { children: ReactNode }) {
                 <li className="nav-item"><Link className={`nav-link${pathname === "/" ? " is-active" : ""}`} href="/">Home</Link></li>
                 <Dropdown id="portfolio" title="Portfolio" links={portfolioLinks} open={dropdown === "portfolio"} setOpen={() => setDropdown(dropdown === "portfolio" ? null : "portfolio")} />
                 <Dropdown id="explore" title="Insights" links={exploreLinks} open={dropdown === "explore"} setOpen={() => setDropdown(dropdown === "explore" ? null : "explore")} />
-                <li className="nav-item"><Link className={`nav-link${pathname === "/ssk-ai" || pathname.startsWith("/ssk-ai/") ? " is-active" : ""}`} href="/ssk-ai">SSK AI</Link></li>
+                <Dropdown id="ssk-ai" title="SSK AI Hub" links={sskAiLinks} open={dropdown === "ssk-ai"} setOpen={() => setDropdown(dropdown === "ssk-ai" ? null : "ssk-ai")} />
                 <li className="nav-item"><Link className={`nav-link${pathname === "/about" ? " is-active" : ""}`} href="/about">About</Link></li>
                 <li className="nav-item"><Link className={`nav-link${pathname === "/contact" ? " is-active" : ""}`} href="/contact">Contact</Link></li>
               </ul>

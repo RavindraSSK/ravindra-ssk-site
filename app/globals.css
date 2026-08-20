@@ -9,6 +9,7 @@
 @import "../sport-page.css";
 @import "../fitness.css";
 @import "../ssk-ai.css";
+@import "../ssk-hub.css";
 
 .cert-modal__copy {
   display: grid;

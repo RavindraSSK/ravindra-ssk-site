@@ -1,3 +1,5 @@
+import type { EditionKind } from "./schedule";
+
 export type ApplicationKind = "demonstrated" | "potential";
 
 export type StoryApplication = {
@@ -88,8 +90,22 @@ export type SskAiIssuePoster = {
   theme: string;
 };
 
+/** Where an edition sits in the Tech News publishing calendar. */
+export type SskAiEdition = {
+  kind: EditionKind;
+  /** Sequential number within its kind — weekly No. 1, No. 2, ... */
+  number: number;
+  volume: number;
+  /** Inclusive ISO dates of the coverage window this edition reports on. */
+  periodStart: string;
+  periodEnd: string;
+  /** Masthead-ready label for the window, e.g. "August 6–12, 2026". */
+  periodLabel: string;
+};
+
 export type SskAiIssue = {
   slug: string;
+  edition: SskAiEdition;
   datePublished: string;
   dateLabel: string;
   cardTitle: string;
@@ -121,6 +137,17 @@ export type SskAiPublication = {
   name: string;
   tagline: string;
   path: string;
+  seoTitle: string;
+  seoDescription: string;
+};
+
+/** One of the hub's two folders: Tech Content or Tech News. */
+export type SskAiSection = {
+  id: "tech-content" | "tech-news";
+  name: string;
+  path: string;
+  tagline: string;
+  blurb: string;
   seoTitle: string;
   seoDescription: string;
 };

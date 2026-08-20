@@ -60,10 +60,6 @@ const NAV_DATA = {
     { title: "Certifications", href: "portfolio.html#certifications", copy: "Cloud, AI, and professional credentials." },
   ],
   explore: [
-    { title: "Career Guides", href: "explore/blog.html", copy: "Roles, salaries, hiring paths, and AI career roadmaps." },
-    { title: "Technical Tutorials", href: "explore/web-scraping-python.html", copy: "Practical guides for building with code and data." },
-    { title: "Research Articles", href: "explore/spatial-context-geoai.html", copy: "Notes from generative AI, computer vision, and applied ML." },
-    { title: "Machine Learning", href: "explore/grad-cam-flood-detection.html", copy: "Model design, explainability, and production systems." },
     { title: "Photography", href: "explore/photography.html", copy: "Light, geometry, and visual observation." },
     { title: "Fitness & Health", href: "explore/fitness-health.html", copy: "Discipline, training, and performance habits." },
     { title: "Music", href: "explore/music.html", copy: "Listening, discovery, and creative energy." },
@@ -164,6 +160,9 @@ function renderChrome() {
                       </div>
                     </div>
                   </div>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link ${page === "ssk-ai" ? "is-active" : ""}" href="/ssk-ai">SSK AI Hub</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link ${page === "about" ? "is-active" : ""}" href="${toPath("about.html")}">About</a>

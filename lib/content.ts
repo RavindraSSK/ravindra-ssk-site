@@ -47,7 +47,7 @@ export const pageMetadata = {
   explore: {
     title: "Insights",
     description:
-      "SSK AI Hub™ publications, career guides, research notes, photography, fitness, and music from Ravindra SSK.",
+      "Photography, fitness and health, and music from Ravindra SSK — the personal side of the site. AI writing lives in SSK AI Hub.",
   },
   portfolio: {
     title: "Portfolio & Credentials",
@@ -67,23 +67,14 @@ export const staticPageDates = {
   about: "2026-06-01",
   portfolio: "2026-07-17",
   "ssks-home-designs": "2026-05-01",
-  explore: "2026-07-09",
+  explore: "2026-08-20",
   contact: "2026-05-01",
-  blog: "2026-07-09",
   photography: "2026-04-01",
   "fitness-health": "2026-07-28",
   music: "2026-04-01",
 } as const;
 
 export const exploreCategories = [
-  {
-    id: "blog",
-    slug: "blog",
-    href: "/explore/blog",
-    title: "SSK AI Hub™",
-    description:
-      "Independent AI publications — career guides, technical tutorials, research articles, and industry insights.",
-  },
   {
     id: "photography",
     slug: "photography",
@@ -116,43 +107,6 @@ export type ExploreSlug = ExploreCategory["slug"];
 export function getExploreCategory(slug: string) {
   return exploreCategories.find((category) => category.slug === slug);
 }
-
-export const blogArticles = [
-  {
-    slug: "us-ai-job-market-guide",
-    title: "U.S. AI Job Market: Complete Career Guide",
-    description:
-      "Roles, salaries, in-demand skills, and the gap between what universities teach and what employers actually hire for in the U.S. AI job market.",
-    datePublished: "2026-07-09",
-  },
-  {
-    slug: "web-scraping-python",
-    title: "Decoding the Web",
-    description:
-      "A practical Python web scraping guide covering requests, BeautifulSoup, pandas, output structure, and responsible scraping.",
-    datePublished: "2025-02-01",
-  },
-  {
-    slug: "spatial-context-geoai",
-    title: "Spatial Context & Model Design",
-    description: "Why geospatial data demands different model design choices than standard computer vision benchmarks.",
-    datePublished: "2025-11-01",
-  },
-  {
-    slug: "grad-cam-flood-detection",
-    title: "Grad-CAM for Flood Detection",
-    description:
-      "Using Grad-CAM activation maps to inspect attention U-Net decisions on SAR imagery for interpretable flood detection.",
-    datePublished: "2025-11-15",
-  },
-  {
-    slug: "civil-engineering-to-geoai",
-    title: "From Civil Engineering to GeoAI",
-    description:
-      "How infrastructure thinking and civil engineering background inform GeoAI research and applied machine learning work.",
-    datePublished: "2025-10-01",
-  },
-] as const;
 
 export const fitnessArticles = [
   {
@@ -203,17 +157,12 @@ export const musicArticles = [
   },
 ] as const;
 
-export const exploreArticles = [...blogArticles, ...fitnessArticles, ...musicArticles] as const;
+export const exploreArticles = [...fitnessArticles, ...musicArticles] as const;
 
 export type ExploreArticleSlug = (typeof exploreArticles)[number]["slug"];
 
 export function getExploreArticle(slug: string) {
   return exploreArticles.find((article) => article.slug === slug);
-}
-
-/** @deprecated Use getExploreArticle */
-export function getBlogArticle(slug: string) {
-  return blogArticles.find((article) => article.slug === slug);
 }
 
 export const personSchema = {
@@ -262,6 +211,7 @@ export function buildRootJsonLd() {
   };
 }
 
+/** Insights articles only (photography, fitness, music). SSK AI Hub builds its own. */
 export function buildArticleJsonLd(article: {
   slug: string;
   title: string;

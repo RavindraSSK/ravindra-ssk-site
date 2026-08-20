@@ -1,0 +1,550 @@
+/**
+ * SSK AI Hub — the hub landing, the Tech Content desk, and the Tech News desk.
+ *
+ * The register is newspaper-adjacent but restrained: hairline rules instead of boxes,
+ * wide-tracked small caps for meta, one display face for headlines, and no colour that
+ * is not already a theme token. Everything resolves through tokens.css so both themes
+ * come for free, and every colour pairing below was checked against WCAG AA.
+ */
+
+.ssk-hub {
+  --ssk-rule: var(--ambient-line-strong);
+  --ssk-rule-soft: var(--ambient-line);
+}
+
+/* ---------------------------------------------------------------- masthead */
+
+.ssk-masthead {
+  padding-bottom: var(--space-6);
+  border-bottom: 2px solid var(--ssk-rule);
+}
+
+.ssk-masthead__rule {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 0.7rem;
+  margin: 0 0 var(--space-4);
+  padding-bottom: var(--space-3);
+  border-bottom: 1px solid var(--ssk-rule-soft);
+  color: var(--color-text-muted);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+}
+
+.ssk-masthead__rule time {
+  font-variant-numeric: tabular-nums;
+}
+
+.ssk-masthead__title {
+  margin: 0;
+  color: var(--color-text);
+  font-family: var(--font-display);
+  font-size: clamp(2.4rem, 6.4vw, 4.25rem);
+  font-weight: 900;
+  letter-spacing: -0.035em;
+  line-height: 1.02;
+}
+
+.ssk-masthead__tm {
+  margin-left: 0.15em;
+  font-size: 0.32em;
+  font-weight: 700;
+  vertical-align: super;
+}
+
+.ssk-masthead__tagline {
+  margin: var(--space-4) 0 0;
+  max-width: 34ch;
+  color: var(--color-text-muted);
+  font-family: var(--font-display);
+  font-size: clamp(1.15rem, 2.4vw, 1.65rem);
+  font-weight: 500;
+  letter-spacing: -0.025em;
+  line-height: 1.28;
+}
+
+.ssk-hub__intro {
+  margin: var(--space-6) 0 0;
+  max-width: 62ch;
+  color: var(--color-text-muted);
+  font-size: 1.02rem;
+  line-height: 1.68;
+}
+
+.ssk-hub__section-title {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  margin: 0 0 var(--space-6);
+  color: var(--color-text);
+  font-family: var(--font-display);
+  font-size: clamp(1.1rem, 2vw, 1.35rem);
+  font-weight: 800;
+  letter-spacing: 0.02em;
+}
+
+/* The trailing hairline is decorative; ::after keeps it out of the accessible name. */
+.ssk-hub__section-title::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--ssk-rule-soft);
+}
+
+/* ------------------------------------------------------------ hub folders */
+
+.ssk-folder-grid {
+  display: grid;
+  gap: var(--space-6);
+}
+
+@media (min-width: 860px) {
+  .ssk-folder-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.ssk-folder {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  padding: clamp(1.4rem, 3vw, 2rem);
+}
+
+.ssk-folder__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.ssk-folder__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--ssk-rule);
+  border-radius: var(--radius-sm);
+  color: var(--color-primary);
+}
+
+.ssk-folder__title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 3.2vw, 2.1rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+}
+
+.ssk-folder__title a {
+  color: var(--color-text);
+  text-decoration: none;
+}
+
+.ssk-folder__title a:hover,
+.ssk-folder__title a:focus-visible {
+  color: var(--color-primary);
+}
+
+.ssk-folder__tagline {
+  margin: 0;
+  color: var(--color-primary);
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+.ssk-folder__blurb {
+  margin: 0;
+  color: var(--color-text-muted);
+  font-size: 0.98rem;
+  line-height: 1.62;
+}
+
+.ssk-folder__stats {
+  display: grid;
+  gap: var(--space-4);
+  margin: 0;
+  padding: var(--space-4) 0;
+  border-top: 1px solid var(--ssk-rule-soft);
+  border-bottom: 1px solid var(--ssk-rule-soft);
+}
+
+@media (min-width: 520px) {
+  .ssk-folder__stats {
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: var(--space-4) var(--space-8);
+  }
+}
+
+.ssk-folder__stats dt {
+  color: var(--color-text-faint);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.ssk-folder__stats dd {
+  margin: 0.3rem 0 0;
+  color: var(--color-text);
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.1;
+}
+
+.ssk-folder__stats .ssk-folder__stat-text {
+  font-size: 0.98rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1.4;
+}
+
+.ssk-folder__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-4);
+  margin-top: auto;
+}
+
+/* -------------------------------------------------------- front-page strip */
+
+.ssk-front-strip {
+  display: grid;
+  gap: var(--space-3);
+  padding: clamp(1.4rem, 3vw, 2rem);
+  text-decoration: none;
+}
+
+.ssk-front-strip__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.ssk-front-strip__edition {
+  color: var(--color-text-muted);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.ssk-front-strip__title {
+  margin: 0;
+  color: var(--color-text);
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 3.4vw, 2.3rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.14;
+}
+
+.ssk-front-strip__theme {
+  margin: 0;
+  max-width: 62ch;
+  color: var(--color-text-muted);
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+/* ------------------------------------------------------------- desk header */
+
+.ssk-desk-head {
+  display: grid;
+  gap: var(--space-6);
+  align-items: start;
+}
+
+@media (min-width: 900px) {
+  .ssk-desk-head {
+    grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
+    gap: var(--space-10);
+  }
+}
+
+.ssk-desk-head__title {
+  margin: 0 0 var(--space-4);
+  max-width: 18ch;
+}
+
+.ssk-desk-head__aside {
+  display: grid;
+  gap: var(--space-3);
+  padding: var(--space-6);
+}
+
+/* ---------------------------------------------------------------- editions */
+
+.ssk-edition-grid {
+  display: grid;
+  gap: var(--space-6);
+}
+
+@media (min-width: 780px) {
+  .ssk-edition-grid {
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 20rem), 1fr));
+  }
+}
+
+.ssk-edition {
+  display: grid;
+  gap: var(--space-4);
+  align-content: start;
+  padding: clamp(1.3rem, 2.6vw, 1.9rem);
+}
+
+.ssk-edition__rule {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding-bottom: var(--space-3);
+  border-bottom: 1px solid var(--ssk-rule-soft);
+}
+
+.ssk-edition__period {
+  color: var(--color-text-muted);
+  font-size: 0.8rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.04em;
+}
+
+.ssk-edition__title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(1.35rem, 2.6vw, 1.75rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.16;
+}
+
+.ssk-edition--front .ssk-edition__title {
+  font-size: clamp(1.7rem, 4vw, 2.6rem);
+}
+
+.ssk-edition__title a {
+  color: var(--color-text);
+  text-decoration: none;
+}
+
+.ssk-edition__title a:hover,
+.ssk-edition__title a:focus-visible {
+  color: var(--color-primary);
+}
+
+.ssk-edition__theme {
+  margin: 0;
+  max-width: 58ch;
+  color: var(--color-text-muted);
+  font-size: 0.98rem;
+  line-height: 1.62;
+}
+
+.ssk-edition__byline {
+  margin: 0;
+  color: var(--color-text-faint);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.ssk-edition-rule {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4rem 0.65rem;
+  margin: var(--space-4) 0 0;
+  padding: var(--space-3) 0;
+  border-top: 1px solid var(--ambient-line);
+  border-bottom: 1px solid var(--ambient-line);
+  color: var(--color-text-muted);
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* ------------------------------------------------------ publishing calendar */
+
+.ssk-calendar__head {
+  margin-bottom: var(--space-6);
+}
+
+.ssk-calendar__note {
+  margin: calc(var(--space-6) * -1 + 0.4rem) 0 0;
+  max-width: 62ch;
+  color: var(--color-text-muted);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.ssk-calendar__list {
+  display: grid;
+  gap: var(--space-4);
+}
+
+@media (min-width: 720px) {
+  .ssk-calendar__list {
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 13.5rem), 1fr));
+  }
+}
+
+.ssk-calendar__slot {
+  display: grid;
+  gap: 0.4rem;
+  align-content: start;
+  padding: var(--space-5);
+  border: 1px solid var(--ssk-rule-soft);
+  border-radius: var(--radius-md);
+  background: var(--ambient-surface);
+}
+
+.ssk-calendar__slot.is-published {
+  border-color: var(--ssk-rule);
+  box-shadow: inset 3px 0 0 var(--color-primary);
+}
+
+.ssk-calendar__slot-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+}
+
+.ssk-calendar__label {
+  color: var(--color-text);
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
+
+.ssk-calendar__status {
+  padding: 0.18rem 0.5rem;
+  border-radius: var(--radius-pill);
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+.ssk-calendar__status--published {
+  border: 1px solid var(--color-success);
+  color: var(--color-success);
+}
+
+.ssk-calendar__status--scheduled {
+  border: 1px solid var(--ambient-line-strong);
+  color: var(--color-text-muted);
+}
+
+.ssk-calendar__period,
+.ssk-calendar__due {
+  margin: 0;
+  color: var(--color-text-muted);
+  font-size: 0.85rem;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.45;
+}
+
+.ssk-calendar__due {
+  color: var(--color-text-faint);
+  font-weight: 700;
+}
+
+.ssk-calendar__link {
+  margin-top: 0.35rem;
+  color: var(--color-primary);
+  font-size: 0.92rem;
+  font-weight: 700;
+  line-height: 1.4;
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+}
+
+.ssk-calendar__empty {
+  margin: 0.35rem 0 0;
+  color: var(--color-text-faint);
+  font-size: 0.88rem;
+  font-style: italic;
+  line-height: 1.45;
+}
+
+/* ------------------------------------------------------------ cadence table */
+
+.ssk-cadence {
+  padding: clamp(1.2rem, 2.6vw, 1.8rem);
+  /* The table has a hard minimum width; scroll it inside the card rather than
+     letting it widen the document on a phone. */
+  overflow-x: auto;
+}
+
+.ssk-cadence__table {
+  width: 100%;
+  min-width: 34rem;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.ssk-cadence__caption {
+  margin-bottom: var(--space-4);
+  max-width: 68ch;
+  color: var(--color-text-muted);
+  font-size: 0.92rem;
+  line-height: 1.6;
+  text-align: left;
+}
+
+.ssk-cadence__table thead th {
+  padding: 0 0 var(--space-3);
+  border-bottom: 2px solid var(--ssk-rule);
+  color: var(--color-text-faint);
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.ssk-cadence__table tbody th,
+.ssk-cadence__table tbody td {
+  padding: var(--space-4) var(--space-4) var(--space-4) 0;
+  border-bottom: 1px solid var(--ssk-rule-soft);
+  color: var(--color-text-muted);
+  font-size: 0.94rem;
+  font-weight: 400;
+  line-height: 1.55;
+  vertical-align: top;
+}
+
+.ssk-cadence__table tbody th {
+  color: var(--color-text);
+  font-family: var(--font-display);
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.ssk-cadence__table tbody td:first-of-type {
+  color: var(--color-primary);
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.ssk-cadence__table tbody tr:last-child th,
+.ssk-cadence__table tbody tr:last-child td {
+  border-bottom: 0;
+}

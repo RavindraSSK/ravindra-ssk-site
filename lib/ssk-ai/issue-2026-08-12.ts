@@ -6,6 +6,16 @@ import type { SskAiIssue } from "./types";
  */
 export const issueAugust12_2026: SskAiIssue = {
   slug: "ai-technology-updates-august-12-2026",
+  // Coverage window stated as published, not back-fitted to the canonical 1-7 / 8-14
+  // grid — this edition predates the calendar and reports the seven days to Aug 12.
+  edition: {
+    kind: "weekly",
+    number: 1,
+    volume: 1,
+    periodStart: "2026-08-06",
+    periodEnd: "2026-08-12",
+    periodLabel: "August 6–12, 2026",
+  },
   datePublished: "2026-08-12",
   dateLabel: "August 12, 2026",
   cardTitle: "SSK AI: The Week AI Split Into Specialists",

@@ -104,13 +104,6 @@
   text-transform: uppercase;
 }
 
-.explore-card--blog .explore-card__accent,
-.explore-card--blog .explore-card__symbol {
-  background: linear-gradient(135deg, #17346f, #5376b7);
-}
-
-.explore-card--blog { --explore-glow: rgba(55, 101, 194, 0.16); }
-
 .explore-card--photo .explore-card__accent,
 .explore-card--photo .explore-card__symbol {
   background: linear-gradient(135deg, #184f63, #3d88a8);
@@ -1471,31 +1464,20 @@ html[data-theme="dark"] .habit-row span {
 }
 
 @media (min-width: 1024px) {
+  /* Three equal columns. The old two-column arrangement existed to give the SSK AI Hub
+     card a full-height slot beside a 2x2 stack of the others; that card now lives in the
+     hub, and without it the remaining three left one stretched card stranded in row 2. */
   .explore-grid {
-    grid-template-columns: 1.05fr 0.95fr;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     align-items: stretch;
   }
 
-  .explore-card--blog {
-    grid-column: span 1;
-    grid-row: span 2;
-  }
-
   .explore-card--photo,
-  .explore-card--fitness {
-    grid-column: span 1;
-  }
-
+  .explore-card--fitness,
   .explore-card--music {
     grid-column: span 1;
+    min-height: 340px;
   }
-
-  .explore-card--blog { min-height: 100%; }
-
-  .explore-card--music { min-height: 380px; }
-
-  .explore-card--photo,
-  .explore-card--fitness { min-height: 330px; }
 
   .content-hero {
     grid-template-columns: minmax(0, 1.1fr) minmax(280px, 0.9fr);
