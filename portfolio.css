@@ -33,6 +33,7 @@
     var(--ambient-surface-strong);
   box-shadow: var(--shadow-card);
   backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
 }
 
 .portfolio-tabs {
@@ -110,6 +111,7 @@
     linear-gradient(145deg, rgba(255, 255, 255, 0.72), rgba(245, 248, 255, 0.56));
   box-shadow: 0 22px 54px rgba(27, 45, 95, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.68);
   backdrop-filter: blur(14px) saturate(115%);
+  -webkit-backdrop-filter: blur(14px) saturate(115%);
 }
 
 .education-grid,
@@ -157,6 +159,7 @@
     var(--ambient-surface);
   box-shadow: 0 14px 34px rgba(27, 45, 95, 0.09), inset 0 1px 0 rgba(255, 255, 255, 0.72);
   backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
 }
 
 .cert-filter {
@@ -224,6 +227,7 @@
     var(--ambient-surface);
   box-shadow: 0 14px 34px rgba(27, 45, 95, 0.09), inset 0 1px 0 rgba(255, 255, 255, 0.58);
   backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   transition: transform 180ms ease, border-color 180ms ease, background 180ms ease, box-shadow 180ms ease;
 }
 

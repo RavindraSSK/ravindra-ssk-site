@@ -34,7 +34,7 @@
   min-width: 0;
   display: grid;
   gap: clamp(1.1rem, 3vw, 1.75rem);
-  align-content: center;
+  align-content: start;
   padding: clamp(1rem, 3vw, 2rem) 0;
 }
 
@@ -64,9 +64,12 @@
   isolation: isolate;
 }
 
+/* The right inset must not go negative: on narrow viewports .hero__visual
+   spans the full container, so -6% pushed this past the viewport edge and
+   produced document-level horizontal overflow. */
 .hero-visual__grid {
   position: absolute;
-  inset: 7% -6% 5% 4%;
+  inset: 7% 0 5% 4%;
   z-index: -2;
   border-radius: 42px;
   opacity: 0.58;
@@ -606,7 +609,7 @@ html[data-theme="dark"] .home-interest-card {
 
   .hero__lead .eyebrow {
     max-width: 100%;
-    font-size: 0.68rem;
+    font-size: 0.75rem;
     letter-spacing: 0.08em;
     text-align: left;
     line-height: 1.45;
@@ -617,7 +620,9 @@ html[data-theme="dark"] .home-interest-card {
 @media (min-width: 1024px) {
   .hero {
     grid-template-columns: minmax(0, 1fr) minmax(450px, 0.95fr);
-    align-items: center;
+    /* `center` let the tall right-hand panel push the whole lead column
+       (and its CTAs) below the fold on a 900px-tall laptop. */
+    align-items: start;
   }
 
   .home-projects-section .project-grid--three {
