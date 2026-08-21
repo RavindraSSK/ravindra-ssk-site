@@ -4,6 +4,7 @@ import { useEffect, useMemo, useState } from "react";
 
 import { countryLabel } from "@/lib/country-centroids";
 import { COUNTRY_PINS, DOT_MAP_H, DOT_MAP_W, LAND_DOTS } from "@/lib/world-dots";
+import { REGION_PINS, countryZoomWindow, projectLatLon } from "@/lib/geo-project";
 
 const POLL_MS = 15_000;
 
@@ -97,6 +98,7 @@ function utcClock(date: Date) {
 
 export function VisitorMap() {
   const [state, setState] = useState<State>({ status: "loading" });
+  const [selected, setSelected] = useState<string | null>(null);
   const ambient = useAmbientArcs(7);
 
   useEffect(() => {
@@ -151,8 +153,45 @@ export function VisitorMap() {
   const peak = countries.reduce((max, c) => Math.max(max, c.count), 0) || 1;
   const top = countries[0];
 
+  // Drill-down: aggregate the selected country's visits by state/region.
+  const drill = selected
+    ? (() => {
+        const inCountry = locations.filter((l) => l.country === selected);
+        const byRegion = new Map<string, { count: number; cities: Map<string, number> }>();
+        for (const l of inCountry) {
+          const key = l.region || "??";
+          const entry = byRegion.get(key) ?? { count: 0, cities: new Map<string, number>() };
+          entry.count += l.count;
+          if (l.city) entry.cities.set(l.city, (entry.cities.get(l.city) ?? 0) + l.count);
+          byRegion.set(key, entry);
+        }
+        const regions = [...byRegion.entries()]
+          .map(([code, { count, cities }]) => ({
+            code,
+            count,
+            name: REGION_PINS[`${selected}-${code}`]?.[2] ?? code,
+            pin: REGION_PINS[`${selected}-${code}`],
+            topCity: [...cities.entries()].sort((a, b) => b[1] - a[1])[0]?.[0] ?? "",
+          }))
+          .sort((a, b) => b.count - a.count);
+        const countryTotal = countries.find((c) => c.code === selected)?.count ?? 0;
+        const located = inCountry.reduce((sum, l) => sum + l.count, 0);
+        return { regions, countryTotal, unlocated: Math.max(0, countryTotal - located) };
+      })()
+    : null;
+  const selectedPin = selected ? COUNTRY_PINS[selected] : undefined;
+  const viewBox = selected && selectedPin
+    ? countryZoomWindow(selectedPin, selected)
+    : `-2 -2 ${DOT_MAP_W + 4} ${DOT_MAP_H + 4}`;
+  const regionPeak = drill?.regions[0]?.count || 1;
+
   return (
     <div className="vmap">
+      {selected ? (
+        <button type="button" className="vmap__back" onClick={() => setSelected(null)}>
+          ◂ WORLD VIEW&ensp;·&ensp;{countryLabel(selected).toUpperCase()} ({drill?.countryTotal.toLocaleString()} visits)
+        </button>
+      ) : null}
       <div className="vmap__readouts">
         <div className="vmap__readout">
           <span className="vmap__readout-label">Total visits</span>
@@ -179,7 +218,7 @@ export function VisitorMap() {
       <div className="vmap__stage">
         <svg
           className="vmap__canvas"
-          viewBox={`-2 -2 ${DOT_MAP_W + 4} ${DOT_MAP_H + 4}`}
+          viewBox={viewBox}
           role="img"
           aria-label={`World map showing live visitor connections from ${countries.length} countries`}
         >
@@ -210,7 +249,7 @@ export function VisitorMap() {
           </g>
 
           {/* Ambient background traffic (decorative) */}
-          <g className="vmap__ambient" aria-hidden="true">
+          <g className="vmap__ambient" aria-hidden="true" display={selected ? "none" : undefined}>
             {ambient.map((arc, i) => (
               <path
                 key={i}
@@ -222,7 +261,7 @@ export function VisitorMap() {
           </g>
 
           {/* Live connection beams: each visitor country -> origin node */}
-          <g className="vmap__beams" aria-hidden="true">
+          <g className="vmap__beams" aria-hidden="true" display={selected ? "none" : undefined}>
             {plotted.map(({ code }, i) => {
               const pin = COUNTRY_PINS[code];
               const d = arcPath(pin, HUB);
@@ -244,19 +283,32 @@ export function VisitorMap() {
           </g>
 
           {/* Origin node */}
-          <g className="vmap__hubnode" aria-hidden="true">
+          <g className="vmap__hubnode" aria-hidden="true" display={selected ? "none" : undefined}>
             <circle cx={HUB[0]} cy={HUB[1]} r={4.5} fill="url(#vmap-hub)" opacity={0.35} />
             <circle className="vmap__hub-ring" cx={HUB[0]} cy={HUB[1]} r={1} />
             <circle cx={HUB[0]} cy={HUB[1]} r={0.75} className="vmap__hub-core" />
           </g>
 
-          {/* Visitor nodes with radar pings */}
-          <g>
+          {/* Visitor nodes with radar pings — click a node to drill into that country */}
+          <g display={selected ? "none" : undefined}>
             {plotted.map(({ code, count }, i) => {
               const [x, y] = COUNTRY_PINS[code];
               const r = 0.8 + Math.sqrt(count / peak) * 1.3;
               return (
-                <g key={code} className="vmap__node">
+                <g
+                  key={code}
+                  className="vmap__node vmap__node--clickable"
+                  role="button"
+                  tabIndex={0}
+                  aria-label={`Show states for ${countryLabel(code)}`}
+                  onClick={() => setSelected(code)}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter" || e.key === " ") {
+                      e.preventDefault();
+                      setSelected(code);
+                    }
+                  }}
+                >
                   <circle
                     className="vmap__ping"
                     cx={x}
@@ -272,11 +324,31 @@ export function VisitorMap() {
                     style={{ animationDelay: `${(i % 6) * 0.4 + 1.1}s` }}
                   />
                   <circle className="vmap__node-core" cx={x} cy={y} r={r} filter="url(#vmap-glow)" />
-                  <title>{`${countryLabel(code)}: ${count.toLocaleString()} visit${count === 1 ? "" : "s"}`}</title>
+                  <title>{`${countryLabel(code)}: ${count.toLocaleString()} visit${count === 1 ? "" : "s"} — click to view states`}</title>
                 </g>
               );
             })}
           </g>
+
+          {/* Drill view: state/region pings inside the selected country */}
+          {drill ? (
+            <g>
+              {drill.regions
+                .filter((r) => r.pin)
+                .map(({ code, count, name, pin, topCity }, i) => {
+                  const [x, y] = projectLatLon(pin![0], pin![1]);
+                  const r = 0.45 + Math.sqrt(count / regionPeak) * 0.9;
+                  return (
+                    <g key={code} className="vmap__node">
+                      <circle className="vmap__ping" cx={x} cy={y} r={r} style={{ animationDelay: `${(i % 6) * 0.4}s` }} />
+                      <circle className="vmap__node-core" cx={x} cy={y} r={r} filter="url(#vmap-glow)" />
+                      <text className="vmap__region-label" x={x} y={y - r - 0.6}>{code}</text>
+                      <title>{`${name}${topCity ? ` (top city: ${topCity})` : ""}: ${count.toLocaleString()} visit${count === 1 ? "" : "s"}`}</title>
+                    </g>
+                  );
+                })}
+            </g>
+          ) : null}
         </svg>
         <div className="vmap__scan" aria-hidden="true" />
         <span className="vmap__corner vmap__corner--tl" aria-hidden="true" />
@@ -302,7 +374,29 @@ export function VisitorMap() {
           </p>
         </div>
 
-        {countries.length > 0 ? (
+        {drill ? (
+          <ol className="vmap__rank" aria-label={`Visits by state in ${countryLabel(selected!)}`}>
+            {drill.regions.slice(0, 12).map(({ code, count, name, topCity }) => (
+              <li key={code}>
+                <span className="vmap__rank-code">{code}</span>
+                <span className="vmap__rank-name">{name}{topCity ? ` · ${topCity}` : ""}</span>
+                <span className="vmap__rank-bar" style={{ "--share": `${(count / regionPeak) * 100}%` } as React.CSSProperties} />
+                <span className="vmap__rank-count">{count.toLocaleString()}</span>
+              </li>
+            ))}
+            {drill.unlocated > 0 ? (
+              <li>
+                <span className="vmap__rank-code">··</span>
+                <span className="vmap__rank-name">state unresolved</span>
+                <span className="vmap__rank-bar" style={{ "--share": `${(drill.unlocated / regionPeak) * 100}%` } as React.CSSProperties} />
+                <span className="vmap__rank-count">{drill.unlocated.toLocaleString()}</span>
+              </li>
+            ) : null}
+            {drill.regions.length === 0 && drill.unlocated === 0 ? (
+              <li><span className="vmap__rank-name">no state-level data yet for this country</span></li>
+            ) : null}
+          </ol>
+        ) : countries.length > 0 ? (
           <ol className="vmap__rank" aria-label="Visits by country">
             {countries.slice(0, 10).map(({ code, count }) => (
               <li key={code}>
@@ -315,7 +409,7 @@ export function VisitorMap() {
           </ol>
         ) : null}
 
-        {locations.length > 0 ? (
+        {!selected && locations.length > 0 ? (
           <ol className="vmap__rank vmap__rank--cities" aria-label="Visits by city">
             {locations.slice(0, 10).map(({ country, region, city, count }) => {
               const label = [city, region].filter(Boolean).join(", ") || countryLabel(country);

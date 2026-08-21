@@ -575,3 +575,47 @@
   .footer-visits:hover { transform: none; }
   .footer-visits:hover .footer-visits__arrow { transform: none; }
 }
+
+/* Country drill-down controls */
+.vmap__back {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.35rem 0.8rem;
+  border: 1px solid var(--vc-line-soft, rgba(40, 242, 160, 0.25));
+  border-radius: 6px;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+}
+
+.vmap__back:hover {
+  border-color: rgba(40, 242, 160, 0.6);
+  background: rgba(40, 242, 160, 0.08);
+}
+
+.vmap__node--clickable {
+  cursor: pointer;
+}
+
+.vmap__node--clickable:hover .vmap__node-core,
+.vmap__node--clickable:focus-visible .vmap__node-core {
+  stroke: #b9ffe0;
+  stroke-width: 0.35;
+}
+
+.vmap__node--clickable:focus-visible {
+  outline: none;
+}
+
+.vmap__region-label {
+  font-size: 1.1px;
+  letter-spacing: 0.1px;
+  text-anchor: middle;
+  fill: rgba(185, 255, 224, 0.85);
+  pointer-events: none;
+}
