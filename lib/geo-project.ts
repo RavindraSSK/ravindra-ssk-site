@@ -1,17 +1,10 @@
 /**
- * Projection from lat/lon into the dot-matrix map space of lib/world-dots.ts.
- * Constants were fitted against COUNTRY_PINS (web-mercator vertically,
- * linear horizontally); residuals are under 0.6 dots across all pins.
+ * Subdivision centroids for the analytics drill-down, keyed "CC-RR"
+ * (ISO 3166-2): [lat, lon, display name]. Project with projectLatLon from
+ * lib/world-paths.ts. Countries not listed here still drill down to a
+ * ranked state list — they just get an aggregate map marker instead of
+ * per-state pins. Extend per country as needed.
  */
-
-export function projectLatLon(lat: number, lon: number): [number, number] {
-  const x = 0.35445 * lon + 59.4527;
-  const merc = Math.log(Math.tan(Math.PI / 4 + (lat * Math.PI) / 360));
-  const y = -20.10292 * merc + 36.0786;
-  return [x, y];
-}
-
-/** Subdivision centroids, keyed "CC-RR" (ISO 3166-2): [lat, lon, display name]. */
 export const REGION_PINS: Record<string, readonly [number, number, string]> = {
   // United States (50 states + DC)
   "US-AL": [32.8, -86.8, "Alabama"], "US-AK": [64.7, -152.3, "Alaska"], "US-AZ": [34.3, -111.7, "Arizona"],
@@ -44,46 +37,3 @@ export const REGION_PINS: Record<string, readonly [number, number, string]> = {
   "IN-TR": [23.7, 91.7, "Tripura"], "IN-UP": [27.0, 80.7, "Uttar Pradesh"], "IN-UT": [30.1, 79.2, "Uttarakhand"],
   "IN-WB": [23.8, 87.9, "West Bengal"],
 };
-
-/** Lat/lon bounding boxes for countries whose zoom needs more than the default span. */
-const COUNTRY_BOUNDS: Record<string, readonly [number, number, number, number]> = {
-  // [south, west, north, east] — mainland-focused so the zoom stays tight
-  US: [24, -125, 49.5, -66], CA: [42, -140, 70, -52], BR: [-33, -74, 5, -34],
-  RU: [42, 27, 77, 180], CN: [18, 73, 53, 135], IN: [7, 68, 35, 97],
-  AU: [-44, 112, -10, 154], AR: [-55, -73, -22, -53], MX: [14, -117, 32, -86],
-  ID: [-11, 95, 6, 141], NO: [58, 4, 71, 31], CL: [-56, -75, -17, -66],
-};
-
-/**
- * viewBox window ("x y w h") that frames a country, derived from its lat/lon
- * bounds when listed, else a default span centered on the country pin.
- */
-export function countryZoomWindow(pin: readonly [number, number], code: string): string {
-  const bounds = COUNTRY_BOUNDS[code];
-  let x1: number, y1: number, x2: number, y2: number;
-  if (bounds) {
-    const [s, w, n, e] = bounds;
-    [x1, y1] = projectLatLon(n, w);
-    [x2, y2] = projectLatLon(s, e);
-  } else {
-    const span = 7;
-    x1 = pin[0] - span;
-    y1 = pin[1] - span / 2;
-    x2 = pin[0] + span;
-    y2 = pin[1] + span / 2;
-  }
-  const padX = (x2 - x1) * 0.14 + 1;
-  const padY = (y2 - y1) * 0.14 + 1;
-  x1 -= padX; y1 -= padY; x2 += padX; y2 += padY;
-  // Keep the 2:1 stage aspect so the zoom doesn't distort dot spacing.
-  const w = x2 - x1;
-  const h = y2 - y1;
-  if (w / h > 2) {
-    const grow = (w / 2 - h) / 2;
-    y1 -= grow; y2 += grow;
-  } else {
-    const grow = (h * 2 - w) / 2;
-    x1 -= grow; x2 += grow;
-  }
-  return `${x1.toFixed(1)} ${y1.toFixed(1)} ${(x2 - x1).toFixed(1)} ${(y2 - y1).toFixed(1)}`;
-}
