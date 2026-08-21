@@ -471,13 +471,19 @@ export function VisitorMap() {
             {drill.unlocated > 0 ? (
               <li>
                 <span className="vmap__rank-code">··</span>
-                <span className="vmap__rank-name">state unresolved</span>
+                <span className="vmap__rank-name">state not recorded</span>
                 <span className="vmap__rank-bar" style={{ "--share": `${(drill.unlocated / regionPeak) * 100}%` } as React.CSSProperties} />
                 <span className="vmap__rank-count">{drill.unlocated.toLocaleString()}</span>
               </li>
             ) : null}
-            {drill.regions.length === 0 && drill.unlocated === 0 ? (
-              <li><span className="vmap__rank-name">no state-level data yet for this country</span></li>
+            {drill.regions.length === 0 ? (
+              <li className="vmap__rank-note">
+                <span className="vmap__rank-name">
+                  {drill.unlocated > 0
+                    ? `these ${drill.unlocated.toLocaleString()} visit${drill.unlocated === 1 ? "" : "s"} arrived before state-level tracking was enabled — new visits will appear here with their state and city`
+                    : "no visits recorded from this country since state-level tracking was enabled"}
+                </span>
+              </li>
             ) : null}
           </ol>
         ) : countries.length > 0 ? (
