@@ -1,15 +1,16 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 
-import { countryLabel } from "@/lib/country-centroids";
-import { COUNTRY_PINS, DOT_MAP_H, DOT_MAP_W, LAND_DOTS } from "@/lib/world-dots";
-import { REGION_PINS, countryZoomWindow, projectLatLon } from "@/lib/geo-project";
+import { countryLabel, lookupCountry } from "@/lib/country-centroids";
+import { REGION_PINS } from "@/lib/geo-project";
+import { COUNTRY_BY_CODE, MAP_H, MAP_W, WORLD_COUNTRIES, projectLatLon } from "@/lib/world-paths";
 
 const POLL_MS = 15_000;
+const STAGE_RATIO = MAP_W / MAP_H;
 
 /** Origin node the connection beams converge on (St. Louis, MO). */
-const HUB: readonly [number, number] = [28, 21.7];
+const HUB = projectLatLon(38.63, -90.2);
 
 type Location = { country: string; region: string; city: string; count: number };
 type Stats = {
@@ -40,14 +41,67 @@ async function fetchState(): Promise<State> {
   }
 }
 
-/** Quadratic arc between two grid points, bowed upward like a flight path. */
+/** Map position for a country: shape centroid, else projected reference point (covers SG, HK, …). */
+function countryPoint(code: string): readonly [number, number] | null {
+  const shape = COUNTRY_BY_CODE.get(code);
+  if (shape) return shape.centroid;
+  const centroid = lookupCountry(code);
+  if (centroid) return projectLatLon(centroid.lat, centroid.lon);
+  return null;
+}
+
+function displayName(code: string): string {
+  return COUNTRY_BY_CODE.get(code)?.name ?? countryLabel(code);
+}
+
+/** Countries whose Natural Earth bbox frames badly (distant islands/territories). */
+const ZOOM_OVERRIDES: Record<string, readonly [number, number, number, number]> = {
+  // Continental US: Alaska + Hawaii stretch the bbox until the mainland is tiny.
+  US: [24, -125, 49.5, -66.5],
+  // European France (overseas territories pull the bbox to South America).
+  FR: [41, -5.5, 51.5, 10],
+  NL: [50.5, 3, 53.8, 7.5],
+  NZ: [-47.5, 166, -34, 179],
+};
+
+/** viewBox framing a country, padded and widened to the stage aspect ratio. */
+function zoomWindow(code: string): string {
+  const override = ZOOM_OVERRIDES[code];
+  const shape = COUNTRY_BY_CODE.get(code);
+  let x1: number, y1: number, x2: number, y2: number;
+  if (override) {
+    const [s0, w0, n0, e0] = override;
+    [x1, y1] = projectLatLon(n0, w0);
+    [x2, y2] = projectLatLon(s0, e0);
+  } else if (shape) {
+    [x1, y1, x2, y2] = shape.bbox;
+  } else {
+    const point = countryPoint(code) ?? [MAP_W / 2, MAP_H / 2];
+    x1 = point[0] - 30; y1 = point[1] - 16; x2 = point[0] + 30; y2 = point[1] + 16;
+  }
+  const padX = (x2 - x1) * 0.12 + 6;
+  const padY = (y2 - y1) * 0.12 + 6;
+  x1 -= padX; y1 -= padY; x2 += padX; y2 += padY;
+  const w = x2 - x1;
+  const h = y2 - y1;
+  if (w / h > STAGE_RATIO) {
+    const grow = (w / STAGE_RATIO - h) / 2;
+    y1 -= grow; y2 += grow;
+  } else {
+    const grow = (h * STAGE_RATIO - w) / 2;
+    x1 -= grow; x2 += grow;
+  }
+  return `${x1.toFixed(1)} ${y1.toFixed(1)} ${(x2 - x1).toFixed(1)} ${(y2 - y1).toFixed(1)}`;
+}
+
+/** Quadratic arc between two points, bowed upward like a flight path. */
 function arcPath(a: readonly [number, number], b: readonly [number, number]): string {
   const [x1, y1] = a;
   const [x2, y2] = b;
   const dx = x2 - x1;
   const dy = y2 - y1;
   const dist = Math.hypot(dx, dy) || 1;
-  const lift = Math.min(13, 3 + dist * 0.32);
+  const lift = Math.min(110, 25 + dist * 0.3);
   let px = -dy / dist;
   let py = dx / dist;
   if (py > 0) {
@@ -56,36 +110,7 @@ function arcPath(a: readonly [number, number], b: readonly [number, number]): st
   }
   const cx = (x1 + x2) / 2 + px * lift;
   const cy = (y1 + y2) / 2 + py * lift;
-  return `M ${x1} ${y1} Q ${cx} ${cy} ${x2} ${y2}`;
-}
-
-/** Deterministic PRNG so the ambient background traffic is stable per mount. */
-function mulberry32(seed: number) {
-  let a = seed;
-  return () => {
-    a |= 0;
-    a = (a + 0x6d2b79f5) | 0;
-    let t = Math.imul(a ^ (a >>> 15), 1 | a);
-    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
-    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
-  };
-}
-
-/** Faint decorative arcs between random landmass points — background noise for the board. */
-function useAmbientArcs(count: number) {
-  return useMemo(() => {
-    const rand = mulberry32(1304);
-    const arcs: Array<{ d: string; dur: number; delay: number }> = [];
-    let guard = 0;
-    while (arcs.length < count && guard < 200) {
-      guard += 1;
-      const a = LAND_DOTS[Math.floor(rand() * LAND_DOTS.length)];
-      const b = LAND_DOTS[Math.floor(rand() * LAND_DOTS.length)];
-      if (Math.hypot(a[0] - b[0], a[1] - b[1]) < 22) continue;
-      arcs.push({ d: arcPath(a, b), dur: 7 + rand() * 8, delay: -rand() * 12 });
-    }
-    return arcs;
-  }, [count]);
+  return `M ${x1.toFixed(1)} ${y1.toFixed(1)} Q ${cx.toFixed(1)} ${cy.toFixed(1)} ${x2.toFixed(1)} ${y2.toFixed(1)}`;
 }
 
 function pad(n: number) {
@@ -99,7 +124,6 @@ function utcClock(date: Date) {
 export function VisitorMap() {
   const [state, setState] = useState<State>({ status: "loading" });
   const [selected, setSelected] = useState<string | null>(null);
-  const ambient = useAmbientArcs(7);
 
   useEffect(() => {
     let cancelled = false;
@@ -117,6 +141,16 @@ export function VisitorMap() {
       clearInterval(timer);
     };
   }, []);
+
+  // Esc leaves the country drill-down from anywhere on the page.
+  useEffect(() => {
+    if (!selected) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setSelected(null);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [selected]);
 
   if (state.status === "loading") {
     return (
@@ -149,7 +183,7 @@ export function VisitorMap() {
   const { total, countries } = state.stats;
   const locations = state.stats.locations ?? [];
   const clock = utcClock(state.fetchedAt);
-  const plotted = countries.filter((c) => COUNTRY_PINS[c.code]);
+  const countByCode = new Map(countries.map((c) => [c.code, c.count]));
   const peak = countries.reduce((max, c) => Math.max(max, c.count), 0) || 1;
   const top = countries[0];
 
@@ -174,24 +208,29 @@ export function VisitorMap() {
             topCity: [...cities.entries()].sort((a, b) => b[1] - a[1])[0]?.[0] ?? "",
           }))
           .sort((a, b) => b.count - a.count);
-        const countryTotal = countries.find((c) => c.code === selected)?.count ?? 0;
+        const countryTotal = countByCode.get(selected) ?? 0;
         const located = inCountry.reduce((sum, l) => sum + l.count, 0);
-        return { regions, countryTotal, unlocated: Math.max(0, countryTotal - located) };
+        const pinned = regions.filter((r) => r.pin);
+        return {
+          regions,
+          countryTotal,
+          unlocated: Math.max(0, countryTotal - located),
+          unpinnedCount: regions.filter((r) => !r.pin).reduce((sum, r) => sum + r.count, 0),
+          pinned,
+        };
       })()
     : null;
-  const selectedPin = selected ? COUNTRY_PINS[selected] : undefined;
-  const viewBox = selected && selectedPin
-    ? countryZoomWindow(selectedPin, selected)
-    : `-2 -2 ${DOT_MAP_W + 4} ${DOT_MAP_H + 4}`;
   const regionPeak = drill?.regions[0]?.count || 1;
+  const viewBox = selected ? zoomWindow(selected) : `0 0 ${MAP_W} ${MAP_H}`;
+  // Keep marks legible at any zoom: scale by window width.
+  const zoomScale = selected ? Number(viewBox.split(" ")[2]) / MAP_W : 1;
+
+  const visitorShapes = countries
+    .map(({ code, count }) => ({ code, count, point: countryPoint(code) }))
+    .filter((c): c is { code: string; count: number; point: readonly [number, number] } => c.point !== null);
 
   return (
     <div className="vmap">
-      {selected ? (
-        <button type="button" className="vmap__back" onClick={() => setSelected(null)}>
-          ◂ WORLD VIEW&ensp;·&ensp;{countryLabel(selected).toUpperCase()} ({drill?.countryTotal.toLocaleString()} visits)
-        </button>
-      ) : null}
       <div className="vmap__readouts">
         <div className="vmap__readout">
           <span className="vmap__readout-label">Total visits</span>
@@ -202,9 +241,9 @@ export function VisitorMap() {
           <span className="vmap__readout-value">{countries.length.toLocaleString()}</span>
         </div>
         <div className="vmap__readout">
-          <span className="vmap__readout-label">Top node</span>
+          <span className="vmap__readout-label">{selected ? "Viewing" : "Top node"}</span>
           <span className="vmap__readout-value">
-            {locations[0]?.city || locations[0]?.region || (top ? top.code : "——")}
+            {selected ? displayName(selected) : locations[0]?.city || locations[0]?.region || (top ? top.code : "——")}
           </span>
         </div>
         <div className="vmap__readout">
@@ -220,20 +259,27 @@ export function VisitorMap() {
           className="vmap__canvas"
           viewBox={viewBox}
           role="img"
-          aria-label={`World map showing live visitor connections from ${countries.length} countries`}
+          aria-label={
+            selected
+              ? `Map of ${displayName(selected)} showing visits by state`
+              : `World map showing live visitor connections from ${countries.length} countries`
+          }
         >
           <defs>
-            <linearGradient id="vmap-arc" x1="0" y1="0" x2="1" y2="0">
-              <stop offset="0" stopColor="#28f2a0" stopOpacity="0" />
-              <stop offset="0.5" stopColor="#28f2a0" stopOpacity="0.9" />
-              <stop offset="1" stopColor="#59f5ff" stopOpacity="0.9" />
+            <radialGradient id="vmap-ocean" cx="0.5" cy="0.42" r="0.75">
+              <stop offset="0" stopColor="#0e2036" />
+              <stop offset="1" stopColor="#060d18" />
+            </radialGradient>
+            <linearGradient id="vmap-hot" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stopColor="#155e4b" />
+              <stop offset="1" stopColor="#1d4ed8" />
             </linearGradient>
             <radialGradient id="vmap-hub" cx="0.5" cy="0.5" r="0.5">
               <stop offset="0" stopColor="#b9ffe0" />
               <stop offset="1" stopColor="#28f2a0" stopOpacity="0" />
             </radialGradient>
             <filter id="vmap-glow" x="-80%" y="-80%" width="260%" height="260%">
-              <feGaussianBlur stdDeviation="0.7" result="b" />
+              <feGaussianBlur stdDeviation={5 * zoomScale} result="b" />
               <feMerge>
                 <feMergeNode in="b" />
                 <feMergeNode in="SourceGraphic" />
@@ -241,116 +287,154 @@ export function VisitorMap() {
             </filter>
           </defs>
 
-          {/* Landmass dot matrix */}
-          <g className="vmap__land">
-            {LAND_DOTS.map(([x, y], i) => (
-              <circle key={i} cx={x} cy={y} r={0.32} />
-            ))}
-          </g>
+          {/* Ocean: clicking it leaves the drill-down */}
+          <rect
+            x={-MAP_W}
+            y={-MAP_H}
+            width={MAP_W * 3}
+            height={MAP_H * 3}
+            fill="url(#vmap-ocean)"
+            onClick={() => setSelected(null)}
+          />
 
-          {/* Ambient background traffic (decorative) */}
-          <g className="vmap__ambient" aria-hidden="true" display={selected ? "none" : undefined}>
-            {ambient.map((arc, i) => (
-              <path
-                key={i}
-                d={arc.d}
-                pathLength={100}
-                style={{ animationDuration: `${arc.dur}s`, animationDelay: `${arc.delay}s` }}
-              />
-            ))}
-          </g>
-
-          {/* Live connection beams: each visitor country -> origin node */}
-          <g className="vmap__beams" aria-hidden="true" display={selected ? "none" : undefined}>
-            {plotted.map(({ code }, i) => {
-              const pin = COUNTRY_PINS[code];
-              const d = arcPath(pin, HUB);
+          {/* Country landmasses */}
+          <g className="vmap__countries">
+            {WORLD_COUNTRIES.map(({ code, d }) => {
+              const count = countByCode.get(code) ?? 0;
+              const active = count > 0;
+              const isSelected = code === selected;
+              const intensity = active ? 0.25 + 0.55 * Math.sqrt(count / peak) : 0;
               return (
-                <g key={code}>
-                  <path className="vmap__beam" d={d} pathLength={100} filter="url(#vmap-glow)" />
-                  <circle
-                    className="vmap__packet"
-                    r={0.62}
-                    style={{
-                      offsetPath: `path("${d}")`,
-                      animationDuration: `${3.2 + (i % 5) * 0.55}s`,
-                      animationDelay: `${-(i * 1.1)}s`,
-                    }}
-                  />
-                </g>
-              );
-            })}
-          </g>
-
-          {/* Origin node */}
-          <g className="vmap__hubnode" aria-hidden="true" display={selected ? "none" : undefined}>
-            <circle cx={HUB[0]} cy={HUB[1]} r={4.5} fill="url(#vmap-hub)" opacity={0.35} />
-            <circle className="vmap__hub-ring" cx={HUB[0]} cy={HUB[1]} r={1} />
-            <circle cx={HUB[0]} cy={HUB[1]} r={0.75} className="vmap__hub-core" />
-          </g>
-
-          {/* Visitor nodes with radar pings — click a node to drill into that country */}
-          <g display={selected ? "none" : undefined}>
-            {plotted.map(({ code, count }, i) => {
-              const [x, y] = COUNTRY_PINS[code];
-              const r = 0.8 + Math.sqrt(count / peak) * 1.3;
-              return (
-                <g
+                <path
                   key={code}
-                  className="vmap__node vmap__node--clickable"
-                  role="button"
-                  tabIndex={0}
-                  aria-label={`Show states for ${countryLabel(code)}`}
-                  onClick={() => setSelected(code)}
-                  onKeyDown={(e) => {
-                    if (e.key === "Enter" || e.key === " ") {
-                      e.preventDefault();
-                      setSelected(code);
-                    }
-                  }}
+                  d={d}
+                  className={[
+                    "vmap__country",
+                    active ? "vmap__country--active" : "",
+                    isSelected ? "vmap__country--selected" : "",
+                    selected && !isSelected ? "vmap__country--dim" : "",
+                  ].join(" ")}
+                  style={active && !isSelected ? { fillOpacity: intensity } : undefined}
+                  role={active ? "button" : undefined}
+                  tabIndex={active ? 0 : undefined}
+                  aria-label={active ? `Show states for ${displayName(code)} (${count} visits)` : undefined}
+                  onClick={
+                    active
+                      ? (e) => {
+                          e.stopPropagation();
+                          setSelected(code);
+                        }
+                      : undefined
+                  }
+                  onKeyDown={
+                    active
+                      ? (e) => {
+                          if (e.key === "Enter" || e.key === " ") {
+                            e.preventDefault();
+                            setSelected(code);
+                          }
+                        }
+                      : undefined
+                  }
                 >
-                  <circle
-                    className="vmap__ping"
-                    cx={x}
-                    cy={y}
-                    r={r}
-                    style={{ animationDelay: `${(i % 6) * 0.4}s` }}
-                  />
-                  <circle
-                    className="vmap__ping vmap__ping--late"
-                    cx={x}
-                    cy={y}
-                    r={r}
-                    style={{ animationDelay: `${(i % 6) * 0.4 + 1.1}s` }}
-                  />
-                  <circle className="vmap__node-core" cx={x} cy={y} r={r} filter="url(#vmap-glow)" />
-                  <title>{`${countryLabel(code)}: ${count.toLocaleString()} visit${count === 1 ? "" : "s"} — click to view states`}</title>
-                </g>
+                  <title>
+                    {active
+                      ? `${displayName(code)}: ${count.toLocaleString()} visit${count === 1 ? "" : "s"} — click to view states`
+                      : displayName(code)}
+                  </title>
+                </path>
               );
             })}
           </g>
 
-          {/* Drill view: state/region pings inside the selected country */}
-          {drill ? (
-            <g>
-              {drill.regions
-                .filter((r) => r.pin)
-                .map(({ code, count, name, pin, topCity }, i) => {
-                  const [x, y] = projectLatLon(pin![0], pin![1]);
-                  const r = 0.45 + Math.sqrt(count / regionPeak) * 0.9;
+          {/* World view: connection beams + country nodes */}
+          {!selected ? (
+            <>
+              <g className="vmap__beams" aria-hidden="true">
+                {visitorShapes.map(({ code, point }, i) => {
+                  const d = arcPath(point, HUB);
                   return (
-                    <g key={code} className="vmap__node">
-                      <circle className="vmap__ping" cx={x} cy={y} r={r} style={{ animationDelay: `${(i % 6) * 0.4}s` }} />
-                      <circle className="vmap__node-core" cx={x} cy={y} r={r} filter="url(#vmap-glow)" />
-                      <text className="vmap__region-label" x={x} y={y - r - 0.6}>{code}</text>
-                      <title>{`${name}${topCity ? ` (top city: ${topCity})` : ""}: ${count.toLocaleString()} visit${count === 1 ? "" : "s"}`}</title>
+                    <g key={code}>
+                      <path className="vmap__beam" d={d} pathLength={100} />
+                      <circle
+                        className="vmap__packet"
+                        r={3.2}
+                        style={{
+                          offsetPath: `path("${d}")`,
+                          animationDuration: `${3.2 + (i % 5) * 0.55}s`,
+                          animationDelay: `${-(i * 1.1)}s`,
+                        }}
+                      />
                     </g>
                   );
                 })}
+              </g>
+
+              <g className="vmap__hubnode" aria-hidden="true">
+                <circle cx={HUB[0]} cy={HUB[1]} r={26} fill="url(#vmap-hub)" opacity={0.3} />
+                <circle className="vmap__hub-ring" cx={HUB[0]} cy={HUB[1]} r={6} />
+                <circle cx={HUB[0]} cy={HUB[1]} r={4} className="vmap__hub-core" />
+              </g>
+
+              <g aria-hidden="true">
+                {visitorShapes.map(({ code, count, point }, i) => {
+                  const r = 4 + Math.sqrt(count / peak) * 8;
+                  return (
+                    <g key={code} className="vmap__node">
+                      <circle className="vmap__ping" cx={point[0]} cy={point[1]} r={r} style={{ animationDelay: `${(i % 6) * 0.4}s` }} />
+                      <circle className="vmap__node-core" cx={point[0]} cy={point[1]} r={r} filter="url(#vmap-glow)" />
+                    </g>
+                  );
+                })}
+              </g>
+            </>
+          ) : null}
+
+          {/* Drill view: state pins, plus an aggregate marker for visits without a pinned state */}
+          {drill && selected ? (
+            <g>
+              {drill.pinned.map(({ code, count, name, pin, topCity }, i) => {
+                const [x, y] = projectLatLon(pin![0], pin![1]);
+                const r = (5 + Math.sqrt(count / regionPeak) * 9) * zoomScale;
+                return (
+                  <g key={code} className="vmap__node">
+                    <circle className="vmap__ping" cx={x} cy={y} r={r} style={{ animationDelay: `${(i % 6) * 0.4}s` }} />
+                    <circle className="vmap__node-core" cx={x} cy={y} r={r} filter="url(#vmap-glow)" />
+                    <text className="vmap__region-label" x={x} y={y - r - 5 * zoomScale} style={{ fontSize: `${13 * zoomScale}px` }}>
+                      {code}
+                    </text>
+                    <title>{`${name}${topCity ? ` (top city: ${topCity})` : ""}: ${count.toLocaleString()} visit${count === 1 ? "" : "s"}`}</title>
+                  </g>
+                );
+              })}
+              {drill.pinned.length === 0 && (drill.unpinnedCount > 0 || drill.unlocated > 0) ? (
+                (() => {
+                  const point = countryPoint(selected);
+                  if (!point) return null;
+                  const r = 9 * zoomScale;
+                  return (
+                    <g className="vmap__node">
+                      <circle className="vmap__ping" cx={point[0]} cy={point[1]} r={r} />
+                      <circle className="vmap__node-core" cx={point[0]} cy={point[1]} r={r} filter="url(#vmap-glow)" />
+                      <title>{`${displayName(selected)}: ${drill.countryTotal.toLocaleString()} visits — see the state list below`}</title>
+                    </g>
+                  );
+                })()
+              ) : null}
             </g>
           ) : null}
         </svg>
-        <div className="vmap__scan" aria-hidden="true" />
+
+        {selected ? (
+          <button type="button" className="vmap__back" onClick={() => setSelected(null)}>
+            ◂ WORLD VIEW
+          </button>
+        ) : null}
+        {selected ? (
+          <span className="vmap__stage-title">
+            {displayName(selected).toUpperCase()} · {drill?.countryTotal.toLocaleString()} VISITS
+          </span>
+        ) : null}
         <span className="vmap__corner vmap__corner--tl" aria-hidden="true" />
         <span className="vmap__corner vmap__corner--tr" aria-hidden="true" />
         <span className="vmap__corner vmap__corner--bl" aria-hidden="true" />
@@ -362,7 +446,7 @@ export function VisitorMap() {
           <p className="vmap__log-line vmap__log-line--dim">{`> ${clock} UTC ── uplink sync ok · ${total.toLocaleString()} packets total`}</p>
           {countries.slice(0, 6).map(({ code, count }) => (
             <p key={code} className="vmap__log-line">
-              {`> ${clock} UTC ── inbound ▸ ${code} · ${countryLabel(code)} · ${count.toLocaleString()} visit${count === 1 ? "" : "s"}`}
+              {`> ${clock} UTC ── inbound ▸ ${code} · ${displayName(code)} · ${count.toLocaleString()} visit${count === 1 ? "" : "s"}`}
             </p>
           ))}
           {countries.length === 0 ? (
@@ -374,8 +458,8 @@ export function VisitorMap() {
           </p>
         </div>
 
-        {drill ? (
-          <ol className="vmap__rank" aria-label={`Visits by state in ${countryLabel(selected!)}`}>
+        {drill && selected ? (
+          <ol className="vmap__rank" aria-label={`Visits by state in ${displayName(selected)}`}>
             {drill.regions.slice(0, 12).map(({ code, count, name, topCity }) => (
               <li key={code}>
                 <span className="vmap__rank-code">{code}</span>
@@ -401,7 +485,7 @@ export function VisitorMap() {
             {countries.slice(0, 10).map(({ code, count }) => (
               <li key={code}>
                 <span className="vmap__rank-code">{code}</span>
-                <span className="vmap__rank-name">{countryLabel(code)}</span>
+                <span className="vmap__rank-name">{displayName(code)}</span>
                 <span className="vmap__rank-bar" style={{ "--share": `${(count / peak) * 100}%` } as React.CSSProperties} />
                 <span className="vmap__rank-count">{count.toLocaleString()}</span>
               </li>
@@ -412,7 +496,7 @@ export function VisitorMap() {
         {!selected && locations.length > 0 ? (
           <ol className="vmap__rank vmap__rank--cities" aria-label="Visits by city">
             {locations.slice(0, 10).map(({ country, region, city, count }) => {
-              const label = [city, region].filter(Boolean).join(", ") || countryLabel(country);
+              const label = [city, region].filter(Boolean).join(", ") || displayName(country);
               const key = `${country}|${region}|${city}`;
               const cityPeak = locations[0]?.count || 1;
               return (

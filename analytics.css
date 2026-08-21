@@ -242,25 +242,48 @@
   height: auto;
 }
 
-.vmap__land circle {
-  fill: rgba(46, 242, 155, 0.3);
+/* country landmasses */
+.vmap__country {
+  fill: rgba(148, 180, 205, 0.1);
+  stroke: rgba(148, 200, 220, 0.28);
+  stroke-width: 0.7;
+  stroke-linejoin: round;
+  transition: fill-opacity 0.25s ease, fill 0.25s ease, stroke 0.25s ease;
 }
 
-/* ambient decorative traffic */
-.vmap__ambient path {
-  fill: none;
-  stroke: rgba(89, 245, 255, 0.16);
-  stroke-width: 0.22;
-  stroke-dasharray: 8 92;
-  stroke-linecap: round;
-  animation: vmap-trace linear infinite;
+.vmap__country--active {
+  fill: url(#vmap-hot);
+  stroke: rgba(89, 245, 255, 0.55);
+  cursor: pointer;
+  outline: none;
+}
+
+.vmap__country--active:hover,
+.vmap__country--active:focus-visible {
+  fill-opacity: 0.9 !important;
+  stroke: #b9ffe0;
+  stroke-width: 1.1;
+}
+
+.vmap__country--selected {
+  fill: url(#vmap-hot);
+  fill-opacity: 0.45;
+  stroke: #8dffcb;
+  stroke-width: 1.1;
+  cursor: default;
+}
+
+.vmap__country--dim {
+  fill: rgba(148, 180, 205, 0.05);
+  stroke: rgba(148, 200, 220, 0.12);
+  cursor: pointer;
 }
 
 /* live connection beams */
 .vmap__beam {
   fill: none;
-  stroke: url(#vmap-arc);
-  stroke-width: 0.38;
+  stroke: rgba(40, 242, 160, 0.5);
+  stroke-width: 1.4;
   stroke-linecap: round;
   stroke-dasharray: 2.5 3.5;
   animation: vmap-flow 0.9s linear infinite;
@@ -284,7 +307,7 @@
 .vmap__hub-ring {
   fill: none;
   stroke: var(--vc-green);
-  stroke-width: 0.22;
+  stroke-width: 1.2;
   animation: vmap-ping 3s ease-out infinite;
 }
 
@@ -296,7 +319,7 @@
 .vmap__ping {
   fill: none;
   stroke: var(--vc-green);
-  stroke-width: 0.25;
+  stroke-width: 1.2;
   animation: vmap-ping 2.6s ease-out infinite;
 }
 
@@ -304,30 +327,6 @@
   stroke: var(--vc-cyan);
 }
 
-/* sweeping scan line */
-.vmap__scan {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  overflow: hidden;
-}
-
-.vmap__scan::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  width: 90px;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(46, 242, 155, 0.05) 55%,
-    rgba(46, 242, 155, 0.16) 98%,
-    rgba(141, 255, 203, 0.7) 100%
-  );
-  animation: vmap-scan 8s linear infinite;
-}
 
 /* HUD corner brackets */
 .vmap__corner {
@@ -466,10 +465,6 @@
   100% { offset-distance: 100%; opacity: 0; }
 }
 
-@keyframes vmap-scan {
-  from { transform: translateX(-120px); }
-  to { transform: translateX(calc(100vw)); }
-}
 
 @keyframes vmap-rise {
   from { opacity: 0; transform: translateY(4px); }
@@ -496,7 +491,6 @@
   .vmap__packet,
   .vmap__hub-ring,
   .vmap__ping,
-  .vmap__scan::before,
   .vmap__log-line {
     animation: none;
   }
@@ -578,7 +572,10 @@
 
 /* Country drill-down controls */
 .vmap__back {
-  align-self: flex-start;
+  position: absolute;
+  top: 0.8rem;
+  left: 0.8rem;
+  z-index: 2;
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
@@ -598,24 +595,28 @@
   background: rgba(40, 242, 160, 0.08);
 }
 
-.vmap__node--clickable {
-  cursor: pointer;
-}
-
-.vmap__node--clickable:hover .vmap__node-core,
-.vmap__node--clickable:focus-visible .vmap__node-core {
-  stroke: #b9ffe0;
-  stroke-width: 0.35;
-}
-
-.vmap__node--clickable:focus-visible {
-  outline: none;
-}
-
 .vmap__region-label {
-  font-size: 1.1px;
-  letter-spacing: 0.1px;
+  letter-spacing: 0.06em;
+  font-weight: 700;
   text-anchor: middle;
-  fill: rgba(185, 255, 224, 0.85);
+  fill: rgba(185, 255, 224, 0.9);
+  paint-order: stroke;
+  stroke: rgba(6, 13, 24, 0.8);
+  stroke-width: 3px;
   pointer-events: none;
+}
+
+.vmap__stage-title {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 2;
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  color: rgba(185, 255, 224, 0.8);
+}
+
+.vmap__back {
+  background: rgba(6, 13, 24, 0.7);
+  backdrop-filter: blur(4px);
 }
