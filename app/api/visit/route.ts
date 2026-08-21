@@ -39,13 +39,29 @@ function resolveLocation(request: Request, country: string): string | undefined 
   return `${country}|${region}|${city}`;
 }
 
+/**
+ * Salted SHA-256 of the visitor IP, truncated for HyperLogLog membership.
+ * The raw IP is never stored; without the salt the hash cannot be reversed
+ * to an address by rainbow table.
+ */
+async function visitorHash(request: Request): Promise<string | undefined> {
+  const ip =
+    request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ||
+    request.headers.get("x-real-ip")?.trim();
+  if (!ip) return undefined;
+  const salt = process.env.VISIT_HASH_SALT?.trim() || "ravindrassk-visit-salt";
+  const data = new TextEncoder().encode(`${salt}:${ip}`);
+  const digest = await crypto.subtle.digest("SHA-256", data);
+  return [...new Uint8Array(digest).slice(0, 12)].map((b) => b.toString(16).padStart(2, "0")).join("");
+}
+
 export async function POST(request: Request) {
   if (!isConfigured()) {
     return NextResponse.json(NOT_CONFIGURED, { status: 503 });
   }
 
   const country = resolveCountry(request);
-  const result = await recordVisit(country, resolveLocation(request, country));
+  const result = await recordVisit(country, resolveLocation(request, country), await visitorHash(request));
   if (!result) {
     return NextResponse.json({ error: "Unable to record visit." }, { status: 502 });
   }

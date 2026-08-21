@@ -15,6 +15,7 @@ const HUB = projectLatLon(38.63, -90.2);
 type Location = { country: string; region: string; city: string; count: number };
 type Stats = {
   total: number;
+  uniques?: number;
   countries: Array<{ code: string; count: number }>;
   locations?: Location[];
 };
@@ -235,6 +236,10 @@ export function VisitorMap() {
         <div className="vmap__readout">
           <span className="vmap__readout-label">Total visits</span>
           <span className="vmap__readout-value">{total.toLocaleString()}</span>
+        </div>
+        <div className="vmap__readout">
+          <span className="vmap__readout-label">Unique visitors</span>
+          <span className="vmap__readout-value">{(state.stats.uniques ?? 0).toLocaleString()}</span>
         </div>
         <div className="vmap__readout">
           <span className="vmap__readout-label">Countries</span>

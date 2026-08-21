@@ -9,6 +9,7 @@
 const TOTAL_KEY = "visits:total";
 const COUNTRY_KEY = "visits:countries";
 const LOCATION_KEY = "visits:locations";
+const UNIQUE_KEY = "visits:unique";
 
 type StoreConfig = { url: string; token: string };
 
@@ -44,14 +45,21 @@ async function pipeline(commands: string[][]): Promise<unknown[] | null> {
   return payload.map((entry) => entry?.result ?? null);
 }
 
-/** location: "country|region|city" with empty segments allowed, e.g. "US|MO|St. Louis". */
-export async function recordVisit(country: string, location?: string) {
+/**
+ * location: "country|region|city" with empty segments allowed, e.g. "US|MO|St. Louis".
+ * visitorHash: salted hash of the visitor IP (never the raw IP) — fed to a
+ * HyperLogLog so unique-visitor counts cost ~12KB total regardless of traffic.
+ */
+export async function recordVisit(country: string, location?: string, visitorHash?: string) {
   const commands = [
     ["INCR", TOTAL_KEY],
     ["HINCRBY", COUNTRY_KEY, country, "1"],
   ];
   if (location) {
     commands.push(["HINCRBY", LOCATION_KEY, location, "1"]);
+  }
+  if (visitorHash) {
+    commands.push(["PFADD", UNIQUE_KEY, visitorHash]);
   }
   return pipeline(commands);
 }
@@ -65,6 +73,7 @@ export type VisitLocation = {
 
 export type VisitStats = {
   total: number;
+  uniques: number;
   countries: Array<{ code: string; count: number }>;
   locations: VisitLocation[];
 };
@@ -74,10 +83,12 @@ export async function readStats(): Promise<VisitStats | null> {
     ["GET", TOTAL_KEY],
     ["HGETALL", COUNTRY_KEY],
     ["HGETALL", LOCATION_KEY],
+    ["PFCOUNT", UNIQUE_KEY],
   ]);
   if (!results) return null;
 
   const total = Number(results[0] ?? 0) || 0;
+  const uniques = Number(results[3] ?? 0) || 0;
 
   // HGETALL comes back as a flat [field, value, field, value, ...] array.
   const flat = Array.isArray(results[1]) ? (results[1] as unknown[]) : [];
@@ -98,5 +109,5 @@ export async function readStats(): Promise<VisitStats | null> {
   }
   locations.sort((a, b) => b.count - a.count);
 
-  return { total, countries, locations };
+  return { total, uniques, countries, locations };
 }
