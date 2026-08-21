@@ -19,7 +19,10 @@ export type CodedDiagramId =
   | "mai-thinking"
   | "nvidia-switchyard"
   | "openai-daybreak"
-  | "tiered-ops";
+  | "tiered-ops"
+  | "weathernext-ensemble"
+  | "agent-plugins"
+  | "policy-gate";
 
 export type StoryVisual =
   | {
@@ -40,7 +43,11 @@ export type StoryVisual =
 export type StorySource = {
   heading: string;
   body: string;
+  /** Official/primary URLs for the story, rendered as links under the attribution. */
+  links?: { label: string; href: string }[];
 };
+
+export type EditorialImageVisual = Extract<StoryVisual, { kind: "editorial-image" }>;
 
 export type SskAiStory = {
   rank: number;
@@ -121,6 +128,8 @@ export type SskAiIssue = {
   seoTitle: string;
   seoDescription: string;
   theme: string;
+  /** Optional editorial hero image for the edition, shown under the masthead poster. */
+  hero?: EditorialImageVisual;
   opening: string[];
   stories: SskAiStory[];
   biggerPicture: {
@@ -134,6 +143,8 @@ export type SskAiIssue = {
   featuredProject: {
     name: string;
     caption: string;
+    /** Coded diagram drawn beside the featured project; defaults to "tiered-ops". */
+    diagram?: CodedDiagramId;
     stages: FeaturedPipelineStage[];
   };
   poster: SskAiIssuePoster;

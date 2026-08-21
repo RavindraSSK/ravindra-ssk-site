@@ -10,7 +10,7 @@ export const issueAugust12_2026: SskAiIssue = {
   // grid — this edition predates the calendar and reports the seven days to Aug 12.
   edition: {
     kind: "weekly",
-    number: 1,
+    number: 2,
     volume: 1,
     periodStart: "2026-08-06",
     periodEnd: "2026-08-12",

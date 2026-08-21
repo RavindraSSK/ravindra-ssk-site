@@ -218,12 +218,98 @@ export function TieredOpsDiagram() {
   );
 }
 
+export function WeathernextEnsembleDiagram() {
+  return (
+    <div className="ssk-diagram ssk-diagram--stack">
+      <div className="ssk-diagram__panel">
+        <p className="ssk-diagram__kicker">One cyclone, many futures</p>
+        <ExpertCells
+          columns={25}
+          rows={8}
+          activeCount={48}
+          label="A grid of ensemble members, a subset highlighted as sampled scenarios"
+        />
+        <p className="ssk-diagram__callout">up to 1,000 scenarios per cyclone (Google-stated)</p>
+      </div>
+      <div className="ssk-context-bar" aria-label="Forecast outputs and horizon">
+        <div className="ssk-context-bar__native">
+          <span>Track · intensity · wind structure</span>
+        </div>
+        <div className="ssk-context-bar__extend">
+          <span>Up to 15 days ahead</span>
+        </div>
+      </div>
+      <ChipRow chips={["Open code + weights", "Published in Nature", "2-mini fits one TPU"]} />
+    </div>
+  );
+}
+
+export function AgentPluginsDiagram() {
+  return (
+    <div className="ssk-diagram ssk-diagram--flow">
+      <div className="ssk-plugin-flow">
+        <div className="ssk-flow__box">Agent Skill + the MCP servers it needs</div>
+        <div className="ssk-flow__hub">One plugin package — shared manifest &amp; layout</div>
+        <div className="ssk-flow__tiers">
+          <div className="ssk-flow__tier ssk-flow__tier--thick">
+            <span className="ssk-flow__meta">same package</span>
+            <p>Compatible client A — e.g. an IDE agent</p>
+          </div>
+          <div className="ssk-flow__tier ssk-flow__tier--thick">
+            <span className="ssk-flow__meta">same package</span>
+            <p>Compatible client B — e.g. a terminal agent</p>
+          </div>
+        </div>
+        <div className="ssk-flow__box ssk-flow__box--loop">Client-specific extensions stay in their own namespaces</div>
+      </div>
+      <ChipRow chips={["Open spec v1.0", "Validation & failure isolation", "Portable path variables"]} />
+    </div>
+  );
+}
+
+export function PolicyGateDiagram() {
+  return (
+    <div className="ssk-diagram ssk-diagram--pipeline">
+      <ol className="ssk-pipeline">
+        <li className="ssk-pipeline__stage">
+          <span className="ssk-pipeline__shape ssk-pipeline__shape--box">Content</span>
+        </li>
+        <li className="ssk-pipeline__stage ssk-pipeline__stage--router">
+          <span className="ssk-pipeline__shape ssk-pipeline__shape--diamond">Policy check</span>
+          <div className="ssk-pipeline__split">
+            <div className="ssk-pipeline__path ssk-pipeline__path--thick">
+              <span className="ssk-flow__meta">most traffic</span>
+              <p>Passes — forwarded unchanged</p>
+            </div>
+            <div className="ssk-pipeline__path ssk-pipeline__path--thin">
+              <span className="ssk-flow__meta">flagged</span>
+              <p>Blocked or routed to review</p>
+            </div>
+          </div>
+        </li>
+        <li className="ssk-pipeline__stage">
+          <span className="ssk-pipeline__shape ssk-pipeline__shape--cylinder">Policy files</span>
+        </li>
+        <li className="ssk-pipeline__stage">
+          <span className="ssk-pipeline__shape ssk-pipeline__shape--box">App / model</span>
+        </li>
+        <li className="ssk-pipeline__stage">
+          <span className="ssk-pipeline__shape ssk-pipeline__shape--box">Decision + log</span>
+        </li>
+      </ol>
+    </div>
+  );
+}
+
 const diagrams = {
   "qwen-moe": QwenMoeDiagram,
   "mai-thinking": MaiThinkingDiagram,
   "nvidia-switchyard": NvidiaSwitchyardDiagram,
   "openai-daybreak": OpenaiDaybreakDiagram,
   "tiered-ops": TieredOpsDiagram,
+  "weathernext-ensemble": WeathernextEnsembleDiagram,
+  "agent-plugins": AgentPluginsDiagram,
+  "policy-gate": PolicyGateDiagram,
 } satisfies Record<CodedDiagramId, () => ReactElement>;
 
 export function CodedDiagram({ id, caption }: { id: CodedDiagramId; caption: string }) {

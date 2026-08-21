@@ -55,6 +55,21 @@ function Applications({ story }: { story: SskAiStory }) {
   );
 }
 
+export function SourceLinks({ links }: { links?: SskAiStory["source"]["links"] }) {
+  if (!links || links.length === 0) return null;
+  return (
+    <ul className="ssk-source__links list-reset">
+      {links.map((link) => (
+        <li key={link.href}>
+          <a className="inline-link" href={link.href} target="_blank" rel="noopener noreferrer">
+            {link.label}
+          </a>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
 function StoryVisualBlock({ story }: { story: SskAiStory }) {
   if (story.visual.kind === "coded-diagram") {
     return <CodedDiagram id={story.visual.diagram} caption={story.visual.caption} />;
@@ -150,6 +165,7 @@ export function StorySection({ story }: { story: SskAiStory }) {
           Source attribution — {story.source.heading}
         </summary>
         <p>{richText(story.source.body)}</p>
+        <SourceLinks links={story.source.links} />
       </details>
     </section>
   );

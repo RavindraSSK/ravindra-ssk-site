@@ -159,7 +159,7 @@ export type PlannedEdition = EditionWindow & {
  * Lay published editions onto a month's windows.
  *
  * An edition claims the window its coverage period ends in, so a weekly edition dated
- * mid-window (the inaugural August 6–12 briefing, for one) still lands in the right slot
+ * mid-window (the August 6–12 briefing, for one) still lands in the right slot
  * instead of being dropped for not matching the canonical 1–7 / 8–14 boundaries.
  */
 export function buildMonthPlan(
