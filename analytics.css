@@ -347,9 +347,18 @@
 
 .vmap__bottom {
   display: grid;
-  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr) minmax(0, 1fr);
   gap: 0.9rem;
   align-items: start;
+}
+
+@media (max-width: 900px) {
+  .vmap__bottom {
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+  }
+  .vmap__rank--cities {
+    grid-column: 1 / -1;
+  }
 }
 
 .vmap__log {

@@ -10,7 +10,12 @@ const POLL_MS = 15_000;
 /** Origin node the connection beams converge on (St. Louis, MO). */
 const HUB: readonly [number, number] = [28, 21.7];
 
-type Stats = { total: number; countries: Array<{ code: string; count: number }> };
+type Location = { country: string; region: string; city: string; count: number };
+type Stats = {
+  total: number;
+  countries: Array<{ code: string; count: number }>;
+  locations?: Location[];
+};
 type State =
   | { status: "loading" }
   | { status: "unconfigured"; message?: string }
@@ -140,6 +145,7 @@ export function VisitorMap() {
   }
 
   const { total, countries } = state.stats;
+  const locations = state.stats.locations ?? [];
   const clock = utcClock(state.fetchedAt);
   const plotted = countries.filter((c) => COUNTRY_PINS[c.code]);
   const peak = countries.reduce((max, c) => Math.max(max, c.count), 0) || 1;
@@ -158,7 +164,9 @@ export function VisitorMap() {
         </div>
         <div className="vmap__readout">
           <span className="vmap__readout-label">Top node</span>
-          <span className="vmap__readout-value">{top ? top.code : "——"}</span>
+          <span className="vmap__readout-value">
+            {locations[0]?.city || locations[0]?.region || (top ? top.code : "——")}
+          </span>
         </div>
         <div className="vmap__readout">
           <span className="vmap__readout-label">Uplink</span>
@@ -304,6 +312,24 @@ export function VisitorMap() {
                 <span className="vmap__rank-count">{count.toLocaleString()}</span>
               </li>
             ))}
+          </ol>
+        ) : null}
+
+        {locations.length > 0 ? (
+          <ol className="vmap__rank vmap__rank--cities" aria-label="Visits by city">
+            {locations.slice(0, 10).map(({ country, region, city, count }) => {
+              const label = [city, region].filter(Boolean).join(", ") || countryLabel(country);
+              const key = `${country}|${region}|${city}`;
+              const cityPeak = locations[0]?.count || 1;
+              return (
+                <li key={key}>
+                  <span className="vmap__rank-code">{country}</span>
+                  <span className="vmap__rank-name">{label}</span>
+                  <span className="vmap__rank-bar" style={{ "--share": `${(count / cityPeak) * 100}%` } as React.CSSProperties} />
+                  <span className="vmap__rank-count">{count.toLocaleString()}</span>
+                </li>
+              );
+            })}
           </ol>
         ) : null}
       </div>
