@@ -620,3 +620,10 @@
   background: rgba(6, 13, 24, 0.7);
   backdrop-filter: blur(4px);
 }
+
+.vmap__rank-note .vmap__rank-name {
+  white-space: normal;
+  font-size: 0.72rem;
+  opacity: 0.65;
+  line-height: 1.5;
+}
