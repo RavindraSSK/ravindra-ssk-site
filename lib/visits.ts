@@ -8,6 +8,7 @@
 
 const TOTAL_KEY = "visits:total";
 const COUNTRY_KEY = "visits:countries";
+const LOCATION_KEY = "visits:locations";
 
 type StoreConfig = { url: string; token: string };
 
@@ -43,22 +44,36 @@ async function pipeline(commands: string[][]): Promise<unknown[] | null> {
   return payload.map((entry) => entry?.result ?? null);
 }
 
-export async function recordVisit(country: string) {
-  return pipeline([
+/** location: "country|region|city" with empty segments allowed, e.g. "US|MO|St. Louis". */
+export async function recordVisit(country: string, location?: string) {
+  const commands = [
     ["INCR", TOTAL_KEY],
     ["HINCRBY", COUNTRY_KEY, country, "1"],
-  ]);
+  ];
+  if (location) {
+    commands.push(["HINCRBY", LOCATION_KEY, location, "1"]);
+  }
+  return pipeline(commands);
 }
+
+export type VisitLocation = {
+  country: string;
+  region: string;
+  city: string;
+  count: number;
+};
 
 export type VisitStats = {
   total: number;
   countries: Array<{ code: string; count: number }>;
+  locations: VisitLocation[];
 };
 
 export async function readStats(): Promise<VisitStats | null> {
   const results = await pipeline([
     ["GET", TOTAL_KEY],
     ["HGETALL", COUNTRY_KEY],
+    ["HGETALL", LOCATION_KEY],
   ]);
   if (!results) return null;
 
@@ -74,5 +89,14 @@ export async function readStats(): Promise<VisitStats | null> {
   }
   countries.sort((a, b) => b.count - a.count);
 
-  return { total, countries };
+  const locFlat = Array.isArray(results[2]) ? (results[2] as unknown[]) : [];
+  const locations: VisitLocation[] = [];
+  for (let i = 0; i < locFlat.length - 1; i += 2) {
+    const [country = "", region = "", city = ""] = String(locFlat[i]).split("|");
+    const count = Number(locFlat[i + 1]) || 0;
+    if (country && count > 0) locations.push({ country, region, city, count });
+  }
+  locations.sort((a, b) => b.count - a.count);
+
+  return { total, countries, locations };
 }
