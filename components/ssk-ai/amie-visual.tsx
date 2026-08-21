@@ -5,7 +5,13 @@ import type { StoryVisual } from "@/lib/ssk-ai/types";
 
 type EditorialImage = Extract<StoryVisual, { kind: "editorial-image" }>;
 
-export function AmieVisual({ visual }: { visual: EditorialImage }) {
+export function AmieVisual({
+  visual,
+  sizes = "(max-width: 720px) 100vw, 720px",
+}: {
+  visual: EditorialImage;
+  sizes?: string;
+}) {
   const available = isEditorialImageAvailable(visual.src);
 
   return (
@@ -16,7 +22,7 @@ export function AmieVisual({ visual }: { visual: EditorialImage }) {
           alt={visual.alt}
           width={visual.width}
           height={visual.height}
-          sizes="(max-width: 720px) 100vw, 720px"
+          sizes={sizes}
           className="ssk-amie__image"
         />
       ) : (

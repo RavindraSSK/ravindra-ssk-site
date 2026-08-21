@@ -29,6 +29,11 @@ desk page renders identically on every build.
 1. **Copy the template.** `lib/ssk-ai/issue-2026-08-12.ts` is the reference
    implementation; every field in `SskAiIssue` (`lib/ssk-ai/types.ts`) is exercised
    there. Name the new file `issue-YYYY-MM-DD.ts` after its publish date.
+   `lib/ssk-ai/issue-2026-08-08.ts` additionally exercises the optional fields: an
+   edition `hero` image, clickable `source.links`, and a per-edition
+   `featuredProject.diagram`. Editorial images live in `public/ssk-ai/<publish-date>/`;
+   an image declared before its file lands renders the designed
+   "editorial image forthcoming" state rather than breaking.
 
 2. **Fill in the `edition` block.** This is what places the edition on the calendar:
 

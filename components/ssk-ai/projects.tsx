@@ -57,7 +57,7 @@ export function WhatWeCanBuild({ issue }: { issue: SskAiIssue }) {
       {featured ? (
         <div className="ssk-build__featured">
           <ProjectCard project={featured} featured />
-          <CodedDiagram id="tiered-ops" caption={issue.featuredProject.caption} />
+          <CodedDiagram id={issue.featuredProject.diagram ?? "tiered-ops"} caption={issue.featuredProject.caption} />
           <ol className="ssk-build__stages">
             {issue.featuredProject.stages.map((stage) => (
               <li key={stage.id}>

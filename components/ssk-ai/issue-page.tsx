@@ -1,9 +1,10 @@
 import Link from "next/link";
 
+import { AmieVisual } from "@/components/ssk-ai/amie-visual";
 import { SskAiPoster } from "@/components/ssk-ai/poster";
 import { WhatWeCanBuild } from "@/components/ssk-ai/projects";
 import { RichText, richText } from "@/components/ssk-ai/rich-text";
-import { StorySection } from "@/components/ssk-ai/story";
+import { SourceLinks, StorySection } from "@/components/ssk-ai/story";
 import { SSK_AI_HUB, TECH_NEWS } from "@/lib/ssk-ai";
 import type { SskAiIssue } from "@/lib/ssk-ai/types";
 
@@ -32,6 +33,9 @@ export function SskAiIssuePage({ issue }: { issue: SskAiIssue }) {
             </p>
             <p className="ssk-issue-theme">{issue.theme}</p>
             <SskAiPoster poster={issue.poster} datePublished={issue.datePublished} />
+            {issue.hero ? (
+              <AmieVisual visual={issue.hero} sizes="(max-width: 1100px) 100vw, 1100px" />
+            ) : null}
             <nav className="ssk-toc" aria-label="Stories in this issue">
               <ol>
                 {issue.stories.map((story) => (
@@ -98,6 +102,7 @@ export function SskAiIssuePage({ issue }: { issue: SskAiIssue }) {
                 <details className="ssk-source" key={story.id}>
                   <summary>{story.source.heading}</summary>
                   <p>{richText(story.source.body)}</p>
+                  <SourceLinks links={story.source.links} />
                 </details>
               ))}
               <p className="ssk-prose">{issue.generalSourceNote}</p>
