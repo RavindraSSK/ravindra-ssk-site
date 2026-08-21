@@ -12,7 +12,7 @@ const STAGE_RATIO = MAP_W / MAP_H;
 /** Origin node the connection beams converge on (St. Louis, MO). */
 const HUB = projectLatLon(38.63, -90.2);
 
-type Location = { country: string; region: string; city: string; count: number };
+type Location = { country: string; region: string; city: string; count: number; lat?: number; lon?: number };
 type Stats = {
   total: number;
   uniques?: number;
@@ -211,13 +211,30 @@ export function VisitorMap() {
           .sort((a, b) => b.count - a.count);
         const countryTotal = countByCode.get(selected) ?? 0;
         const located = inCountry.reduce((sum, l) => sum + l.count, 0);
-        const pinned = regions.filter((r) => r.pin);
+
+        // Preferred: exact-coordinate points (every country). Fallback: state
+        // centroid pins for regions whose rows predate coordinate capture.
+        const points = inCountry
+          .filter((l): l is Location & { lat: number; lon: number } => l.lat !== undefined && l.lon !== undefined)
+          .map((l) => ({
+            key: `${l.region}|${l.city}|${l.lat}|${l.lon}`,
+            label: l.city || l.region || "?",
+            detail: [l.city, REGION_PINS[`${selected}-${l.region}`]?.[2] ?? l.region].filter(Boolean).join(", "),
+            count: l.count,
+            lat: l.lat,
+            lon: l.lon,
+          }));
+        const geoRegions = new Set(
+          inCountry.filter((l) => l.lat !== undefined).map((l) => l.region || "??"),
+        );
+        const pinned = regions.filter((r) => r.pin && !geoRegions.has(r.code));
         return {
           regions,
           countryTotal,
           unlocated: Math.max(0, countryTotal - located),
           unpinnedCount: regions.filter((r) => !r.pin).reduce((sum, r) => sum + r.count, 0),
           pinned,
+          points,
         };
       })()
     : null;
@@ -398,6 +415,21 @@ export function VisitorMap() {
           {/* Drill view: state pins, plus an aggregate marker for visits without a pinned state */}
           {drill && selected ? (
             <g>
+              {drill.points.map(({ key, label, detail, count, lat, lon }, i) => {
+                const [x, y] = projectLatLon(lat, lon);
+                const pointPeak = drill.points[0] ? Math.max(...drill.points.map((pt) => pt.count)) : 1;
+                const r = (5 + Math.sqrt(count / pointPeak) * 9) * zoomScale;
+                return (
+                  <g key={key} className="vmap__node">
+                    <circle className="vmap__ping" cx={x} cy={y} r={r} style={{ animationDelay: `${(i % 6) * 0.4}s` }} />
+                    <circle className="vmap__node-core" cx={x} cy={y} r={r} filter="url(#vmap-glow)" />
+                    <text className="vmap__region-label" x={x} y={y - r - 5 * zoomScale} style={{ fontSize: `${13 * zoomScale}px` }}>
+                      {label}
+                    </text>
+                    <title>{`${detail || label}: ${count.toLocaleString()} visit${count === 1 ? "" : "s"}`}</title>
+                  </g>
+                );
+              })}
               {drill.pinned.map(({ code, count, name, pin, topCity }, i) => {
                 const [x, y] = projectLatLon(pin![0], pin![1]);
                 const r = (5 + Math.sqrt(count / regionPeak) * 9) * zoomScale;
@@ -412,7 +444,7 @@ export function VisitorMap() {
                   </g>
                 );
               })}
-              {drill.pinned.length === 0 && (drill.unpinnedCount > 0 || drill.unlocated > 0) ? (
+              {drill.points.length === 0 && drill.pinned.length === 0 && (drill.unpinnedCount > 0 || drill.unlocated > 0) ? (
                 (() => {
                   const point = countryPoint(selected);
                   if (!point) return null;
