@@ -1,17 +1,25 @@
+import Image from "next/image";
 import Link from "next/link";
 
 import { NewsroomCalendar } from "@/components/ssk-ai/newsroom-calendar";
 import { SskAiPoster } from "@/components/ssk-ai/poster";
-import { getIssuePath, SSK_AI_HUB, TECH_NEWS, type SskAiIssue } from "@/lib/ssk-ai";
+import { getIssuePath, isEditorialImageAvailable, SSK_AI_HUB, TECH_NEWS, type SskAiIssue } from "@/lib/ssk-ai";
 import type { MonthCalendar } from "@/lib/ssk-ai/calendar";
+import type { EditorialImageVisual } from "@/lib/ssk-ai/types";
 import { CADENCE_RULES, formatLongDate, monthName, type PlannedEdition } from "@/lib/ssk-ai/schedule";
 
 function editionLabel(issue: SskAiIssue) {
   return issue.edition.kind === "monthly" ? "Month in review" : `Weekly No. ${issue.edition.number}`;
 }
 
+/** The edition's hero artwork, when it has one and the file actually exists. */
+function editionArt(issue: SskAiIssue): EditorialImageVisual | null {
+  return issue.hero && isEditorialImageAvailable(issue.hero.src) ? issue.hero : null;
+}
+
 export function EditionCard({ issue, featured = false }: { issue: SskAiIssue; featured?: boolean }) {
   const href = getIssuePath(issue);
+  const art = editionArt(issue);
 
   return (
     <article className={featured ? "card ssk-edition ssk-edition--front" : "card ssk-edition"}>
@@ -19,6 +27,19 @@ export function EditionCard({ issue, featured = false }: { issue: SskAiIssue; fe
         <span className="meta-pill">{editionLabel(issue)}</span>
         <span className="ssk-edition__period">{issue.edition.periodLabel}</span>
       </div>
+      {art ? (
+        // Decorative duplicate of the title link: hidden from the accessibility
+        // tree and the tab order so the card is announced once, via its title.
+        <Link className="ssk-edition__media" href={href} aria-hidden="true" tabIndex={-1}>
+          <Image
+            src={art.src}
+            alt=""
+            width={art.width}
+            height={art.height}
+            sizes={featured ? "(max-width: 780px) 100vw, 1100px" : "(max-width: 780px) 100vw, 420px"}
+          />
+        </Link>
+      ) : null}
       <h3 className="ssk-edition__title">
         <Link href={href}>{issue.cardTitle}</Link>
       </h3>
@@ -39,7 +60,17 @@ export function EditionCard({ issue, featured = false }: { issue: SskAiIssue; fe
   );
 }
 
-function PublishingCalendar({ year, month, windows }: { year: number; month: number; windows: PlannedEdition[] }) {
+function PublishingCalendar({
+  year,
+  month,
+  windows,
+  artBySlug,
+}: {
+  year: number;
+  month: number;
+  windows: PlannedEdition[];
+  artBySlug: ReadonlyMap<string, EditorialImageVisual>;
+}) {
   return (
     <div className="ssk-calendar">
       <div className="ssk-calendar__head">
@@ -52,8 +83,20 @@ function PublishingCalendar({ year, month, windows }: { year: number; month: num
         </p>
       </div>
       <ol className="ssk-calendar__list list-reset">
-        {windows.map((window) => (
+        {windows.map((window) => {
+          const art = window.slug ? artBySlug.get(window.slug) : undefined;
+          return (
           <li className={`ssk-calendar__slot is-${window.status}`} key={`${window.kind}-${window.index}`}>
+            {art && window.slug ? (
+              <Link
+                className="ssk-calendar__media"
+                href={`${TECH_NEWS.path}/${window.slug}`}
+                aria-hidden="true"
+                tabIndex={-1}
+              >
+                <Image src={art.src} alt="" width={art.width} height={art.height} sizes="(max-width: 720px) 100vw, 320px" />
+              </Link>
+            ) : null}
             <div className="ssk-calendar__slot-head">
               <span className="ssk-calendar__label">{window.label}</span>
               <span className={`ssk-calendar__status ssk-calendar__status--${window.status}`}>
@@ -72,7 +115,8 @@ function PublishingCalendar({ year, month, windows }: { year: number; month: num
               <p className="ssk-calendar__empty">Awaiting the edition for this window.</p>
             )}
           </li>
-        ))}
+          );
+        })}
       </ol>
     </div>
   );
@@ -88,6 +132,12 @@ export function TechNewsDesk({
   calendar: { months: MonthCalendar[]; initialIndex: number; initialSelected: string | null };
 }) {
   const [latest, ...previous] = issues;
+  const artBySlug = new Map(
+    issues.flatMap((issue) => {
+      const art = editionArt(issue);
+      return art ? [[issue.slug, art] as const] : [];
+    }),
+  );
 
   return (
     <main id="main-content" className="page-shell ssk-page ssk-hub">
@@ -139,7 +189,7 @@ export function TechNewsDesk({
 
       <section className="section section--tight" aria-labelledby="ssk-calendar-title">
         <div className="container">
-          <PublishingCalendar {...plan} />
+          <PublishingCalendar {...plan} artBySlug={artBySlug} />
         </div>
       </section>
 

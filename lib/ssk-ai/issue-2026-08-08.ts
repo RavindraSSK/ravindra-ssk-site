@@ -33,11 +33,11 @@ export const issueAugust08_2026: SskAiIssue = {
     src: "/ssk-ai/2026-08-08/ssk-ai-week1-hero.webp",
     width: 1600,
     height: 900,
-    alt: "A lone figure looks across a glowing circuit-board cityscape while icons for code, tools, memory and agents orbit one connected ring — AI framed as a complete system rather than a single model.",
+    alt: "The headline 'AI is becoming a full system' beside a glowing stack of six labeled layers — model, tools, memory, agents, verification and action — on a deep navy technical background.",
     caption:
       "This week's throughline: the interesting unit in AI is becoming the full system — model plus tools, memory, agents, verification and action.",
     description:
-      "Hero panel (top-left, 16:9) of the Week 1 composite visual sheet: the 'AI is becoming a full system' editorial illustration, cropped to the artwork with the file-information strip removed.",
+      "Original SSK AI Hub editorial illustration for the Week 1 edition: the weekly theme rendered as a color-coded stack of system layers.",
   },
   opening: [
     "Cover the same seven days with the logos removed and one pattern is left standing. Meta's biggest coding release wasn't a model — it was a model trained inside the agent harness it ships with. Alibaba's frontier launch arrived not as weights but as a platform: tools, multimodal input and a million-token window behind an API. The week's most quietly important document was a packaging specification, and Mistral's contribution to safety was a model whose policies are written at inference time, in plain language.",
@@ -95,11 +95,11 @@ export const issueAugust08_2026: SskAiIssue = {
         src: "/ssk-ai/2026-08-08/ssk-ai-week1-muse-code.webp",
         width: 1200,
         height: 1500,
-        alt: "Two glowing tiles joined by a plus sign — one for a terminal coding agent, one for the model that powers it — presented as a single co-designed pair.",
+        alt: "A stylized terminal window above two tiles joined by a plus sign — Muse Code as the terminal agent and Muse Spark 1.2 as its co-trained model — with chips for persistent subagents, harness co-training and the Meta Model API.",
         caption:
           "Muse Code and Muse Spark 1.2 ship as one co-designed pair: the harness the model trained inside is the product.",
         description:
-          "Panel 2 of the Week 1 composite visual sheet (4:5 product-style visual pairing Muse Code and Muse Spark 1.2), cropped to the artwork with the file-information strip removed.",
+          "Original SSK AI Hub editorial illustration pairing a terminal mock-up with agent and model tiles for the Muse Code beta story.",
       },
       source: {
         heading: "Story 1 — Meta Muse Code + Muse Spark 1.2",
@@ -162,11 +162,11 @@ export const issueAugust08_2026: SskAiIssue = {
         src: "/ssk-ai/2026-08-08/ssk-ai-week1-qwen38-max.webp",
         width: 1200,
         height: 1500,
-        alt: "A large letter Q drawn in flowing light, with small capability marks beneath it for reasoning, multilingual use, coding and agent workflows.",
+        alt: "A large gradient letter Q above a sparse expert grid with a handful of cells lit, and chips noting 2.4T total parameters, ~95B active per token, a context up to 1M tokens, multimodal input and function calling.",
         caption:
           "Qwen3.8-Max arrived API-first: 2.4T sparse parameters behind Alibaba Cloud Model Studio, with weights promised for the following week.",
         description:
-          "Panel 3 of the Week 1 composite visual sheet (4:5 Qwen3.8-Max API-model visual with mascot), cropped to the artwork with the file-information strip removed.",
+          "Original SSK AI Hub editorial illustration for the Qwen3.8-Max API launch: the sparse mixture-of-experts idea drawn as a mostly dark expert grid.",
       },
       source: {
         heading: "Story 2 — Alibaba Qwen3.8-Max",
@@ -354,11 +354,11 @@ export const issueAugust08_2026: SskAiIssue = {
         src: "/ssk-ai/2026-08-08/ssk-ai-week1-shieldstral.webp",
         width: 1200,
         height: 1200,
-        alt: "An illustrated shield with a lock at its center, ringed by small marks for secure, private, reliable and responsible operation — safety rendered as an engineered component.",
+        alt: "A glowing teal shield with a padlock at its center, above chips for 3.8B parameters, text and image moderation, a 32K context, plain-language policies and single-GPU deployment.",
         caption:
           "Shieldstral makes the policy an input: open weights, text and image moderation, and rules written as plain-language questions.",
         description:
-          "Panel 5 of the Week 1 composite visual sheet, cropped tightly to the shield artwork. The panel's 'Frontier AI' subtitle overstates a 3.8B safety model and must be cropped out along with the file-information strip.",
+          "Original SSK AI Hub editorial illustration for Shieldstral 1.0: moderation rendered as an engineered, self-hostable safety component.",
       },
       source: {
         heading: "Story 5 — Mistral Shieldstral 1.0",

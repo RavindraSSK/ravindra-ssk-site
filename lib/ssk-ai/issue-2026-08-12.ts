@@ -24,6 +24,17 @@ export const issueAugust12_2026: SskAiIssue = {
   seoDescription:
     "August 12, 2026: Qwen's 2.4T open-weight model, Microsoft MAI-Thinking-1, NVIDIA Lightning, OpenAI Daybreak, and Google AMIE — what changed and why.",
   theme: "From one giant model to systems of specialized, cooperating intelligence.",
+  hero: {
+    kind: "editorial-image",
+    src: "/ssk-ai/2026-08-12/ssk-ai-week2-hero.webp",
+    width: 1600,
+    height: 900,
+    alt: "The headline 'The week AI split into specialists' beside a network of five differently sized glowing nodes joined by routing lines — a frontier reasoner, a specialist, a small executor, a gated model and a multimodal system.",
+    caption:
+      "This week's throughline: AI as a system of specialized, cooperating models — reasoners, executors, domain specialists and multimodal systems.",
+    description:
+      "Original SSK AI Hub editorial illustration echoing this edition's network motif of specialized cooperating models.",
+  },
   opening: [
     "For years, the default mental model of AI progress was simple: one enormous general model gets smarter, and everything downstream improves. This week suggests that model is becoming obsolete. What's emerging is a division of labor — frontier reasoners for hard thinking, small efficient models for repetitive execution, domain specialists for regulated professions, and multimodal systems that engage with the world the way people do.",
     "This issue's five stories span that spectrum — a frontier-scale open-weight release from Qwen, Microsoft's first-party trillion-parameter reasoner, NVIDIA's execution model and router for agents, OpenAI's access-gated cybersecurity model, and Google's audio-visual medical research. Together they sketch AI as a system of cooperating specialized models — a shift that matters more for builders than any single benchmark.",
