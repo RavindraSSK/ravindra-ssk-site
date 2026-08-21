@@ -55,13 +55,27 @@ async function visitorHash(request: Request): Promise<string | undefined> {
   return [...new Uint8Array(digest).slice(0, 12)].map((b) => b.toString(16).padStart(2, "0")).join("");
 }
 
+/** "lat,lon" from Vercel's edge, rounded to 1 decimal (~11km) so exact positions are never stored. */
+function resolveGeo(request: Request): string | undefined {
+  const lat = Number(request.headers.get("x-vercel-ip-latitude"));
+  const lon = Number(request.headers.get("x-vercel-ip-longitude"));
+  if (!Number.isFinite(lat) || !Number.isFinite(lon)) return undefined;
+  if (Math.abs(lat) > 85 || Math.abs(lon) > 180) return undefined;
+  return `${lat.toFixed(1)},${lon.toFixed(1)}`;
+}
+
 export async function POST(request: Request) {
   if (!isConfigured()) {
     return NextResponse.json(NOT_CONFIGURED, { status: 503 });
   }
 
   const country = resolveCountry(request);
-  const result = await recordVisit(country, resolveLocation(request, country), await visitorHash(request));
+  const result = await recordVisit(
+    country,
+    resolveLocation(request, country),
+    await visitorHash(request),
+    resolveGeo(request),
+  );
   if (!result) {
     return NextResponse.json({ error: "Unable to record visit." }, { status: 502 });
   }

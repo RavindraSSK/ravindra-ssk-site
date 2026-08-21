@@ -10,6 +10,7 @@ const TOTAL_KEY = "visits:total";
 const COUNTRY_KEY = "visits:countries";
 const LOCATION_KEY = "visits:locations";
 const UNIQUE_KEY = "visits:unique";
+const GEO_KEY = "visits:geo";
 
 type StoreConfig = { url: string; token: string };
 
@@ -50,13 +51,22 @@ async function pipeline(commands: string[][]): Promise<unknown[] | null> {
  * visitorHash: salted hash of the visitor IP (never the raw IP) — fed to a
  * HyperLogLog so unique-visitor counts cost ~12KB total regardless of traffic.
  */
-export async function recordVisit(country: string, location?: string, visitorHash?: string) {
+export async function recordVisit(
+  country: string,
+  location?: string,
+  visitorHash?: string,
+  geo?: string,
+) {
   const commands = [
     ["INCR", TOTAL_KEY],
     ["HINCRBY", COUNTRY_KEY, country, "1"],
   ];
   if (location) {
     commands.push(["HINCRBY", LOCATION_KEY, location, "1"]);
+    if (geo) {
+      // "lat,lon" rounded to ~11km; last write wins, which is fine for a pin.
+      commands.push(["HSET", GEO_KEY, location, geo]);
+    }
   }
   if (visitorHash) {
     commands.push(["PFADD", UNIQUE_KEY, visitorHash]);
@@ -69,6 +79,8 @@ export type VisitLocation = {
   region: string;
   city: string;
   count: number;
+  lat?: number;
+  lon?: number;
 };
 
 export type VisitStats = {
@@ -84,6 +96,7 @@ export async function readStats(): Promise<VisitStats | null> {
     ["HGETALL", COUNTRY_KEY],
     ["HGETALL", LOCATION_KEY],
     ["PFCOUNT", UNIQUE_KEY],
+    ["HGETALL", GEO_KEY],
   ]);
   if (!results) return null;
 
@@ -100,12 +113,29 @@ export async function readStats(): Promise<VisitStats | null> {
   }
   countries.sort((a, b) => b.count - a.count);
 
+  const geoFlat = Array.isArray(results[4]) ? (results[4] as unknown[]) : [];
+  const geoByLocation = new Map<string, string>();
+  for (let i = 0; i < geoFlat.length - 1; i += 2) {
+    geoByLocation.set(String(geoFlat[i]), String(geoFlat[i + 1]));
+  }
+
   const locFlat = Array.isArray(results[2]) ? (results[2] as unknown[]) : [];
   const locations: VisitLocation[] = [];
   for (let i = 0; i < locFlat.length - 1; i += 2) {
-    const [country = "", region = "", city = ""] = String(locFlat[i]).split("|");
+    const field = String(locFlat[i]);
+    const [country = "", region = "", city = ""] = field.split("|");
     const count = Number(locFlat[i + 1]) || 0;
-    if (country && count > 0) locations.push({ country, region, city, count });
+    if (!country || count <= 0) continue;
+    const entry: VisitLocation = { country, region, city, count };
+    const geo = geoByLocation.get(field);
+    if (geo) {
+      const [lat, lon] = geo.split(",").map(Number);
+      if (Number.isFinite(lat) && Number.isFinite(lon)) {
+        entry.lat = lat;
+        entry.lon = lon;
+      }
+    }
+    locations.push(entry);
   }
   locations.sort((a, b) => b.count - a.count);
 
