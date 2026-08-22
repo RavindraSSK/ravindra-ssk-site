@@ -8,7 +8,7 @@
     { "file": "Mobile.dc.html", "title": "Hub landing — mobile", "x": 1540, "y": 0, "w": 390, "h": 2600, "page": "page-1" },
     { "file": "Broadsheet.dc.html", "title": "Option A — Broadsheet", "x": 0, "y": 0, "w": 1440, "h": 1680, "page": "page-2" },
     { "file": "SerifEdition.dc.html", "title": "Option B — Serif edition", "x": 1560, "y": 0, "w": 1440, "h": 1680, "page": "page-2" },
-    { "file": "WireDesk.dc.html", "title": "Option C — Wire desk", "x": 3120, "y": 0, "w": 1440, "h": 1640, "page": "page-2" }
+    { "file": "WireDesk.dc.html", "title": "Option C — Wire desk", "x": 3120, "y": 0, "w": 1440, "h": 1740, "page": "page-2" }
   ],
   "annotations": [
     { "id": "hub-brief", "x": 0, "y": -190, "w": 460, "text": "SSK AI Hub landing — desktop (1440) and mobile (390), built from the shipped design system (tokens.css, ssk-hub.css, components.css).\nUse the Dark tweak above each artboard to preview the dark theme.", "page": "page-1" },

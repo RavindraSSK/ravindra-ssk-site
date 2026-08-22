@@ -20,10 +20,10 @@
       --color-text-faint: #62748f;
       --ambient-bg: #f8fbff;
       --ssk-rule-soft: rgba(43, 69, 117, 0.14);
-      --band-bg: radial-gradient(circle at 82% 0%, rgba(99, 150, 255, 0.22), transparent 22rem), linear-gradient(135deg, #0e1f47, #132b61 45%, #2855ad);
+      --band-bg: radial-gradient(circle at 82% 0%, rgba(99, 150, 255, 0.12), transparent 22rem), linear-gradient(135deg, #0e1f47, #132b61 45%, #2450a0);
       --band-ink: #f4f8ff;
-      --band-ink-muted: rgba(214, 228, 252, 0.78);
-      --band-accent: #93b4f5;
+      --band-ink-muted: rgba(228, 237, 254, 0.92);
+      --band-accent: #c7d9fb;
       --band-rule: rgba(147, 180, 245, 0.28);
       --font-display: "Cabinet Grotesk", "Archivo", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
       --font-body: "Satoshi", "Instrument Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
@@ -34,7 +34,7 @@
   </style>
 </helmet>
 
-<div class="wire" style="width: 1440px; min-height: 1620px; background: var(--ambient-bg); font-family: var(--font-body); color: var(--color-text); font-size: 16px; line-height: 1.6;">
+<div class="wire" style="width: 1440px; min-height: 1720px; background: var(--ambient-bg); font-family: var(--font-body); color: var(--color-text); font-size: 16px; line-height: 1.6;">
 
   <!-- full-bleed edition band: masthead + lead story reversed on navy -->
   <section style="background: var(--band-bg); color: var(--band-ink); padding: 32px 0 56px;">
@@ -46,7 +46,14 @@
           <img src="logo-dark.png" alt="" style="width: 44px; height: 44px; display: block;">
           <p style="margin: 0; color: var(--band-ink); font-family: var(--font-display); font-size: 16.8px; font-weight: 800; letter-spacing: -0.02em;">Ravindra SSK</p>
         </div>
-        <p style="margin: 0; color: var(--band-ink-muted); font-size: 12px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;">SSK AI Hub · Tech News desk</p>
+        <nav style="display: flex; align-items: center; gap: 26px; color: var(--band-ink-muted); font-size: 14.5px; font-weight: 600;">
+          <span>Home</span>
+          <span>Portfolio</span>
+          <span>Insights</span>
+          <span style="color: var(--band-ink); border-bottom: 2px solid var(--band-accent); padding-bottom: 2px;">SSK AI Hub</span>
+          <span>About</span>
+          <span>Contact</span>
+        </nav>
       </div>
 
       <!-- nameplate row -->
@@ -60,7 +67,7 @@
         <div style="display: flex; flex-direction: column; gap: 18px;">
           <h2 style="margin: 0; color: var(--band-ink); font-family: var(--font-display); font-size: 66px; font-weight: 900; letter-spacing: -0.04em; line-height: 1.02;">The Week AI Split Into Specialists</h2>
           <p style="margin: 0; max-width: 44ch; color: var(--band-ink-muted); font-family: var(--font-display); font-size: 22px; font-weight: 500; letter-spacing: -0.02em; line-height: 1.35;">From one giant model to systems of specialized, cooperating intelligence.</p>
-          <p style="margin: 0; color: var(--band-ink-muted); font-size: 12.8px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;">Published August 12, 2026 · 5 stories</p>
+          <p style="margin: 0; color: var(--band-ink-muted); font-size: 12.8px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;">Published August 12, 2026 · 5 stories · Founded &amp; edited by Ravindra SSK</p>
           <div style="display: flex; align-items: center; gap: 16px;">
             <span style="display: inline-flex; align-items: center; justify-content: center; gap: 9.6px; min-height: 50px; padding: 0 20.8px; border-radius: 999px; background: #ffffff; color: #132b61; font-weight: 700; box-shadow: 0 12px 28px rgba(2, 6, 23, 0.35);"><span>Read this edition</span><span>→</span></span>
           </div>
@@ -120,6 +127,11 @@
       </div>
 
       <h2 style="display: flex; align-items: center; gap: 16px; margin: 48px 0 8px; color: var(--color-text); font-family: var(--font-display); font-size: 21.6px; font-weight: 800; letter-spacing: 0.02em;">Past editions<span style="flex: 1; height: 1px; background: var(--ssk-rule-soft);"></span></h2>
+      <div style="display: grid; grid-template-columns: 200px minmax(0, 1fr) auto; gap: 8px 32px; align-items: baseline; padding: 20px 0; border-bottom: 1px solid var(--ssk-rule-soft);">
+        <p style="margin: 0; color: var(--color-text-muted); font-size: 13.5px; font-weight: 700; letter-spacing: 0.04em;">Weekly No. 2 · Aug 12</p>
+        <p style="margin: 0; color: var(--color-text); font-family: var(--font-display); font-size: 21px; font-weight: 800; letter-spacing: -0.02em; line-height: 1.25;">The Week AI Split Into Specialists</p>
+        <span style="display: inline-flex; align-items: center; min-height: 30px; padding: 0 12px; border: 1px solid rgba(27, 45, 95, 0.1); border-radius: 999px; background: rgba(238, 243, 252, 0.82); color: var(--color-text-muted); font-size: 13.1px; font-weight: 700;">Current</span>
+      </div>
       <div style="display: grid; grid-template-columns: 200px minmax(0, 1fr) auto; gap: 8px 32px; align-items: baseline; padding: 20px 0; border-bottom: 1px solid var(--ssk-rule-soft);">
         <p style="margin: 0; color: var(--color-text-muted); font-size: 13.5px; font-weight: 700; letter-spacing: 0.04em;">Weekly No. 1 · Aug 8</p>
         <p style="margin: 0; color: var(--color-text); font-family: var(--font-display); font-size: 21px; font-weight: 800; letter-spacing: -0.02em; line-height: 1.25;">The Week the Model Became a Component</p>
