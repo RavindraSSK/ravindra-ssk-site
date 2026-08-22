@@ -1,0 +1,154 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,500;6..72,600;6..72,700&amp;family=Instrument+Sans:wght@400;500;600;700&amp;display=swap">
+  <style>
+    body { margin: 0; }
+    a { color: #1b2d5f; text-decoration: none; }
+    a:hover { color: #1e3a8a; }
+
+    .paper {
+      --color-primary: #1b2d5f;
+      --ink: #1a1c22;
+      --ink-muted: #565b66;
+      --ink-faint: #6d7280;
+      --paper-bg: #faf9f6;
+      --rule: rgba(26, 28, 34, 0.28);
+      --rule-soft: rgba(26, 28, 34, 0.12);
+      --pill-border: rgba(27, 45, 95, 0.1);
+      --pill-bg: rgba(238, 243, 252, 0.82);
+      --nav-ink: rgba(27, 45, 95, 0.72);
+      --button-primary-bg: linear-gradient(135deg, #132b61, #2855ad 64%, #3b6ecb);
+      --font-serif: "Newsreader", Georgia, "Times New Roman", serif;
+      --font-body: "Satoshi", "Instrument Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    .paper a { color: var(--color-primary); }
+    .paper a:hover { color: var(--color-primary); }
+  </style>
+</helmet>
+
+<div class="paper" style="width: 1440px; min-height: 1660px; background: var(--paper-bg); font-family: var(--font-body); color: var(--ink); font-size: 16px; line-height: 1.6;">
+
+  <!-- site header, flattened to a hairline band for the paper register -->
+  <header style="border-bottom: 1px solid var(--rule-soft); background: rgba(255, 255, 255, 0.6);">
+    <div style="width: 1180px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 14px 0;">
+      <div style="display: flex; align-items: center; gap: 12px;">
+        <img src="logo-light.png" alt="" style="width: 44px; height: 44px; display: block;">
+        <p style="margin: 0; color: var(--color-primary); font-family: var(--font-body); font-size: 16.8px; font-weight: 700; letter-spacing: -0.02em; white-space: nowrap;">Ravindra SSK</p>
+      </div>
+      <nav style="display: flex; align-items: center; gap: 28px; color: var(--nav-ink); font-size: 14.5px; font-weight: 600;">
+        <span>Home</span>
+        <span>Portfolio</span>
+        <span>Insights</span>
+        <span style="color: var(--color-primary); border-bottom: 2px solid var(--color-primary); padding-bottom: 2px;">SSK AI Hub</span>
+        <span>About</span>
+        <span>Contact</span>
+      </nav>
+    </div>
+  </header>
+
+  <main style="padding: 48px 0 100px;">
+
+    <!-- desk masthead, centered like a nameplate -->
+    <section style="padding: 24px 0;">
+      <div style="width: 1180px; margin: 0 auto; text-align: center; border-bottom: 2px solid var(--rule); padding-bottom: 28px;">
+        <p style="margin: 0 0 12px; color: var(--ink-muted); font-size: 12px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;">SSK AI Hub · Independent AI publication · Founded &amp; edited by Ravindra SSK</p>
+        <h1 style="margin: 0; color: var(--ink); font-family: var(--font-serif); font-size: 64px; font-weight: 700; letter-spacing: -0.015em; line-height: 1;">Tech News</h1>
+        <p style="margin: 12px 0 0; color: var(--ink-muted); font-family: var(--font-serif); font-size: 19px; font-weight: 500; font-style: italic;">The week in AI, published like a newspaper</p>
+      </div>
+    </section>
+
+    <!-- front page: hero + rail -->
+    <section style="padding: 32px 0 40px;">
+      <div style="width: 1180px; margin: 0 auto;">
+        <div style="display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 32px;">
+
+          <!-- lead story -->
+          <article style="grid-column: span 8; display: flex; flex-direction: column; gap: 16px;">
+            <p style="margin: 0; color: var(--color-primary); font-size: 12.5px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;">Weekly No. 2 · August 6–12, 2026 · Current edition</p>
+            <h2 style="margin: 0; color: var(--ink); font-family: var(--font-serif); font-size: 58px; font-weight: 600; letter-spacing: -0.02em; line-height: 1.06;">The Week AI Split Into Specialists</h2>
+            <p style="margin: 0; max-width: 56ch; color: var(--ink-muted); font-family: var(--font-serif); font-size: 23px; font-weight: 500; line-height: 1.4;">From one giant model to systems of specialized, cooperating intelligence.</p>
+            <div style="overflow: hidden; border: 1px solid var(--rule-soft); border-radius: 4px;">
+              <img src="ssk-ai-week2-hero.webp" alt="" style="display: block; width: 100%; height: auto;">
+            </div>
+            <p style="margin: 0; color: var(--ink-faint); font-size: 12.8px; font-weight: 600; letter-spacing: 0.04em;">Published August 12, 2026 · 5 stories</p>
+            <div style="display: flex; align-items: center; gap: 16px;">
+              <span style="display: inline-flex; align-items: center; justify-content: center; gap: 9.6px; min-height: 50px; padding: 0 20.8px; border-radius: 999px; background: var(--button-primary-bg); color: #ffffff; font-weight: 700; box-shadow: 0 12px 28px rgba(27, 45, 95, 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.2);"><span>Read this edition</span><span>→</span></span>
+            </div>
+          </article>
+
+          <!-- edition rail -->
+          <aside style="grid-column: span 4; display: flex; flex-direction: column; gap: 24px; border-left: 1px solid var(--rule-soft); padding-left: 32px;">
+            <div>
+              <h3 style="margin: 0 0 8px; color: var(--ink-faint); font-size: 11.5px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;">In this edition</h3>
+              <div style="display: flex; gap: 14px; padding: 14px 0; border-top: 1px solid var(--rule-soft);">
+                <span style="color: var(--ink-faint); font-family: var(--font-serif); font-size: 16px; font-weight: 600;">1.</span>
+                <p style="margin: 0; color: var(--ink); font-family: var(--font-serif); font-size: 17.5px; font-weight: 600; line-height: 1.35;">Qwen Brings a 2.4-Trillion-Parameter Model to Open Weights</p>
+              </div>
+              <div style="display: flex; gap: 14px; padding: 14px 0; border-top: 1px solid var(--rule-soft);">
+                <span style="color: var(--ink-faint); font-family: var(--font-serif); font-size: 16px; font-weight: 600;">2.</span>
+                <p style="margin: 0; color: var(--ink); font-family: var(--font-serif); font-size: 17.5px; font-weight: 600; line-height: 1.35;">Microsoft Launches MAI-Thinking-1, a First-Party 1T-Parameter Reasoner</p>
+              </div>
+              <div style="display: flex; gap: 14px; padding: 14px 0; border-top: 1px solid var(--rule-soft);">
+                <span style="color: var(--ink-faint); font-family: var(--font-serif); font-size: 16px; font-weight: 600;">3.</span>
+                <p style="margin: 0; color: var(--ink); font-family: var(--font-serif); font-size: 17.5px; font-weight: 600; line-height: 1.35;">NVIDIA Builds a Small Model for Agents' Grunt Work — and a Router to Match</p>
+              </div>
+              <div style="display: flex; gap: 14px; padding: 14px 0; border-top: 1px solid var(--rule-soft);">
+                <span style="color: var(--ink-faint); font-family: var(--font-serif); font-size: 16px; font-weight: 600;">4.</span>
+                <p style="margin: 0; color: var(--ink); font-family: var(--font-serif); font-size: 17.5px; font-weight: 600; line-height: 1.35;">OpenAI Ships a Cybersecurity-Specialized Model Behind Controlled Doors</p>
+              </div>
+              <div style="display: flex; gap: 14px; padding: 14px 0; border-top: 1px solid var(--rule-soft); border-bottom: 1px solid var(--rule-soft);">
+                <span style="color: var(--ink-faint); font-family: var(--font-serif); font-size: 16px; font-weight: 600;">5.</span>
+                <p style="margin: 0; color: var(--ink); font-family: var(--font-serif); font-size: 17.5px; font-weight: 600; line-height: 1.35;">Google's AMIE Moves Medical AI Research Into Real-Time Audio-Visual Consultation</p>
+              </div>
+            </div>
+            <div>
+              <h3 style="margin: 0 0 8px; color: var(--ink-faint); font-size: 11.5px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;">Projects to build</h3>
+              <div style="padding: 12px 0; border-top: 1px solid var(--rule-soft);">
+                <p style="margin: 0; color: var(--ink); font-size: 15.5px; font-weight: 700;">TieredOps</p>
+                <p style="margin: 2px 0 0; color: var(--ink-muted); font-size: 14px; line-height: 1.5;">Two-tier customer-support agent runtime</p>
+              </div>
+              <div style="padding: 12px 0; border-top: 1px solid var(--rule-soft);">
+                <p style="margin: 0; color: var(--ink); font-size: 15.5px; font-weight: 700;">VaultAnalyst</p>
+                <p style="margin: 2px 0 0; color: var(--ink-muted); font-size: 14px; line-height: 1.5;">Self-hosted long-document research assistant</p>
+              </div>
+              <div style="padding: 12px 0; border-top: 1px solid var(--rule-soft); border-bottom: 1px solid var(--rule-soft);">
+                <p style="margin: 0; color: var(--ink); font-size: 15.5px; font-weight: 700;">PatchGate</p>
+                <p style="margin: 2px 0 0; color: var(--ink-muted); font-size: 14px; line-height: 1.5;">AI-assisted secure-merge pipeline</p>
+              </div>
+            </div>
+          </aside>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- past editions river -->
+    <section style="padding: 40px 0;">
+      <div style="width: 1180px; margin: 0 auto;">
+        <h2 style="display: flex; align-items: center; gap: 16px; margin: 0 0 8px; color: var(--ink); font-size: 13px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;">Past editions<span style="flex: 1; height: 1px; background: var(--rule-soft);"></span></h2>
+        <div style="display: grid; grid-template-columns: 200px minmax(0, 1fr) auto; gap: 8px 32px; align-items: baseline; padding: 20px 0; border-bottom: 1px solid var(--rule-soft);">
+          <p style="margin: 0; color: var(--ink-muted); font-size: 13.5px; font-weight: 600; letter-spacing: 0.04em;">Weekly No. 2 · Aug 12</p>
+          <p style="margin: 0; color: var(--ink); font-family: var(--font-serif); font-size: 23px; font-weight: 600; line-height: 1.25;">The Week AI Split Into Specialists</p>
+          <span style="display: inline-flex; align-items: center; min-height: 30px; padding: 0 12px; border: 1px solid var(--pill-border); border-radius: 999px; background: var(--pill-bg); color: var(--ink-muted); font-size: 13.1px; font-weight: 700;">Current</span>
+        </div>
+        <div style="display: grid; grid-template-columns: 200px minmax(0, 1fr) auto; gap: 8px 32px; align-items: baseline; padding: 20px 0; border-bottom: 1px solid var(--rule-soft);">
+          <p style="margin: 0; color: var(--ink-muted); font-size: 13.5px; font-weight: 600; letter-spacing: 0.04em;">Weekly No. 1 · Aug 8</p>
+          <p style="margin: 0; color: var(--ink); font-family: var(--font-serif); font-size: 23px; font-weight: 600; line-height: 1.25;">The Week the Model Became a Component</p>
+          <a href="#" style="display: inline-flex; align-items: center; gap: 7.2px; color: var(--color-primary); font-size: 15px; font-weight: 700;">Read <span>→</span></a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>
+</x-dc>
+</body>
+</html>

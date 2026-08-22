@@ -1,10 +1,20 @@
 {
+  "pages": [
+    { "id": "page-1", "name": "Hub landing" },
+    { "id": "page-2", "name": "Tech News desk" }
+  ],
   "artboards": [
-    { "file": "Main.dc.html", "title": "Hub landing — desktop", "x": 0, "y": 0, "w": 1440, "h": 1780 },
-    { "file": "Mobile.dc.html", "title": "Hub landing — mobile", "x": 1540, "y": 0, "w": 390, "h": 2600 }
+    { "file": "Main.dc.html", "title": "Hub landing — desktop", "x": 0, "y": 0, "w": 1440, "h": 1780, "page": "page-1" },
+    { "file": "Mobile.dc.html", "title": "Hub landing — mobile", "x": 1540, "y": 0, "w": 390, "h": 2600, "page": "page-1" },
+    { "file": "Broadsheet.dc.html", "title": "Option A — Broadsheet", "x": 0, "y": 0, "w": 1440, "h": 1680, "page": "page-2" },
+    { "file": "SerifEdition.dc.html", "title": "Option B — Serif edition", "x": 1560, "y": 0, "w": 1440, "h": 1680, "page": "page-2" },
+    { "file": "WireDesk.dc.html", "title": "Option C — Wire desk", "x": 3120, "y": 0, "w": 1440, "h": 1640, "page": "page-2" }
   ],
   "annotations": [
-    { "id": "hub-brief", "x": 0, "y": -190, "w": 460, "text": "SSK AI Hub landing — desktop (1440) and mobile (390), built from the shipped design system (tokens.css, ssk-hub.css, components.css).\nUse the Dark tweak above each artboard to preview the dark theme." }
+    { "id": "hub-brief", "x": 0, "y": -190, "w": 460, "text": "SSK AI Hub landing — desktop (1440) and mobile (390), built from the shipped design system (tokens.css, ssk-hub.css, components.css).\nUse the Dark tweak above each artboard to preview the dark theme.", "page": "page-1" },
+    { "id": "option-a-note", "x": 0, "y": -210, "w": 440, "text": "OPTION A — BROADSHEET (recommended)\nBy-the-book editorial front page in your existing design language: 8/4-column grid, lead edition as the dominant element, numbered story rail with hairline rules, dated archive river.\nMotivation: strongest hierarchy with zero new ingredients — drops straight into the current site.\nTradeoff: the most conventional of the three.\nHas a Dark tweak.", "page": "page-2" },
+    { "id": "option-b-note", "x": 1560, "y": -210, "w": 440, "text": "OPTION B — SERIF EDITION\nSame front-page skeleton, but headlines in a high-contrast serif (Newsreader) on a warm paper ground, centered nameplate, flattened hairline header.\nMotivation: reads most like a real publication; gives Tech News its own identity inside the hub.\nTradeoff: introduces a second typeface and a warmer ground that diverge from the rest of the site.", "page": "page-2" },
+    { "id": "option-c-note", "x": 3120, "y": -210, "w": 440, "text": "OPTION C — WIRE DESK\nPoster-like navy edition band with reversed type for the current edition, then a dense two-column numbered wire index below.\nMotivation: maximum front-page impact and the most distinctive of the three.\nTradeoff: boldest departure from the restrained hairline register; heavy ink in dark contexts.", "page": "page-2" }
   ],
-  "launch": { "view": "canvas" }
+  "launch": { "view": "canvas", "page": "page-2" }
 }
