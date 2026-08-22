@@ -1,0 +1,236 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800;900&amp;family=Instrument+Sans:wght@400;500;600;700&amp;display=swap">
+  <style>
+    body { margin: 0; }
+    a { color: #1b2d5f; text-decoration: none; }
+    a:hover { color: #1e3a8a; }
+
+    .hub {
+      --color-primary: #1b2d5f;
+      --color-bg: #f7faff;
+      --color-text: #0f172a;
+      --color-text-muted: #52627a;
+      --color-text-faint: #62748f;
+      --ambient-bg: #f8fbff;
+      --ambient-surface: rgba(255, 255, 255, 0.86);
+      --ambient-surface-strong: rgba(255, 255, 255, 0.94);
+      --ambient-line: rgba(43, 69, 117, 0.14);
+      --ambient-line-strong: rgba(27, 45, 95, 0.22);
+      --ambient-glow: rgba(55, 101, 194, 0.14);
+      --surface-shine: rgba(255, 255, 255, 0.36);
+      --ssk-rule: rgba(27, 45, 95, 0.22);
+      --ssk-rule-soft: rgba(43, 69, 117, 0.14);
+      --pill-border: rgba(27, 45, 95, 0.1);
+      --pill-bg: rgba(238, 243, 252, 0.82);
+      --nav-ink: rgba(27, 45, 95, 0.72);
+      --header-capsule-border: rgba(120, 145, 190, 0.2);
+      --header-capsule-bg: linear-gradient(180deg, rgba(255, 255, 255, 0.94), rgba(246, 250, 255, 0.76));
+      --header-capsule-shadow: 0 18px 46px rgba(20, 43, 91, 0.1), 0 2px 8px rgba(20, 43, 91, 0.035), inset 0 1px 0 rgba(255, 255, 255, 0.96);
+      --header-wash: linear-gradient(180deg, rgba(248, 251, 255, 0.98) 0%, rgba(248, 251, 255, 0.94) 85%, rgba(248, 251, 255, 0.88) 100%);
+      --toggle-border: rgba(27, 45, 95, 0.14);
+      --toggle-bg: rgba(255, 255, 255, 0.8);
+      --card-border: rgba(43, 69, 117, 0.14);
+      --card-bg: linear-gradient(145deg, rgba(255, 255, 255, 0.94), rgba(255, 255, 255, 0.86)), linear-gradient(180deg, rgba(255, 255, 255, 0.36), transparent);
+      --button-primary-bg: linear-gradient(135deg, #132b61, #2855ad 64%, #3b6ecb);
+      --shadow-soft: 0 16px 38px rgba(23, 44, 89, 0.06), 0 2px 10px rgba(23, 44, 89, 0.03), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+      --font-display: "Cabinet Grotesk", "Archivo", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      --font-body: "Satoshi", "Instrument Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    .hub--dark {
+      --color-primary: #93b4f5;
+      --color-bg: #0f172a;
+      --color-text: #e2e8f0;
+      --color-text-muted: #94a3b8;
+      --color-text-faint: #7f8ea3;
+      --ambient-bg: #0d1729;
+      --ambient-surface: rgba(18, 29, 52, 0.84);
+      --ambient-surface-strong: rgba(25, 38, 66, 0.94);
+      --ambient-line: rgba(148, 163, 184, 0.16);
+      --ambient-line-strong: rgba(147, 180, 245, 0.24);
+      --ambient-glow: rgba(82, 132, 230, 0.16);
+      --surface-shine: rgba(147, 180, 245, 0.1);
+      --ssk-rule: rgba(147, 180, 245, 0.24);
+      --ssk-rule-soft: rgba(148, 163, 184, 0.16);
+      --pill-border: rgba(148, 163, 184, 0.16);
+      --pill-bg: rgba(148, 163, 184, 0.1);
+      --nav-ink: rgba(226, 232, 240, 0.76);
+      --header-capsule-border: rgba(147, 180, 245, 0.16);
+      --header-capsule-bg: linear-gradient(180deg, rgba(24, 43, 90, 0.94), rgba(18, 33, 71, 0.9));
+      --header-capsule-shadow: 0 20px 48px rgba(2, 6, 23, 0.5), 0 2px 10px rgba(2, 6, 23, 0.32), inset 0 1px 0 rgba(147, 180, 245, 0.12);
+      --header-wash: linear-gradient(180deg, rgba(13, 23, 41, 0.96) 0%, rgba(13, 23, 41, 0.88) 62%, rgba(13, 23, 41, 0) 100%);
+      --toggle-border: rgba(148, 163, 184, 0.18);
+      --toggle-bg: rgba(255, 255, 255, 0.08);
+      --card-border: rgba(148, 163, 184, 0.14);
+      --card-bg: radial-gradient(circle at 88% 8%, rgba(75, 119, 205, 0.12), transparent 10rem), linear-gradient(145deg, rgba(30, 41, 59, 0.92), rgba(15, 23, 42, 0.82));
+      --button-primary-bg: #3157b8;
+      --shadow-soft: 0 16px 38px rgba(2, 6, 23, 0.26), 0 2px 10px rgba(2, 6, 23, 0.2);
+    }
+
+    .hub a { color: var(--color-primary); }
+    .hub a:hover { color: var(--color-primary); }
+
+    .hub .logo--light { display: block; }
+    .hub .logo--dark { display: none; }
+    .hub--dark .logo--light { display: none; }
+    .hub--dark .logo--dark { display: block; }
+    .hub--dark .brand-name { color: #ffffff; }
+  </style>
+</helmet>
+
+<div class="{{rootClass}}" style="width: 1440px; min-height: 1760px; background: var(--ambient-bg); font-family: var(--font-body); color: var(--color-text); font-size: 16px; line-height: 1.6;">
+
+  <!-- site header -->
+  <header style="position: relative; padding: 10.4px 0; background: var(--header-wash);">
+    <div style="width: 1180px; margin: 0 auto;">
+      <div style="display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 11.5px 13px; border: 1px solid var(--header-capsule-border); border-radius: 20px; background: var(--header-capsule-bg); box-shadow: var(--header-capsule-shadow);">
+        <div style="display: flex; align-items: center; gap: 12px;">
+          <span style="display: inline-flex; width: 52px; height: 52px; align-items: center; justify-content: center;">
+            <img class="logo--light" src="logo-light.png" alt="" style="width: 52px; height: 52px; display: block;">
+            <img class="logo--dark" src="logo-dark.png" alt="" style="width: 52px; height: 52px; display: block;">
+          </span>
+          <p class="brand-name" style="margin: 0; color: var(--color-primary); font-family: var(--font-display); font-size: 16.8px; font-weight: 800; letter-spacing: -0.02em; white-space: nowrap;">Ravindra SSK</p>
+        </div>
+        <nav style="display: flex; align-items: center; gap: 5.6px;">
+          <span style="display: inline-flex; align-items: center; min-height: 44px; padding: 0 14.4px; border-radius: 999px; color: var(--nav-ink); font-size: 15px; font-weight: 600;">Home</span>
+          <span style="display: inline-flex; align-items: center; gap: 5px; min-height: 44px; padding: 0 14.4px; border-radius: 999px; color: var(--nav-ink); font-size: 15px; font-weight: 600;">Portfolio
+            <svg viewBox="0 0 24 24" fill="none" width="16" height="16" aria-hidden="true"><path d="m6 9 6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+          </span>
+          <span style="display: inline-flex; align-items: center; gap: 5px; min-height: 44px; padding: 0 14.4px; border-radius: 999px; color: var(--nav-ink); font-size: 15px; font-weight: 600;">Insights
+            <svg viewBox="0 0 24 24" fill="none" width="16" height="16" aria-hidden="true"><path d="m6 9 6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+          </span>
+          <span style="display: inline-flex; align-items: center; gap: 5px; min-height: 44px; padding: 0 14.4px; border-radius: 999px; color: var(--color-primary); font-size: 15px; font-weight: 600;">SSK AI Hub
+            <svg viewBox="0 0 24 24" fill="none" width="16" height="16" aria-hidden="true"><path d="m6 9 6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+          </span>
+          <span style="display: inline-flex; align-items: center; min-height: 44px; padding: 0 14.4px; border-radius: 999px; color: var(--nav-ink); font-size: 15px; font-weight: 600;">About</span>
+          <span style="display: inline-flex; align-items: center; min-height: 44px; padding: 0 14.4px; border-radius: 999px; color: var(--nav-ink); font-size: 15px; font-weight: 600;">Contact</span>
+          <span style="display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; margin-left: 6px; border: 1px solid var(--toggle-border); border-radius: 999px; background: var(--toggle-bg); color: var(--color-text);">
+            <svg viewBox="0 0 24 24" fill="none" width="17" height="17" aria-hidden="true"><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2"></circle><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path></svg>
+          </span>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main style="padding: 64px 0 100px;">
+
+    <!-- masthead -->
+    <section style="padding: 40px 0;">
+      <div style="width: 1180px; margin: 0 auto;">
+        <div style="padding-bottom: 24px; border-bottom: 2px solid var(--ssk-rule);">
+          <p style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px 11.2px; margin: 0 0 16px; padding-bottom: 12px; border-bottom: 1px solid var(--ssk-rule-soft); color: var(--color-text-muted); font-size: 12px; font-weight: 700; letter-spacing: 0.11em; text-transform: uppercase;">
+            <span>Independent AI publication</span>
+            <span>·</span>
+            <span>Founded &amp; edited by Ravindra SSK</span>
+            <span>·</span>
+            <span>Latest edition August 12, 2026</span>
+          </p>
+          <h1 style="margin: 0; color: var(--color-text); font-family: var(--font-display); font-size: 68px; font-weight: 900; letter-spacing: -0.035em; line-height: 1.02;">SSK AI Hub<span style="margin-left: 0.15em; font-size: 0.32em; font-weight: 700; vertical-align: super;">™</span></h1>
+          <p style="margin: 16px 0 0; max-width: 34ch; color: var(--color-text-muted); font-family: var(--font-display); font-size: 26.4px; font-weight: 500; letter-spacing: -0.025em; line-height: 1.28;">What Changed in AI &amp; What You Can Build</p>
+        </div>
+        <p style="margin: 24px 0 0; max-width: 62ch; color: var(--color-text-muted); font-size: 16.3px; line-height: 1.68;">SSK AI Hub is an independent AI publication in two parts: Tech Content, long-form guides and research notes, and Tech News, a weekly and monthly briefing on what changed in AI and what you can build with it.</p>
+      </div>
+    </section>
+
+    <!-- two desks -->
+    <section style="padding: 40px 0;">
+      <div style="width: 1180px; margin: 0 auto;">
+        <h2 style="display: flex; align-items: center; gap: 16px; margin: 0 0 24px; color: var(--color-text); font-family: var(--font-display); font-size: 21.6px; font-weight: 800; letter-spacing: 0.02em;">Two desks, one hub<span style="flex: 1; height: 1px; background: var(--ssk-rule-soft);"></span></h2>
+        <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px;">
+
+          <!-- Tech Content desk -->
+          <article style="display: flex; flex-direction: column; gap: 16px; padding: 32px; border: 1px solid var(--card-border); border-radius: 22px; background: var(--card-bg); box-shadow: var(--shadow-soft);">
+            <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px;">
+              <span style="display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; border: 1px solid var(--ssk-rule); border-radius: 12px; color: var(--color-primary);">
+                <svg viewBox="0 0 24 24" fill="none" width="20" height="20" aria-hidden="true"><path d="M4 5.5h6a2 2 0 0 1 2 2V19a2 2 0 0 0-2-2H4V5.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path><path d="M20 5.5h-6a2 2 0 0 0-2 2V19a2 2 0 0 1 2-2h6V5.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+              </span>
+              <span style="display: inline-flex; align-items: center; min-height: 30px; padding: 0 12px; border: 1px solid var(--pill-border); border-radius: 999px; background: var(--pill-bg); color: var(--color-text-muted); font-size: 13.1px; font-weight: 700;">Long-form</span>
+            </div>
+            <h3 style="margin: 0; color: var(--color-text); font-family: var(--font-display); font-size: 33.6px; font-weight: 800; letter-spacing: -0.03em; line-height: 1.1;">Tech Content</h3>
+            <p style="margin: 0; color: var(--color-primary); font-size: 12.8px; font-weight: 800; letter-spacing: 0.09em; text-transform: uppercase;">Learn • Build • Innovate</p>
+            <p style="margin: 0; color: var(--color-text-muted); font-size: 15.7px; line-height: 1.62;">Long-form work that stays useful after the news cycle moves on — career guides, technical tutorials, research notes, and field notes from applied machine learning.</p>
+            <dl style="display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 16px 32px; margin: 0; padding: 16px 0; border-top: 1px solid var(--ssk-rule-soft); border-bottom: 1px solid var(--ssk-rule-soft);">
+              <div>
+                <dt style="color: var(--color-text-faint); font-size: 11.5px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase;">Articles</dt>
+                <dd style="margin: 4.8px 0 0; color: var(--color-text); font-family: var(--font-display); font-size: 25.6px; font-weight: 800; line-height: 1.1;">5</dd>
+              </div>
+              <div>
+                <dt style="color: var(--color-text-faint); font-size: 11.5px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase;">Most recent</dt>
+                <dd style="margin: 4.8px 0 0; color: var(--color-text); font-size: 15.7px; font-weight: 600; letter-spacing: -0.01em; line-height: 1.4;">Grad-CAM for interpretable flood detection</dd>
+              </div>
+            </dl>
+            <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 16px; margin-top: auto;">
+              <span style="display: inline-flex; align-items: center; justify-content: center; gap: 9.6px; min-height: 50px; padding: 0 20.8px; border-radius: 999px; background: var(--button-primary-bg); color: #ffffff; font-weight: 700; box-shadow: 0 12px 28px rgba(27, 45, 95, 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.2);"><span>Open Tech Content</span><span>→</span></span>
+              <a href="#" style="display: inline-flex; align-items: center; gap: 7.2px; color: var(--color-primary); font-weight: 700;">Read the latest <span>→</span></a>
+            </div>
+          </article>
+
+          <!-- Tech News desk -->
+          <article style="display: flex; flex-direction: column; gap: 16px; padding: 32px; border: 1px solid var(--card-border); border-radius: 22px; background: var(--card-bg); box-shadow: var(--shadow-soft);">
+            <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px;">
+              <span style="display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; border: 1px solid var(--ssk-rule); border-radius: 12px; color: var(--color-primary);">
+                <svg viewBox="0 0 24 24" fill="none" width="20" height="20" aria-hidden="true"><path d="M4 6h12v13H5.5A1.5 1.5 0 0 1 4 17.5V6Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path><path d="M16 9h2.5A1.5 1.5 0 0 1 20 10.5v7a1.5 1.5 0 0 1-1.5 1.5H16" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path><path d="M7 9.5h6M7 12.5h6M7 15.5h3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path></svg>
+              </span>
+              <span style="display: inline-flex; align-items: center; min-height: 30px; padding: 0 12px; border: 1px solid var(--pill-border); border-radius: 999px; background: var(--pill-bg); color: var(--color-text-muted); font-size: 13.1px; font-weight: 700;">Weekly + monthly</span>
+            </div>
+            <h3 style="margin: 0; color: var(--color-text); font-family: var(--font-display); font-size: 33.6px; font-weight: 800; letter-spacing: -0.03em; line-height: 1.1;">Tech News</h3>
+            <p style="margin: 0; color: var(--color-primary); font-size: 12.8px; font-weight: 800; letter-spacing: 0.09em; text-transform: uppercase;">The week in AI, published like a newspaper</p>
+            <p style="margin: 0; color: var(--color-text-muted); font-size: 15.7px; line-height: 1.62;">A dated edition rather than a rolling feed. Each week's developments are gathered while the week runs and published the morning after it closes, and every month closes with a single recap.</p>
+            <dl style="display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 16px 32px; margin: 0; padding: 16px 0; border-top: 1px solid var(--ssk-rule-soft); border-bottom: 1px solid var(--ssk-rule-soft);">
+              <div>
+                <dt style="color: var(--color-text-faint); font-size: 11.5px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase;">Editions</dt>
+                <dd style="margin: 4.8px 0 0; color: var(--color-text); font-family: var(--font-display); font-size: 25.6px; font-weight: 800; line-height: 1.1;">2</dd>
+              </div>
+              <div>
+                <dt style="color: var(--color-text-faint); font-size: 11.5px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase;">Current edition</dt>
+                <dd style="margin: 4.8px 0 0; color: var(--color-text); font-size: 15.7px; font-weight: 600; letter-spacing: -0.01em; line-height: 1.4;">SSK AI: The Week AI Split Into Specialists</dd>
+              </div>
+            </dl>
+            <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 16px; margin-top: auto;">
+              <span style="display: inline-flex; align-items: center; justify-content: center; gap: 9.6px; min-height: 50px; padding: 0 20.8px; border-radius: 999px; background: var(--button-primary-bg); color: #ffffff; font-weight: 700; box-shadow: 0 12px 28px rgba(27, 45, 95, 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.2);"><span>Open Tech News</span><span>→</span></span>
+              <a href="#" style="display: inline-flex; align-items: center; gap: 7.2px; color: var(--color-primary); font-weight: 700;">Read the latest <span>→</span></a>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- on the front page -->
+    <section style="padding: 40px 0;">
+      <div style="width: 1180px; margin: 0 auto;">
+        <h2 style="display: flex; align-items: center; gap: 16px; margin: 0 0 24px; color: var(--color-text); font-family: var(--font-display); font-size: 21.6px; font-weight: 800; letter-spacing: 0.02em;">On the front page<span style="flex: 1; height: 1px; background: var(--ssk-rule-soft);"></span></h2>
+        <div style="display: grid; gap: 12px; padding: 32px; border: 1px solid var(--card-border); border-radius: 22px; background: var(--card-bg); box-shadow: var(--shadow-soft);">
+          <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 12px;">
+            <span style="display: inline-flex; align-items: center; min-height: 30px; padding: 0 12px; border: 1px solid var(--pill-border); border-radius: 999px; background: var(--pill-bg); color: var(--color-text-muted); font-size: 13.1px; font-weight: 700;">Tech News</span>
+            <span style="color: var(--color-text-muted); font-size: 12.5px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;">Weekly No. 2 · August 6–12, 2026</span>
+          </div>
+          <p style="margin: 0; color: var(--color-text); font-family: var(--font-display); font-size: 36.8px; font-weight: 800; letter-spacing: -0.03em; line-height: 1.14;">SSK AI: The Week AI Split Into Specialists</p>
+          <p style="margin: 0; max-width: 62ch; color: var(--color-text-muted); font-size: 16px; line-height: 1.6;">From one giant model to systems of specialized, cooperating intelligence.</p>
+          <a href="#" style="display: inline-flex; align-items: center; gap: 7.2px; color: var(--color-primary); font-weight: 700;">Read the edition <span>→</span></a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>
+</x-dc>
+<script data-dc-script data-props='{"dark":{"editor":"boolean","default":false,"section":"Theme"},"$preview":{"width":1440,"height":1760}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      rootClass: this.props.dark ? 'hub hub--dark' : 'hub',
+    };
+  }
+}
+</script>
+</body>
+</html>
