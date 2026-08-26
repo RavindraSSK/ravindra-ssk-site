@@ -665,7 +665,55 @@ function initArticleReadingChrome() {
   headings.forEach((heading) => tocObserver.observe(heading));
 }
 
+function playSportHeroWithSound(video) {
+  video.defaultMuted = false;
+  video.muted = false;
+  video.volume = 1;
+  return video.play();
+}
+
+function initSportHeroSound() {
+  const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  document.querySelectorAll(".sport-hero__video").forEach((el) => {
+    if (!(el instanceof HTMLVideoElement)) return;
+    const hero = el.closest(".sport-hero");
+    const button = hero?.querySelector("[data-sport-hero-audio]");
+    if (!(button instanceof HTMLButtonElement)) return;
+
+    if (prefersReducedMotion) {
+      el.pause();
+      el.removeAttribute("autoplay");
+      button.hidden = true;
+      return;
+    }
+
+    const hidePrompt = () => {
+      button.hidden = true;
+    };
+    const showPrompt = () => {
+      button.hidden = false;
+    };
+
+    playSportHeroWithSound(el).then(hidePrompt).catch(showPrompt);
+
+    button.addEventListener("click", (event) => {
+      event.preventDefault();
+      event.stopPropagation();
+      playSportHeroWithSound(el).then(hidePrompt).catch(() => {
+        showPrompt();
+      });
+    });
+
+    hero?.addEventListener("pointerdown", () => {
+      if (el.muted || el.paused) {
+        playSportHeroWithSound(el).then(hidePrompt).catch(() => {});
+      }
+    });
+  });
+}
+
 function initSportPage() {
+  initSportHeroSound();
   const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   if (prefersReducedMotion) {
     document.querySelectorAll(".sport-hero__video").forEach((el) => {

@@ -64,13 +64,52 @@ export function SiteInteractions({ pathname }: { pathname: string }) {
     });
 
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const sportHeroAudioCleanups: Array<() => void> = [];
 
-    if (prefersReducedMotion) {
-      document.querySelectorAll<HTMLVideoElement>(".sport-hero__video").forEach((video) => {
+    document.querySelectorAll<HTMLVideoElement>(".sport-hero__video").forEach((video) => {
+      const hero = video.closest(".sport-hero");
+      const button = hero?.querySelector<HTMLButtonElement>("[data-sport-hero-audio]");
+      if (!hero || !button) return;
+
+      if (prefersReducedMotion) {
         video.pause();
         video.removeAttribute("autoplay");
+        button.hidden = true;
+        return;
+      }
+
+      const playWithSound = () => {
+        video.defaultMuted = false;
+        video.muted = false;
+        video.volume = 1;
+        return video.play();
+      };
+      const hidePrompt = () => {
+        button.hidden = true;
+      };
+      const showPrompt = () => {
+        button.hidden = false;
+      };
+
+      playWithSound().then(hidePrompt).catch(showPrompt);
+
+      const onButton = (event: MouseEvent) => {
+        event.preventDefault();
+        event.stopPropagation();
+        playWithSound().then(hidePrompt).catch(showPrompt);
+      };
+      const onHeroPointer = () => {
+        if (video.muted || video.paused) {
+          playWithSound().then(hidePrompt).catch(() => {});
+        }
+      };
+      button.addEventListener("click", onButton);
+      hero.addEventListener("pointerdown", onHeroPointer);
+      sportHeroAudioCleanups.push(() => {
+        button.removeEventListener("click", onButton);
+        hero.removeEventListener("pointerdown", onHeroPointer);
       });
-    }
+    });
 
     const sportNavLinks = Array.from(document.querySelectorAll<HTMLAnchorElement>(".sport-pillnav__link"));
     const sportSections = sportNavLinks
@@ -543,6 +582,7 @@ export function SiteInteractions({ pathname }: { pathname: string }) {
       visualObserver?.disconnect();
       fitxNavObserver?.disconnect();
       sportNavObserver?.disconnect();
+      sportHeroAudioCleanups.forEach((cleanup) => cleanup());
     };
   }, [pathname]);
 

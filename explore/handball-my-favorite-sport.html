@@ -23,12 +23,11 @@
           <video
             class="sport-hero__video"
             autoplay
-            muted
             loop
             playsinline
             preload="auto"
             poster="/images/handball/handball-hero-poster.webp"
-            aria-hidden="true"
+            aria-label="Handball hero film"
           >
             <source src="/videos/handball-hero.mp4" type="video/mp4">
           </video>
@@ -40,6 +39,9 @@
           <p class="sport-hero__dek animate-in" style="--delay: 160ms;">Fast. Physical. Built on trust.</p>
           <p class="sport-hero__meta animate-in" style="--delay: 220ms;">Vel Tech captain · Jersey 13 · All India University South Zone, 2018</p>
         </div>
+        <button type="button" class="sport-hero__audio" data-sport-hero-audio hidden>
+          Play with sound
+        </button>
         <a class="sport-hero__scroll-cue" href="#the-game" aria-label="Scroll to the content">
           <span class="sport-hero__scroll-cue-arrow" aria-hidden="true">↓</span>
         </a>
