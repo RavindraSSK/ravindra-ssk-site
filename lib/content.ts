@@ -113,7 +113,7 @@ export const fitnessArticles = [
     slug: "handball-my-favorite-sport",
     title: "Handball — My Favorite Sport",
     description:
-      "Vel Tech captain, jersey 13, All India University South Zone 2018 — rules, the court, and what the game still teaches.",
+      "The complete handball page — rules, the court, why the game matters, my journey, and handball in motion.",
     datePublished: "2026-06-01",
   },
   {
