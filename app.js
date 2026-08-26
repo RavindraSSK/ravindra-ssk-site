@@ -665,6 +665,38 @@ function initArticleReadingChrome() {
   headings.forEach((heading) => tocObserver.observe(heading));
 }
 
+function initSportPage() {
+  const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (prefersReducedMotion) {
+    document.querySelectorAll(".sport-hero__video").forEach((el) => {
+      if (!(el instanceof HTMLVideoElement)) return;
+      el.pause();
+      el.removeAttribute("autoplay");
+    });
+  }
+
+  const navLinks = Array.from(document.querySelectorAll(".sport-pillnav__link"));
+  if (!navLinks.length) return;
+
+  const sections = navLinks
+    .map((link) => document.querySelector(link.getAttribute("href") || ""))
+    .filter((section) => section instanceof HTMLElement);
+
+  if (!sections.length) return;
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        const id = `#${entry.target.id}`;
+        navLinks.forEach((link) => link.classList.toggle("is-active", link.getAttribute("href") === id));
+      });
+    },
+    { rootMargin: "-30% 0px -60% 0px", threshold: 0 },
+  );
+  sections.forEach((section) => observer.observe(section));
+}
+
 function initScrollAnimations() {
   const animated = document.querySelectorAll(".animate-in");
   if (!animated.length) return;
@@ -725,6 +757,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initCertFilters();
   initCertModal();
   initScrollAnimations();
+  initSportPage();
   initArticleReadingChrome();
   initContactForm();
 });

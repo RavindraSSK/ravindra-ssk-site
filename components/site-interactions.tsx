@@ -65,6 +65,34 @@ export function SiteInteractions({ pathname }: { pathname: string }) {
 
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
+    if (prefersReducedMotion) {
+      document.querySelectorAll<HTMLVideoElement>(".sport-hero__video").forEach((video) => {
+        video.pause();
+        video.removeAttribute("autoplay");
+      });
+    }
+
+    const sportNavLinks = Array.from(document.querySelectorAll<HTMLAnchorElement>(".sport-pillnav__link"));
+    const sportSections = sportNavLinks
+      .map((link) => document.querySelector<HTMLElement>(link.getAttribute("href") ?? ""))
+      .filter((section): section is HTMLElement => Boolean(section));
+    const sportNavObserver =
+      sportSections.length > 0
+        ? new IntersectionObserver(
+            (entries) => {
+              entries.forEach((entry) => {
+                if (!entry.isIntersecting) return;
+                const id = `#${entry.target.id}`;
+                sportNavLinks.forEach((link) =>
+                  link.classList.toggle("is-active", link.getAttribute("href") === id),
+                );
+              });
+            },
+            { rootMargin: "-30% 0px -60% 0px", threshold: 0 },
+          )
+        : null;
+    sportSections.forEach((section) => sportNavObserver?.observe(section));
+
     // Hero role rotator
     const roleEl = document.querySelector<HTMLElement>("[data-role-rotator]");
     const roles = [
@@ -514,6 +542,7 @@ export function SiteInteractions({ pathname }: { pathname: string }) {
       healthHandlers.forEach(([button, handler]) => button.removeEventListener("click", handler));
       visualObserver?.disconnect();
       fitxNavObserver?.disconnect();
+      sportNavObserver?.disconnect();
     };
   }, [pathname]);
 
