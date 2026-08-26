@@ -18,15 +18,7 @@
   inset: 0;
   z-index: -2;
   overflow: hidden;
-}
-
-.sport-hero__media-img {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  animation: sport-hero-kenburns 16s ease-in-out infinite alternate;
+  background: #061018 url("/images/handball/handball-hero-poster.webp") center 30% / cover no-repeat;
 }
 
 .sport-hero__video {
@@ -37,15 +29,6 @@
   height: 100%;
   object-fit: cover;
   object-position: center 30%;
-}
-
-@keyframes sport-hero-kenburns {
-  from {
-    transform: scale(1.02);
-  }
-  to {
-    transform: scale(1.12);
-  }
 }
 
 .sport-hero__overlay {
@@ -144,7 +127,6 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .sport-hero__media-img { animation: none; }
   .sport-hero__video { display: none; }
   .sport-hero__scroll-cue-arrow { animation: none; }
 }
