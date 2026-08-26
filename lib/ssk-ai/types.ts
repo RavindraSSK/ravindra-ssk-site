@@ -22,7 +22,10 @@ export type CodedDiagramId =
   | "tiered-ops"
   | "weathernext-ensemble"
   | "agent-plugins"
-  | "policy-gate";
+  | "policy-gate"
+  | "spade-loop"
+  | "biomarker-agents"
+  | "agentic-search";
 
 export type StoryVisual =
   | {

@@ -301,6 +301,90 @@ export function PolicyGateDiagram() {
   );
 }
 
+export function SpadeLoopDiagram() {
+  return (
+    <div className="ssk-diagram ssk-diagram--flow">
+      <div className="ssk-plugin-flow">
+        <div className="ssk-flow__box">One LLM, two roles</div>
+        <div className="ssk-flow__hub">
+          Environment Designer — writes executable Gym-style reset() / step() worlds with rewards &amp; verification
+        </div>
+        <div className="ssk-flow__tiers">
+          <div className="ssk-flow__tier ssk-flow__tier--thick">
+            <span className="ssk-flow__meta">learns inside</span>
+            <p>Reasoning Agent — acts in the generated environment</p>
+          </div>
+          <div className="ssk-flow__tier ssk-flow__tier--thin">
+            <span className="ssk-flow__meta">feedback</span>
+            <p>Regret signal keeps tasks at the capability boundary</p>
+          </div>
+        </div>
+        <div className="ssk-flow__box ssk-flow__box--loop">Harder environments as the agent improves — the loop repeats</div>
+      </div>
+      <ChipRow chips={["Executable environments", "Adaptive difficulty", "Scaled to 30B (paper-reported)"]} />
+    </div>
+  );
+}
+
+export function BiomarkerAgentsDiagram() {
+  return (
+    <div className="ssk-diagram ssk-diagram--flow">
+      <div className="ssk-plugin-flow">
+        <div className="ssk-flow__box">Research directive</div>
+        <div className="ssk-flow__hub">Orchestrator — decomposes the task; a shared fact sheet keeps every claim traceable</div>
+        <div className="ssk-flow__tiers">
+          <div className="ssk-flow__tier ssk-flow__tier--thick">
+            <span className="ssk-flow__meta">produce</span>
+            <p>Hypothesis, statistics &amp; model-training agents — deterministic code computes the numbers</p>
+          </div>
+          <div className="ssk-flow__tier ssk-flow__tier--thin">
+            <span className="ssk-flow__meta">attack</span>
+            <p>Critic &amp; Defender — adversarial review + 11-check validation battery</p>
+          </div>
+        </div>
+        <div className="ssk-flow__box ssk-flow__box--loop">
+          Human researchers supervise; output is ranked biomarker candidates, not clinical findings
+        </div>
+      </div>
+      <ChipRow chips={["3 cohorts · 9,279 observations", "Literature-grounded", "Human-supervised"]} />
+    </div>
+  );
+}
+
+export function AgenticSearchDiagram() {
+  return (
+    <div className="ssk-diagram ssk-diagram--pipeline">
+      <ol className="ssk-pipeline">
+        <li className="ssk-pipeline__stage">
+          <span className="ssk-pipeline__shape ssk-pipeline__shape--box">Question</span>
+        </li>
+        <li className="ssk-pipeline__stage ssk-pipeline__stage--router">
+          <span className="ssk-pipeline__shape ssk-pipeline__shape--diamond">Agent loop</span>
+          <div className="ssk-pipeline__split">
+            <div className="ssk-pipeline__path ssk-pipeline__path--thick">
+              <span className="ssk-flow__meta">iterate</span>
+              <p>search · open · navigate · read · grep</p>
+            </div>
+            <div className="ssk-pipeline__path ssk-pipeline__path--thin">
+              <span className="ssk-flow__meta">verify</span>
+              <p>Check the evidence actually supports the claim</p>
+            </div>
+          </div>
+        </li>
+        <li className="ssk-pipeline__stage">
+          <span className="ssk-pipeline__shape ssk-pipeline__shape--cylinder">Existing document indexes</span>
+        </li>
+        <li className="ssk-pipeline__stage">
+          <span className="ssk-pipeline__shape ssk-pipeline__shape--box">Evidence trail</span>
+        </li>
+        <li className="ssk-pipeline__stage">
+          <span className="ssk-pipeline__shape ssk-pipeline__shape--box">Cited answer</span>
+        </li>
+      </ol>
+    </div>
+  );
+}
+
 const diagrams = {
   "qwen-moe": QwenMoeDiagram,
   "mai-thinking": MaiThinkingDiagram,
@@ -310,6 +394,9 @@ const diagrams = {
   "weathernext-ensemble": WeathernextEnsembleDiagram,
   "agent-plugins": AgentPluginsDiagram,
   "policy-gate": PolicyGateDiagram,
+  "spade-loop": SpadeLoopDiagram,
+  "biomarker-agents": BiomarkerAgentsDiagram,
+  "agentic-search": AgenticSearchDiagram,
 } satisfies Record<CodedDiagramId, () => ReactElement>;
 
 export function CodedDiagram({ id, caption }: { id: CodedDiagramId; caption: string }) {
