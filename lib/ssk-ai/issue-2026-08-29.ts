@@ -7,10 +7,9 @@ import type { SskAiIssue } from "./types";
  * of the week's interface theme and are not filler. Do not rewrite copy or
  * add claims beyond this object.
  *
- * Editorial images are cropped from the user-supplied Week 4 composite sheet
- * (panel titles verified against the research packet before use); the cover is
- * the sheet's hero panel with its placeholder label cropped away, composed on
- * a wide white canvas.
+ * Editorial images are editor-supplied high-resolution illustrations (one per
+ * story, verified against the research packet before use — decorative only, no
+ * factual text); the cover is a triptych composed from three of them.
  */
 export const issueAugust29_2026: SskAiIssue = {
   slug: "ai-technology-updates-august-29-2026",
@@ -37,13 +36,13 @@ export const issueAugust29_2026: SskAiIssue = {
   hero: {
     kind: "editorial-image",
     src: "/ssk-ai/2026-08-29/ssk-ai-week4-cover.webp",
-    width: 1600,
-    height: 900,
-    alt: "An AI chip at the center of a clean white editorial illustration, connected outward to a robot arm, a speech waveform, a globe, a sealed evaluation box, a GPU and a cloud deployment pipeline.",
+    width: 3024,
+    height: 941,
+    alt: "Three editorial scenes side by side: lab hardware wired into a glowing AI interface hub, a translucent model core fed by expert modules and multimodal streams, and Earth ringed by stacked geospatial data layers.",
     caption:
       "This week's throughline: the interesting work happened at the edges — connecting models to hardware, speech, Earth data, GPUs, deployment runtimes and independent evaluation.",
     description:
-      "Cover cropped from the Week 4 composite visual sheet's hero panel (placeholder label removed), composed on a wide white canvas per the edition's light editorial style.",
+      "High-resolution cover composed as a triptych from three of the edition's editor-supplied illustrations: the hardware interface, the model architecture, and Earth-scale data.",
   },
   opening: [
     "For four weeks this publication has watched the industry build outward from the model — into systems, into specialists, into platforms. This week the direction of travel became explicit: almost nothing important that happened between August 22 and 28 was a model getting smarter. It was models getting **connected**. Anthropic proposed a standard interface between AI and programmable physical hardware — lab instruments, robotics, quantum rigs — deliberately shaped like what MCP did for software tools. Google wired models into human speech with a transcription-native Gemini release, and into planetary data with an engine that automates Earth-scale geospatial modeling.",
@@ -99,13 +98,13 @@ export const issueAugust29_2026: SskAiIssue = {
       visual: {
         kind: "editorial-image",
         src: "/ssk-ai/2026-08-29/ssk-ai-week4-mhs.webp",
-        width: 694,
-        height: 1050,
-        alt: "A three-layer diagram: a software model at the top, an interface band labeled standard, safe and structured in the middle, and lab hardware — a robot arm, microscope and instrument — below.",
+        width: 1672,
+        height: 941,
+        alt: "A robotic arm, a lab analyzer and a microscope wired into a central glowing AI interface hub, beneath a translucent panel showing a network diagram, a checklist and a safety shield.",
         caption:
           "The MHS idea in one picture: a standard, safety-carrying interface between any model and programmable devices.",
         description:
-          "Panel 2 of the Week 4 composite sheet (Anthropic MHS), verified against the research packet before use.",
+          "Editor-supplied high-resolution illustration of the MHS concept, verified against the research packet before use.",
       },
       source: {
         heading: "Story 1 — Anthropic Model Hardware Standard",
@@ -163,13 +162,13 @@ export const issueAugust29_2026: SskAiIssue = {
       visual: {
         kind: "editorial-image",
         src: "/ssk-ai/2026-08-29/ssk-ai-week4-qwen38-flash-next.webp",
-        width: 694,
-        height: 1050,
-        alt: "A mixture-of-experts architecture sketch with expert blocks feeding a summation node, above a row of multimodal input icons for text, image, audio, video and code.",
+        width: 1672,
+        height: 941,
+        alt: "A translucent cube holding a glowing network, mounted on a layered platform and fed through a router by a bank of expert modules, with chat, code, image, audio and video tiles streaming in from both sides.",
         caption:
           "Flash-Next in outline: a multimodal mixture-of-experts release carrying Qwen's next architectural ideas into the open.",
         description:
-          "Panel 3 of the Week 4 composite sheet (Qwen3.8-Flash-Next open model architecture), verified against the research packet before use.",
+          "Editor-supplied high-resolution illustration of the release's mixture-of-experts, multimodal architecture, verified against the research packet before use.",
       },
       source: {
         heading: "Story 2 — Qwen3.8-Flash-Next",
@@ -231,13 +230,13 @@ export const issueAugust29_2026: SskAiIssue = {
       visual: {
         kind: "editorial-image",
         src: "/ssk-ai/2026-08-29/ssk-ai-week4-double-blind-eval.webp",
-        width: 694,
-        height: 1050,
-        alt: "A sealed, locked evaluation box beside cards for hidden benchmarks and hidden model outputs, with a blindfold and a verified checklist below.",
+        width: 1672,
+        height: 941,
+        alt: "A locked transparent case holding a model, topped by a shield with a checkmark, while two evaluators work at separate desks behind perforated screens beside locked document trays.",
         caption:
           "Blinding as method: if the developer never sees the test, the score measures the model rather than its familiarity with the benchmark.",
         description:
-          "Panel 4 of the Week 4 composite sheet (double-blind AI evaluation), verified against the research packet before use.",
+          "Editor-supplied high-resolution illustration of the double-blind setup — the model sealed in a controlled environment, the parties separated — verified against the research packet before use.",
       },
       source: {
         heading: "Story 3 — DeepMind double-blind evaluation pilot",
@@ -295,13 +294,13 @@ export const issueAugust29_2026: SskAiIssue = {
       visual: {
         kind: "editorial-image",
         src: "/ssk-ai/2026-08-29/ssk-ai-week4-earth-ai-ppe.webp",
-        width: 694,
-        height: 1050,
-        alt: "A globe overlaid with model grids and a storm system, flanked by weather, environment, public health and disaster icons, above a four-step prediction pipeline from data ingest to predictions.",
+        width: 1672,
+        height: 941,
+        alt: "Earth surrounded by stacked geospatial data layers — storm, terrain, population, cropland and city maps — feeding a central engine that projects platforms for health care, agriculture, forests and cities.",
         caption:
           "From Earth data to trained models as a pipeline: PPE's bet is that most of this workflow can be automated.",
         description:
-          "Panel 5 of the Week 4 composite sheet (Earth AI Planetary Prediction Engine), verified against the research packet before use.",
+          "Editor-supplied high-resolution illustration of Earth-scale data layers flowing into an automated modeling engine, verified against the research packet before use.",
       },
       source: {
         heading: "Story 4 — Google Earth AI Planetary Prediction Engine",
@@ -359,13 +358,13 @@ export const issueAugust29_2026: SskAiIssue = {
       visual: {
         kind: "editorial-image",
         src: "/ssk-ai/2026-08-29/ssk-ai-week4-gemini-transcribe.webp",
-        width: 694,
-        height: 1050,
-        alt: "A microphone beside a speech waveform and stacked transcript cards showing the same sentence rendered in English, Spanish, Chinese and Arabic.",
+        width: 1672,
+        height: 941,
+        alt: "A studio microphone sending a sound wave into a transcription interface with speaker-by-speaker text rows, fanning out to language cards marked with national flags and a structured table.",
         caption:
           "One waveform, many languages, formatted output — transcription positioned as intelligence rather than raw recognition.",
         description:
-          "Panel 6 of the Week 4 composite sheet (Gemini 3.5 Transcribe), verified against the research packet before use.",
+          "Editor-supplied high-resolution illustration of speech flowing into formatted, multilingual transcription, verified against the research packet before use.",
       },
       source: {
         heading: "Story 5 — Gemini 3.5 Transcribe",
@@ -423,13 +422,13 @@ export const issueAugust29_2026: SskAiIssue = {
       visual: {
         kind: "editorial-image",
         src: "/ssk-ai/2026-08-29/ssk-ai-week4-cuda-python.webp",
-        width: 694,
-        height: 1050,
-        alt: "Python code invoking a GPU kernel, with NumPy arrays flowing through a kernel launch into GPU memory above a GPU chip.",
+        width: 1672,
+        height: 941,
+        alt: "A Python logo and dark code editor streaming data through voxel arrays into a dual-fan GPU, which outputs a neural network, a computed surface plot and processed data blocks.",
         caption:
           "From arrays to kernels to GPU memory without leaving Python — now behind a semantic-versioning contract.",
         description:
-          "Panel 7 of the Week 4 composite sheet (CUDA Python 1.0), verified against the research packet before use.",
+          "Editor-supplied high-resolution illustration of Python code driving GPU computation end to end, verified against the research packet before use.",
       },
       source: {
         heading: "Story 6 — NVIDIA CUDA Python 1.0",
@@ -487,13 +486,13 @@ export const issueAugust29_2026: SskAiIssue = {
       visual: {
         kind: "editorial-image",
         src: "/ssk-ai/2026-08-29/ssk-ai-week4-tensorrt-model-connect.webp",
-        width: 694,
-        height: 1050,
-        alt: "A pipeline from a model checkpoint through optimization steps — pruning, precision tuning, layer fusion, engine build — to a native inference engine and deployment targets.",
+        width: 1672,
+        height: 941,
+        alt: "A model checkpoint in a transparent case moving through optimization stages into a compact green inference engine, then out to a camera, a server rack and a laptop.",
         caption:
           "The road from checkpoint to native engine, packaged: optimization steps as a maintained path instead of a bespoke project.",
         description:
-          "Panel 8 of the Week 4 composite sheet (TensorRT Model Connect), verified against the research packet before use.",
+          "Editor-supplied high-resolution illustration of the checkpoint-to-native-inference path ending at edge devices, verified against the research packet before use.",
       },
       source: {
         heading: "Story 7 — NVIDIA TensorRT Model Connect",
