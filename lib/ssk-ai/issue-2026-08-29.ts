@@ -36,13 +36,13 @@ export const issueAugust29_2026: SskAiIssue = {
   hero: {
     kind: "editorial-image",
     src: "/ssk-ai/2026-08-29/ssk-ai-week4-cover.webp",
-    width: 3024,
+    width: 1672,
     height: 941,
-    alt: "Three editorial scenes side by side: lab hardware wired into a glowing AI interface hub, a translucent model core fed by expert modules and multimodal streams, and Earth ringed by stacked geospatial data layers.",
+    alt: "The headline 'AI is breaking out of the model' beside a glowing hub diagram connecting a model core to hardware, speech, Earth AI, evaluation, GPU and deployment nodes, on a deep navy background.",
     caption:
       "This week's throughline: the interesting work happened at the edges — connecting models to hardware, speech, Earth data, GPUs, deployment runtimes and independent evaluation.",
     description:
-      "High-resolution cover composed as a triptych from three of the edition's editor-supplied illustrations: the hardware interface, the model architecture, and Earth-scale data.",
+      "Editor-supplied dark hero for the Week 4 edition, matching the weekly-hero series: the theme headline beside a model-core hub connected to the week's six interface domains.",
   },
   opening: [
     "For four weeks this publication has watched the industry build outward from the model — into systems, into specialists, into platforms. This week the direction of travel became explicit: almost nothing important that happened between August 22 and 28 was a model getting smarter. It was models getting **connected**. Anthropic proposed a standard interface between AI and programmable physical hardware — lab instruments, robotics, quantum rigs — deliberately shaped like what MCP did for software tools. Google wired models into human speech with a transcription-native Gemini release, and into planetary data with an engine that automates Earth-scale geospatial modeling.",
