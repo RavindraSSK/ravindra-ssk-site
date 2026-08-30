@@ -13,11 +13,13 @@ const STAGE_RATIO = MAP_W / MAP_H;
 const HUB = projectLatLon(38.63, -90.2);
 
 type Location = { country: string; region: string; city: string; count: number; lat?: number; lon?: number };
+type VisitEvent = { ts: number; country: string; region: string; city: string };
 type Stats = {
   total: number;
   uniques?: number;
   countries: Array<{ code: string; count: number }>;
   locations?: Location[];
+  events?: VisitEvent[];
 };
 type State =
   | { status: "loading" }
@@ -120,6 +122,22 @@ function pad(n: number) {
 
 function utcClock(date: Date) {
   return `${pad(date.getUTCHours())}:${pad(date.getUTCMinutes())}:${pad(date.getUTCSeconds())}`;
+}
+
+/** "14:31" in the viewer's timezone, with the date prefixed once it is not today. */
+function localStamp(ts: number, now: number) {
+  const d = new Date(ts);
+  const time = d.toLocaleTimeString(undefined, { hour: "2-digit", minute: "2-digit", hour12: false });
+  const sameDay = new Date(ts).toDateString() === new Date(now).toDateString();
+  return sameDay ? time : `${d.toLocaleDateString(undefined, { month: "short", day: "numeric" })} ${time}`;
+}
+
+function relativeAgo(ts: number, now: number) {
+  const s = Math.max(0, Math.floor((now - ts) / 1000));
+  if (s < 60) return "just now";
+  if (s < 3600) return `${Math.floor(s / 60)}m ago`;
+  if (s < 86400) return `${Math.floor(s / 3600)}h ago`;
+  return `${Math.floor(s / 86400)}d ago`;
 }
 
 export function VisitorMap() {
@@ -269,9 +287,10 @@ export function VisitorMap() {
           </span>
         </div>
         <div className="vmap__readout">
-          <span className="vmap__readout-label">Uplink</span>
+          <span className="vmap__readout-label">Last visit</span>
           <span className="vmap__readout-value vmap__readout-value--ok" aria-live="polite">
-            <span className="vmap__blip" aria-hidden="true" /> 15s
+            <span className="vmap__blip" aria-hidden="true" />{" "}
+            {state.stats.events?.[0] ? relativeAgo(state.stats.events[0].ts, state.fetchedAt.getTime()) : "——"}
           </span>
         </div>
       </div>
@@ -479,14 +498,17 @@ export function VisitorMap() {
       </div>
 
       <div className="vmap__bottom">
-        <div className="vmap__log" role="log" aria-label="Connection log">
-          <p className="vmap__log-line vmap__log-line--dim">{`> ${clock} UTC ── uplink sync ok · ${total.toLocaleString()} packets total`}</p>
-          {countries.slice(0, 6).map(({ code, count }) => (
-            <p key={code} className="vmap__log-line">
-              {`> ${clock} UTC ── inbound ▸ ${code} · ${displayName(code)} · ${count.toLocaleString()} visit${count === 1 ? "" : "s"}`}
-            </p>
-          ))}
-          {countries.length === 0 ? (
+        <div className="vmap__log" role="log" aria-label="Recent visits, most recent first, times shown in your timezone">
+          <p className="vmap__log-line vmap__log-line--dim">{`> ${clock} UTC ── uplink sync ok · ${total.toLocaleString()} visits total · times below are your local time`}</p>
+          {(state.stats.events ?? []).slice(0, 10).map(({ ts, country, region, city }) => {
+            const place = [city, region].filter(Boolean).join(", ") || displayName(country);
+            return (
+              <p key={`${ts}-${country}-${city}`} className="vmap__log-line">
+                {`> ${localStamp(ts, state.fetchedAt.getTime())} ── inbound ▸ ${place} · ${country} · ${relativeAgo(ts, state.fetchedAt.getTime())}`}
+              </p>
+            );
+          })}
+          {(state.stats.events ?? []).length === 0 ? (
             <p className="vmap__log-line">{"> awaiting first inbound connection…"}</p>
           ) : null}
           <p className="vmap__log-line" aria-hidden="true">
