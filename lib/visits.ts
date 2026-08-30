@@ -11,6 +11,8 @@ const COUNTRY_KEY = "visits:countries";
 const LOCATION_KEY = "visits:locations";
 const UNIQUE_KEY = "visits:unique";
 const GEO_KEY = "visits:geo";
+const LOG_KEY = "visits:log";
+const LOG_MAX = 200;
 
 type StoreConfig = { url: string; token: string };
 
@@ -71,6 +73,9 @@ export async function recordVisit(
   if (visitorHash) {
     commands.push(["PFADD", UNIQUE_KEY, visitorHash]);
   }
+  // Rolling event log: when + where, never who. Capped so it self-expires.
+  commands.push(["LPUSH", LOG_KEY, `${Date.now()}|${location ?? `${country}||`}`]);
+  commands.push(["LTRIM", LOG_KEY, "0", String(LOG_MAX - 1)]);
   return pipeline(commands);
 }
 
@@ -83,11 +88,19 @@ export type VisitLocation = {
   lon?: number;
 };
 
+export type VisitEvent = {
+  ts: number;
+  country: string;
+  region: string;
+  city: string;
+};
+
 export type VisitStats = {
   total: number;
   uniques: number;
   countries: Array<{ code: string; count: number }>;
   locations: VisitLocation[];
+  events: VisitEvent[];
 };
 
 export async function readStats(): Promise<VisitStats | null> {
@@ -97,6 +110,7 @@ export async function readStats(): Promise<VisitStats | null> {
     ["HGETALL", LOCATION_KEY],
     ["PFCOUNT", UNIQUE_KEY],
     ["HGETALL", GEO_KEY],
+    ["LRANGE", LOG_KEY, "0", "24"],
   ]);
   if (!results) return null;
 
@@ -139,5 +153,13 @@ export async function readStats(): Promise<VisitStats | null> {
   }
   locations.sort((a, b) => b.count - a.count);
 
-  return { total, uniques, countries, locations };
+  const logRaw = Array.isArray(results[5]) ? (results[5] as unknown[]) : [];
+  const events: VisitEvent[] = [];
+  for (const raw of logRaw) {
+    const [ts, country = "", region = "", city = ""] = String(raw).split("|");
+    const time = Number(ts);
+    if (Number.isFinite(time) && country) events.push({ ts: time, country, region, city });
+  }
+
+  return { total, uniques, countries, locations, events };
 }
