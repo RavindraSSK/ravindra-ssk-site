@@ -25,7 +25,8 @@ export type CodedDiagramId =
   | "policy-gate"
   | "spade-loop"
   | "biomarker-agents"
-  | "agentic-search";
+  | "agentic-search"
+  | "mhs-bridge";
 
 export type StoryVisual =
   | {

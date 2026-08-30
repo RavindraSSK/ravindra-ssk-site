@@ -105,7 +105,9 @@ function PublishingCalendar({
             </div>
             <p className="ssk-calendar__period">{window.periodLabel}</p>
             <p className="ssk-calendar__due">
-              {window.status === "published" ? "Out" : "Due"} {formatLongDate(window.publishOn)}
+              {window.status === "published"
+                ? `Out ${formatLongDate(window.publishedOn ?? window.publishOn)}`
+                : `Due ${formatLongDate(window.publishOn)}`}
             </p>
             {window.slug && window.title ? (
               <Link className="ssk-calendar__link" href={`${TECH_NEWS.path}/${window.slug}`}>

@@ -7,6 +7,7 @@ import { DEFAULT_SITE_URL } from "@/lib/site-url";
 import { issueAugust08_2026 } from "./issue-2026-08-08";
 import { issueAugust12_2026 } from "./issue-2026-08-12";
 import { issueAugust22_2026 } from "./issue-2026-08-22";
+import { issueAugust29_2026 } from "./issue-2026-08-29";
 import { buildMonthPlan } from "./schedule";
 import type { SskAiIssue, SskAiPublication, SskAiSection } from "./types";
 
@@ -55,7 +56,12 @@ export const SSK_AI_SECTIONS = [TECH_CONTENT, TECH_NEWS] as const;
  */
 export const SSK_AI = SSK_AI_HUB;
 
-const ISSUES: readonly SskAiIssue[] = [issueAugust08_2026, issueAugust12_2026, issueAugust22_2026];
+const ISSUES: readonly SskAiIssue[] = [
+  issueAugust08_2026,
+  issueAugust12_2026,
+  issueAugust22_2026,
+  issueAugust29_2026,
+];
 
 export function getAllIssues(): readonly SskAiIssue[] {
   return [...ISSUES].sort((a, b) => b.datePublished.localeCompare(a.datePublished));
