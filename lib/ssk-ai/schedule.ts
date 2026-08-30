@@ -152,6 +152,8 @@ export type PlannedEdition = EditionWindow & {
   /** Slug of the edition filling this window, when one has been published. */
   slug?: string;
   title?: string;
+  /** The filling edition's actual publish date, which may precede the window's canonical publishOn. */
+  publishedOn?: string;
   status: "published" | "scheduled";
 };
 
@@ -165,7 +167,12 @@ export type PlannedEdition = EditionWindow & {
 export function buildMonthPlan(
   year: number,
   month: number,
-  editions: readonly { slug: string; cardTitle: string; edition: { kind: EditionKind; periodEnd: string } }[],
+  editions: readonly {
+    slug: string;
+    cardTitle: string;
+    datePublished: string;
+    edition: { kind: EditionKind; periodEnd: string };
+  }[],
 ): PlannedEdition[] {
   return getMonthEditionWindows(year, month).map((window) => {
     const match = editions.find((candidate) => {
@@ -179,7 +186,13 @@ export function buildMonthPlan(
     });
 
     return match
-      ? { ...window, slug: match.slug, title: match.cardTitle, status: "published" as const }
+      ? {
+          ...window,
+          slug: match.slug,
+          title: match.cardTitle,
+          publishedOn: match.datePublished,
+          status: "published" as const,
+        }
       : { ...window, status: "scheduled" as const };
   });
 }

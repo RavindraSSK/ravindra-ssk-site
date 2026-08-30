@@ -385,6 +385,32 @@ export function AgenticSearchDiagram() {
   );
 }
 
+export function MhsBridgeDiagram() {
+  return (
+    <div className="ssk-diagram ssk-diagram--flow">
+      <div className="ssk-plugin-flow">
+        <div className="ssk-flow__box">Experiment plan — reviewed and approved by a human</div>
+        <div className="ssk-flow__hub">
+          MHS-style device layer — standard primitives: read state · write state · declared safety constraints &amp;
+          capabilities
+        </div>
+        <div className="ssk-flow__tiers">
+          <div className="ssk-flow__tier ssk-flow__tier--thick">
+            <span className="ssk-flow__meta">routine</span>
+            <p>Programmable lab devices execute within their declared limits</p>
+          </div>
+          <div className="ssk-flow__tier ssk-flow__tier--thin">
+            <span className="ssk-flow__meta">gated</span>
+            <p>Irreversible steps stop for human approval</p>
+          </div>
+        </div>
+        <div className="ssk-flow__box ssk-flow__box--loop">Every device action logged against the plan</div>
+      </div>
+      <ChipRow chips={["Model-agnostic", "MCP-compatible (Anthropic-stated)", "Research preview"]} />
+    </div>
+  );
+}
+
 const diagrams = {
   "qwen-moe": QwenMoeDiagram,
   "mai-thinking": MaiThinkingDiagram,
@@ -397,6 +423,7 @@ const diagrams = {
   "spade-loop": SpadeLoopDiagram,
   "biomarker-agents": BiomarkerAgentsDiagram,
   "agentic-search": AgenticSearchDiagram,
+  "mhs-bridge": MhsBridgeDiagram,
 } satisfies Record<CodedDiagramId, () => ReactElement>;
 
 export function CodedDiagram({ id, caption }: { id: CodedDiagramId; caption: string }) {
