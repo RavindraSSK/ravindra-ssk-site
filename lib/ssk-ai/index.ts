@@ -8,6 +8,7 @@ import { issueAugust08_2026 } from "./issue-2026-08-08";
 import { issueAugust12_2026 } from "./issue-2026-08-12";
 import { issueAugust22_2026 } from "./issue-2026-08-22";
 import { issueAugust29_2026 } from "./issue-2026-08-29";
+import { issueAugust2026Monthly } from "./issue-2026-08-31";
 import { buildMonthPlan } from "./schedule";
 import type { SskAiIssue, SskAiPublication, SskAiSection } from "./types";
 
@@ -61,6 +62,7 @@ const ISSUES: readonly SskAiIssue[] = [
   issueAugust12_2026,
   issueAugust22_2026,
   issueAugust29_2026,
+  issueAugust2026Monthly,
 ];
 
 export function getAllIssues(): readonly SskAiIssue[] {
