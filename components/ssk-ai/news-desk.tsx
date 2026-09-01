@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
+import { LinkedInSubscribe } from "@/components/ssk-ai/linkedin-subscribe";
 import { NewsroomCalendar } from "@/components/ssk-ai/newsroom-calendar";
 import { SskAiPoster } from "@/components/ssk-ai/poster";
 import { getIssuePath, isEditorialImageAvailable, SSK_AI_HUB, TECH_NEWS, type SskAiIssue } from "@/lib/ssk-ai";
@@ -164,6 +165,7 @@ export function TechNewsDesk({
             <p className="ssk-masthead__tagline">{TECH_NEWS.tagline}</p>
           </div>
           <p className="ssk-hub__intro">{TECH_NEWS.blurb}</p>
+          <LinkedInSubscribe />
         </div>
       </section>
 
