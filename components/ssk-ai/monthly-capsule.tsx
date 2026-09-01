@@ -1,6 +1,7 @@
 import Link from "next/link";
 
 import { AmieVisual } from "@/components/ssk-ai/amie-visual";
+import { LinkedInSubscribe } from "@/components/ssk-ai/linkedin-subscribe";
 import { getIssuePath, getIssuesByKind, SSK_AI_HUB, TECH_NEWS } from "@/lib/ssk-ai";
 import type { MonthlyCapsule, SskAiIssue } from "@/lib/ssk-ai/types";
 
@@ -153,6 +154,7 @@ export function MonthlyCapsulePage({ issue, monthly }: { issue: SskAiIssue; mont
                 </article>
               ))}
             </div>
+            <LinkedInSubscribe />
             <p className="ssk-back">
               <Link className="inline-link" href={TECH_NEWS.path}>
                 Back to the {TECH_NEWS.name} archive <span aria-hidden="true">→</span>
