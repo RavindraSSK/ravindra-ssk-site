@@ -109,6 +109,33 @@ export type SskAiIssuePoster = {
   theme: string;
 };
 
+/** One development card in a monthly capsule — deliberately lighter than a weekly story. */
+export type MonthlyDevelopment = {
+  name: string;
+  whatHappened: string;
+  whyItMatters: string;
+  /** One plain-English sentence understandable without an AI background. */
+  inSimpleWords: string;
+  /** Deep link into the weekly edition that carries the full analysis. */
+  read: { label: string; href: string };
+};
+
+/**
+ * The month-in-review page content. A monthly edition is a visual, plain-language
+ * recap of the month's weekly editions — the weeklies stay the technical record,
+ * and every claim here must trace back to one of them.
+ */
+export type MonthlyCapsule = {
+  /** Short intro paragraphs, plain language. */
+  intro: string[];
+  atAGlance: { value: string; label: string }[];
+  /** The one-page visual snapshot of the developments; decorative, content lives in HTML. */
+  capsule?: EditorialImageVisual;
+  developments: MonthlyDevelopment[];
+  bigPicture: { thesis: string; body: string };
+  watchlist: { theme: string; note: string }[];
+};
+
 /** Where an edition sits in the Tech News publishing calendar. */
 export type SskAiEdition = {
   kind: EditionKind;
@@ -134,17 +161,23 @@ export type SskAiIssue = {
   theme: string;
   /** Optional editorial hero image for the edition, shown under the masthead poster. */
   hero?: EditorialImageVisual;
-  opening: string[];
-  stories: SskAiStory[];
-  biggerPicture: {
+  /**
+   * Present on monthly editions only: the month-in-review capsule content. When set,
+   * the edition renders as the visual monthly recap instead of the weekly layout,
+   * and the weekly-deep fields below are not used.
+   */
+  monthly?: MonthlyCapsule;
+  opening?: string[];
+  stories?: SskAiStory[];
+  biggerPicture?: {
     heading: string;
     lede: string;
     sections: { title: string; body: string }[];
     watchNext: string;
   };
-  projectsIntro: string;
-  projects: ProjectConcept[];
-  featuredProject: {
+  projectsIntro?: string;
+  projects?: ProjectConcept[];
+  featuredProject?: {
     name: string;
     caption: string;
     /** Coded diagram drawn beside the featured project; defaults to "tiered-ops". */
@@ -152,8 +185,8 @@ export type SskAiIssue = {
     stages: FeaturedPipelineStage[];
   };
   poster: SskAiIssuePoster;
-  linkedInPost: string;
-  generalSourceNote: string;
+  linkedInPost?: string;
+  generalSourceNote?: string;
 };
 
 export type SskAiPublication = {

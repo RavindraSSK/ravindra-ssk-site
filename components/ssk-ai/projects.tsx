@@ -41,8 +41,9 @@ function ProjectCard({ project, featured }: { project: ProjectConcept; featured?
 }
 
 export function WhatWeCanBuild({ issue }: { issue: SskAiIssue }) {
-  const featured = issue.projects.find((project) => project.featured);
-  const rest = issue.projects.filter((project) => !project.featured);
+  const projects = issue.projects ?? [];
+  const featured = projects.find((project) => project.featured);
+  const rest = projects.filter((project) => !project.featured);
 
   return (
     <section className="ssk-build" aria-labelledby="ssk-build-title">
@@ -51,10 +52,10 @@ export function WhatWeCanBuild({ issue }: { issue: SskAiIssue }) {
         <h2 id="ssk-build-title" className="section-title">
           Three project concepts from this issue
         </h2>
-        <RichText text={`*${issue.projectsIntro}*`} className="section-copy" />
+        <RichText text={`*${issue.projectsIntro ?? ""}*`} className="section-copy" />
       </div>
 
-      {featured ? (
+      {featured && issue.featuredProject ? (
         <div className="ssk-build__featured">
           <ProjectCard project={featured} featured />
           <CodedDiagram id={issue.featuredProject.diagram ?? "tiered-ops"} caption={issue.featuredProject.caption} />

@@ -144,7 +144,7 @@ function buildDay(
     };
   }
 
-  const stories = edition.stories
+  const stories = (edition.stories ?? [])
     .filter((story) => story.date === date)
     .map((story) => ({ id: story.id, headline: story.headline, type: story.type }));
 

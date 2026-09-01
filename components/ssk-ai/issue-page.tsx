@@ -1,6 +1,7 @@
 import Link from "next/link";
 
 import { AmieVisual } from "@/components/ssk-ai/amie-visual";
+import { MonthlyCapsulePage } from "@/components/ssk-ai/monthly-capsule";
 import { SskAiPoster } from "@/components/ssk-ai/poster";
 import { WhatWeCanBuild } from "@/components/ssk-ai/projects";
 import { RichText, richText } from "@/components/ssk-ai/rich-text";
@@ -9,6 +10,15 @@ import { SSK_AI_HUB, TECH_NEWS } from "@/lib/ssk-ai";
 import type { SskAiIssue } from "@/lib/ssk-ai/types";
 
 export function SskAiIssuePage({ issue }: { issue: SskAiIssue }) {
+  // Monthly editions are visual recaps, not weekly deep dives — they render
+  // through their own layout while sharing the edition data model.
+  if (issue.monthly) {
+    return <MonthlyCapsulePage issue={issue} monthly={issue.monthly} />;
+  }
+
+  const opening = issue.opening ?? [];
+  const stories = issue.stories ?? [];
+
   return (
     <main id="main-content" className="page-shell ssk-page">
       <article>
@@ -38,7 +48,7 @@ export function SskAiIssuePage({ issue }: { issue: SskAiIssue }) {
             ) : null}
             <nav className="ssk-toc" aria-label="Stories in this issue">
               <ol>
-                {issue.stories.map((story) => (
+                {stories.map((story) => (
                   <li key={story.id}>
                     <a href={`#${story.id}`}>
                       <span aria-hidden="true">{String(story.rank).padStart(2, "0")}</span>
@@ -53,13 +63,13 @@ export function SskAiIssuePage({ issue }: { issue: SskAiIssue }) {
 
         <section className="section section--tight" aria-label="Opening">
           <div className="container ssk-measure">
-            {issue.opening.map((paragraph) => (
+            {opening.map((paragraph) => (
               <RichText key={paragraph.slice(0, 40)} className="ssk-lede" text={paragraph} />
             ))}
           </div>
         </section>
 
-        {issue.stories.map((story) => (
+        {stories.map((story) => (
           <div className="section section--tight" key={story.id}>
             <div className="container">
               <StorySection story={story} />
@@ -67,6 +77,7 @@ export function SskAiIssuePage({ issue }: { issue: SskAiIssue }) {
           </div>
         ))}
 
+        {issue.biggerPicture ? (
         <section className="section" aria-labelledby="ssk-bigger-picture">
           <div className="container ssk-measure">
             <span className="eyebrow">Bigger picture</span>
@@ -85,6 +96,7 @@ export function SskAiIssuePage({ issue }: { issue: SskAiIssue }) {
             <p className="ssk-prose ssk-watch-next">{issue.biggerPicture.watchNext}</p>
           </div>
         </section>
+        ) : null}
 
         <section className="section section--tight">
           <div className="container">
@@ -98,14 +110,14 @@ export function SskAiIssuePage({ issue }: { issue: SskAiIssue }) {
               Sources &amp; Verification
             </h2>
             <div className="ssk-sources">
-              {issue.stories.map((story) => (
+              {stories.map((story) => (
                 <details className="ssk-source" key={story.id}>
                   <summary>{story.source.heading}</summary>
                   <p>{richText(story.source.body)}</p>
                   <SourceLinks links={story.source.links} />
                 </details>
               ))}
-              <p className="ssk-prose">{issue.generalSourceNote}</p>
+              {issue.generalSourceNote ? <p className="ssk-prose">{issue.generalSourceNote}</p> : null}
             </div>
             <p className="ssk-back">
               <Link className="inline-link" href={TECH_NEWS.path}>

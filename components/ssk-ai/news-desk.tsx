@@ -50,7 +50,9 @@ export function EditionCard({ issue, featured = false }: { issue: SskAiIssue; fe
       <p className="ssk-edition__byline">
         Published <time dateTime={issue.datePublished}>{formatLongDate(issue.datePublished)}</time>
         <span aria-hidden="true"> · </span>
-        {issue.stories.length} {issue.stories.length === 1 ? "story" : "stories"}
+        {issue.monthly
+          ? `${issue.monthly.developments.length} developments`
+          : `${(issue.stories ?? []).length} ${(issue.stories ?? []).length === 1 ? "story" : "stories"}`}
       </p>
       <Link className={featured ? "button button--primary" : "inline-link"} href={href}>
         <span>Read this edition</span>

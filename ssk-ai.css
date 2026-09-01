@@ -830,6 +830,150 @@
   margin: 0 0 0.9rem;
 }
 
+/* --------------------------------------------------------- monthly capsule */
+
+.ssk-glance {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.9rem;
+  margin: 1.6rem 0 0.3rem;
+  padding: 0;
+  list-style: none;
+}
+
+.ssk-glance li {
+  display: grid;
+  gap: 0.15rem;
+  padding: 1rem 0.9rem;
+  border: 1px solid var(--ambient-line);
+  border-radius: 16px;
+  background: var(--ambient-surface);
+  text-align: center;
+}
+
+.ssk-glance strong {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 3vw, 2.2rem);
+  font-weight: 800;
+  color: var(--color-primary);
+}
+
+.ssk-glance span {
+  color: var(--color-text-muted);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.ssk-mdev-grid {
+  margin: 1.6rem 0 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 1.1rem;
+}
+
+@media (min-width: 780px) {
+  .ssk-mdev-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.ssk-mdev {
+  display: grid;
+  gap: 0.55rem;
+  align-content: start;
+  padding: 1.4rem 1.5rem 1.5rem;
+}
+
+.ssk-mdev__num {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  color: var(--color-primary);
+}
+
+.ssk-mdev__name {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.ssk-mdev__label {
+  margin: 0.4rem 0 0;
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--color-text-faint);
+}
+
+.ssk-mdev__body {
+  margin: 0;
+  line-height: 1.6;
+  color: var(--color-text);
+}
+
+.ssk-mdev__simple {
+  display: grid;
+  gap: 0.25rem;
+  margin: 0.5rem 0 0;
+  padding: 0.85rem 1rem;
+  border: 1px solid var(--ambient-line);
+  border-radius: 12px;
+  background: var(--ambient-editorial);
+  font-weight: 600;
+  line-height: 1.55;
+}
+
+.ssk-mdev__simple .ssk-mdev__label {
+  margin: 0;
+}
+
+.ssk-mdev__read {
+  margin: 0.5rem 0 0;
+}
+
+.ssk-mweek {
+  display: grid;
+  gap: 0.6rem;
+  align-content: start;
+}
+
+.ssk-mweek__rule {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin: 0;
+}
+
+.ssk-mweek__title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+}
+
+.ssk-mweek__title a {
+  color: var(--color-text);
+  text-decoration: none;
+}
+
+.ssk-mweek__title a:hover,
+.ssk-mweek__title a:focus-visible {
+  color: var(--color-primary);
+}
+
 .ssk-bigger-lede {
   font-family: var(--font-display);
   font-size: clamp(1.2rem, 2.4vw, 1.55rem);
