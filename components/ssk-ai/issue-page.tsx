@@ -1,6 +1,7 @@
 import Link from "next/link";
 
 import { AmieVisual } from "@/components/ssk-ai/amie-visual";
+import { LinkedInSubscribe } from "@/components/ssk-ai/linkedin-subscribe";
 import { MonthlyCapsulePage } from "@/components/ssk-ai/monthly-capsule";
 import { SskAiPoster } from "@/components/ssk-ai/poster";
 import { WhatWeCanBuild } from "@/components/ssk-ai/projects";
@@ -119,6 +120,7 @@ export function SskAiIssuePage({ issue }: { issue: SskAiIssue }) {
               ))}
               {issue.generalSourceNote ? <p className="ssk-prose">{issue.generalSourceNote}</p> : null}
             </div>
+            <LinkedInSubscribe />
             <p className="ssk-back">
               <Link className="inline-link" href={TECH_NEWS.path}>
                 Back to the {TECH_NEWS.name} archive <span aria-hidden="true">→</span>
