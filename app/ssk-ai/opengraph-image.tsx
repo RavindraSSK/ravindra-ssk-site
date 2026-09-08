@@ -6,8 +6,15 @@ export const alt = `${SSK_AI_HUB.name} — ${SSK_AI_HUB.tagline}`;
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
+/** The 1200×630 frame fits about seven headline rows under the title block. */
+const MAX_HEADLINES = 7;
+
 export default async function SskAiOpenGraphImage() {
   const latest = getLatestIssue();
+  // An edition can carry more stories than the card has room for; list the first
+  // rows and say how many more it holds rather than overflowing the frame.
+  const headlines = latest.poster.headlines.slice(0, MAX_HEADLINES);
+  const remaining = latest.poster.headlines.length - headlines.length;
 
   return new ImageResponse(
     (
@@ -33,12 +40,18 @@ export default async function SskAiOpenGraphImage() {
           <div style={{ fontSize: 26, color: "#52627a", lineHeight: 1.35 }}>{latest.theme}</div>
         </div>
         <div style={{ display: "flex", flexDirection: "column", gap: 10, fontSize: 22, color: "#1b2d5f" }}>
-          {latest.poster.headlines.map((headline, index) => (
+          {headlines.map((headline, index) => (
             <div key={headline} style={{ display: "flex", gap: 12 }}>
               <span>{String(index + 1).padStart(2, "0")}</span>
               <span>{headline}</span>
             </div>
           ))}
+          {remaining > 0 ? (
+            <div style={{ display: "flex", gap: 12, color: "#52627a" }}>
+              <span>+{remaining}</span>
+              <span>more {remaining === 1 ? "story" : "stories"} in this edition</span>
+            </div>
+          ) : null}
         </div>
       </div>
     ),

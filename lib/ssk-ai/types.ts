@@ -100,6 +100,32 @@ export type SocialImage = {
   alt: string;
 };
 
+/** A dated follow-up inside a story — an availability or policy update to the development it leads with. */
+export type StoryUpdate = {
+  heading: string;
+  body: StoryCopy;
+};
+
+/** A small data table inside "What happened?"; the first cell of each row is a row header. */
+export type StoryTable = {
+  columns: string[];
+  rows: string[][];
+  caption: string;
+};
+
+/**
+ * A focused brief: a narrower development covered in a few paragraphs rather than a
+ * full story. It has its own anchor so the reading list and calendar can point at it.
+ */
+export type EditionBrief = {
+  id: string;
+  /** "September 3" — the date as the edition states it. */
+  date: string;
+  title: string;
+  body: string[];
+  source?: StorySource;
+};
+
 export type SskAiStory = {
   rank: number;
   id: string;
@@ -115,10 +141,15 @@ export type SskAiStory = {
   posterHeadline: string;
   status: string;
   type: string;
-  buildability: string;
+  /** Optional: a story without a buildability judgement shows no buildability badge. */
+  buildability?: string;
   buildabilityNote?: string;
   audienceTags: string[];
   whatHappened: string[];
+  /** Optional table rendered after the "What happened?" paragraphs. */
+  whatHappenedTable?: StoryTable;
+  /** Dated follow-ups rendered after "What happened?" and before the analysis. */
+  updates?: StoryUpdate[];
   /** Optional: an edition whose analysis lives under "Why it matters" leaves this out. */
   whatsActuallyNew?: string[];
   whyItMatters: StoryCopy;
@@ -201,6 +232,12 @@ export type SskAiIssue = {
   slug: string;
   edition: SskAiEdition;
   datePublished: string;
+  /**
+   * ISO 8601 date-time of the last substantive update to a published edition, for
+   * `article:modified_time`, JSON-LD `dateModified` and the sitemap. Leave unset until
+   * an edition is actually revised after publication; never backdate `datePublished`.
+   */
+  dateModified?: string;
   dateLabel: string;
   cardTitle: string;
   title: string;
@@ -217,6 +254,8 @@ export type SskAiIssue = {
   storyLabels?: Partial<StoryBlockLabels>;
   /** Where story images sit; defaults to "aside". */
   visualPlacement?: StoryVisualPlacement;
+  /** Optional focused briefs, rendered after the stories and before the bigger picture. */
+  briefs?: { heading: string; items: EditionBrief[] };
   /**
    * Present on monthly editions only: the month-in-review capsule content. When set,
    * the edition renders as the visual monthly recap instead of the weekly layout,

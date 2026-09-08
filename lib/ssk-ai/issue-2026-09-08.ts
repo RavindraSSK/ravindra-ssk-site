@@ -3,22 +3,29 @@ import type { SskAiIssue } from "./types";
 /**
  * Approved editorial source: SSK AI Hub weekly edition of September 8, 2026,
  * covering September 1–7, 2026 — September's Week 1, the month's first weekly
- * edition and not its month-end recap. Transcribed from the revision-2
- * editorial package; do not rewrite copy or add claims beyond this object.
+ * edition and not its month-end recap. Published from the revision-2 editorial
+ * package and revised the same day from revision 4, which reviews the whole
+ * September 1–7 window without a fixed story count: thirteen main stories, two
+ * focused briefs and dated availability updates inside stories 1–3. Do not
+ * rewrite copy or add claims beyond this object.
  *
  * Every factual qualifier travels with its claim: model-and-harness benchmark
- * conditions; generally available versus restricted models and staged access;
- * introductory-pricing end dates and workload-dependent savings; an announced
- * acquisition agreement versus a completed closing; beta software versus
- * October hardware plans; variable-specific forecast resolution; and
- * vendor-reported results versus independent testing. Every example workflow
- * is a proposal, not a documented customer deployment.
+ * conditions; generally available versus restricted models and staged account
+ * access; Fable retention conditions in Copilot; introductory-pricing end dates
+ * and workload-dependent savings; an announced acquisition agreement versus a
+ * completed closing; beta software versus October hardware plans;
+ * variable-specific forecast resolution; WebGPU preview status; optional memory
+ * synchronization; administrator-controlled approvals and an October 2 model
+ * retirement date; internal research measurements and an attributed essay;
+ * planned (not operational) TCS capacity; and a UN speech that is a policy
+ * appeal, not a regulation. Every example workflow is a proposal, not a
+ * documented customer deployment.
  *
- * Editorial images are the package's eight native 1672×941 PNGs in
+ * Editorial images are the package's fourteen native 1672×941 PNGs in
  * /public/ssk-ai/2026-09-08/ — original AI-generated editorial illustrations,
- * not official product assets — and next/image serves the responsive
- * derivatives. The share card is a padded, uncropped 1200×630 derivative of
- * the cover made with scripts/make-social-card.mjs.
+ * not official product assets or screenshots — and next/image serves the
+ * responsive derivatives. The share card is a padded, uncropped 1200×630
+ * derivative of the cover made with scripts/make-social-card.mjs.
  */
 export const issueSeptember08_2026: SskAiIssue = {
   slug: "ai-technology-updates-september-8-2026",
@@ -34,30 +41,32 @@ export const issueSeptember08_2026: SskAiIssue = {
   },
   // Coverage window and publication date are separate: the stories run
   // September 1–7 and the edition was prepared and published on September 8.
+  // dateModified records the revision-4 expansion; datePublished is unchanged.
   datePublished: "2026-09-08",
+  dateModified: "2026-09-08T06:25:12Z",
   dateLabel: "September 8, 2026",
   cardTitle: "SSK AI: AI Takes On More of the Work",
   title: "SSK AI — What Changed in AI & What You Can Build | September 8, 2026",
-  seoTitle: "AI News September 1–7, 2026: Astra, Claude & Gemini | SSK AI",
+  seoTitle: "AI News September 1–7, 2026: Models, Tools & Research | SSK AI",
   seoDescription:
-    "Seven AI developments from September 1–7, 2026: frontier agents, video understanding, open models, local inference and weather AI, with practical takeaways.",
+    "Important AI news from September 1–7, 2026: models, coding tools, local AI, research, infrastructure and safeguards, with practical examples and sources.",
   theme:
     "AI takes on more of the work — and capability needs to be judged together with access, evidence, operating cost and the quality of the finished result.",
   hero: {
     kind: "editorial-image",
-    src: "/ssk-ai/2026-09-08/00-cover-website-linkedin-v2.png",
+    src: "/ssk-ai/2026-09-08/00-cover-website-linkedin-v4.png",
     width: 1672,
     height: 941,
-    alt: "SSK AI Hub September 1–7, 2026 cover showing GPT-6 Astra, Claude Fable and Mythos 5.1, Gemini 3.8 Flash, agentic video, NVIDIA and Hugging Face, PAIR, and WeatherNext 3.",
-    caption: "This week in AI: seven developments from September 1–7, 2026.",
+    alt: "SSK AI Hub September 1–7, 2026 Week 1 cover in the established white, navy and blue style, with the SSK monogram and selected named news previews.",
+    caption: "SSK AI Hub — AI Tech Briefing: September 1–7, 2026, Week 1. Key AI Developments.",
     description:
-      "Original SSK AI Hub editorial cover for the September 1–7, 2026 edition, previewing all seven stories — an AI-generated illustration, not an official product asset.",
+      "Original SSK AI Hub editorial cover for the September 1–7, 2026 edition in the publication's white, navy and blue style — selected news previews, not a complete story inventory.",
   },
   socialImage: {
-    src: "/ssk-ai/2026-09-08/00-cover-social-1200x630.png",
+    src: "/ssk-ai/2026-09-08/00-cover-social-1200x630-v4.png",
     width: 1200,
     height: 630,
-    alt: "SSK AI Hub September 1–7, 2026 cover showing GPT-6 Astra, Claude Fable and Mythos 5.1, Gemini 3.8 Flash, agentic video, NVIDIA and Hugging Face, PAIR, and WeatherNext 3.",
+    alt: "SSK AI Hub September 1–7, 2026 Week 1 cover in the established white, navy and blue style, with the SSK monogram and selected named news previews.",
   },
   visualPlacement: "lead",
   storyLabels: {
@@ -66,7 +75,7 @@ export const issueSeptember08_2026: SskAiIssue = {
   },
   opening: [
     "The useful question for this week's AI releases is how much of a workflow we can sensibly delegate. A strong answer in a chat window is one milestone. Completing a task across files, applications, repeated decisions and changing instructions is a different engineering challenge.",
-    "This edition follows seven developments through that lens. The first three concern frontier models and the economics of running them. The next three examine video analysis, open-model infrastructure and execution on personal computers. The final story brings the same question into weather forecasting: how does improved intelligence become useful in an everyday decision?",
+    "This edition follows the important developments across the full September 1–7 window. Alongside frontier models, video, local inference and forecasting, it examines Meta's coding model, open developer tools, Copilot controls, research practice and AI infrastructure. Shorter briefs cover multimodal retrieval and the week's policy discussion. Selection follows significance and evidence, without a fixed number of stories or a quota for each day.",
     "Our editorial view is that **capability needs to be judged together with access, evidence, operating cost and the quality of the finished result**. The sections below distinguish reported facts from SSK AI Hub's analysis. All example workflows are illustrative proposals, not claims that a customer has deployed them. Images are original AI-generated editorial illustrations created for SSK AI Hub. Company and product names identify the subjects of coverage; the artwork is illustrative rather than an official product screenshot or a measured technical diagram.",
   ],
   readingList: [
@@ -112,6 +121,54 @@ export const issueSeptember08_2026: SskAiIssue = {
       announced: "September 3",
       question: "Can fresh observations improve operational decisions?",
     },
+    {
+      storyId: "meta-muse-spark-1-3",
+      development: "Meta Muse Spark 1.3",
+      announced: "September 2",
+      question: "Does a long session preserve the user's requirements?",
+    },
+    {
+      storyId: "hugging-face-webgpu-kernels",
+      development: "Hugging Face WebGPU kernels",
+      announced: "September 1",
+      question: "Is browser-local execution useful on real devices?",
+    },
+    {
+      storyId: "hugging-face-funes",
+      development: "Hugging Face funes",
+      announced: "September 3",
+      question: "Can an agent retrieve the source of an earlier decision?",
+    },
+    {
+      storyId: "github-copilot-workflow-changes",
+      development: "GitHub Copilot workflow changes",
+      announced: "September 1–3",
+      question: "What changes in review, context and model configuration?",
+    },
+    {
+      storyId: "openai-research-oversight",
+      development: "OpenAI research and oversight",
+      announced: "September 6",
+      question: "How do teams verify an expanding experiment workload?",
+    },
+    {
+      storyId: "tcs-hypervault-campus",
+      development: "TCS HyperVault campus plan",
+      announced: "September 5",
+      question: "When can planned infrastructure become usable capacity?",
+    },
+    {
+      storyId: "neomme",
+      development: "Brief: H Company's NeoMME",
+      announced: "September 3",
+      question: "Can image-and-text retrieval improve document evidence?",
+    },
+    {
+      storyId: "un-ai-safeguards-appeal",
+      development: "Brief: UN AI safeguards appeal",
+      announced: "September 7",
+      question: "Which safeguards are being proposed?",
+    },
   ],
   stories: [
     {
@@ -129,6 +186,15 @@ export const issueSeptember08_2026: SskAiIssue = {
         "OpenAI introduced **GPT-6 Astra** on September 3, emphasizing computer use, coding and professional tasks. Its announcement describes creating documents, spreadsheets and presentations, alongside improvements to the Codex harness. Access began with a limited set of organizations; wider availability was announced as a rollout rather than universal day-one access. [OpenAI launch announcement](https://openai.com/index/gpt-6-astra/), [OpenAI release index](https://openai.com/research/index/release/).",
         "One useful measurement needs its conditions attached: OpenAI reports **1.9× faster task completion on Mind2Web for Astra combined with the updated Codex harness**, compared with its existing Sol experience. That is a model-and-harness benchmark result, not a promise for every workflow. [OpenAI launch announcement](https://openai.com/index/gpt-6-astra/).",
         "The system card also reports improved alignment alongside unresolved monitoring limitations under adversarial testing. It classifies Astra at OpenAI's Critical cybersecurity capability threshold. Those are the developer's assessments within its evaluation framework. [GPT-6 Astra system card](https://deploymentsafety.openai.com/gpt-6-astra).",
+      ],
+      updates: [
+        {
+          heading: "September 4 — more places to access Astra",
+          body: [
+            "GitHub announced GPT-6 Astra availability in Copilot on September 4, with a gradual rollout to eligible Pro+, Max, Business and Enterprise accounts. Organization policies can still affect access. [GitHub availability notice](https://github.blog/changelog/2026-09-04-gpt-6-astra-is-generally-available-in-github-copilot/).",
+            "Databricks also lists September 4 availability through Unity AI Gateway's pay-per-token Foundation Model APIs. These are distribution updates to the September 3 launch, not separate model releases. [Microsoft's Databricks release notes](https://learn.microsoft.com/en-us/azure/databricks/release-notes/unity-gateway/).",
+          ],
+        },
       ],
       whyItMatters: [
         "For a product team, the evaluation unit should be a completed job. Consider a report that looks polished but contains an incorrect total, or an application that compiles but fails its main interaction. Output quality includes both the visible artifact and the evidence that its important requirements were met.",
@@ -172,11 +238,19 @@ export const issueSeptember08_2026: SskAiIssue = {
       },
       source: {
         heading: "Story 1 — OpenAI GPT-6 Astra",
-        body: "Primary sources: OpenAI's launch announcement, its release index (which supplies the September 3 date) and the GPT-6 Astra system card. The **1.9× Mind2Web** figure is **OpenAI-reported** for Astra combined with the updated Codex harness against its existing Sol experience — a model-and-harness benchmark result, not a promise for every workflow. The alignment findings, monitoring limitations and Critical cybersecurity classification are **OpenAI's own assessments** within its evaluation framework. Access began with a limited set of organizations and was announced as a staged rollout; product access can vary by account and surface, and this edition does not offer a plan-by-plan eligibility guide.",
+        body: "Primary sources: OpenAI's launch announcement, its release index (which supplies the September 3 date) and the GPT-6 Astra system card. The **1.9× Mind2Web** figure is **OpenAI-reported** for Astra combined with the updated Codex harness against its existing Sol experience — a model-and-harness benchmark result, not a promise for every workflow. The alignment findings, monitoring limitations and Critical cybersecurity classification are **OpenAI's own assessments** within its evaluation framework. Access began with a limited set of organizations and was announced as a staged rollout; GitHub's September 4 Copilot notice and Microsoft's Databricks Unity AI Gateway release notes are **distribution updates** to that launch, not separate model releases, and organization policies can still affect access. Product access can vary by account and surface; this edition does not offer a plan-by-plan eligibility guide.",
         links: [
           { label: "OpenAI: GPT-6 Astra launch announcement", href: "https://openai.com/index/gpt-6-astra/" },
           { label: "OpenAI: release index", href: "https://openai.com/research/index/release/" },
           { label: "OpenAI: GPT-6 Astra system card", href: "https://deploymentsafety.openai.com/gpt-6-astra" },
+          {
+            label: "GitHub changelog: GPT-6 Astra in GitHub Copilot (September 4)",
+            href: "https://github.blog/changelog/2026-09-04-gpt-6-astra-is-generally-available-in-github-copilot/",
+          },
+          {
+            label: "Microsoft: Databricks Unity AI Gateway release notes",
+            href: "https://learn.microsoft.com/en-us/azure/databricks/release-notes/unity-gateway/",
+          },
         ],
       },
     },
@@ -195,6 +269,12 @@ export const issueSeptember08_2026: SskAiIssue = {
         "Anthropic's September 1 announcement introduced **Claude Fable 5.1 and Claude Mythos 5.1**. The company describes them as the **same model with different safeguards**: Fable is generally available, while Mythos is limited to trusted access programs. [Anthropic newsroom](https://www.anthropic.com/news), [model announcement](https://www.anthropic.com/claude-fable-and-mythos-5-1).",
         "Fable's published cache-read price is **$0.25 per million tokens**, down 75%; ordinary input and output prices remain $10 and $50 per million tokens. Anthropic estimates roughly 25% lower cost for typical workloads and up to about 45% for highly agentic workloads. Those estimates depend on the workload's use of cached context. [Model announcement](https://www.anthropic.com/claude-fable-and-mythos-5-1).",
         "Anthropic also announced Enterprise Frontier Safeguards, with a phased rollout starting later in the fall. The announcement should not be read as evidence that every enterprise already has that system. [Model announcement](https://www.anthropic.com/claude-fable-and-mythos-5-1).",
+      ],
+      updates: [
+        {
+          heading: "September 1 — Copilot access has a policy consideration",
+          body: "GitHub also announced Fable 5.1 for eligible Copilot plans. For Business and Enterprise, its policy is off by default. GitHub describes default Anthropic retention for safety classification, without training use, and a time-limited zero-data-retention exception for eligible enterprises through the end of 2026. Access and retention settings need separate checks; do not assume universal zero retention. [GitHub's Fable access and retention notice](https://github.blog/changelog/2026-09-01-claude-fable-5-1-generally-available-in-github-copilot/).",
+        },
       ],
       whyItMatters: [
         "An agent may revisit the same repository instructions, tool definitions and project context many times. In that setting, the composition of the token bill matters. A price change on the part of the workload you repeatedly reuse can have a different effect from a price change on newly generated answers.",
@@ -238,10 +318,14 @@ export const issueSeptember08_2026: SskAiIssue = {
       },
       source: {
         heading: "Story 2 — Anthropic Claude Fable 5.1 and Mythos 5.1",
-        body: "Primary sources: Anthropic's model announcement and its newsroom, which supplies the September 1 date (the product page itself shows only September 2026). \"Same model with different safeguards\" is **Anthropic's description**; Fable is generally available while Mythos is limited to trusted access programs. Prices are Anthropic's published figures, and the roughly 25% and up-to-about-45% savings are **Anthropic's estimates** that depend on the workload's use of cached context. Enterprise Frontier Safeguards was announced with a phased rollout starting later in the fall — not evidence that every enterprise already has it.",
+        body: "Primary sources: Anthropic's model announcement and its newsroom, which supplies the September 1 date (the product page itself shows only September 2026). \"Same model with different safeguards\" is **Anthropic's description**; Fable is generally available while Mythos is limited to trusted access programs. Prices are Anthropic's published figures, and the roughly 25% and up-to-about-45% savings are **Anthropic's estimates** that depend on the workload's use of cached context. Enterprise Frontier Safeguards was announced with a phased rollout starting later in the fall — not evidence that every enterprise already has it. GitHub's September 1 Copilot notice: for Business and Enterprise the Fable policy is **off by default**; GitHub describes default Anthropic retention for safety classification without training use, and a **time-limited zero-data-retention exception** for eligible enterprises through the end of 2026 — access and retention settings need separate checks, and universal zero retention should not be assumed.",
         links: [
           { label: "Anthropic: Claude Fable 5.1 and Mythos 5.1 announcement", href: "https://www.anthropic.com/claude-fable-and-mythos-5-1" },
           { label: "Anthropic: newsroom", href: "https://www.anthropic.com/news" },
+          {
+            label: "GitHub changelog: Claude Fable 5.1 in GitHub Copilot — access and retention (September 1)",
+            href: "https://github.blog/changelog/2026-09-01-claude-fable-5-1-generally-available-in-github-copilot/",
+          },
         ],
       },
     },
@@ -259,6 +343,12 @@ export const issueSeptember08_2026: SskAiIssue = {
       whatHappened: [
         "On September 2, Google introduced **Gemini 3.8 Flash and 3.8 Flash Cyber**. Flash targets coding and agent tasks; Cyber is offered to trusted defenders through the **Fairwind Program**. [Google announcement](https://blog.google/innovation-and-ai/models-and-research/gemini-models/3-8-flash-and-3-8-flash-cyber/).",
         "Google lists an introductory Flash price of **$0.75 per million input tokens and $3.75 per million output tokens**, matching 3.7 Flash. The stated introductory period ends December 31, 2026; the announcement lists $1.50 and $7.50 from January 1, 2027. It also says 3.8 may use more reasoning steps, tool calls and tokens on difficult tasks, particularly at higher effort. [Google announcement](https://blog.google/innovation-and-ai/models-and-research/gemini-models/3-8-flash-and-3-8-flash-cyber/).",
+      ],
+      updates: [
+        {
+          heading: "September 3 — Copilot rollout",
+          body: "GitHub announced Gemini 3.8 Flash availability in Copilot on September 3, with rollout across eligible individual and organizational plans. Account availability and organization policy still apply. [GitHub availability notice](https://github.blog/changelog/2026-09-03-gemini-3-8-flash-is-now-available-in-github-copilot/).",
+        },
       ],
       whyItMatters: [
         "Token price is a unit price, not a project budget. A model that retries less may justify a longer initial attempt. A model that reasons extensively on routine work may increase cost without improving the accepted result. Both possibilities need measurement.",
@@ -302,11 +392,15 @@ export const issueSeptember08_2026: SskAiIssue = {
       },
       source: {
         heading: "Story 3 — Google Gemini 3.8 Flash and 3.8 Flash Cyber",
-        body: "Primary source: Google's announcement. The introductory price ($0.75 and $3.75 per million input and output tokens, matching 3.7 Flash) is stated to end **December 31, 2026**, with $1.50 and $7.50 listed from January 1, 2027 — a temporary price, not a permanent budget line. The note that 3.8 may use more reasoning steps, tool calls and tokens on difficult tasks, particularly at higher effort, is **Google's own statement**. Flash Cyber is restricted to trusted defenders through the Fairwind Program.",
+        body: "Primary source: Google's announcement. The introductory price ($0.75 and $3.75 per million input and output tokens, matching 3.7 Flash) is stated to end **December 31, 2026**, with $1.50 and $7.50 listed from January 1, 2027 — a temporary price, not a permanent budget line. The note that 3.8 may use more reasoning steps, tool calls and tokens on difficult tasks, particularly at higher effort, is **Google's own statement**. Flash Cyber is restricted to trusted defenders through the Fairwind Program. GitHub's September 3 Copilot notice describes a rollout across eligible individual and organizational plans; account availability and organization policy still apply.",
         links: [
           {
             label: "Google: Gemini 3.8 Flash and 3.8 Flash Cyber",
             href: "https://blog.google/innovation-and-ai/models-and-research/gemini-models/3-8-flash-and-3-8-flash-cyber/",
+          },
+          {
+            label: "GitHub changelog: Gemini 3.8 Flash in GitHub Copilot (September 3)",
+            href: "https://github.blog/changelog/2026-09-03-gemini-3-8-flash-is-now-available-in-github-copilot/",
           },
         ],
       },
@@ -572,7 +666,436 @@ export const issueSeptember08_2026: SskAiIssue = {
         ],
       },
     },
+    {
+      rank: 8,
+      id: "meta-muse-spark-1-3",
+      date: "2026-09-02",
+      headline: "Meta Muse Spark 1.3: keep the requirement alive across a long task",
+      posterHeadline: "Muse Spark 1.3: keep the requirement alive across a long task",
+      status: "Released in Muse Code and Meta Model API",
+      type: "Coding and agent model",
+      audienceTags: ["Coding-Agent Developers", "Engineering Leads", "API Developers", "Evaluation Teams"],
+      whatHappened: [
+        "Meta released **Muse Spark 1.3**, including max reasoning access through Muse Code and Meta Model API. Meta emphasizes longer tasks, collaboration and retaining instructions through interruptions. Its efficiency comparisons are internal evaluations. The announcement describes an open-weights release as future work, so this launch should not be presented as an open-weights release. [Meta announcement](https://research.meta.ai/blog/introducing-muse-spark-1-3).",
+      ],
+      whyItMatters: [
+        "A coding assistant can finish a technically difficult change and still miss the user's actual goal. Perhaps it fixes a search feature but changes the URL format that existing links depend on. Perhaps it answers a follow-up and forgets the original task. These failures are worth measuring alongside whether the final code compiles.",
+        "The useful evaluation unit is a complete work session: initial instructions, corrections, interruptions and the final deliverable. A short benchmark prompt may not expose the same mistakes.",
+      ],
+      applications: [
+        {
+          text: "Longer coding tasks, collaboration and retaining instructions through interruptions, with max reasoning access through Muse Code and the Meta Model API",
+          kind: "demonstrated",
+          attribution: "Meta's announcement; efficiency comparisons are Meta's internal evaluations",
+        },
+        {
+          text: "A small website change with two standing requirements — preserve existing routes and keep the current logo — interrupted by an unrelated question before the task resumes — a proposed workflow, not a documented deployment",
+          kind: "potential",
+        },
+        {
+          text: "Model comparisons on the same starting repository and acceptance checklist, recording repair time, dropped requirements and unnecessary file changes",
+          kind: "potential",
+        },
+      ],
+      realWorldExample: [
+        "Give an agent a small website change with two requirements: preserve existing routes and keep the current logo. During implementation, ask it a separate question about one component, then return to the original task. Review whether the final diff still respects both requirements and whether the agent reports unfinished work honestly.",
+        "Compare models using the same starting repository and acceptance checklist. Record repair time, dropped requirements and unnecessary file changes. A fast first draft is less useful when the maintainer must reconstruct the original brief afterward.",
+      ],
+      developerTakeaway:
+        "Keep a short, explicit list of acceptance criteria outside the conversation summary. Verify it against the finished change. Treat continuity as a behavior to test, not a guarantee inferred from a model name.",
+      beforeChangeResult: {
+        before: "A short benchmark prompt as the unit of evaluation",
+        change: "Muse Spark 1.3 released in Muse Code and the Meta Model API, emphasizing longer tasks and retained instructions — with open weights described as future work",
+        result: "The evaluation unit becomes a complete work session: instructions, corrections, interruptions and the final deliverable",
+      },
+      visual: {
+        kind: "editorial-image",
+        src: "/ssk-ai/2026-09-08/08-meta-muse-spark-v1.png",
+        width: 1672,
+        height: 941,
+        alt: "Meta Muse Spark 1.3 editorial illustration with a coding laptop, task cards and a pinned requirement.",
+        caption: "SSK AI Hub editorial illustration: maintaining requirements during coding work. The interface is conceptual.",
+        description:
+          "Original SSK AI Hub editorial illustration for the Muse Spark 1.3 story — a conceptual interface, not a product screenshot.",
+      },
+      source: {
+        heading: "Story 8 — Meta Muse Spark 1.3",
+        body: "Primary source: Meta's announcement. Availability is through Muse Code and the Meta Model API, including max reasoning access. The efficiency comparisons are **Meta's internal evaluations**. The announcement describes an open-weights release as **future work**; this launch is not an open-weights release.",
+        links: [
+          { label: "Meta: introducing Muse Spark 1.3", href: "https://research.meta.ai/blog/introducing-muse-spark-1-3" },
+        ],
+      },
+    },
+    {
+      rank: 9,
+      id: "hugging-face-webgpu-kernels",
+      date: "2026-09-01",
+      headline: "Hugging Face WebGPU kernels: browser AI needs an execution layer",
+      posterHeadline: "WebGPU kernels: browser AI needs an execution layer",
+      status: "Preview",
+      type: "Open developer infrastructure",
+      audienceTags: ["Web Developers", "Local & Edge AI", "Open-Source AI", "Product Teams"],
+      whatHappened: [
+        "Hugging Face introduced a preview of **WebGPU kernels**, with a JavaScript loader and versioned compute kernels on the Hub. Its Fleet tooling tests performance across devices. The published comparisons measure GPU operations; they are not end-to-end application speedups. Browser, operating-system and GPU support still affect whether a workload can run. [Hugging Face announcement](https://huggingface.co/blog/webgpu-kernels).",
+      ],
+      whyItMatters: [
+        "Moving a model into a browser changes the engineering problem. Download size, initialization, memory limits and the user's hardware become part of the experience. A fast computation in isolation can still produce an application that feels slow on its first use.",
+        "Reusable low-level operations can reduce duplicated optimization work. The product question remains whether the complete local workflow is responsive and useful on the devices readers actually own.",
+      ],
+      applications: [
+        {
+          text: "A JavaScript loader and versioned compute kernels on the Hub, with Fleet tooling that tests performance across devices",
+          kind: "demonstrated",
+          attribution: "Hugging Face's announcement; a preview whose published comparisons measure GPU operations, not end-to-end application speedups",
+        },
+        {
+          text: "A small local document-labeling tool with a supported browser model, measured from opening the page to the first result on an older integrated-GPU laptop and a newer machine — a proposed workflow, not a documented deployment",
+          kind: "potential",
+        },
+        {
+          text: "An honest unsupported-device state, and a visible server option chosen before any documents are uploaded",
+          kind: "potential",
+        },
+      ],
+      realWorldExample: [
+        "Prototype a small local document-labeling tool with a supported browser model. Measure the time from opening the page to the first completed result, then measure later requests separately. Include one older integrated-GPU laptop as well as a newer machine.",
+        "Offer an honest unsupported-device state. If you provide a server option, make that a visible choice before uploading documents. Compare the whole experience, including model download and memory pressure, rather than reporting only the fastest kernel operation.",
+      ],
+      developerTakeaway:
+        "Separate cold-start time, steady-state processing and transfer costs in your measurements. Local execution is a product capability to validate across a device range, not a universal replacement for hosted inference.",
+      beforeChangeResult: {
+        before: "Browser models optimized one application at a time",
+        change: "A preview of reusable, versioned WebGPU kernels with a JavaScript loader and cross-device Fleet testing",
+        result: "Cold start, steady state and transfer costs still decide whether local execution is useful on real devices",
+      },
+      visual: {
+        kind: "editorial-image",
+        src: "/ssk-ai/2026-09-08/09-hugging-face-webgpu-v1.png",
+        width: 1672,
+        height: 941,
+        alt: "Hugging Face WebGPU kernels editorial illustration showing browser computation and a GPU inside a laptop.",
+        caption: "SSK AI Hub editorial illustration: browser-local computation. This is not an official browser interface or hardware schematic.",
+        description:
+          "Original SSK AI Hub editorial illustration for the WebGPU kernels story — a conceptual image, not an official browser interface or hardware schematic.",
+      },
+      source: {
+        heading: "Story 9 — Hugging Face WebGPU kernels",
+        body: "Primary source: Hugging Face's announcement. WebGPU kernels are a **preview**. The published comparisons measure **GPU operations**, not end-to-end application speedups, and browser, operating-system and GPU support still affect whether a workload can run.",
+        links: [
+          { label: "Hugging Face: WebGPU kernels", href: "https://huggingface.co/blog/webgpu-kernels" },
+        ],
+      },
+    },
+    {
+      rank: 10,
+      id: "hugging-face-funes",
+      date: "2026-09-03",
+      headline: "Hugging Face funes: retrieve the reasoning behind an earlier change",
+      posterHeadline: "funes: retrieve the reasoning behind an earlier change",
+      status: "Open-source tool introduced",
+      type: "Agent memory",
+      audienceTags: ["Coding-Agent Developers", "Platform Teams", "Open-Source AI", "Engineering Leads"],
+      whatHappened: [
+        "**funes** indexes coding-agent traces into a locally owned memory store. It supports several agents, including Claude Code and Codex, and retrieves original passages with session provenance. Embedding and reranking run locally; optional Hub synchronization is a separate feature. Its published comparison uses a small set of tasks, so the reported savings are not a general productivity estimate. [Hugging Face introduction](https://huggingface.co/blog/funes).",
+      ],
+      whyItMatters: [
+        "A repository records what changed, but the reasons for rejecting an approach often remain in an old conversation. When that context disappears, a new session may repeat the same investigation or reintroduce a discarded design.",
+        "Retrievable history can make handoffs more useful when it preserves the source of a decision. It also creates a new responsibility: an old conclusion must be checked against today's code and instructions.",
+      ],
+      applications: [
+        {
+          text: "Indexing coding-agent traces into a locally owned memory store — supporting several agents including Claude Code and Codex — and retrieving original passages with session provenance, with embedding and reranking run locally",
+          kind: "demonstrated",
+          attribution: "Hugging Face's introduction; optional Hub synchronization is a separate feature",
+        },
+        {
+          text: "Asking why a parser keeps an unusual fallback, retrieving the earlier discussion and checking it against the current parser and its test — a proposed workflow, not a documented deployment",
+          kind: "potential",
+        },
+        {
+          text: "An evaluation on a small collection of real decisions, including one that has since been superseded",
+          kind: "potential",
+        },
+      ],
+      realWorldExample: [
+        "Imagine an agent asks why a parser keeps an unusual fallback. Retrieve the earlier discussion, open the cited passage, and then inspect the current parser and its relevant test. The old exchange may explain a compatibility problem that a tidy refactor would accidentally restore.",
+        "Evaluate this with a small collection of real decisions. Include one that has since been superseded. A useful memory system should help the next session find evidence without treating every historical instruction as still binding. Review which traces belong in the store before enabling any optional synchronization.",
+      ],
+      developerTakeaway:
+        "Retain provenance and distinguish a historical statement from a current requirement. Measure whether retrieval reduces repeated investigation while preserving correct decisions, rather than counting how many memories the system stores.",
+      beforeChangeResult: {
+        before: "The reasons for rejecting an approach stay buried in old conversations",
+        change: "funes indexes coding-agent traces into a local memory store and retrieves original passages with session provenance",
+        result: "Handoffs gain retrievable history — and a new duty to check old conclusions against today's code",
+      },
+      visual: {
+        kind: "editorial-image",
+        src: "/ssk-ai/2026-09-08/10-hugging-face-funes-v1.png",
+        width: 1672,
+        height: 941,
+        alt: "Hugging Face funes editorial illustration with a local notebook and retrievable conversation passages.",
+        caption: "SSK AI Hub editorial illustration: local memory and source retrieval. Shown records are illustrative, not actual project data.",
+        description:
+          "Original SSK AI Hub editorial illustration for the funes story — the records shown are illustrative, not actual project data.",
+      },
+      source: {
+        heading: "Story 10 — Hugging Face funes",
+        body: "Primary source: Hugging Face's introduction. Embedding and reranking run locally; **optional Hub synchronization is a separate feature**, and which traces belong in the store should be reviewed before enabling it. The published comparison uses a **small set of tasks**, so the reported savings are not a general productivity estimate. A historical statement is not a current requirement.",
+        links: [
+          { label: "Hugging Face: introducing funes", href: "https://huggingface.co/blog/funes" },
+        ],
+      },
+    },
+    {
+      rank: 11,
+      id: "github-copilot-workflow-changes",
+      date: "2026-09-01",
+      headline: "GitHub Copilot: reviews, context controls and model migration",
+      posterHeadline: "GitHub Copilot: reviews, context controls and model migration",
+      status: "Mixed; see each change",
+      type: "Developer workflow",
+      audienceTags: ["Engineering Leads", "Platform Teams", "Repository Administrators", "Coding-Agent Developers"],
+      whatHappened: [
+        "On **September 1**, GitHub introduced a public preview in which Copilot code review can approve pull requests. Actual approval is off by default and administrator-controlled; an enabled approval can count toward required approvals. An overview assessment alone does not satisfy that requirement. New commits dismiss the approval. [GitHub review announcement](https://github.blog/changelog/2026-09-01-copilot-code-review-can-now-approve-pull-requests/).",
+        "On **September 2**, content exclusions became generally available in the Copilot app and CLI for Business and Enterprise customers. These controls govern which configured files can be used as Copilot context; they should not be described as a general filesystem security boundary. [GitHub content-exclusion announcement](https://github.blog/changelog/2026-09-02-content-exclusions-generally-available-in-copilot-app-and-cli/).",
+        "On **September 3**, GitHub announced model retirements scheduled for **October 2**, with the following replacements. This is an advance migration notice, not a September removal. [GitHub deprecation notice](https://github.blog/changelog/2026-09-03-upcoming-deprecation-of-selected-github-copilot-models/).",
+      ],
+      whatHappenedTable: {
+        columns: ["Model scheduled for retirement", "Recommended replacement in the notice"],
+        rows: [
+          ["Gemini 3.5 Flash", "Gemini 3.8 Flash"],
+          ["Gemini 3.6 Flash", "Gemini 3.8 Flash"],
+          ["Kimi K2.7 Code", "Kimi K3"],
+          ["Claude Opus 4.7", "Claude Opus 5"],
+        ],
+        caption: "Copilot model retirements GitHub scheduled for October 2, with the replacements its notice recommends.",
+      },
+      whyItMatters:
+        "These changes affect who can approve work, what information an assistant receives and whether a saved workflow will remain available. That makes them operational news even without a new headline model.",
+      applications: [
+        {
+          text: "Copilot code review approving pull requests (public preview, off by default, administrator-controlled; new commits dismiss the approval); content exclusions generally available in the Copilot app and CLI for Business and Enterprise; model retirements scheduled for October 2 with named replacements",
+          kind: "demonstrated",
+          attribution: "GitHub's three changelog notices",
+        },
+        {
+          text: "Trying approval on a narrowly scoped repository path with a pull request that contains a deliberate behavior regression, to see whether tests and review catch it — a proposed workflow, not a documented deployment",
+          kind: "potential",
+        },
+        {
+          text: "Verifying configured context exclusions with a harmless marker file, and rerunning a small acceptance set on each replacement model before the retirement date",
+          kind: "potential",
+        },
+      ],
+      realWorldExample:
+        "Try approval on a narrowly scoped repository path first. Use a pull request containing a deliberate behavior regression and check whether the existing tests and review process catch it. Separately, verify the team's configured context exclusions with a harmless marker file. Inventory pinned model choices before the retirement date and rerun a small acceptance set on each proposed replacement.",
+      developerTakeaway:
+        "Treat review configuration, context policy and model selection as separate settings. An AI approval should fit the repository's intended review process; it does not establish that a change is correct or that every other merge condition has passed.",
+      beforeChangeResult: {
+        before: "Review approvals, assistant context and model choices treated as one bundle",
+        change: "Administrator-controlled AI approvals in preview, content exclusions generally available, and model retirements scheduled for October 2",
+        result: "Review configuration, context policy and model selection become separate settings to verify",
+      },
+      visual: {
+        kind: "editorial-image",
+        src: "/ssk-ai/2026-09-08/11-github-copilot-workflows-v1.png",
+        width: 1672,
+        height: 941,
+        alt: "GitHub Copilot editorial illustration with a pull-request review and administrator-controlled repository settings.",
+        caption: "SSK AI Hub editorial illustration: reviews and repository controls. The depicted interface is conceptual.",
+        description:
+          "Original SSK AI Hub editorial illustration for the GitHub Copilot story — a conceptual interface, not a product screenshot.",
+      },
+      source: {
+        heading: "Story 11 — GitHub Copilot: reviews, context controls and model migration",
+        body: "Primary sources: GitHub's three changelog notices. Copilot approval is a **public preview**, **off by default and administrator-controlled**; an enabled approval can count toward required approvals, an overview assessment alone does not, and new commits dismiss it. Content exclusions govern which configured files can be used as Copilot context — **not a general filesystem security boundary**. The model retirements are scheduled for **October 2** — an advance migration notice, not a September removal.",
+        links: [
+          {
+            label: "GitHub changelog: Copilot code review can now approve pull requests (September 1)",
+            href: "https://github.blog/changelog/2026-09-01-copilot-code-review-can-now-approve-pull-requests/",
+          },
+          {
+            label: "GitHub changelog: content exclusions generally available in Copilot app and CLI (September 2)",
+            href: "https://github.blog/changelog/2026-09-02-content-exclusions-generally-available-in-copilot-app-and-cli/",
+          },
+          {
+            label: "GitHub changelog: upcoming deprecation of selected Copilot models (September 3)",
+            href: "https://github.blog/changelog/2026-09-03-upcoming-deprecation-of-selected-github-copilot-models/",
+          },
+        ],
+      },
+    },
+    {
+      rank: 12,
+      id: "openai-research-oversight",
+      date: "2026-09-06",
+      headline: "OpenAI: faster research raises the value of evidence and oversight",
+      posterHeadline: "OpenAI: faster research raises the value of evidence and oversight",
+      status: "Internal research report and safety essay",
+      type: "Research practice and governance",
+      audienceTags: ["AI Researchers", "Research Leads", "AI Safety & Governance", "Evaluation Teams"],
+      whatHappened: [
+        "OpenAI reported reaching its internal **automated research intern** milestone: carrying out defined research tasks under human direction. Its measures show increasing agent use, while substantial human intervention remains. These are preliminary internal measurements, not an independent audit or proof of fully autonomous research. Aggregate agent runtime should not be read as a multiplier of scientific productivity. [OpenAI research report](https://openai.com/index/research-acceleration-view-inside-openai/).",
+        "In the same day's **An Alien Mind** essay, chief scientist Jakub Pachocki discusses alignment and the difficulty of monitoring increasingly capable systems. He argues for stronger safeguards and shared standards for pacing progress. This is an attributed assessment and proposal, not an industry-wide agreement or new binding rule. [Pachocki's essay](https://openai.com/index/an-alien-mind/).",
+      ],
+      whyItMatters: [
+        "Automation can produce more experiments before a team has improved its ability to interpret them. A mistaken metric, contaminated evaluation set or unnoticed data-processing change can make a large volume of results misleading.",
+        "The practical question is where the human team's attention moves. If setup becomes easier, independent evaluation, experiment selection and clear records may become the work that most limits progress.",
+      ],
+      applications: [
+        {
+          text: "Carrying out defined research tasks under human direction — OpenAI's internal “automated research intern” milestone, with increasing agent use and substantial human intervention",
+          kind: "demonstrated",
+          attribution: "OpenAI's report; preliminary internal measurements, not an independent audit",
+        },
+        {
+          text: "An agent comparing two preprocessing choices on a small, permissioned dataset with the split and criteria fixed in advance, and a separate reviewer reproducing the result from the records — a proposed workflow, not a documented deployment",
+          kind: "potential",
+        },
+        {
+          text: "A record of inputs, code version, random seeds and failed runs alongside every final table",
+          kind: "potential",
+        },
+      ],
+      realWorldExample: [
+        "Ask an agent to compare two preprocessing choices on a small, permissioned dataset. Fix the data split and evaluation criteria before it begins. Require a record of inputs, code version, random seeds and failed runs alongside the final table.",
+        "Have a separate reviewer reproduce the chosen result from those records and inspect whether the claim survives on held-out examples. Record human correction time as well as compute use. Ten experiments with unresolved errors are not automatically more valuable than one trustworthy result.",
+      ],
+      developerTakeaway:
+        "Define what evidence would justify the next decision before scaling the experiment queue. Keep the authority to change goals, accept conclusions or authorize consequential steps explicit.",
+      beforeChangeResult: {
+        before: "More experiments read as more progress",
+        change: "OpenAI reports its internal automated-research-intern milestone and publishes an essay arguing for stronger safeguards",
+        result: "Evidence, experiment selection and clear records become the limiting work — and the essay is a proposal, not a rule",
+      },
+      visual: {
+        kind: "editorial-image",
+        src: "/ssk-ai/2026-09-08/12-openai-research-oversight-v1.png",
+        width: 1672,
+        height: 941,
+        alt: "OpenAI editorial illustration showing research experiments, an evidence sheet and human review.",
+        caption: "SSK AI Hub editorial illustration: experiments and human review. Displayed traces are conceptual, not measured research results.",
+        description:
+          "Original SSK AI Hub editorial illustration for the OpenAI research and oversight story — the displayed traces are conceptual, not measured results.",
+      },
+      source: {
+        heading: "Story 12 — OpenAI research acceleration report and “An Alien Mind”",
+        body: "Primary sources: OpenAI's research report and Jakub Pachocki's essay, both dated September 6. The milestone measures are **preliminary internal measurements**, not an independent audit or proof of fully autonomous research; aggregate agent runtime should not be read as a multiplier of scientific productivity. The essay is an **attributed assessment and proposal**, not an industry-wide agreement or new binding rule. OpenAI's previously announced research-environment restrictions are background to this coverage, not a new September event.",
+        links: [
+          {
+            label: "OpenAI: research acceleration — a view inside OpenAI",
+            href: "https://openai.com/index/research-acceleration-view-inside-openai/",
+          },
+          { label: "OpenAI: An Alien Mind (Jakub Pachocki)", href: "https://openai.com/index/an-alien-mind/" },
+        ],
+      },
+    },
+    {
+      rank: 13,
+      id: "tcs-hypervault-campus",
+      date: "2026-09-05",
+      headline: "TCS HyperVault: an AI campus plan is a capacity pipeline",
+      posterHeadline: "TCS HyperVault: an AI campus plan is a capacity pipeline",
+      status: "Planned infrastructure investment",
+      type: "AI data centers",
+      audienceTags: ["Infrastructure Planners", "Startups in India", "Cloud & MLOps", "Business Leaders"],
+      whatHappened: [
+        "TCS's HyperVault and its partners announced plans for an AI data-center campus in Hyderabad, with proposed investment of up to **₹700 billion** and capacity of up to **1 GW**, according to Reuters' September 5 report on the company announcement. These are planned commitments, not already operational compute. [Reuters report](https://www.reuters.com/world/india/indias-tcs-unit-invest-up-74-billion-ai-data-center-campus-2026-09-05/) · [TCS filing on BSE](https://www.bseindia.com/xml-data/corpfiling/AttachLive/d2265f8f-d782-4d5d-8e42-e6ac804e3112.pdf).",
+      ],
+      whyItMatters: [
+        "AI infrastructure news matters beyond the latest GPU specification. A usable service also depends on power, cooling, networking, operations and the commercial terms under which customers can obtain capacity.",
+        "Large campus announcements provide a view of investment intentions. They do not tell a developer when a particular accelerator, region or service will become available at a workable price. Keeping those questions separate makes the story useful without overstating delivery.",
+      ],
+      applications: [
+        {
+          text: "Plans for an AI data-center campus in Hyderabad with proposed investment of up to ₹700 billion and capacity of up to 1 GW",
+          kind: "demonstrated",
+          attribution: "the company announcement as reported by Reuters on September 5; planned commitments, not operational compute",
+        },
+        {
+          text: "A capacity worksheet for a future regional deployment — announced campus, construction stage, power availability, service launch date, supported workloads and actual customer access — a proposed workflow",
+          kind: "potential",
+        },
+        {
+          text: "Building today around testable requirements — latency, throughput, data location and recovery behavior — and revisiting hosting choices as facilities and services become usable",
+          kind: "potential",
+        },
+      ],
+      realWorldExample: [
+        "An Indian startup considering a future regional deployment could maintain a capacity worksheet: announced campus, construction stage, power availability, service launch date, supported workloads and actual customer access. Keep confirmed milestones separate from targets.",
+        "Build the application around requirements that can be tested today—latency, throughput, data location and recovery behavior. Revisit hosting choices as facilities and services become usable, rather than making a current launch depend on an unbuilt campus.",
+      ],
+      developerTakeaway:
+        "Follow delivery milestones and customer-facing availability. Planned gigawatts describe a possible infrastructure envelope; they are not a directly usable measure of today's inference capacity.",
+      beforeChangeResult: {
+        before: "A campus headline read as available capacity",
+        change: "TCS's HyperVault and partners announce a planned Hyderabad campus of up to 1 GW and up to ₹700 billion",
+        result: "Planned gigawatts describe a possible envelope, not today's usable inference capacity",
+      },
+      visual: {
+        kind: "editorial-image",
+        src: "/ssk-ai/2026-09-08/13-tcs-hypervault-v1.png",
+        width: 1672,
+        height: 941,
+        alt: "Concept illustration of the planned TCS HyperVault AI data-center campus in Hyderabad, clearly labeled planned campus.",
+        caption: "SSK AI Hub concept illustration: a planned campus, not a photograph or verified architectural rendering of a completed facility.",
+        description:
+          "Original SSK AI Hub concept illustration for the TCS HyperVault story — a planned campus, not a photograph or verified rendering.",
+      },
+      source: {
+        heading: "Story 13 — TCS HyperVault campus plan",
+        body: "Sources: Reuters' September 5 report on the company announcement, and the TCS filing on BSE as indexed. The investment (up to ₹700 billion) and capacity (up to 1 GW) figures are **planned commitments** — not operational compute, completed construction, customer availability or verified sustainability outcomes. The business facts are attributed to the Reuters report read during research; the full BSE filing PDF could not be downloaded and is **not described as inspected**.",
+        links: [
+          {
+            label: "Reuters: India's TCS unit to invest up to $7.4 billion in AI data-center campus (September 5)",
+            href: "https://www.reuters.com/world/india/indias-tcs-unit-invest-up-74-billion-ai-data-center-campus-2026-09-05/",
+          },
+          {
+            label: "TCS filing on BSE (PDF, as indexed)",
+            href: "https://www.bseindia.com/xml-data/corpfiling/AttachLive/d2265f8f-d782-4d5d-8e42-e6ac804e3112.pdf",
+          },
+        ],
+      },
+    },
   ],
+  briefs: {
+    heading: "Also worth tracking",
+    items: [
+      {
+        id: "neomme",
+        date: "September 3",
+        title: "H Company's NeoMME for multimodal retrieval",
+        body: [
+          "H Company introduced **NeoMME**, a multilingual image-and-text encoder family with 260M and 800M variants. Its retriever supports dense and late-interaction embeddings, with Apache 2.0 checkpoints. This is retrieval infrastructure, not a conversational model. [H Company technical introduction](https://huggingface.co/blog/Hcompany/neomme).",
+          "**SSK AI Hub application idea:** compare retrieval of table-heavy PDF pages against an OCR-only baseline. Measure whether the correct page reaches the answer stage before changing the answer-generating model. This is a focused experiment proposal, not a claim that NeoMME will win on every document collection.",
+        ],
+        source: {
+          heading: "Brief — H Company's NeoMME",
+          body: "Primary source: H Company's technical introduction, hosted on the Hugging Face blog. NeoMME is an **H Company** retrieval release — hosting on Hugging Face does not make Hugging Face its author. It is retrieval infrastructure, not a conversational model, and the application idea is a focused experiment proposal.",
+          links: [{ label: "H Company: NeoMME technical introduction", href: "https://huggingface.co/blog/Hcompany/neomme" }],
+        },
+      },
+      {
+        id: "un-ai-safeguards-appeal",
+        date: "September 7",
+        title: "UN human rights chief calls for stronger AI safeguards",
+        body: [
+          "In his Human Rights Council update, **Volker Türk** called for stronger safeguards around advanced AI, including independent verification and cooperation. This was a policy appeal, not a newly enacted regulation. [Official September 7 speech, PDF](https://www.ohchr.org/sites/default/files/documents/press/2026-09-07-global-update-hrc63-trilingual.pdf).",
+          "**SSK AI Hub reading:** governance coverage belongs beside capability news because it concerns how powerful systems are evaluated and deployed. Follow concrete standards, commitments and implementation as they emerge; keep advocacy distinct from requirements that are already binding.",
+        ],
+        source: {
+          heading: "Brief — UN human rights chief's AI safeguards appeal",
+          body: "Primary source: the official September 7 speech (PDF). The remarks are a **policy appeal**, not a newly enacted regulation or a binding requirement.",
+          links: [
+            {
+              label: "OHCHR: global update to the Human Rights Council, September 7 (PDF)",
+              href: "https://www.ohchr.org/sites/default/files/documents/press/2026-09-07-global-update-hrc63-trilingual.pdf",
+            },
+          ],
+        },
+      },
+    ],
+  },
   biggerPicture: {
     heading: "What connects the week",
     lede: "Our interpretation is that the most useful AI engineering work now lives at the boundary between a model's output and a task's acceptance criteria.",
@@ -596,6 +1119,18 @@ export const issueSeptember08_2026: SskAiIssue = {
       {
         title: "Forecasting",
         body: "For forecasting, preserve the information that was available at the time of the decision.",
+      },
+      {
+        title: "Remembered context",
+        body: "For remembered context, verify provenance and whether a decision still applies.",
+      },
+      {
+        title: "Research",
+        body: "For research, check the evidence behind the conclusion.",
+      },
+      {
+        title: "Infrastructure",
+        body: "For infrastructure, distinguish a plan from available service.",
       },
       {
         title: "Transferable habits",
@@ -669,27 +1204,31 @@ export const issueSeptember08_2026: SskAiIssue = {
       "NVIDIA and Hugging Face: infrastructure meets distribution",
       "NVIDIA PAIR: distribute independent work across local PCs",
       "WeatherNext 3: turn fresh observations into better decisions",
+      "Muse Spark 1.3: keep the requirement alive across a long task",
+      "WebGPU kernels: browser AI needs an execution layer",
+      "funes: retrieve the reasoning behind an earlier change",
+      "GitHub Copilot: reviews, context controls and model migration",
+      "OpenAI: faster research raises the value of evidence and oversight",
+      "TCS HyperVault: an AI campus plan is a capacity pipeline",
     ],
     theme: "AI takes on more of the work — judge capability with access, evidence, cost and the finished result.",
   },
-  linkedInPost: `September's first AI briefing is ready on SSK AI Hub.
+  linkedInPost: `September's first AI Tech Briefing is ready on SSK AI Hub.
 
-This week, I focused on a question that matters when you actually build with AI: what does it take to turn a capable model into a useful, dependable workflow?
+I reviewed the full September 1–7 news window and selected the developments that matter for building with AI—without forcing the week into a fixed number of headlines.
 
-The September 1–7 edition covers GPT-6 Astra, Claude Fable and Mythos 5.1, Gemini 3.8 Flash, agentic video, NVIDIA’s Hugging Face acquisition agreement, NVIDIA PAIR, and WeatherNext 3.
+The issue connects frontier models with the work around them: coding, browser AI, agent memory, repository controls, research evaluation, infrastructure and safeguards.
 
-Each story includes what changed, why it matters, a practical example and a developer takeaway, with links to primary sources.
+Alongside Astra, Claude and Gemini, this expanded edition includes Meta Muse Spark, Hugging Face's WebGPU kernels and funes, GitHub Copilot changes, and the September 5–7 infrastructure and oversight developments.
 
-The part I found most useful is how differently we need to measure these systems. A coding agent needs an accepted fix. A video assistant needs the right evidence. A forecasting tool needs to support a decision using information available at the time.
+Each main story explains what changed, why it matters and a practical workflow to explore. Source links and limits are included throughout.
 
-I also included a small project concept: EvidenceClip, a lecture-video assistant that returns the moments supporting its answers.
+My question for this week: when an agent takes on more work, how do we decide that the result is actually good enough?
 
-Read September Week 1 in the AI Tech News archive:
+Read the September Week 1 briefing in the AI Tech News archive:
 [SSK_AI_ARTICLE_URL]
-
-Which would you test first: a computer-use agent, a video assistant, or a local AI workflow?
 
 #ArtificialIntelligence #AIAgents #AIEngineering #SSKAIHub`,
   generalSourceNote:
-    "Primary announcements are linked beside the relevant claims and collected above. Performance figures remain attributed to their publishers; this edition does not claim independent replication or a hands-on test of the released models, APIs, local inference stack or forecasting data. All example workflows are illustrative proposals, not documented customer deployments, and the EvidenceClip concept is an original editorial proposal. No development outside September 1–7, 2026 is reported in this edition, which is September's first weekly edition rather than its month-end newsletter. Curated by Ravindra SSK Medicharla.",
+    "Primary announcements are linked beside the relevant claims and collected above; the TCS business facts are attributed to Reuters' report, and the indexed BSE filing was not inspected in full. Performance figures remain attributed to their publishers; this edition does not claim independent replication or a hands-on test of the released models, APIs, kernels, memory tools, local inference stack or forecasting data. All example workflows are illustrative proposals, not documented customer deployments, and the EvidenceClip concept is an original editorial proposal. Selection follows significance and evidence across the whole September 1–7 window, without a fixed number of stories; no development outside September 1–7, 2026 is reported in this edition, which is September's first weekly edition rather than its month-end newsletter. Curated by Ravindra SSK Medicharla.",
 };

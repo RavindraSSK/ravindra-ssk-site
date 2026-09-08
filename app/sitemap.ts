@@ -15,6 +15,11 @@ function toDate(iso: string) {
   return new Date(`${iso}T12:00:00.000Z`);
 }
 
+/** An edition's last substantive change: its revision time when it has one, else its publish date. */
+function issueModified(issue: { datePublished: string; dateModified?: string }) {
+  return issue.dateModified ? new Date(issue.dateModified) : toDate(issue.datePublished);
+}
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const siteUrl = DEFAULT_SITE_URL;
 
@@ -30,10 +35,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     { url: `${siteUrl}/explore`, lastModified: toDate(staticPageDates.explore), changeFrequency: "weekly", priority: 0.7 },
     { url: `${siteUrl}/contact`, lastModified: toDate(staticPageDates.contact), changeFrequency: "yearly", priority: 0.5 },
-    { url: `${siteUrl}${SSK_AI_HUB.path}`, lastModified: toDate(getLatestIssue().datePublished), changeFrequency: "weekly", priority: 0.8 },
+    { url: `${siteUrl}${SSK_AI_HUB.path}`, lastModified: issueModified(getLatestIssue()), changeFrequency: "weekly", priority: 0.8 },
     {
       url: `${siteUrl}${TECH_NEWS.path}`,
-      lastModified: toDate(getLatestIssue().datePublished),
+      lastModified: issueModified(getLatestIssue()),
       changeFrequency: "weekly",
       priority: 0.8,
     },
@@ -68,7 +73,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const sskAiIssueRoutes: MetadataRoute.Sitemap = getAllIssues().map((issue) => ({
     url: `${siteUrl}${TECH_NEWS.path}/${issue.slug}`,
-    lastModified: toDate(issue.datePublished),
+    lastModified: issueModified(issue),
     changeFrequency: "monthly" as const,
     priority: 0.7,
   }));
