@@ -21,7 +21,8 @@ import type { SskAiIssue } from "./types";
  * appeal, not a regulation. Every example workflow is a proposal, not a
  * documented customer deployment.
  *
- * Editorial images are the package's fourteen native 1672×941 PNGs in
+ * Editorial images are the package's thirteen native 1672×941 story PNGs and
+ * the user-supplied week-at-a-glance cover (native 1672×941 WebP) in
  * /public/ssk-ai/2026-09-08/ — original AI-generated editorial illustrations,
  * not official product assets or screenshots — and next/image serves the
  * responsive derivatives. The share card is a padded, uncropped 1200×630
@@ -41,9 +42,10 @@ export const issueSeptember08_2026: SskAiIssue = {
   },
   // Coverage window and publication date are separate: the stories run
   // September 1–7 and the edition was prepared and published on September 8.
-  // dateModified records the revision-4 expansion; datePublished is unchanged.
+  // dateModified records the latest revision (the full-week expansion, then the
+  // week-at-a-glance cover); datePublished is unchanged.
   datePublished: "2026-09-08",
-  dateModified: "2026-09-08T06:25:12Z",
+  dateModified: "2026-09-08T06:39:48Z",
   dateLabel: "September 8, 2026",
   cardTitle: "SSK AI: AI Takes On More of the Work",
   title: "SSK AI — What Changed in AI & What You Can Build | September 8, 2026",
@@ -54,19 +56,19 @@ export const issueSeptember08_2026: SskAiIssue = {
     "AI takes on more of the work — and capability needs to be judged together with access, evidence, operating cost and the quality of the finished result.",
   hero: {
     kind: "editorial-image",
-    src: "/ssk-ai/2026-09-08/00-cover-website-linkedin-v4.png",
+    src: "/ssk-ai/2026-09-08/00-cover-website-linkedin-v5.webp",
     width: 1672,
     height: 941,
-    alt: "SSK AI Hub September 1–7, 2026 Week 1 cover in the established white, navy and blue style, with the SSK monogram and selected named news previews.",
-    caption: "SSK AI Hub — AI Tech Briefing: September 1–7, 2026, Week 1. Key AI Developments.",
+    alt: "SSK AI Hub September 1–7, 2026 Week 1 cover — an 'AI Tech Briefing: the week at a glance' collage with the SSK monogram and previews of GPT-6 Astra, Claude Fable 5.1 and Mythos 5.1, Gemini 3.8 Flash, Meta Muse Spark 1.3, WebGPU, funes, agentic video, NVIDIA and Hugging Face, NVIDIA PAIR, GitHub Copilot, AI research and oversight, WeatherNext 3, TCS HyperVault, NeoMME and UN safeguards.",
+    caption: "SSK AI Hub — AI Tech Briefing: September 1–7, 2026, Week 1. The week at a glance.",
     description:
-      "Original SSK AI Hub editorial cover for the September 1–7, 2026 edition in the publication's white, navy and blue style — selected news previews, not a complete story inventory.",
+      "Original SSK AI Hub editorial cover for the September 1–7, 2026 edition — a week-at-a-glance collage of the edition's stories in the publication's white, navy and blue style; conceptual artwork, not official product assets.",
   },
   socialImage: {
-    src: "/ssk-ai/2026-09-08/00-cover-social-1200x630-v4.png",
+    src: "/ssk-ai/2026-09-08/00-cover-social-1200x630-v5.png",
     width: 1200,
     height: 630,
-    alt: "SSK AI Hub September 1–7, 2026 Week 1 cover in the established white, navy and blue style, with the SSK monogram and selected named news previews.",
+    alt: "SSK AI Hub September 1–7, 2026 Week 1 cover — an 'AI Tech Briefing: the week at a glance' collage with the SSK monogram and previews of the edition's stories.",
   },
   visualPlacement: "lead",
   storyLabels: {
