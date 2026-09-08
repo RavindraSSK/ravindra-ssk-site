@@ -37,11 +37,12 @@ name and square logo.
 
 ## Cover image
 
-`public/ssk-ai/2026-09-08/00-cover-website-linkedin-v4.png` — the same cover the website
-uses as the edition hero, desk card and social preview. Upload it through LinkedIn's cover
-field so it is not duplicated at the start of the body, and preview the upload with the
-full headline and date visible. It is a native 1672 × 941 PNG (approximately 16:9); LinkedIn
-lists 1920 × 1080 as the optimal article-cover size. Do not add text overlays. This is an
+The supplied week-at-a-glance cover — stored on the site as
+`public/ssk-ai/2026-09-08/00-cover-website-linkedin-v5.webp` and used as the edition hero,
+desk card and social preview. For LinkedIn, upload your original image file (LinkedIn
+accepts JPG/PNG covers) through the cover field so it is not duplicated at the start of the
+body, and preview the upload with the full headline and date visible. It is native
+1672 × 941 (approximately 16:9); LinkedIn lists 1920 × 1080 as the optimal article-cover size. Do not add text overlays. This is an
 issue/article header, not a replacement for the newsletter's square logo.
 
 ---
