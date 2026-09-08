@@ -1256,3 +1256,98 @@ html[data-theme="dark"] .ssk-dense-block {
     max-width: none;
   }
 }
+
+/* --------------------------------------------------------- inline citations
+   Edition copy may link a claim to its primary source in place; the link reads
+   as part of the sentence rather than as a button. */
+.ssk-cite {
+  color: var(--color-primary);
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
+}
+
+.ssk-cite:hover,
+.ssk-cite:focus-visible {
+  text-decoration-thickness: 2px;
+}
+
+/* ------------------------------------------------------------- reading list
+   The edition's own index table. It has a hard minimum width and scrolls
+   inside its card on a phone instead of widening the document. */
+.ssk-reading-list__title {
+  margin: 0 0 1rem;
+  font-size: clamp(1.3rem, 2.4vw, 1.6rem);
+}
+
+.ssk-reading-list {
+  padding: clamp(1rem, 2.4vw, 1.5rem);
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.ssk-reading-list:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 3px;
+}
+
+.ssk-reading-list__table {
+  width: 100%;
+  min-width: 40rem;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.ssk-reading-list__table thead th {
+  padding: 0 var(--space-4) var(--space-3) 0;
+  border-bottom: 2px solid var(--ambient-line-strong);
+  color: var(--color-text-faint);
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.ssk-reading-list__table tbody th,
+.ssk-reading-list__table tbody td {
+  padding: var(--space-4) var(--space-4) var(--space-4) 0;
+  border-bottom: 1px solid var(--ambient-line);
+  color: var(--color-text-muted);
+  font-size: 0.94rem;
+  font-weight: 400;
+  line-height: 1.55;
+  vertical-align: top;
+}
+
+.ssk-reading-list__table tbody th {
+  color: var(--color-text);
+  font-family: var(--font-display);
+  font-weight: 800;
+}
+
+.ssk-reading-list__table tbody th a {
+  color: var(--color-primary);
+}
+
+.ssk-reading-list__table tbody th a:hover,
+.ssk-reading-list__table tbody th a:focus-visible {
+  text-decoration: underline;
+}
+
+.ssk-reading-list__table tbody td:first-of-type {
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+.ssk-reading-list__table tbody tr:last-child th,
+.ssk-reading-list__table tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+/* ------------------------------------------------------- lead story visuals
+   An edition can place each story's image directly under its header and status
+   line, at the full width of the story card, instead of beside the copy. */
+.ssk-story__lead .ssk-figure figcaption {
+  max-width: 72ch;
+}

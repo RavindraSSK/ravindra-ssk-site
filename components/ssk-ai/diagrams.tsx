@@ -411,6 +411,34 @@ export function MhsBridgeDiagram() {
   );
 }
 
+export function EvidenceClipDiagram() {
+  return (
+    <div className="ssk-diagram ssk-diagram--flow">
+      <div className="ssk-plugin-flow">
+        <div className="ssk-flow__box">One permissioned recording + one narrow question</div>
+        <div className="ssk-flow__hub">
+          Evidence search — a supported video-analysis model returns candidate windows, inspected through frames,
+          audio and transcript
+        </div>
+        <div className="ssk-flow__tiers">
+          <div className="ssk-flow__tier ssk-flow__tier--thick">
+            <span className="ssk-flow__meta">evidence found</span>
+            <p>Short explanation + timestamps; the player opens at each cited segment for review</p>
+          </div>
+          <div className="ssk-flow__tier ssk-flow__tier--thin">
+            <span className="ssk-flow__meta">evidence missing</span>
+            <p>An explicit “not found” outcome — no claim without a supporting segment</p>
+          </div>
+        </div>
+        <div className="ssk-flow__box ssk-flow__box--loop">
+          Every run logged: model version, prompt, request settings, billed usage and output
+        </div>
+      </div>
+      <ChipRow chips={["Evidence contract", "Citation correctness scored", "Proposed concept"]} />
+    </div>
+  );
+}
+
 const diagrams = {
   "qwen-moe": QwenMoeDiagram,
   "mai-thinking": MaiThinkingDiagram,
@@ -424,6 +452,7 @@ const diagrams = {
   "biomarker-agents": BiomarkerAgentsDiagram,
   "agentic-search": AgenticSearchDiagram,
   "mhs-bridge": MhsBridgeDiagram,
+  "evidence-clip": EvidenceClipDiagram,
 } satisfies Record<CodedDiagramId, () => ReactElement>;
 
 export function CodedDiagram({ id, caption }: { id: CodedDiagramId; caption: string }) {

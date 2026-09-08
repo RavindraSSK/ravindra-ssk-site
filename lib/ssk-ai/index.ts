@@ -9,6 +9,7 @@ import { issueAugust12_2026 } from "./issue-2026-08-12";
 import { issueAugust22_2026 } from "./issue-2026-08-22";
 import { issueAugust29_2026 } from "./issue-2026-08-29";
 import { issueAugust2026Monthly } from "./issue-2026-08-31";
+import { issueSeptember08_2026 } from "./issue-2026-09-08";
 import { buildMonthPlan } from "./schedule";
 import type { SskAiIssue, SskAiPublication, SskAiSection } from "./types";
 
@@ -63,6 +64,7 @@ const ISSUES: readonly SskAiIssue[] = [
   issueAugust22_2026,
   issueAugust29_2026,
   issueAugust2026Monthly,
+  issueSeptember08_2026,
 ];
 
 export function getAllIssues(): readonly SskAiIssue[] {
@@ -160,7 +162,9 @@ export function buildSectionMetadata(section: SskAiSection): Metadata {
 
 export function buildSskAiIssueMetadata(issue: SskAiIssue): Metadata {
   const canonical = getIssuePath(issue);
-  const image = shareImage(`${canonical}/opengraph-image`, issue.cardTitle);
+  // The OG route serves the edition's own share card when it declares one (a
+  // padded, uncropped derivative of its cover) and a generated text card otherwise.
+  const image = shareImage(`${canonical}/opengraph-image`, issue.socialImage?.alt ?? issue.cardTitle);
 
   return {
     title: { absolute: issue.seoTitle },
@@ -291,6 +295,8 @@ export function buildSskAiArticleJsonLd(issue: SskAiIssue) {
       name: `${SSK_AI_HUB.name} — ${TECH_NEWS.name}`,
       url: `${DEFAULT_SITE_URL}${TECH_NEWS.path}`,
     },
-    image: `${DEFAULT_SITE_URL}${getIssuePath(issue)}/opengraph-image`,
+    image: issue.socialImage
+      ? `${DEFAULT_SITE_URL}${issue.socialImage.src}`
+      : `${DEFAULT_SITE_URL}${getIssuePath(issue)}/opengraph-image`,
   };
 }

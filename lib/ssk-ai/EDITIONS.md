@@ -34,6 +34,18 @@ desk page renders identically on every build.
    `featuredProject.diagram`. Editorial images live in `public/ssk-ai/<publish-date>/`;
    an image declared before its file lands renders the designed
    "editorial image forthcoming" state rather than breaking.
+   `lib/ssk-ai/issue-2026-09-08.ts` shows the options an edition supplied as a
+   finished article uses: `readingList` (an index table that scrolls inside its card
+   on a phone, each row linking to its story), `storyLabels` (relabelled story blocks,
+   e.g. "Practical example — a proposed workflow"), `visualPlacement: "lead"` (each
+   story image directly under its header and status line instead of in the aside),
+   `whatsActuallyNew` left out, multi-paragraph `whyItMatters` / `realWorldExample` /
+   `developerTakeaway` arrays, inline `[label](https://…)` citations in copy, and
+   `socialImage` — a 1200×630 share card made from the cover with
+   `node scripts/make-social-card.mjs <cover.png> <out.png>`, which contains the whole
+   cover on a padded background rather than cropping its headline or date. Source
+   PNGs stay at their native resolution; `next/image` serves the responsive
+   derivatives.
 
 2. **Fill in the `edition` block.** This is what places the edition on the calendar:
 

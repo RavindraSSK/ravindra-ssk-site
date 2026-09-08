@@ -44,13 +44,14 @@ export function WhatWeCanBuild({ issue }: { issue: SskAiIssue }) {
   const projects = issue.projects ?? [];
   const featured = projects.find((project) => project.featured);
   const rest = projects.filter((project) => !project.featured);
+  const count = ["One", "Two", "Three", "Four", "Five"][projects.length - 1] ?? String(projects.length);
 
   return (
     <section className="ssk-build" aria-labelledby="ssk-build-title">
       <div className="ssk-build__intro">
         <span className="eyebrow">What Can We Build?</span>
         <h2 id="ssk-build-title" className="section-title">
-          Three project concepts from this issue
+          {count} project {projects.length === 1 ? "concept" : "concepts"} from this issue
         </h2>
         <RichText text={`*${issue.projectsIntro ?? ""}*`} className="section-copy" />
       </div>

@@ -26,7 +26,8 @@ export type CodedDiagramId =
   | "spade-loop"
   | "biomarker-agents"
   | "agentic-search"
-  | "mhs-bridge";
+  | "mhs-bridge"
+  | "evidence-clip";
 
 export type StoryVisual =
   | {
@@ -53,6 +54,52 @@ export type StorySource = {
 
 export type EditorialImageVisual = Extract<StoryVisual, { kind: "editorial-image" }>;
 
+/**
+ * A block of edition copy: one paragraph, or several rendered as separate
+ * paragraphs. Inline `**bold**`, `*italic*` and `[label](https://…)` citation
+ * links are accepted — see `components/ssk-ai/rich-text.tsx`.
+ */
+export type StoryCopy = string | string[];
+
+/** Headings of the blocks inside a story; an edition can relabel any of them. */
+export type StoryBlockLabels = {
+  happened: string;
+  new: string;
+  matters: string;
+  applications: string;
+  example: string;
+  takeaway: string;
+};
+
+/**
+ * Where a story's editorial image sits: beside the copy in the aside (the
+ * default) or as a full-width lead directly under the story's header and
+ * status line.
+ */
+export type StoryVisualPlacement = "aside" | "lead";
+
+/** One row of an edition's reading-list table; `storyId` links the row to its story. */
+export type ReadingListRow = {
+  storyId: string;
+  development: string;
+  /** "September 3" — the announcement date as the edition states it. */
+  announced: string;
+  question: string;
+};
+
+/**
+ * A ready-made 1200×630 share card (Open Graph / LinkedIn / X). Made from the
+ * edition cover by containing the whole cover inside the frame on a padded
+ * background rather than cropping its headline or date — see
+ * `scripts/make-social-card.mjs`.
+ */
+export type SocialImage = {
+  src: string;
+  width: 1200;
+  height: 630;
+  alt: string;
+};
+
 export type SskAiStory = {
   rank: number;
   id: string;
@@ -72,11 +119,12 @@ export type SskAiStory = {
   buildabilityNote?: string;
   audienceTags: string[];
   whatHappened: string[];
-  whatsActuallyNew: string[];
-  whyItMatters: string;
+  /** Optional: an edition whose analysis lives under "Why it matters" leaves this out. */
+  whatsActuallyNew?: string[];
+  whyItMatters: StoryCopy;
   applications: StoryApplication[];
-  realWorldExample: string;
-  developerTakeaway: string;
+  realWorldExample: StoryCopy;
+  developerTakeaway: StoryCopy;
   beforeChangeResult: BeforeChangeResult;
   visual: StoryVisual;
   source: StorySource;
@@ -161,6 +209,14 @@ export type SskAiIssue = {
   theme: string;
   /** Optional editorial hero image for the edition, shown under the masthead poster. */
   hero?: EditorialImageVisual;
+  /** Optional pre-made share card; without it the generated text card is used. */
+  socialImage?: SocialImage;
+  /** Optional index table rendered after the opening, each row linking to its story. */
+  readingList?: ReadingListRow[];
+  /** Optional relabelling of the story blocks, e.g. "Practical example — a proposed workflow". */
+  storyLabels?: Partial<StoryBlockLabels>;
+  /** Where story images sit; defaults to "aside". */
+  visualPlacement?: StoryVisualPlacement;
   /**
    * Present on monthly editions only: the month-in-review capsule content. When set,
    * the edition renders as the visual monthly recap instead of the weekly layout,
