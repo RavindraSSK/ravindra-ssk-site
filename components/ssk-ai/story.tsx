@@ -1,7 +1,16 @@
 import { CodedDiagram } from "@/components/ssk-ai/diagrams";
 import { AmieVisual } from "@/components/ssk-ai/amie-visual";
 import { RichText, richText } from "@/components/ssk-ai/rich-text";
-import type { SskAiStory } from "@/lib/ssk-ai/types";
+import type { SskAiStory, StoryBlockLabels, StoryCopy, StoryVisualPlacement } from "@/lib/ssk-ai/types";
+
+export const DEFAULT_STORY_LABELS: StoryBlockLabels = {
+  happened: "What happened?",
+  new: "What's actually new?",
+  matters: "Why it matters",
+  applications: "Practical Applications",
+  example: "Real-World Example",
+  takeaway: "Developer Takeaway",
+};
 
 function Badge({
   label,
@@ -20,6 +29,18 @@ function Badge({
       <span className="ssk-badge__value">{value}</span>
       {note ? <span className="ssk-badge__note">{note}</span> : null}
     </span>
+  );
+}
+
+/** One paragraph or several, each rendered as its own `.ssk-prose` paragraph. */
+function Paragraphs({ text }: { text: StoryCopy }) {
+  const paragraphs = Array.isArray(text) ? text : [text];
+  return (
+    <>
+      {paragraphs.map((paragraph, index) => (
+        <RichText key={`${index}-${paragraph.slice(0, 32)}`} text={paragraph} className="ssk-prose" />
+      ))}
+    </>
   );
 }
 
@@ -70,15 +91,25 @@ export function SourceLinks({ links }: { links?: SskAiStory["source"]["links"] }
   );
 }
 
-function StoryVisualBlock({ story }: { story: SskAiStory }) {
+function StoryVisualBlock({ story, sizes }: { story: SskAiStory; sizes?: string }) {
   if (story.visual.kind === "coded-diagram") {
     return <CodedDiagram id={story.visual.diagram} caption={story.visual.caption} />;
   }
-  return <AmieVisual visual={story.visual} />;
+  return <AmieVisual visual={story.visual} sizes={sizes} />;
 }
 
-export function StorySection({ story }: { story: SskAiStory }) {
+export function StorySection({
+  story,
+  labels,
+  visualPlacement = "aside",
+}: {
+  story: SskAiStory;
+  labels?: Partial<StoryBlockLabels>;
+  visualPlacement?: StoryVisualPlacement;
+}) {
   const rank = String(story.rank).padStart(2, "0");
+  const heading = { ...DEFAULT_STORY_LABELS, ...labels };
+  const lead = visualPlacement === "lead";
 
   return (
     <section className="ssk-story" id={story.id} aria-labelledby={`${story.id}-title`}>
@@ -109,35 +140,41 @@ export function StorySection({ story }: { story: SskAiStory }) {
         </div>
       </header>
 
+      {lead ? (
+        // The story image directly under its header and status line, at the full
+        // width of the story card, before the copy begins.
+        <div className="ssk-story__lead">
+          <StoryVisualBlock story={story} sizes="(max-width: 1180px) 100vw, 1100px" />
+        </div>
+      ) : null}
+
       <div className="ssk-story__grid">
         <div className="ssk-story__prose">
           <section className="ssk-block" aria-labelledby={`${story.id}-happened`}>
-            <h3 id={`${story.id}-happened`}>What happened?</h3>
-            {story.whatHappened.map((paragraph) => (
-              <RichText key={paragraph.slice(0, 48)} text={paragraph} className="ssk-prose" />
-            ))}
+            <h3 id={`${story.id}-happened`}>{heading.happened}</h3>
+            <Paragraphs text={story.whatHappened} />
           </section>
-          <section className="ssk-block" aria-labelledby={`${story.id}-new`}>
-            <h3 id={`${story.id}-new`}>What&apos;s actually new?</h3>
-            {story.whatsActuallyNew.map((paragraph) => (
-              <RichText key={paragraph.slice(0, 48)} text={paragraph} className="ssk-prose" />
-            ))}
-          </section>
+          {story.whatsActuallyNew && story.whatsActuallyNew.length > 0 ? (
+            <section className="ssk-block" aria-labelledby={`${story.id}-new`}>
+              <h3 id={`${story.id}-new`}>{heading.new}</h3>
+              <Paragraphs text={story.whatsActuallyNew} />
+            </section>
+          ) : null}
           <section className="ssk-block" aria-labelledby={`${story.id}-matters`}>
-            <h3 id={`${story.id}-matters`}>Why it matters</h3>
-            <RichText text={story.whyItMatters} className="ssk-prose" />
+            <h3 id={`${story.id}-matters`}>{heading.matters}</h3>
+            <Paragraphs text={story.whyItMatters} />
           </section>
           <section className="ssk-block" aria-labelledby={`${story.id}-apps`}>
-            <h3 id={`${story.id}-apps`}>Practical Applications</h3>
+            <h3 id={`${story.id}-apps`}>{heading.applications}</h3>
             <Applications story={story} />
           </section>
           <section className="ssk-block" aria-labelledby={`${story.id}-example`}>
-            <h3 id={`${story.id}-example`}>Real-World Example</h3>
-            <RichText text={story.realWorldExample} className="ssk-prose" />
+            <h3 id={`${story.id}-example`}>{heading.example}</h3>
+            <Paragraphs text={story.realWorldExample} />
           </section>
           <section className="ssk-block" aria-labelledby={`${story.id}-takeaway`}>
-            <h3 id={`${story.id}-takeaway`}>Developer Takeaway</h3>
-            <RichText text={story.developerTakeaway} className="ssk-prose" />
+            <h3 id={`${story.id}-takeaway`}>{heading.takeaway}</h3>
+            <Paragraphs text={story.developerTakeaway} />
           </section>
         </div>
 
@@ -156,7 +193,7 @@ export function StorySection({ story }: { story: SskAiStory }) {
               <p>{story.beforeChangeResult.result}</p>
             </div>
           </div>
-          <StoryVisualBlock story={story} />
+          {lead ? null : <StoryVisualBlock story={story} />}
         </aside>
       </div>
 

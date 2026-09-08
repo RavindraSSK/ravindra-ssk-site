@@ -8,7 +8,50 @@ import { WhatWeCanBuild } from "@/components/ssk-ai/projects";
 import { RichText, richText } from "@/components/ssk-ai/rich-text";
 import { SourceLinks, StorySection } from "@/components/ssk-ai/story";
 import { SSK_AI_HUB, TECH_NEWS } from "@/lib/ssk-ai";
-import type { SskAiIssue } from "@/lib/ssk-ai/types";
+import type { ReadingListRow, SskAiIssue, SskAiStory } from "@/lib/ssk-ai/types";
+
+function ReadingList({ rows, stories }: { rows: ReadingListRow[]; stories: SskAiStory[] }) {
+  const byId = new Map(stories.map((story) => [story.id, story] as const));
+
+  return (
+    <section className="section section--tight" aria-labelledby="ssk-reading-list-title">
+      <div className="container ssk-measure">
+        <h2 id="ssk-reading-list-title" className="ssk-reading-list__title">
+          This week&apos;s reading list
+        </h2>
+        {/* The table has a hard minimum width and scrolls horizontally on a phone.
+            A scroll container that only a mouse or finger can move is a keyboard
+            trap for its content (WCAG 2.1.1), so it takes focus and announces itself
+            as a region — the same pattern as the desk's cadence table. */}
+        <div className="card ssk-reading-list" tabIndex={0} role="region" aria-label="This week's reading list">
+          <table className="ssk-reading-list__table">
+            <thead>
+              <tr>
+                <th scope="col">Development</th>
+                <th scope="col">Announcement date</th>
+                <th scope="col">The question for builders</th>
+              </tr>
+            </thead>
+            <tbody>
+              {rows.map((row) => {
+                const story = byId.get(row.storyId);
+                return (
+                  <tr key={row.storyId}>
+                    <th scope="row">
+                      {story ? <a href={`#${story.id}`}>{row.development}</a> : row.development}
+                    </th>
+                    <td>{row.announced}</td>
+                    <td>{row.question}</td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  );
+}
 
 export function SskAiIssuePage({ issue }: { issue: SskAiIssue }) {
   // Monthly editions are visual recaps, not weekly deep dives — they render
@@ -19,6 +62,7 @@ export function SskAiIssuePage({ issue }: { issue: SskAiIssue }) {
 
   const opening = issue.opening ?? [];
   const stories = issue.stories ?? [];
+  const readingList = issue.readingList ?? [];
 
   return (
     <main id="main-content" className="page-shell ssk-page">
@@ -70,10 +114,12 @@ export function SskAiIssuePage({ issue }: { issue: SskAiIssue }) {
           </div>
         </section>
 
+        {readingList.length > 0 ? <ReadingList rows={readingList} stories={stories} /> : null}
+
         {stories.map((story) => (
           <div className="section section--tight" key={story.id}>
             <div className="container">
-              <StorySection story={story} />
+              <StorySection story={story} labels={issue.storyLabels} visualPlacement={issue.visualPlacement} />
             </div>
           </div>
         ))}
@@ -94,7 +140,7 @@ export function SskAiIssuePage({ issue }: { issue: SskAiIssue }) {
                 </article>
               ))}
             </div>
-            <p className="ssk-prose ssk-watch-next">{issue.biggerPicture.watchNext}</p>
+            <p className="ssk-prose ssk-watch-next">{richText(issue.biggerPicture.watchNext)}</p>
           </div>
         </section>
         ) : null}
@@ -118,7 +164,7 @@ export function SskAiIssuePage({ issue }: { issue: SskAiIssue }) {
                   <SourceLinks links={story.source.links} />
                 </details>
               ))}
-              {issue.generalSourceNote ? <p className="ssk-prose">{issue.generalSourceNote}</p> : null}
+              {issue.generalSourceNote ? <p className="ssk-prose">{richText(issue.generalSourceNote)}</p> : null}
             </div>
             <LinkedInSubscribe />
             <p className="ssk-back">

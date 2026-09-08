@@ -1,11 +1,19 @@
+import { readFile } from "node:fs/promises";
+import path from "node:path";
+
 import { ImageResponse } from "next/og";
 import { notFound } from "next/navigation";
 
-import { getIssueBySlug } from "@/lib/ssk-ai";
+import { getAllIssues, getIssueBySlug, isEditorialImageAvailable } from "@/lib/ssk-ai";
 
 export const alt = "SSK AI issue";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
+
+/** Rendered at build time for every edition, like the edition pages themselves. */
+export function generateStaticParams() {
+  return getAllIssues().map((issue) => ({ slug: issue.slug }));
+}
 
 export default async function SskAiIssueOpenGraphImage({
   params,
@@ -15,6 +23,15 @@ export default async function SskAiIssueOpenGraphImage({
   const { slug } = await params;
   const issue = getIssueBySlug(slug);
   if (!issue) notFound();
+
+  // An edition with its own share card — a padded, uncropped derivative of its
+  // cover at exactly this route's size — serves that file as-is. Editions
+  // without one get the generated text card below.
+  const social = issue.socialImage;
+  if (social && isEditorialImageAvailable(social.src)) {
+    const file = await readFile(path.join(process.cwd(), "public", social.src.replace(/^\//, "")));
+    return new Response(new Uint8Array(file), { headers: { "Content-Type": contentType } });
+  }
 
   return new ImageResponse(
     (
