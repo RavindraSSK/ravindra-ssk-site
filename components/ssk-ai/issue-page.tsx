@@ -8,10 +8,18 @@ import { WhatWeCanBuild } from "@/components/ssk-ai/projects";
 import { RichText, richText } from "@/components/ssk-ai/rich-text";
 import { SourceLinks, StorySection } from "@/components/ssk-ai/story";
 import { SSK_AI_HUB, TECH_NEWS } from "@/lib/ssk-ai";
-import type { ReadingListRow, SskAiIssue, SskAiStory } from "@/lib/ssk-ai/types";
+import type { EditionBrief, ReadingListRow, SskAiIssue, SskAiStory } from "@/lib/ssk-ai/types";
 
-function ReadingList({ rows, stories }: { rows: ReadingListRow[]; stories: SskAiStory[] }) {
-  const byId = new Map(stories.map((story) => [story.id, story] as const));
+function ReadingList({
+  rows,
+  stories,
+  briefs,
+}: {
+  rows: ReadingListRow[];
+  stories: SskAiStory[];
+  briefs: EditionBrief[];
+}) {
+  const anchors = new Set([...stories.map((story) => story.id), ...briefs.map((brief) => brief.id)]);
 
   return (
     <section className="section section--tight" aria-labelledby="ssk-reading-list-title">
@@ -34,11 +42,11 @@ function ReadingList({ rows, stories }: { rows: ReadingListRow[]; stories: SskAi
             </thead>
             <tbody>
               {rows.map((row) => {
-                const story = byId.get(row.storyId);
+                const linked = anchors.has(row.storyId);
                 return (
                   <tr key={row.storyId}>
                     <th scope="row">
-                      {story ? <a href={`#${story.id}`}>{row.development}</a> : row.development}
+                      {linked ? <a href={`#${row.storyId}`}>{row.development}</a> : row.development}
                     </th>
                     <td>{row.announced}</td>
                     <td>{row.question}</td>
@@ -63,6 +71,7 @@ export function SskAiIssuePage({ issue }: { issue: SskAiIssue }) {
   const opening = issue.opening ?? [];
   const stories = issue.stories ?? [];
   const readingList = issue.readingList ?? [];
+  const briefs = issue.briefs?.items ?? [];
 
   return (
     <main id="main-content" className="page-shell ssk-page">
@@ -114,7 +123,7 @@ export function SskAiIssuePage({ issue }: { issue: SskAiIssue }) {
           </div>
         </section>
 
-        {readingList.length > 0 ? <ReadingList rows={readingList} stories={stories} /> : null}
+        {readingList.length > 0 ? <ReadingList rows={readingList} stories={stories} briefs={briefs} /> : null}
 
         {stories.map((story) => (
           <div className="section section--tight" key={story.id}>
@@ -123,6 +132,30 @@ export function SskAiIssuePage({ issue }: { issue: SskAiIssue }) {
             </div>
           </div>
         ))}
+
+        {issue.briefs && briefs.length > 0 ? (
+          <section className="section section--tight" aria-labelledby="ssk-briefs-title">
+            <div className="container ssk-measure">
+              <span className="eyebrow">Focused briefs</span>
+              <h2 id="ssk-briefs-title" className="section-title">
+                {issue.briefs.heading}
+              </h2>
+              <div className="ssk-briefs">
+                {briefs.map((brief) => (
+                  <article className="card ssk-brief" id={brief.id} key={brief.id} aria-labelledby={`${brief.id}-title`}>
+                    <p className="ssk-brief__date">{brief.date}</p>
+                    <h3 id={`${brief.id}-title`} className="ssk-brief__title">
+                      {brief.title}
+                    </h3>
+                    {brief.body.map((paragraph, index) => (
+                      <RichText key={`${brief.id}-${index}`} text={paragraph} className="ssk-prose" />
+                    ))}
+                  </article>
+                ))}
+              </div>
+            </div>
+          </section>
+        ) : null}
 
         {issue.biggerPicture ? (
         <section className="section" aria-labelledby="ssk-bigger-picture">
@@ -164,6 +197,15 @@ export function SskAiIssuePage({ issue }: { issue: SskAiIssue }) {
                   <SourceLinks links={story.source.links} />
                 </details>
               ))}
+              {briefs
+                .filter((brief) => brief.source)
+                .map((brief) => (
+                  <details className="ssk-source" key={brief.id}>
+                    <summary>{brief.source!.heading}</summary>
+                    <p>{richText(brief.source!.body)}</p>
+                    <SourceLinks links={brief.source!.links} />
+                  </details>
+                ))}
               {issue.generalSourceNote ? <p className="ssk-prose">{richText(issue.generalSourceNote)}</p> : null}
             </div>
             <LinkedInSubscribe />

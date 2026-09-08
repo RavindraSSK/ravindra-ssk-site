@@ -45,7 +45,14 @@ desk page renders identically on every build.
    `node scripts/make-social-card.mjs <cover.png> <out.png>`, which contains the whole
    cover on a padded background rather than cropping its headline or date. Source
    PNGs stay at their native resolution; `next/image` serves the responsive
-   derivatives.
+   derivatives. The same edition, after its same-day expansion, also uses `updates`
+   (dated availability/policy follow-ups inside a story, rendered between "What
+   happened?" and the analysis), `whatHappenedTable` (a small table after the "What
+   happened?" paragraphs), `briefs` (focused briefs with their own anchors, rendered
+   before the bigger picture and listed under Sources), a story without
+   `buildability` (no badge is shown), and `dateModified` — the real ISO date-time of
+   a revision to a published edition, carried into `article:modified_time`, JSON-LD
+   and the sitemap while `datePublished` stays as it was.
 
 2. **Fill in the `edition` block.** This is what places the edition on the calendar:
 

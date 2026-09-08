@@ -1,7 +1,7 @@
 import { CodedDiagram } from "@/components/ssk-ai/diagrams";
 import { AmieVisual } from "@/components/ssk-ai/amie-visual";
 import { RichText, richText } from "@/components/ssk-ai/rich-text";
-import type { SskAiStory, StoryBlockLabels, StoryCopy, StoryVisualPlacement } from "@/lib/ssk-ai/types";
+import type { SskAiStory, StoryBlockLabels, StoryCopy, StoryTable, StoryVisualPlacement } from "@/lib/ssk-ai/types";
 
 export const DEFAULT_STORY_LABELS: StoryBlockLabels = {
   happened: "What happened?",
@@ -41,6 +41,36 @@ function Paragraphs({ text }: { text: StoryCopy }) {
         <RichText key={`${index}-${paragraph.slice(0, 32)}`} text={paragraph} className="ssk-prose" />
       ))}
     </>
+  );
+}
+
+/** A small data table inside a story, scrolling inside its card on a phone like the reading list. */
+function StoryDataTable({ table }: { table: StoryTable }) {
+  return (
+    <div className="card ssk-reading-list ssk-story__table" tabIndex={0} role="region" aria-label={table.caption}>
+      <table className="ssk-reading-list__table">
+        <caption className="ssk-story__table-caption">{table.caption}</caption>
+        <thead>
+          <tr>
+            {table.columns.map((column) => (
+              <th scope="col" key={column}>
+                {column}
+              </th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          {table.rows.map(([head, ...cells]) => (
+            <tr key={head}>
+              <th scope="row">{head}</th>
+              {cells.map((cell, index) => (
+                <td key={`${head}-${index}`}>{cell}</td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
   );
 }
 
@@ -125,12 +155,14 @@ export function StorySection({
           <div className="ssk-story__badges">
             <Badge label="STATUS" value={story.status} tone="status" />
             <Badge label="TYPE" value={story.type} tone="type" />
-            <Badge
-              label="BUILDABILITY"
-              value={story.buildability}
-              note={story.buildabilityNote}
-              tone="build"
-            />
+            {story.buildability ? (
+              <Badge
+                label="BUILDABILITY"
+                value={story.buildability}
+                note={story.buildabilityNote}
+                tone="build"
+              />
+            ) : null}
           </div>
           <ul className="ssk-story__tags" aria-label="Audience tags">
             {story.audienceTags.map((tag) => (
@@ -153,7 +185,18 @@ export function StorySection({
           <section className="ssk-block" aria-labelledby={`${story.id}-happened`}>
             <h3 id={`${story.id}-happened`}>{heading.happened}</h3>
             <Paragraphs text={story.whatHappened} />
+            {story.whatHappenedTable ? <StoryDataTable table={story.whatHappenedTable} /> : null}
           </section>
+          {(story.updates ?? []).map((update, index) => (
+            <section
+              className="ssk-block"
+              aria-labelledby={`${story.id}-update-${index + 1}`}
+              key={`${story.id}-update-${index + 1}`}
+            >
+              <h3 id={`${story.id}-update-${index + 1}`}>{update.heading}</h3>
+              <Paragraphs text={update.body} />
+            </section>
+          ))}
           {story.whatsActuallyNew && story.whatsActuallyNew.length > 0 ? (
             <section className="ssk-block" aria-labelledby={`${story.id}-new`}>
               <h3 id={`${story.id}-new`}>{heading.new}</h3>
