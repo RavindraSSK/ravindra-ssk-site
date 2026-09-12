@@ -25,8 +25,8 @@ Do not backdate. Frame Weeks 1 and 2 as editions that are now live on SSK AI Hub
 
 ## Post 1 — Week 1
 
-**Image:** `linkedin/ai_tech_briefing_week_1_detail.png`  
-(Optional second image: `linkedin/ai_tech_briefing_week_1.png`)
+**Image:** `ai_tech_briefing_week_1_detail.png` (archived off-repo)  
+(Optional second image: `ai_tech_briefing_week_1.png`)
 
 **Edition URL:** https://ravindrassk.com/ssk-ai/tech-news/ai-technology-updates-august-8-2026
 
@@ -56,8 +56,8 @@ Week 1 desk: https://ravindrassk.com/ssk-ai/tech-news/ai-technology-updates-augu
 
 ## Post 2 — Week 2
 
-**Image:** `linkedin/ai_tech_briefing_week_2_detail.png`  
-(Optional second image: `linkedin/ai_tech_briefing_week_2.png`)
+**Image:** `ai_tech_briefing_week_2_detail.png` (archived off-repo)  
+(Optional second image: `ai_tech_briefing_week_2.png`)
 
 **Edition URL:** https://ravindrassk.com/ssk-ai/tech-news/ai-technology-updates-august-12-2026
 
@@ -87,8 +87,8 @@ Week 2 desk: https://ravindrassk.com/ssk-ai/tech-news/ai-technology-updates-augu
 
 ## Post 3 — Week 3
 
-**Image:** `linkedin/ai_tech_briefing_week_3_detail.png`  
-(Optional second image: `linkedin/ai_tech_briefing_week_3.png`)
+**Image:** `ai_tech_briefing_week_3_detail.png` (archived off-repo)  
+(Optional second image: `ai_tech_briefing_week_3.png`)
 
 **Edition URL:** https://ravindrassk.com/ssk-ai/tech-news/ai-technology-updates-august-22-2026
 
