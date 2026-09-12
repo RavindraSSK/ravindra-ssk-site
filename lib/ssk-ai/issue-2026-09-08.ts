@@ -21,7 +21,7 @@ import type { SskAiIssue } from "./types";
  * appeal, not a regulation. Every example workflow is a proposal, not a
  * documented customer deployment.
  *
- * Editorial images are the package's thirteen native 1672×941 story PNGs and
+ * Editorial images are the package's thirteen native 1672×941 story WebPs and
  * the user-supplied week-at-a-glance cover (native 1672×941 WebP) in
  * /public/ssk-ai/2026-09-08/ — original AI-generated editorial illustrations,
  * not official product assets or screenshots — and next/image serves the
@@ -65,7 +65,7 @@ export const issueSeptember08_2026: SskAiIssue = {
       "Original SSK AI Hub editorial cover for the September 1–7, 2026 edition — a week-at-a-glance collage of the edition's stories in the publication's white, navy and blue style; conceptual artwork, not official product assets.",
   },
   socialImage: {
-    src: "/ssk-ai/2026-09-08/00-cover-social-1200x630-v5.png",
+    src: "/ssk-ai/2026-09-08/00-cover-social-1200x630-v5.webp",
     width: 1200,
     height: 630,
     alt: "SSK AI Hub September 1–7, 2026 Week 1 cover — an 'AI Tech Briefing: the week at a glance' collage with the SSK monogram and previews of the edition's stories.",
@@ -230,7 +230,7 @@ export const issueSeptember08_2026: SskAiIssue = {
       },
       visual: {
         kind: "editorial-image",
-        src: "/ssk-ai/2026-09-08/01-astra-computer-work-v2.png",
+        src: "/ssk-ai/2026-09-08/01-astra-computer-work-v2.webp",
         width: 1672,
         height: 941,
         alt: "OpenAI GPT-6 Astra editorial artwork featuring computer use, coding, research and professional document workflows.",
@@ -310,7 +310,7 @@ export const issueSeptember08_2026: SskAiIssue = {
       },
       visual: {
         kind: "editorial-image",
-        src: "/ssk-ai/2026-09-08/02-claude-fable-mythos-v2.png",
+        src: "/ssk-ai/2026-09-08/02-claude-fable-mythos-v2.webp",
         width: 1672,
         height: 941,
         alt: "Anthropic Claude Fable 5.1 and Mythos 5.1 editorial artwork with warm paper styling, coding and research motifs, and clearly distinguished access labels.",
@@ -384,7 +384,7 @@ export const issueSeptember08_2026: SskAiIssue = {
       },
       visual: {
         kind: "editorial-image",
-        src: "/ssk-ai/2026-09-08/03-gemini-flash-v2.png",
+        src: "/ssk-ai/2026-09-08/03-gemini-flash-v2.webp",
         width: 1672,
         height: 941,
         alt: "Google Gemini 3.8 Flash and Flash Cyber editorial artwork with a multicolor Gemini star, coding workspace and defensive-security motif.",
@@ -454,7 +454,7 @@ export const issueSeptember08_2026: SskAiIssue = {
       },
       visual: {
         kind: "editorial-image",
-        src: "/ssk-ai/2026-09-08/04-agentic-video-v2.png",
+        src: "/ssk-ai/2026-09-08/04-agentic-video-v2.webp",
         width: 1672,
         height: 941,
         alt: "Gemini agentic video editorial artwork showing a video timeline, selected evidence frames and an enlarged relevant moment.",
@@ -520,7 +520,7 @@ export const issueSeptember08_2026: SskAiIssue = {
       },
       visual: {
         kind: "editorial-image",
-        src: "/ssk-ai/2026-09-08/05-nvidia-hugging-face-v2.png",
+        src: "/ssk-ai/2026-09-08/05-nvidia-hugging-face-v2.webp",
         width: 1672,
         height: 941,
         alt: "NVIDIA and Hugging Face editorial artwork highlighting the announced acquisition agreement and the open-model developer ecosystem.",
@@ -583,7 +583,7 @@ export const issueSeptember08_2026: SskAiIssue = {
       },
       visual: {
         kind: "editorial-image",
-        src: "/ssk-ai/2026-09-08/06-nvidia-pair-local-ai-v2.png",
+        src: "/ssk-ai/2026-09-08/06-nvidia-pair-local-ai-v2.webp",
         width: 1672,
         height: 941,
         alt: "NVIDIA PAIR editorial artwork with clearly named Personal AI Router and separate requests distributed among local computers.",
@@ -649,7 +649,7 @@ export const issueSeptember08_2026: SskAiIssue = {
       },
       visual: {
         kind: "editorial-image",
-        src: "/ssk-ai/2026-09-08/07-weathernext-3-v2.png",
+        src: "/ssk-ai/2026-09-08/07-weathernext-3-v2.webp",
         width: 1672,
         height: 941,
         alt: "Google DeepMind WeatherNext 3 editorial artwork with satellite observations, atmospheric detail and weather-sensitive landscapes.",
@@ -712,7 +712,7 @@ export const issueSeptember08_2026: SskAiIssue = {
       },
       visual: {
         kind: "editorial-image",
-        src: "/ssk-ai/2026-09-08/08-meta-muse-spark-v1.png",
+        src: "/ssk-ai/2026-09-08/08-meta-muse-spark-v1.webp",
         width: 1672,
         height: 941,
         alt: "Meta Muse Spark 1.3 editorial illustration with a coding laptop, task cards and a pinned requirement.",
@@ -772,7 +772,7 @@ export const issueSeptember08_2026: SskAiIssue = {
       },
       visual: {
         kind: "editorial-image",
-        src: "/ssk-ai/2026-09-08/09-hugging-face-webgpu-v1.png",
+        src: "/ssk-ai/2026-09-08/09-hugging-face-webgpu-v1.webp",
         width: 1672,
         height: 941,
         alt: "Hugging Face WebGPU kernels editorial illustration showing browser computation and a GPU inside a laptop.",
@@ -832,7 +832,7 @@ export const issueSeptember08_2026: SskAiIssue = {
       },
       visual: {
         kind: "editorial-image",
-        src: "/ssk-ai/2026-09-08/10-hugging-face-funes-v1.png",
+        src: "/ssk-ai/2026-09-08/10-hugging-face-funes-v1.webp",
         width: 1672,
         height: 941,
         alt: "Hugging Face funes editorial illustration with a local notebook and retrievable conversation passages.",
@@ -900,7 +900,7 @@ export const issueSeptember08_2026: SskAiIssue = {
       },
       visual: {
         kind: "editorial-image",
-        src: "/ssk-ai/2026-09-08/11-github-copilot-workflows-v1.png",
+        src: "/ssk-ai/2026-09-08/11-github-copilot-workflows-v1.webp",
         width: 1672,
         height: 941,
         alt: "GitHub Copilot editorial illustration with a pull-request review and administrator-controlled repository settings.",
@@ -972,7 +972,7 @@ export const issueSeptember08_2026: SskAiIssue = {
       },
       visual: {
         kind: "editorial-image",
-        src: "/ssk-ai/2026-09-08/12-openai-research-oversight-v1.png",
+        src: "/ssk-ai/2026-09-08/12-openai-research-oversight-v1.webp",
         width: 1672,
         height: 941,
         alt: "OpenAI editorial illustration showing research experiments, an evidence sheet and human review.",
@@ -1036,7 +1036,7 @@ export const issueSeptember08_2026: SskAiIssue = {
       },
       visual: {
         kind: "editorial-image",
-        src: "/ssk-ai/2026-09-08/13-tcs-hypervault-v1.png",
+        src: "/ssk-ai/2026-09-08/13-tcs-hypervault-v1.webp",
         width: 1672,
         height: 941,
         alt: "Concept illustration of the planned TCS HyperVault AI data-center campus in Hyderabad, clearly labeled planned campus.",
