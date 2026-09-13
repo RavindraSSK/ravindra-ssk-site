@@ -39,7 +39,7 @@ The full edition includes the technical context, practical impact, real-world ap
 
 ## Cover Image
 
-`linkedin/ssk_ai_hub_tech_briefing_week_4.png`
+`ssk_ai_hub_tech_briefing_week_4.png` (archived off-repo)
 
 Do not add text overlays. Keep the existing footer branding visible (`© SSK AI HUB 2026` and `ravindrassk.com`).
 

@@ -30,7 +30,10 @@ export default async function SskAiIssueOpenGraphImage({
   const social = issue.socialImage;
   if (social && isEditorialImageAvailable(social.src)) {
     const file = await readFile(path.join(process.cwd(), "public", social.src.replace(/^\//, "")));
-    return new Response(new Uint8Array(file), { headers: { "Content-Type": contentType } });
+    const ext = path.extname(social.src).toLowerCase();
+    const mime =
+      ext === ".webp" ? "image/webp" : ext === ".jpg" || ext === ".jpeg" ? "image/jpeg" : "image/png";
+    return new Response(new Uint8Array(file), { headers: { "Content-Type": mime } });
   }
 
   return new ImageResponse(
