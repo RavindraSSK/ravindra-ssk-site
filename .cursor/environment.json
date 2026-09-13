@@ -1,0 +1,17 @@
+{
+  "name": "ravindra-ssk",
+  "install": "npm ci",
+  "terminals": [
+    {
+      "name": "dev",
+      "command": "npm run dev",
+      "description": "Next.js dev server (Turbopack) on http://localhost:3000 — the only service needed to exercise the whole site."
+    }
+  ],
+  "ports": [
+    {
+      "name": "web",
+      "port": 3000
+    }
+  ]
+}
