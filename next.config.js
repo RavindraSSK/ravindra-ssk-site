@@ -23,6 +23,7 @@ const MIGRATED_EDITIONS = ["ai-technology-updates-august-12-2026"];
 
 /** @type {import("next").NextConfig} */
 const nextConfig = {
+  outputFileTracingExcludes: { "**/*": ["public/videos/**", "public/images/handball/**", "public/reports/**", "linkedin/**", "design/**"] },
   async redirects() {
     return [
       { source: "/explore/blog", destination: "/ssk-ai/tech-content", permanent: true },
