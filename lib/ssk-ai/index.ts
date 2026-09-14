@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { existsSync } from "node:fs";
 import path from "node:path";
 
+import { personSchema } from "@/lib/content";
 import { DEFAULT_SITE_URL } from "@/lib/site-url";
 
 import { issueAugust08_2026 } from "./issue-2026-08-08";
@@ -164,19 +165,31 @@ export function buildSectionMetadata(section: SskAiSection): Metadata {
 
 export function buildSskAiIssueMetadata(issue: SskAiIssue): Metadata {
   const canonical = getIssuePath(issue);
-  // The OG route serves the edition's own share card when it declares one (a
-  // padded, uncropped derivative of its cover) and a generated text card otherwise.
-  const image = shareImage(`${canonical}/opengraph-image`, issue.socialImage?.alt ?? issue.cardTitle);
+  const canonicalUrl = `${DEFAULT_SITE_URL}${canonical}`;
+  const newsArticle = issue.schemaType === "NewsArticle";
+  // NewsArticle editions point crawlers at the supplied cover share card. Other
+  // editions keep the OG route, which serves that card when one exists and a
+  // generated text card otherwise.
+  const image =
+    newsArticle && issue.socialImage
+      ? {
+          url: issue.socialImage.src,
+          width: issue.socialImage.width,
+          height: issue.socialImage.height,
+          alt: issue.socialImage.alt,
+        }
+      : shareImage(`${canonical}/opengraph-image`, issue.socialImage?.alt ?? issue.cardTitle);
 
   return {
     title: { absolute: issue.seoTitle },
     description: issue.seoDescription,
-    alternates: { canonical },
+    alternates: { canonical: newsArticle ? canonicalUrl : canonical },
+    ...(newsArticle ? { robots: { index: true, follow: true } } : {}),
     openGraph: {
       type: "article",
       title: issue.seoTitle,
       description: issue.seoDescription,
-      url: canonical,
+      url: newsArticle ? canonicalUrl : canonical,
       siteName: "Ravindra SSK",
       publishedTime: issue.datePublished,
       ...(issue.dateModified ? { modifiedTime: issue.dateModified } : {}),
@@ -281,7 +294,64 @@ export function buildTechContentArticleJsonLd(article: {
   };
 }
 
+function buildSskAiNewsArticleJsonLd(issue: SskAiIssue) {
+  const url = `${DEFAULT_SITE_URL}${getIssuePath(issue)}`;
+  const cover = issue.hero;
+  const image = cover
+    ? {
+        "@type": "ImageObject" as const,
+        url: `${DEFAULT_SITE_URL}${cover.src}`,
+        width: cover.width,
+        height: cover.height,
+        caption: cover.caption,
+      }
+    : issue.socialImage
+      ? `${DEFAULT_SITE_URL}${issue.socialImage.src}`
+      : `${url}/opengraph-image`;
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "NewsArticle",
+    headline: issue.heading ?? issue.title,
+    alternativeHeadline: issue.cardTitle,
+    description: issue.seoDescription,
+    datePublished: issue.datePublished,
+    ...(issue.dateModified ? { dateModified: issue.dateModified } : {}),
+    author: {
+      "@type": "Person",
+      "@id": personSchema["@id"],
+      name: personSchema.name,
+      alternateName: personSchema.alternateName,
+      url: personSchema.url,
+    },
+    publisher: {
+      "@type": "Organization",
+      name: SSK_AI_HUB.name,
+      url: `${DEFAULT_SITE_URL}${SSK_AI_HUB.path}`,
+      logo: {
+        "@type": "ImageObject",
+        url: `${DEFAULT_SITE_URL}/branding/logo-light.png`,
+        width: 512,
+        height: 512,
+      },
+    },
+    image,
+    mainEntityOfPage: { "@type": "WebPage", "@id": url },
+    url,
+    inLanguage: "en-US",
+    isPartOf: {
+      "@type": "CreativeWorkSeries",
+      name: `${SSK_AI_HUB.name} — ${TECH_NEWS.name}`,
+      url: `${DEFAULT_SITE_URL}${TECH_NEWS.path}`,
+    },
+  };
+}
+
 export function buildSskAiArticleJsonLd(issue: SskAiIssue) {
+  if (issue.schemaType === "NewsArticle") {
+    return buildSskAiNewsArticleJsonLd(issue);
+  }
+
   const url = `${DEFAULT_SITE_URL}${getIssuePath(issue)}`;
   return {
     "@context": "https://schema.org",

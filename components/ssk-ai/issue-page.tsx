@@ -85,7 +85,7 @@ export function SskAiIssuePage({ issue }: { issue: SskAiIssue }) {
               <span aria-hidden="true"> · </span>
               <time dateTime={issue.datePublished}>{issue.dateLabel}</time>
             </p>
-            <h1 className="page-title ssk-issue-h1">{issue.title}</h1>
+            <h1 className="page-title ssk-issue-h1">{issue.heading ?? issue.title}</h1>
             <p className="ssk-edition-rule">
               <span>Vol. {issue.edition.volume}</span>
               <span aria-hidden="true">·</span>
@@ -100,7 +100,16 @@ export function SskAiIssuePage({ issue }: { issue: SskAiIssue }) {
             {issue.hero ? (
               <AmieVisual visual={issue.hero} sizes="(max-width: 1100px) 100vw, 1100px" />
             ) : null}
-            <nav className="ssk-toc" aria-label="Stories in this issue">
+            <nav
+              className="ssk-toc"
+              aria-labelledby={issue.tocHeading ? "ssk-toc-title" : undefined}
+              aria-label={issue.tocHeading ? undefined : "Stories in this issue"}
+            >
+              {issue.tocHeading ? (
+                <h2 id="ssk-toc-title" className="ssk-toc__title">
+                  {issue.tocHeading}
+                </h2>
+              ) : null}
               <ol>
                 {stories.map((story) => (
                   <li key={story.id}>
@@ -120,6 +129,19 @@ export function SskAiIssuePage({ issue }: { issue: SskAiIssue }) {
             {opening.map((paragraph) => (
               <RichText key={paragraph.slice(0, 40)} className="ssk-lede" text={paragraph} />
             ))}
+            {issue.relatedReading && issue.relatedReading.length > 0 ? (
+              <p className="ssk-lede">
+                {issue.relatedReading.map((part, index) =>
+                  typeof part === "string" ? (
+                    <span key={`related-text-${index}`}>{part}</span>
+                  ) : (
+                    <Link key={part.href} className="inline-link" href={part.href}>
+                      {part.label}
+                    </Link>
+                  ),
+                )}
+              </p>
+            ) : null}
           </div>
         </section>
 
