@@ -178,11 +178,13 @@ export function SskAiIssuePage({ issue }: { issue: SskAiIssue }) {
         </section>
         ) : null}
 
-        <section className="section section--tight">
-          <div className="container">
-            <WhatWeCanBuild issue={issue} />
-          </div>
-        </section>
+        {issue.projects && issue.projects.length > 0 ? (
+          <section className="section section--tight">
+            <div className="container">
+              <WhatWeCanBuild issue={issue} />
+            </div>
+          </section>
+        ) : null}
 
         <section className="section section--tight" aria-labelledby="ssk-sources">
           <div className="container ssk-measure">

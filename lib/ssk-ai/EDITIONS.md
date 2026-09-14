@@ -42,10 +42,16 @@ desk page renders identically on every build.
    `whatsActuallyNew` left out, multi-paragraph `whyItMatters` / `realWorldExample` /
    `developerTakeaway` arrays, inline `[label](https://…)` citations in copy, and
    `socialImage` — a 1200×630 share card made from the cover with
-   `node scripts/make-social-card.mjs <cover.png> <out.png>`, which contains the whole
-   cover on a padded background rather than cropping its headline or date. Source
-   PNGs stay at their native resolution; `next/image` serves the responsive
-   derivatives. The same edition, after its same-day expansion, also uses `updates`
+   `node scripts/make-social-card.mjs <cover.webp> <out.webp>` (the script picks its
+   output encoder from `<out>`'s extension), which contains the whole cover on a
+   padded background rather than cropping its headline or date. Editorial images are
+   stored as WebP — `public/ssk-ai/<publish-date>/*.webp`, converted from source PNGs
+   at `sharp` quality ~82 and kept at their native pixel dimensions — not PNG; once
+   the WebP files exist, don't keep the PNG originals in the repo, since WebP alone
+   runs roughly an order of magnitude smaller and that keeps deploy weight down.
+   `next/image` and each edition's Open Graph route serve the WebP files directly
+   with the correct MIME type. The same edition, after its same-day expansion, also
+   uses `updates`
    (dated availability/policy follow-ups inside a story, rendered between "What
    happened?" and the analysis), `whatHappenedTable` (a small table after the "What
    happened?" paragraphs), `briefs` (focused briefs with their own anchors, rendered
@@ -53,6 +59,15 @@ desk page renders identically on every build.
    `buildability` (no badge is shown), and `dateModified` — the real ISO date-time of
    a revision to a published edition, carried into `article:modified_time`, JSON-LD
    and the sitemap while `datePublished` stays as it was.
+   `lib/ssk-ai/issue-2026-09-15.ts` has no `featuredProject` — leave `projects`,
+   `projectsIntro`, and `featuredProject` out entirely rather than supplying an empty
+   array; `SskAiIssuePage` only renders “What Can We Build?” when `projects` is
+   non-empty. It also builds `readingList` from a source package whose “week at a
+   glance” summary was five themes rather than one row per story: each story and
+   brief took the question text from the theme it belonged under, so every row still
+   resolves to exactly one `storyId` anchor. Its safety story uses `updates` to keep a
+   same-week follow-up (a pacing proposal, then a draft code of conduct) as dated
+   entries under the main event rather than rewriting the story around the latest one.
 
 2. **Fill in the `edition` block.** This is what places the edition on the calendar:
 
