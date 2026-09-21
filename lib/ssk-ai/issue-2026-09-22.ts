@@ -143,6 +143,16 @@ export const issueSeptember22_2026: SskAiIssue = {
         change: "Live dialogue + multimodal grounding + deeper reasoning",
         result: "Voice becomes a real agent interface",
       },
+      visual: {
+        kind: "editorial-image",
+        src: "/ssk-ai/2026-09-22/01-gemini-live.webp",
+        width: 1672,
+        height: 941,
+        alt: "A person in a video call with a live AI agent that listens, shares a screen, and reasons step by step through 'Understand, Reason, Explore, Synthesize, Respond.'",
+        caption: "Gemini 3.8 Live: voice becomes an agent interface, not just an input/output layer.",
+        description:
+          "Editorial illustration of a live voice-agent session showing continuous listening, screen sharing and a visible multi-step reasoning trace.",
+      },
       source: {
         heading: "Google — Gemini 3.8 Live and Extended Thinking",
         body: "Google-reported leaderboard and performance claims should remain attributed to Google.",
@@ -191,6 +201,16 @@ export const issueSeptember22_2026: SskAiIssue = {
         before: "Researchers manually optimize specialized scientific code",
         change: "AI profiles, rewrites, tests, and benchmarks the toolchain",
         result: "More experiments fit into the same compute budget",
+      },
+      visual: {
+        kind: "editorial-image",
+        src: "/ssk-ai/2026-09-22/02-claude-biomolecular.webp",
+        width: 1672,
+        height: 941,
+        alt: "A researcher reviewing an AI-assisted sequence-design and structure-analysis interface for a biomolecule, with candidate molecules generated alongside an experimental-validation panel.",
+        caption: "Claude Science: optimizing the software researchers already depend on, not proposing new molecules.",
+        description:
+          "Editorial illustration of an AI-assisted biomolecular design workflow: sequence design, structure analysis, candidate generation and experimental validation.",
       },
       source: {
         heading: "Anthropic — Claude biomolecular-model optimization",
@@ -344,6 +364,16 @@ export const issueSeptember22_2026: SskAiIssue = {
         change: "Independent evaluation closer to development",
         result: "Earlier detection of blind spots and stronger accountability",
       },
+      visual: {
+        kind: "editorial-image",
+        src: "/ssk-ai/2026-09-22/05-accenture-evaluation.webp",
+        width: 1672,
+        height: 941,
+        alt: "Two colleagues reviewing an evaluation dashboard tracking accuracy, relevance, safety and groundedness metrics, alongside a pilot-to-production pipeline and business-outcome charts.",
+        caption: "Embedded evaluation: independent scrutiny moves closer to where development decisions get made.",
+        description:
+          "Editorial illustration of an enterprise evaluation dashboard covering metrics, domain use cases, a deployment pipeline and measured business outcomes.",
+      },
       source: {
         heading: "Anthropic — Accenture embedded evaluation partnership",
         body: "Anthropic says embedded evaluation is new and many operational details remain unsettled.",
@@ -387,6 +417,16 @@ export const issueSeptember22_2026: SskAiIssue = {
         before: "User manually selects device modes",
         change: "Vision helps infer object and action context",
         result: "More intuitive assistive interaction",
+      },
+      visual: {
+        kind: "editorial-image",
+        src: "/ssk-ai/2026-09-22/06-smartarm.webp",
+        width: 1672,
+        height: 941,
+        alt: "A person using a vision-guided bionic prosthetic arm that recognizes a mug and selects an adaptive grip, with status panels for adaptive grip, motion control and real-world understanding.",
+        caption: "smartARM: perception simplifies the interface — see the object, infer the grip.",
+        description:
+          "Editorial illustration of a vision-first bionic prosthetic recognizing an object and selecting an appropriate grip, a startup prototype rather than a clinically validated product.",
       },
       source: {
         heading: "Meta — smartARM vision-first bionic prosthetic",
