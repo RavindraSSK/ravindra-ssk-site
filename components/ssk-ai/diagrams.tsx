@@ -439,6 +439,123 @@ export function EvidenceClipDiagram() {
   );
 }
 
+function SequenceArrow() {
+  return (
+    <p className="ssk-sequence__arrow" aria-hidden="true">
+      ↓
+    </p>
+  );
+}
+
+/**
+ * A vertical, arbitrary-length step flow — the shape the source manifests already
+ * draw their diagrams in ("A ↓ B ↓ C"). Unlike the fixed five-stage pipeline or the
+ * hub-and-two-tiers flow, this has no hardcoded stage count, so it fits any process
+ * length without a bespoke layout per diagram, and stays a single-column stack at
+ * every viewport width (no desktop-only column overrides to keep in sync).
+ */
+function SequenceDiagram({
+  steps,
+  branch,
+}: {
+  steps: string[];
+  branch?: { afterIndex: number; paths: string[] };
+}) {
+  return (
+    <div className="ssk-diagram ssk-sequence">
+      {steps.map((step, index) => (
+        <div key={step}>
+          <div className="ssk-sequence__step">{step}</div>
+          {index < steps.length - 1 ? <SequenceArrow /> : null}
+          {branch && branch.afterIndex === index ? (
+            <>
+              <div className="ssk-sequence__paths">
+                {branch.paths.map((path) => (
+                  <div className="ssk-sequence__step" key={path}>
+                    {path}
+                  </div>
+                ))}
+              </div>
+              <SequenceArrow />
+            </>
+          ) : null}
+        </div>
+      ))}
+    </div>
+  );
+}
+
+export function GovernedAccessDiagram() {
+  return (
+    <SequenceDiagram
+      steps={[
+        "User / Organization",
+        "Identity Verification",
+        "Purpose / Risk Classification",
+        "Model + Tool Permissions",
+        "Audit Log + Evaluation",
+      ]}
+      branch={{
+        afterIndex: 2,
+        paths: ["Standard Access", "Verified Professional Access", "Human Approval Required"],
+      }}
+    />
+  );
+}
+
+export function IncidentLoopDiagram() {
+  return (
+    <SequenceDiagram
+      steps={[
+        "Unexpected Agent Action",
+        "Freeze Trace / Evidence",
+        "Severity Classification",
+        "Reproduce",
+        "Root-Cause Investigation",
+        "Mitigation",
+        "Regression Test",
+        "Disclosure / Escalation if required",
+      ]}
+    />
+  );
+}
+
+export function MigrationFactoryDiagram() {
+  return (
+    <SequenceDiagram
+      steps={[
+        "Legacy System",
+        "Dependency Map",
+        "Migration Plan",
+        "Small Agent Tasks",
+        "Tests + Review",
+        "Incremental Merge",
+        "Performance / Regression Check",
+      ]}
+    />
+  );
+}
+
+export function GovernedResearchAgentDiagram() {
+  return (
+    <SequenceDiagram
+      steps={[
+        "Research Goal",
+        "Planner / Reasoner",
+        "Policy & Identity Gate",
+        "Task Router",
+        "Sandboxed Tools / Data",
+        "Experiment + Evaluation",
+        "Independent Safety Check",
+        "Human Approval",
+        "Evidence-Linked Result",
+        "Incident Ledger if boundaries are crossed",
+      ]}
+      branch={{ afterIndex: 3, paths: ["Literature Agent", "Code Agent", "Science Tool Agent"] }}
+    />
+  );
+}
+
 const diagrams = {
   "qwen-moe": QwenMoeDiagram,
   "mai-thinking": MaiThinkingDiagram,
@@ -453,6 +570,10 @@ const diagrams = {
   "agentic-search": AgenticSearchDiagram,
   "mhs-bridge": MhsBridgeDiagram,
   "evidence-clip": EvidenceClipDiagram,
+  "governed-access": GovernedAccessDiagram,
+  "incident-loop": IncidentLoopDiagram,
+  "migration-factory": MigrationFactoryDiagram,
+  "governed-research-agent": GovernedResearchAgentDiagram,
 } satisfies Record<CodedDiagramId, () => ReactElement>;
 
 export function CodedDiagram({ id, caption }: { id: CodedDiagramId; caption: string }) {
