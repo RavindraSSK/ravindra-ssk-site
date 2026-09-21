@@ -261,10 +261,14 @@ export const issueSeptember22_2026: SskAiIssue = {
         result: "Safety failures become engineering evidence",
       },
       visual: {
-        kind: "coded-diagram",
-        diagram: "incident-loop",
-        caption:
-          "AI behavioral incident loop: freeze the trace, classify severity, reproduce, investigate the root cause, mitigate, add a regression test, then disclose or escalate if required.",
+        kind: "editorial-image",
+        src: "/ssk-ai/2026-09-22/03-misalignment.webp",
+        width: 1672,
+        height: 941,
+        alt: "A five-step framework for reporting model misalignment: report, triage, investigate, mitigate, learn — built on transparency, accountability, responsible AI, and safer systems.",
+        caption: "A structured framework for reporting model-misalignment incidents: report, triage, investigate, mitigate, learn.",
+        description:
+          "Editorial illustration of a misalignment-reporting workflow, from flagging unexpected behavior through root-cause analysis to shared learnings.",
       },
       source: {
         heading: "OpenAI — Model misalignment reporting framework",
@@ -312,10 +316,14 @@ export const issueSeptember22_2026: SskAiIssue = {
         result: "More legitimate high-value use without fully public exposure",
       },
       visual: {
-        kind: "coded-diagram",
-        diagram: "governed-access",
-        caption:
-          "Governing sensitive capability: verified identity and purpose route a request to standard access, verified professional access, or a human-approval gate, then every use is logged and evaluated.",
+        kind: "editorial-image",
+        src: "/ssk-ai/2026-09-22/04-life-sciences.webp",
+        width: 1672,
+        height: 941,
+        alt: "A researcher reviewing verified biological data and a DNA analysis pipeline, alongside expert reviewers and a real-world-readiness checklist for the Life Sciences Verification Program.",
+        caption: "Anthropic's Life Sciences Verification Program: verified, application-based access, not unrestricted public availability.",
+        description:
+          "Editorial illustration of a verified-access workflow for sensitive life-science AI: biological data review, expert sign-off, and a readiness checklist.",
       },
       source: {
         heading: "Anthropic — Life Sciences Verification Program",
@@ -473,10 +481,14 @@ export const issueSeptember22_2026: SskAiIssue = {
         result: "Previously uneconomic modernization becomes possible",
       },
       visual: {
-        kind: "coded-diagram",
-        diagram: "migration-factory",
-        caption:
-          "Agentic migration factory: a legacy system is mapped, planned, and ported in small agent-scoped tasks, each tested and reviewed before an incremental merge and a performance/regression check.",
+        kind: "editorial-image",
+        src: "/ssk-ai/2026-09-22/07-rust-migration.webp",
+        width: 1672,
+        height: 941,
+        alt: "An engineer reviewing a five-stage agent-assisted migration of legacy.ts to Rust: analyze, transform, test, validate, and ship, ending in an 800,000-line Rust runtime.",
+        caption: "Agent-assisted migration of GitHub's Copilot runtime from TypeScript/Node.js to Rust, across five stages: analyze, transform, test, validate, ship.",
+        description:
+          "Editorial illustration of a legacy TypeScript/Node.js codebase being ported to Rust through an agent-assisted pipeline.",
       },
       source: {
         heading: "GitHub — Migrating the Copilot runtime to Rust using Copilot",
