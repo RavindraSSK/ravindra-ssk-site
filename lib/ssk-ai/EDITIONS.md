@@ -68,6 +68,17 @@ desk page renders identically on every build.
    resolves to exactly one `storyId` anchor. Its safety story uses `updates` to keep a
    same-week follow-up (a pacing proposal, then a draft code of conduct) as dated
    entries under the main event rather than rewriting the story around the latest one.
+   `lib/ssk-ai/issue-2026-09-22.ts` only illustrates three of its seven stories —
+   `story.visual` is optional, and a story with nothing worth illustrating (no
+   `AmieVisual` placeholder, no borrowed diagram) simply carries no `visual` field;
+   `StorySection` renders neither the lead nor the aside visual slot when it's absent.
+   Its three illustrated stories, plus its featured project, use `CodedDiagram` ids
+   (`governed-access`, `incident-loop`, `migration-factory`, `governed-research-agent`)
+   built on a shared `SequenceDiagram` helper in `components/ssk-ai/diagrams.tsx`: a
+   vertical, arbitrary-length step flow with an optional single branch point, for
+   source material that is already written as “A ↓ B ↓ C” rather than shaped for the
+   five-stage `ssk-pipeline` grid or the hub-and-two-tiers `ssk-flow`. Prefer it over
+   inventing a new bespoke diagram whenever a manifest's diagram is a plain sequence.
 
 2. **Fill in the `edition` block.** This is what places the edition on the calendar:
 

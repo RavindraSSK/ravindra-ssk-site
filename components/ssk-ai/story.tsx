@@ -122,6 +122,7 @@ export function SourceLinks({ links }: { links?: SskAiStory["source"]["links"] }
 }
 
 function StoryVisualBlock({ story, sizes }: { story: SskAiStory; sizes?: string }) {
+  if (!story.visual) return null;
   if (story.visual.kind === "coded-diagram") {
     return <CodedDiagram id={story.visual.diagram} caption={story.visual.caption} />;
   }
@@ -172,7 +173,7 @@ export function StorySection({
         </div>
       </header>
 
-      {lead ? (
+      {lead && story.visual ? (
         // The story image directly under its header and status line, at the full
         // width of the story card, before the copy begins.
         <div className="ssk-story__lead">
@@ -236,7 +237,7 @@ export function StorySection({
               <p>{story.beforeChangeResult.result}</p>
             </div>
           </div>
-          {lead ? null : <StoryVisualBlock story={story} />}
+          {lead || !story.visual ? null : <StoryVisualBlock story={story} />}
         </aside>
       </div>
 

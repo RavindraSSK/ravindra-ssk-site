@@ -27,7 +27,11 @@ export type CodedDiagramId =
   | "biomarker-agents"
   | "agentic-search"
   | "mhs-bridge"
-  | "evidence-clip";
+  | "evidence-clip"
+  | "governed-access"
+  | "incident-loop"
+  | "migration-factory"
+  | "governed-research-agent";
 
 export type StoryVisual =
   | {
@@ -157,7 +161,8 @@ export type SskAiStory = {
   realWorldExample: StoryCopy;
   developerTakeaway: StoryCopy;
   beforeChangeResult: BeforeChangeResult;
-  visual: StoryVisual;
+  /** Optional: a systems-heavy story with no illustration to add carries no visual block. */
+  visual?: StoryVisual;
   source: StorySource;
 };
 
