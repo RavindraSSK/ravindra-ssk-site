@@ -46,6 +46,17 @@ replacement for the newsletter's square logo.
 
 ---
 
+## Story-overview graphic (optional, for social only)
+
+`public/ssk-ai/2026-09-22/08-overview.webp` — a seven-card "week at a glance" graphic
+with corrected per-story dates (Sep 15, 17, 16, 17, 18, 16, 16) and the correct GitHub
+migration direction (TypeScript/Node.js → Rust). Use this for a follow-up LinkedIn
+image post or the newsletter header if a second visual is wanted; do not use any
+earlier overview graphic — an earlier draft had every date wrong except the first and
+mislabeled the GitHub migration's source language as C/C++.
+
+---
+
 ## Article
 
 SSK AI — What Changed in AI & What You Can Build | September 22, 2026
