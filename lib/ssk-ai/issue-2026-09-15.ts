@@ -49,9 +49,12 @@ export const issueSeptember15_2026: SskAiIssue = {
   dateLabel: "September 15, 2026",
   cardTitle: "SSK AI: Does It Work, What's the Evidence, Who's in Control",
   title: "SSK AI — What Changed in AI & What You Can Build | September 15, 2026",
-  seoTitle: "AI News September 8–14, 2026: Agents, Voice, Science | SSK AI",
+  heading: "AI Technology Updates: September 8–14, 2026",
+  seoTitle: "AI News: 16 Major Updates from September 8–14, 2026 | SSK AI Hub",
   seoDescription:
-    "Agents, live voice, visual AI, scientific research and oversight: the important AI developments of September 8–14, with sources and practical takeaways.",
+    "Explore 16 major AI developments from September 8–14, 2026, covering AI agents, voice, visual models, research, robotics and AI oversight.",
+  schemaType: "NewsArticle",
+  tocHeading: "Table of contents",
   theme:
     "Three questions run through this week's fourteen developments: can the system do the work, what evidence backs its output, and who stays in control.",
   hero: {
@@ -59,7 +62,7 @@ export const issueSeptember15_2026: SskAiIssue = {
     src: "/ssk-ai/2026-09-15/00-cover-website-linkedin.webp",
     width: 1672,
     height: 941,
-    alt: "SSK AI Hub September 8–14, 2026 Week 2 cover with a free-form collage of the edition's developments.",
+    alt: "SSK AI Hub September 8–14, 2026 Week 2 cover — an AI Tech Briefing week-at-a-glance collage with the SSK monogram and labeled scenes for the Agents API, ChatGPT Images 2.5, DeepSeek V4.1 Flash, GPT-Live-1, Meta Muse, a data agent, the Navier–Stokes proof claim, AlphaGenome Atlas, the NASA–IBM lunar model, llm-d, Skild and NVIDIA, Runway licensing, Q2D-Web, Google Finland, ToolGrad and AI oversight.",
     caption: "SSK AI Hub — AI Tech Briefing: September 8–14, 2026, Week 2. The week at a glance.",
     description:
       "Original SSK AI Hub editorial cover for the September 8–14, 2026 edition — a free-form collage of the week's developments, edited from the Week 1 cover in the publication's established white, navy and blue style; conceptual artwork, not an official product asset.",
@@ -68,7 +71,7 @@ export const issueSeptember15_2026: SskAiIssue = {
     src: "/ssk-ai/2026-09-15/00-cover-social-1200x630.webp",
     width: 1200,
     height: 630,
-    alt: "SSK AI Hub September 8–14, 2026 Week 2 cover with a free-form collage of the edition's developments.",
+    alt: "SSK AI Hub September 8–14, 2026 Week 2 cover — an AI Tech Briefing week-at-a-glance collage used for social and search previews.",
   },
   visualPlacement: "lead",
   storyLabels: {
@@ -79,6 +82,13 @@ export const issueSeptember15_2026: SskAiIssue = {
     "Sources for this edition were checked through September 14, 2026, 14:09 UTC; September 14 was still in progress at that cutoff.",
     "The most useful way to read this week is through three questions: **can an AI system complete useful work, what evidence supports its output, and who remains in control?** Agent APIs, personal agents and live voice interfaces address the first question. Scientific models, a mathematical proof claim and retrieval research put the second under pressure. Enterprise permissions, misuse reporting and frontier oversight bring the third into focus.",
     "This edition selects developments by significance, not by a fixed quota or a requirement to fill every date. It includes fourteen main stories and two shorter briefs. Product announcements, research claims, commercial offerings and policy proposals are labeled separately so they can be assessed on their own terms. All accompanying artwork is AI-generated editorial illustration.",
+  ],
+  relatedReading: [
+    "This is September's second weekly briefing. The previous window is covered in the ",
+    { href: "/ssk-ai/tech-news/ai-technology-updates-september-8-2026", label: "September 1–7, 2026 edition" },
+    ". Every weekly and monthly briefing is collected on the ",
+    { href: "/ssk-ai/tech-news", label: "SSK AI Tech News" },
+    " desk.",
   ],
   readingList: [
     {
@@ -218,7 +228,7 @@ export const issueSeptember15_2026: SskAiIssue = {
         src: "/ssk-ai/2026-09-15/01-agents-api.webp",
         width: 1672,
         height: 941,
-        alt: "Conceptual OpenAI Agents API workstation connected to a managed cloud runtime.",
+        alt: "Editorial illustration of an OpenAI Agents API workstation connected to a managed cloud runtime with plan, tools and subagent panels.",
         caption: "SSK AI Hub editorial illustration: an OpenAI Agents API workstation connected to a managed cloud runtime.",
         description:
           "Original SSK AI Hub editorial illustration for the OpenAI Agents API story — a conceptual workstation-to-cloud-runtime scene, not an official product screenshot.",
@@ -274,7 +284,7 @@ export const issueSeptember15_2026: SskAiIssue = {
         src: "/ssk-ai/2026-09-15/02-chatgpt-images.webp",
         width: 1672,
         height: 941,
-        alt: "ChatGPT Images 2.5 editorial concept showing a flower illustration being precisely edited with a reference image.",
+        alt: "Editorial illustration of ChatGPT Images 2.5, showing a flower image being precisely edited against a labeled reference photograph.",
         caption: "SSK AI Hub editorial illustration: ChatGPT Images 2.5's precision editing, shown with a reference image.",
         description:
           "Original SSK AI Hub editorial illustration for the ChatGPT Images 2.5 story — a conceptual precision-editing scene, not an official product screenshot.",
@@ -324,7 +334,7 @@ export const issueSeptember15_2026: SskAiIssue = {
         src: "/ssk-ai/2026-09-15/03-deepseek.webp",
         width: 1672,
         height: 941,
-        alt: "DeepSeek V4.1 Flash concept with a blue whale and visual document panels.",
+        alt: "Editorial illustration of DeepSeek V4.1 Flash, with a blue whale beside visual document and image-understanding panels.",
         caption: "SSK AI Hub editorial illustration: DeepSeek V4.1 Flash's native visual understanding.",
         description:
           "Original SSK AI Hub editorial illustration for the DeepSeek V4.1 Flash story — a conceptual scene, not an official product screenshot.",
@@ -374,7 +384,7 @@ export const issueSeptember15_2026: SskAiIssue = {
         src: "/ssk-ai/2026-09-15/04-gpt-live.webp",
         width: 1672,
         height: 941,
-        alt: "GPT-Live-1 conceptual microphone and headphones with two overlapping sound ribbons; no physical product is implied.",
+        alt: "Editorial illustration of GPT-Live-1 as a microphone and headphones with two overlapping sound ribbons; no physical product is implied.",
         caption: "SSK AI Hub editorial illustration: GPT-Live-1's simultaneous listening and speaking.",
         description:
           "Original SSK AI Hub editorial illustration for the GPT-Live-1 story — a conceptual voice-technology scene, not an official product image.",
@@ -424,7 +434,7 @@ export const issueSeptember15_2026: SskAiIssue = {
         src: "/ssk-ai/2026-09-15/05-meta-muse.webp",
         width: 1672,
         height: 941,
-        alt: "Meta Muse concept showing a personal-agent phone with calendar, shopping and approval objects.",
+        alt: "Editorial illustration of Meta Muse as a personal-agent phone surrounded by calendar, shopping and approval objects.",
         caption: "SSK AI Hub editorial illustration: Meta Muse as a personal agent with approval boundaries.",
         description:
           "Original SSK AI Hub editorial illustration for the Meta Muse story — a conceptual scene, not actual product UI.",
@@ -480,7 +490,7 @@ export const issueSeptember15_2026: SskAiIssue = {
         src: "/ssk-ai/2026-09-15/06-data-agent.webp",
         width: 1672,
         height: 941,
-        alt: "ChatGPT Work conceptual laptop with business charts and source documents, representing data and financial workflows.",
+        alt: "Editorial illustration of ChatGPT's data and financial-services tools, with a laptop showing business charts beside source documents.",
         caption: "SSK AI Hub editorial illustration: ChatGPT's data agent and financial-services offerings.",
         description:
           "Original SSK AI Hub editorial illustration for the ChatGPT data and financial-services story — a conceptual scene, not an official product screenshot.",
@@ -533,7 +543,7 @@ export const issueSeptember15_2026: SskAiIssue = {
         src: "/ssk-ai/2026-09-15/07-navier-stokes.webp",
         width: 1672,
         height: 941,
-        alt: "Water vortex and mathematics notebook illustrating a Navier–Stokes proof claim, with wording that signals scrutiny.",
+        alt: "Editorial illustration of a water vortex beside a mathematics notebook, representing a Navier–Stokes proof claim still under scrutiny.",
         caption: "SSK AI Hub editorial illustration: the Navier–Stokes proof claim, shown as a claim under scrutiny.",
         description:
           "Original SSK AI Hub editorial illustration for the Navier–Stokes story — a conceptual research-discovery scene, not measured equations or a prize confirmation.",
@@ -583,7 +593,7 @@ export const issueSeptember15_2026: SskAiIssue = {
         src: "/ssk-ai/2026-09-15/08-alphagenome.webp",
         width: 1672,
         height: 941,
-        alt: "AlphaGenome Atlas conceptual DNA helix and genomic prediction graphics.",
+        alt: "Editorial illustration of AlphaGenome Atlas, with a DNA helix and genomic prediction graphics for exploring variant effects.",
         caption: "SSK AI Hub editorial illustration: AlphaGenome Atlas and predicted DNA-variant effects.",
         description:
           "Original SSK AI Hub editorial illustration for the AlphaGenome Atlas story — a conceptual scientific scene, not an official screenshot or measured visualization.",
@@ -648,7 +658,7 @@ export const issueSeptember15_2026: SskAiIssue = {
         src: "/ssk-ai/2026-09-15/09-ai-safeguards.webp",
         width: 1672,
         height: 941,
-        alt: "Conceptual AI oversight illustration with a shield, human approval key and technology motifs.",
+        alt: "Editorial illustration of AI safeguards and oversight, with a shield, a human approval key and technology motifs.",
         caption: "SSK AI Hub editorial illustration: this week's AI safeguards and oversight discussion.",
         description:
           "Original SSK AI Hub editorial illustration for the AI safeguards and oversight story — a conceptual scene, not an official screenshot.",
@@ -710,7 +720,7 @@ export const issueSeptember15_2026: SskAiIssue = {
         src: "/ssk-ai/2026-09-15/10-lunar-model.webp",
         width: 1672,
         height: 941,
-        alt: "NASA–IBM Lunar Model concept with layered lunar observation maps and a satellite.",
+        alt: "Editorial illustration of the NASA–IBM lunar foundation model, with layered lunar observation maps and a satellite.",
         caption: "SSK AI Hub editorial illustration: the NASA–IBM lunar foundation model for remote sensing.",
         description:
           "Original SSK AI Hub editorial illustration for the NASA–IBM lunar model story — a conceptual scene, not an official screenshot or measured data product.",
@@ -760,7 +770,7 @@ export const issueSeptember15_2026: SskAiIssue = {
         src: "/ssk-ai/2026-09-15/11-llmd.webp",
         width: 1672,
         height: 941,
-        alt: "llm-d editorial server racks with shared context blocks, representing model-serving infrastructure.",
+        alt: "Editorial illustration of IBM's llm-d serving stack, with server racks passing shared context blocks across the cluster.",
         caption: "SSK AI Hub editorial illustration: IBM's llm-d serving infrastructure on H100 GPUs.",
         description:
           "Original SSK AI Hub editorial illustration for the llm-d story — a conceptual infrastructure scene, not measured benchmark output.",
@@ -810,7 +820,7 @@ export const issueSeptember15_2026: SskAiIssue = {
         src: "/ssk-ai/2026-09-15/12-runway.webp",
         width: 1672,
         height: 941,
-        alt: "Runway model-licensing concept combining film strips, a studio scene and self-hosted compute.",
+        alt: "Editorial illustration of Runway's commercial model-licensing offering, combining film strips, a studio scene and self-hosted compute.",
         caption: "SSK AI Hub editorial illustration: Runway's commercial model-licensing offering.",
         description:
           "Original SSK AI Hub editorial illustration for the Runway licensing story — a conceptual studio-and-compute scene, not an official product image.",
@@ -863,7 +873,7 @@ export const issueSeptember15_2026: SskAiIssue = {
         src: "/ssk-ai/2026-09-15/13-skild.webp",
         width: 1672,
         height: 941,
-        alt: "Skild S1 and NVIDIA conceptual robot arm learning a tabletop task from a video demonstration.",
+        alt: "Editorial illustration of Skild S1 and NVIDIA, with a robot arm learning a tabletop task from a video demonstration.",
         caption: "SSK AI Hub editorial illustration: Skild S1 and NVIDIA's video-conditioned robotics infrastructure.",
         description:
           "Original SSK AI Hub editorial illustration for the Skild and NVIDIA story — a conceptual robotics scene, not a product photograph.",
@@ -913,7 +923,7 @@ export const issueSeptember15_2026: SskAiIssue = {
         src: "/ssk-ai/2026-09-15/14-perplexity.webp",
         width: 1672,
         height: 941,
-        alt: "Perplexity Q2D-Web concept showing a search lens selecting relevant documents from a large index.",
+        alt: "Editorial illustration of Perplexity's Q2D-Web benchmark, with a search lens selecting relevant documents from a large index.",
         caption: "SSK AI Hub editorial illustration: Perplexity's Q2D-Web first-stage retrieval benchmark.",
         description:
           "Original SSK AI Hub editorial illustration for the Q2D-Web story — a conceptual retrieval scene, not a conversational chatbot interface.",

@@ -246,6 +246,11 @@ export type SskAiIssue = {
   dateLabel: string;
   cardTitle: string;
   title: string;
+  /**
+   * On-page H1. When omitted, `title` is used. Editions that need a search-
+   * oriented heading without changing archive cards or other pages set this.
+   */
+  heading?: string;
   seoTitle: string;
   seoDescription: string;
   theme: string;
@@ -287,6 +292,19 @@ export type SskAiIssue = {
   poster: SskAiIssuePoster;
   linkedInPost?: string;
   generalSourceNote?: string;
+  /**
+   * When set to `"NewsArticle"`, the edition page emits NewsArticle JSON-LD
+   * (author, publisher, cover image, dates) instead of the default Article
+   * graph. Leave unset on editions that should keep the existing Article markup.
+   */
+  schemaType?: "NewsArticle";
+  /** Visible heading above the clickable in-page story list. */
+  tocHeading?: string;
+  /**
+   * A sentence with in-site links, rendered after the opening copy. String
+   * parts are plain text; `{ href, label }` parts become internal links.
+   */
+  relatedReading?: Array<string | { href: string; label: string }>;
 };
 
 export type SskAiPublication = {
