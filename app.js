@@ -63,6 +63,7 @@ const NAV_DATA = {
     { title: "Photography", href: "explore/photography.html", copy: "Light, geometry, and visual observation." },
     { title: "Fitness & Health", href: "explore/fitness-health.html", copy: "Discipline, training, and performance habits." },
     { title: "Music", href: "explore/music.html", copy: "Listening, discovery, and creative energy." },
+    { title: "3D Portfolio", href: "https://3d.ravindrassk.com", copy: "Interactive WebGL tour of my work and the AI stack.", external: true },
   ],
 };
 
@@ -152,7 +153,7 @@ function renderChrome() {
                       <p class="nav-dropdown__title">Insights</p>
                       <div class="nav-dropdown__grid">
                         ${NAV_DATA.explore.map((item) => `
-                          <a class="nav-dropdown__item" href="${toPath(item.href)}">
+                          <a class="nav-dropdown__item" href="${item.external ? item.href : toPath(item.href)}"${item.external ? ' target="_blank" rel="noopener noreferrer"' : ""}>
                             <p class="nav-dropdown__item-title">${item.title}<span>${SVG.arrow}</span></p>
                             <p class="nav-dropdown__item-copy">${item.copy}</p>
                           </a>
