@@ -31,7 +31,8 @@ export type CodedDiagramId =
   | "governed-access"
   | "incident-loop"
   | "migration-factory"
-  | "governed-research-agent";
+  | "governed-research-agent"
+  | "privacy-aware-agent";
 
 export type StoryVisual =
   | {
