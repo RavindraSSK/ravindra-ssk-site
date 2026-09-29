@@ -556,6 +556,25 @@ export function GovernedResearchAgentDiagram() {
   );
 }
 
+export function PrivacyAwareAgentDiagram() {
+  return (
+    <SequenceDiagram
+      steps={[
+        "User Goal",
+        "Policy + Privacy Classifier",
+        "Planner",
+        "Execution Router",
+        "Encrypted Memory",
+        "Cache / Context Optimizer",
+        "Evaluator",
+        "Human Approval when needed",
+        "Result",
+      ]}
+      branch={{ afterIndex: 3, paths: ["Local Models — Private Data", "Cloud Models — Hard Reasoning"] }}
+    />
+  );
+}
+
 const diagrams = {
   "qwen-moe": QwenMoeDiagram,
   "mai-thinking": MaiThinkingDiagram,
@@ -574,6 +593,7 @@ const diagrams = {
   "incident-loop": IncidentLoopDiagram,
   "migration-factory": MigrationFactoryDiagram,
   "governed-research-agent": GovernedResearchAgentDiagram,
+  "privacy-aware-agent": PrivacyAwareAgentDiagram,
 } satisfies Record<CodedDiagramId, () => ReactElement>;
 
 export function CodedDiagram({ id, caption }: { id: CodedDiagramId; caption: string }) {
