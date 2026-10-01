@@ -35,12 +35,13 @@ export const issueSeptember2026Monthly: SskAiIssue = {
   theme: "September was the month persistent AI agents became real products — and the system around the model became the product.",
   hero: {
     kind: "editorial-image",
-    src: "/ssk-ai/2026-10-01/ssk-ai-september-2026-social-1200x630.webp",
-    width: 1200,
-    height: 630,
-    alt: "Month-in-review cover reading 'AI in September 2026 — 10 developments that defined the month: the month persistent AI agents became real products', with numbered cards for the OpenAI Agents API, OpenAI Dots, the GPT-6 family, NVIDIA and Hugging Face, the Claude 5.5 family, Meta Muse, the Gemini 3.8 family, Claude in scientific discovery, Microsoft Copilot Autopilot and Vera Rubin infrastructure.",
-    caption: "September in one frame: the month's ten defining developments. The full-size capsule and the accessible cards follow below.",
-    description: "Editor-supplied September 2026 Month in Review cover, shown whole on a padded wide frame.",
+    src: "/ssk-ai/2026-10-01/ssk-ai-september-2026-hero.webp",
+    width: 1672,
+    height: 941,
+    alt: "Month-in-review cover reading 'AI in September 2026 — Month in Review: 10 developments that defined the month. The month persistent AI agents became real products', surrounded by numbered scenes for the OpenAI Agents API, OpenAI Dots, the GPT-6 family (Luna, Sol, Astra), NVIDIA and Hugging Face, Claude 5.5, Meta Muse, Gemini 3.8, Claude in science, Copilot Autopilot and Vera Rubin infrastructure.",
+    caption:
+      "September in one frame: the month's ten defining developments, drawn from four weekly SSK AI Hub briefings and the month-end launches.",
+    description: "Editor-supplied wide cover for the September 2026 Month in Review, in the light SSK AI Hub editorial style.",
   },
   socialImage: {
     src: "/ssk-ai/2026-10-01/ssk-ai-september-2026-social-1200x630.webp",
@@ -63,7 +64,7 @@ export const issueSeptember2026Monthly: SskAiIssue = {
       src: "/ssk-ai/2026-10-01/ssk-ai-september-2026-capsule.webp",
       width: 1122,
       height: 1402,
-      alt: "A one-page visual capsule of September 2026 listing the month's ten AI developments in numbered cards — OpenAI Agents API, OpenAI Dots, the GPT-6 family (Astra, Sol, Luna and GPT-6.1 Sol), NVIDIA and Hugging Face, the Claude 5.5 family, Meta Muse, the Gemini 3.8 family, Claude in scientific discovery, Microsoft Copilot Autopilot and Vera Rubin infrastructure — around the headline 'The month persistent AI agents became real products'.",
+      alt: "A one-page visual capsule of September 2026 with ten numbered cards and handwritten notes — OpenAI Agents API, OpenAI Dots ('always-on agents, own cloud computer'), the GPT-6 family (Luna, Sol, Astra), NVIDIA and Hugging Face, Claude 5.5, Meta Muse, Gemini 3.8, Claude in science, Copilot Autopilot and Vera Rubin infrastructure — around the headline 'The month persistent AI agents became real products'.",
       caption:
         "The September capsule: all ten developments on one page. The cards below tell the same story in accessible text, with links to the full analyses and primary sources.",
       description:
