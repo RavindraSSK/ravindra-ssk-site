@@ -2,19 +2,32 @@ import Link from "next/link";
 
 import { AmieVisual } from "@/components/ssk-ai/amie-visual";
 import { LinkedInSubscribe } from "@/components/ssk-ai/linkedin-subscribe";
+import { WhatWeCanBuild } from "@/components/ssk-ai/projects";
 import { getIssuePath, getIssuesByKind, SSK_AI_HUB, TECH_NEWS } from "@/lib/ssk-ai";
 import type { MonthlyCapsule, SskAiIssue } from "@/lib/ssk-ai/types";
 
 /**
  * The month-in-review layout: a visual, plain-language recap for readers who
  * did not follow every weekly edition. The weeklies remain the technical
- * record — every card links back into one of them.
+ * record — a card links back into one of them, or to its primary source when
+ * the development fell outside the weekly windows.
  */
+function monthName(isoDate: string, offset = 0) {
+  const date = new Date(`${isoDate.slice(0, 7)}-01T00:00:00Z`);
+  date.setUTCMonth(date.getUTCMonth() + offset);
+  return date.toLocaleString("en-US", { month: "long", timeZone: "UTC" });
+}
+
 export function MonthlyCapsulePage({ issue, monthly }: { issue: SskAiIssue; monthly: MonthlyCapsule }) {
   const month = issue.edition.periodStart.slice(0, 7);
   const weeklies = getIssuesByKind("weekly")
     .filter((weekly) => weekly.edition.periodStart.slice(0, 7) === month)
     .sort((a, b) => a.edition.number - b.edition.number);
+  const previousMonthly = getIssuesByKind("monthly").find(
+    (other) => other.edition.periodEnd < issue.edition.periodStart,
+  );
+  const thisMonth = monthName(issue.edition.periodStart);
+  const nextMonth = monthName(issue.edition.periodStart, 1);
 
   return (
     <main id="main-content" className="page-shell ssk-page">
@@ -40,7 +53,7 @@ export function MonthlyCapsulePage({ issue, monthly }: { issue: SskAiIssue; mont
             {issue.hero ? (
               <AmieVisual visual={issue.hero} sizes="(max-width: 1100px) 100vw, 1100px" />
             ) : null}
-            <ul className="ssk-glance" aria-label="August at a glance">
+            <ul className="ssk-glance" aria-label={`${thisMonth} at a glance`}>
               {monthly.atAGlance.map((stat) => (
                 <li key={stat.label}>
                   <strong>{stat.value}</strong>
@@ -73,7 +86,7 @@ export function MonthlyCapsulePage({ issue, monthly }: { issue: SskAiIssue; mont
           <div className="container">
             <span className="eyebrow">The month, distilled</span>
             <h2 id="ssk-monthly-devs" className="section-title">
-              The 10 developments that defined August
+              The {monthly.developments.length} developments that defined {thisMonth}
             </h2>
             <ol className="ssk-mdev-grid">
               {monthly.developments.map((dev, index) => (
@@ -91,9 +104,15 @@ export function MonthlyCapsulePage({ issue, monthly }: { issue: SskAiIssue; mont
                     {dev.inSimpleWords}
                   </p>
                   <p className="ssk-mdev__read">
-                    <Link className="inline-link" href={dev.read.href}>
-                      {dev.read.label} <span aria-hidden="true">→</span>
-                    </Link>
+                    {dev.read.href.startsWith("/") ? (
+                      <Link className="inline-link" href={dev.read.href}>
+                        {dev.read.label} <span aria-hidden="true">→</span>
+                      </Link>
+                    ) : (
+                      <a className="inline-link" href={dev.read.href} rel="noopener noreferrer">
+                        {dev.read.label} <span aria-hidden="true">→</span>
+                      </a>
+                    )}
                   </p>
                 </li>
               ))}
@@ -105,7 +124,7 @@ export function MonthlyCapsulePage({ issue, monthly }: { issue: SskAiIssue; mont
           <div className="container ssk-measure">
             <span className="eyebrow">The big picture</span>
             <h2 id="ssk-monthly-big" className="section-title">
-              What August added up to
+              What {thisMonth} added up to
             </h2>
             <p className="ssk-bigger-lede">{monthly.bigPicture.thesis}</p>
             <p className="ssk-prose">{monthly.bigPicture.body}</p>
@@ -116,7 +135,7 @@ export function MonthlyCapsulePage({ issue, monthly }: { issue: SskAiIssue; mont
           <div className="container">
             <span className="eyebrow">Looking ahead</span>
             <h2 id="ssk-monthly-watch" className="section-title">
-              What to watch in September
+              What to watch in {nextMonth}
             </h2>
             <div className="ssk-bigger-grid">
               {monthly.watchlist.map((item) => (
@@ -129,17 +148,25 @@ export function MonthlyCapsulePage({ issue, monthly }: { issue: SskAiIssue; mont
           </div>
         </section>
 
+        {issue.projects && issue.projects.length > 0 ? (
+          <section className="section section--tight">
+            <div className="container">
+              <WhatWeCanBuild issue={issue} />
+            </div>
+          </section>
+        ) : null}
+
         <section className="section section--tight" aria-labelledby="ssk-monthly-weeks">
           <div className="container">
             <span className="eyebrow">The full record</span>
             <h2 id="ssk-monthly-weeks" className="section-title">
-              Explore August week by week
+              Explore {thisMonth} week by week
             </h2>
             <div className="ssk-bigger-grid">
-              {weeklies.map((weekly) => (
+              {weeklies.map((weekly, index) => (
                 <article className="card ssk-mweek" key={weekly.slug}>
                   <p className="ssk-mweek__rule">
-                    <span className="meta-pill">Week {weekly.edition.number}</span>
+                    <span className="meta-pill">Week {index + 1}</span>
                     <span className="ssk-edition__period">{weekly.edition.periodLabel}</span>
                   </p>
                   <h3 className="ssk-mweek__title">
@@ -154,6 +181,13 @@ export function MonthlyCapsulePage({ issue, monthly }: { issue: SskAiIssue; mont
                 </article>
               ))}
             </div>
+            {previousMonthly ? (
+              <p className="ssk-back">
+                <Link className="inline-link" href={getIssuePath(previousMonthly)}>
+                  Previous month in review: {previousMonthly.cardTitle} <span aria-hidden="true">→</span>
+                </Link>
+              </p>
+            ) : null}
             <LinkedInSubscribe />
             <p className="ssk-back">
               <Link className="inline-link" href={TECH_NEWS.path}>
