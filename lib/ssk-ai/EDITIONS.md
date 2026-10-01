@@ -80,6 +80,15 @@ desk page renders identically on every build.
    five-stage `ssk-pipeline` grid or the hub-and-two-tiers `ssk-flow`. Prefer it over
    inventing a new bespoke diagram whenever a manifest's diagram is a plain sequence.
 
+   `lib/ssk-ai/issue-2026-10-01.ts` is the second monthly edition (September 2026).
+   `MonthlyCapsulePage` derives the month names in its headings from the edition, so a
+   monthly needs no layout changes. Its file is named for its real publish date
+   (October 1), not backdated to the month's last day. Most of its developments link
+   into the weeklies; the ones no weekly carried — mostly announced September 25–30 —
+   were checked against primary sources and their `read` link goes to that source.
+   A monthly can also carry `projects` and `featuredProject`, rendered as a "What Can
+   We Build?" section above the week-by-week list.
+
 2. **Fill in the `edition` block.** This is what places the edition on the calendar:
 
    ```ts

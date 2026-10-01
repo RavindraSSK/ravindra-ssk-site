@@ -32,7 +32,8 @@ export type CodedDiagramId =
   | "incident-loop"
   | "migration-factory"
   | "governed-research-agent"
-  | "privacy-aware-agent";
+  | "privacy-aware-agent"
+  | "operations-platform";
 
 export type StoryVisual =
   | {
@@ -201,14 +202,19 @@ export type MonthlyDevelopment = {
   whyItMatters: string;
   /** One plain-English sentence understandable without an AI background. */
   inSimpleWords: string;
-  /** Deep link into the weekly edition that carries the full analysis. */
+  /**
+   * Deep link into the weekly edition that carries the full analysis — or, for a
+   * development no weekly carried (e.g. announced after the last weekly window
+   * closed), an absolute URL to its primary source.
+   */
   read: { label: string; href: string };
 };
 
 /**
  * The month-in-review page content. A monthly edition is a visual, plain-language
  * recap of the month's weekly editions — the weeklies stay the technical record,
- * and every claim here must trace back to one of them.
+ * and every claim here must trace back to one of them or, where no weekly carried
+ * the development, to a cited primary source.
  */
 export type MonthlyCapsule = {
   /** Short intro paragraphs, plain language. */
