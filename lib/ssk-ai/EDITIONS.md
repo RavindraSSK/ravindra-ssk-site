@@ -94,6 +94,7 @@ desk page renders identically on every build.
    - `sectionHeading` on a story renders an article section heading above it.
    - `additionalDates` lists a story on further calendar days.
    - `isoDate` on a brief lists the brief on the newsroom calendar.
+   - `visual` on a brief (an editorial image) renders between its title and body.
    - `readingListLabels` relabels the reading-list title and third column.
    - `firstDeliverable` adds a line to a project card.
 
