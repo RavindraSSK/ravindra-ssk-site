@@ -1413,6 +1413,10 @@ html[data-theme="dark"] .ssk-dense-block {
   margin-top: 1.4rem;
 }
 
+.ssk-story-group {
+  margin: 0.6rem 0 1rem;
+}
+
 .ssk-brief__date {
   margin: 0 0 0.3rem;
   color: var(--color-primary);

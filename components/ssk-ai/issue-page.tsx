@@ -14,30 +14,33 @@ function ReadingList({
   rows,
   stories,
   briefs,
+  labels,
 }: {
   rows: ReadingListRow[];
   stories: SskAiStory[];
   briefs: EditionBrief[];
+  labels?: SskAiIssue["readingListLabels"];
 }) {
+  const title = labels?.title ?? "This week's reading list";
   const anchors = new Set([...stories.map((story) => story.id), ...briefs.map((brief) => brief.id)]);
 
   return (
     <section className="section section--tight" aria-labelledby="ssk-reading-list-title">
       <div className="container ssk-measure">
         <h2 id="ssk-reading-list-title" className="ssk-reading-list__title">
-          This week&apos;s reading list
+          {title}
         </h2>
         {/* The table has a hard minimum width and scrolls horizontally on a phone.
             A scroll container that only a mouse or finger can move is a keyboard
             trap for its content (WCAG 2.1.1), so it takes focus and announces itself
             as a region — the same pattern as the desk's cadence table. */}
-        <div className="card ssk-reading-list" tabIndex={0} role="region" aria-label="This week's reading list">
+        <div className="card ssk-reading-list" tabIndex={0} role="region" aria-label={title}>
           <table className="ssk-reading-list__table">
             <thead>
               <tr>
                 <th scope="col">Development</th>
                 <th scope="col">Announcement date</th>
-                <th scope="col">The question for builders</th>
+                <th scope="col">{labels?.detail ?? "The question for builders"}</th>
               </tr>
             </thead>
             <tbody>
@@ -145,11 +148,14 @@ export function SskAiIssuePage({ issue }: { issue: SskAiIssue }) {
           </div>
         </section>
 
-        {readingList.length > 0 ? <ReadingList rows={readingList} stories={stories} briefs={briefs} /> : null}
+        {readingList.length > 0 ? <ReadingList rows={readingList} stories={stories} briefs={briefs} labels={issue.readingListLabels} /> : null}
 
         {stories.map((story) => (
           <div className="section section--tight" key={story.id}>
             <div className="container">
+              {story.sectionHeading ? (
+                <h2 className="section-title ssk-story-group">{story.sectionHeading}</h2>
+              ) : null}
               <StorySection story={story} labels={issue.storyLabels} visualPlacement={issue.visualPlacement} />
             </div>
           </div>

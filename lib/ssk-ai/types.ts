@@ -127,6 +127,8 @@ export type EditionBrief = {
   id: string;
   /** "September 3" — the date as the edition states it. */
   date: string;
+  /** ISO date of the brief's development; when set, the newsroom calendar lists the brief on that day. */
+  isoDate?: string;
   title: string;
   body: string[];
   source?: StorySource;
@@ -143,6 +145,10 @@ export type SskAiStory = {
    * date of the development it leads with.
    */
   date: string;
+  /** Further ISO dates of events the story covers; the newsroom calendar lists the story on each. */
+  additionalDates?: string[];
+  /** Heading of an article section that begins with this story, rendered above it. */
+  sectionHeading?: string;
   headline: string;
   posterHeadline: string;
   status: string;
@@ -179,6 +185,8 @@ export type ProjectConcept = {
   who: string;
   whyUseful: string;
   difficulty: string;
+  /** The smallest useful first version of the project. */
+  firstDeliverable?: string;
 };
 
 export type FeaturedPipelineStage = {
@@ -267,6 +275,8 @@ export type SskAiIssue = {
   socialImage?: SocialImage;
   /** Optional index table rendered after the opening, each row linking to its story. */
   readingList?: ReadingListRow[];
+  /** Optional relabelling of the reading-list table's title and third column. */
+  readingListLabels?: { title?: string; detail?: string };
   /** Optional relabelling of the story blocks, e.g. "Practical example — a proposed workflow". */
   storyLabels?: Partial<StoryBlockLabels>;
   /** Where story images sit; defaults to "aside". */

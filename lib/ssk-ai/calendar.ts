@@ -144,9 +144,14 @@ function buildDay(
     };
   }
 
-  const stories = (edition.stories ?? [])
-    .filter((story) => story.date === date)
-    .map((story) => ({ id: story.id, headline: story.headline, type: story.type }));
+  const stories = [
+    ...(edition.stories ?? [])
+      .filter((story) => story.date === date || story.additionalDates?.includes(date))
+      .map((story) => ({ id: story.id, headline: story.headline, type: story.type })),
+    ...(edition.briefs?.items ?? [])
+      .filter((brief) => brief.isoDate === date)
+      .map((brief) => ({ id: brief.id, headline: brief.title, type: "Brief" })),
+  ];
 
   const editionHref = `${basePath}/${edition.slug}`;
 
