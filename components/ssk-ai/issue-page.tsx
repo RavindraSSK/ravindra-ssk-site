@@ -175,6 +175,7 @@ export function SskAiIssuePage({ issue }: { issue: SskAiIssue }) {
                     <h3 id={`${brief.id}-title`} className="ssk-brief__title">
                       {brief.title}
                     </h3>
+                    {brief.visual ? <AmieVisual visual={brief.visual} /> : null}
                     {brief.body.map((paragraph, index) => (
                       <RichText key={`${brief.id}-${index}`} text={paragraph} className="ssk-prose" />
                     ))}
