@@ -1431,6 +1431,10 @@ html[data-theme="dark"] .ssk-dense-block {
   font-size: 1.15rem;
 }
 
+.ssk-brief .ssk-figure {
+  margin-bottom: 1rem;
+}
+
 .ssk-brief .ssk-prose:last-child {
   margin-bottom: 0;
 }

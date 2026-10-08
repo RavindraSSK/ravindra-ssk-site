@@ -130,6 +130,8 @@ export type EditionBrief = {
   /** ISO date of the brief's development; when set, the newsroom calendar lists the brief on that day. */
   isoDate?: string;
   title: string;
+  /** Optional illustration, rendered between the brief's title and its body. */
+  visual?: EditorialImageVisual;
   body: string[];
   source?: StorySource;
 };
