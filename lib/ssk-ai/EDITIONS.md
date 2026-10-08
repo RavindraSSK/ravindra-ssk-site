@@ -89,6 +89,14 @@ desk page renders identically on every build.
    A monthly can also carry `projects` and `featuredProject`, rendered as a "What Can
    We Build?" section above the week-by-week list.
 
+   `lib/ssk-ai/issue-2026-10-08.ts` (October 1–7, 2026) shows the optional fields for an
+   article supplied with section groupings and multi-day stories:
+   - `sectionHeading` on a story renders an article section heading above it.
+   - `additionalDates` lists a story on further calendar days.
+   - `isoDate` on a brief lists the brief on the newsroom calendar.
+   - `readingListLabels` relabels the reading-list title and third column.
+   - `firstDeliverable` adds a line to a project card.
+
 2. **Fill in the `edition` block.** This is what places the edition on the calendar:
 
    ```ts

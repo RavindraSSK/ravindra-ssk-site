@@ -35,6 +35,12 @@ function ProjectCard({ project, featured }: { project: ProjectConcept; featured?
           <dt>Why useful</dt>
           <dd>{project.whyUseful}</dd>
         </div>
+        {project.firstDeliverable ? (
+          <div>
+            <dt>First deliverable</dt>
+            <dd>{project.firstDeliverable}</dd>
+          </div>
+        ) : null}
       </dl>
     </article>
   );
