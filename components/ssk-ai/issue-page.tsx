@@ -101,7 +101,7 @@ export function SskAiIssuePage({ issue }: { issue: SskAiIssue }) {
             <p className="ssk-issue-theme">{issue.theme}</p>
             <SskAiPoster poster={issue.poster} datePublished={issue.datePublished} />
             {issue.hero ? (
-              <AmieVisual visual={issue.hero} sizes="(max-width: 1100px) 100vw, 1100px" />
+              <AmieVisual visual={issue.hero} sizes="(max-width: 1100px) 100vw, 1100px" priority />
             ) : null}
             <nav
               className="ssk-toc"
@@ -185,6 +185,37 @@ export function SskAiIssuePage({ issue }: { issue: SskAiIssue }) {
             </div>
           </section>
         ) : null}
+
+        {(issue.closingSections ?? []).map((section) => (
+          <section
+            className="section section--tight ssk-closing"
+            aria-labelledby={`${section.id}-title`}
+            id={section.id}
+            key={section.id}
+          >
+            <div className="container ssk-measure">
+              {section.eyebrow ? <span className="eyebrow">{section.eyebrow}</span> : null}
+              <h2 id={`${section.id}-title`} className="section-title">
+                {section.heading}
+              </h2>
+              {section.body.map((paragraph, index) => (
+                <RichText key={`${section.id}-body-${index}`} text={paragraph} className="ssk-prose" />
+              ))}
+              {section.options && section.options.length > 0 ? (
+                <ul className="ssk-closing__options">
+                  {section.options.map((option) => (
+                    <li key={option.label}>
+                      <strong>{option.label}</strong> {richText(option.text)}
+                    </li>
+                  ))}
+                </ul>
+              ) : null}
+              {(section.after ?? []).map((paragraph, index) => (
+                <RichText key={`${section.id}-after-${index}`} text={paragraph} className="ssk-prose" />
+              ))}
+            </div>
+          </section>
+        ))}
 
         {issue.biggerPicture ? (
         <section className="section" aria-labelledby="ssk-bigger-picture">

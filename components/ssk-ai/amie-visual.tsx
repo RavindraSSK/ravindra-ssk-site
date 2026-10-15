@@ -8,9 +8,12 @@ type EditorialImage = Extract<StoryVisual, { kind: "editorial-image" }>;
 export function AmieVisual({
   visual,
   sizes = "(max-width: 720px) 100vw, 720px",
+  priority = false,
 }: {
   visual: EditorialImage;
   sizes?: string;
+  /** Load eagerly with high fetch priority — for the edition hero only. */
+  priority?: boolean;
 }) {
   const available = isEditorialImageAvailable(visual.src);
 
@@ -23,6 +26,9 @@ export function AmieVisual({
           width={visual.width}
           height={visual.height}
           sizes={sizes}
+          preload={priority}
+          loading={priority ? "eager" : "lazy"}
+          fetchPriority={priority ? "high" : undefined}
           className="ssk-amie__image"
         />
       ) : (
