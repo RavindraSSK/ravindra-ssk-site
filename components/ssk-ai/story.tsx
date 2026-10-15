@@ -1,7 +1,7 @@
 import { CodedDiagram } from "@/components/ssk-ai/diagrams";
 import { AmieVisual } from "@/components/ssk-ai/amie-visual";
 import { RichText, richText } from "@/components/ssk-ai/rich-text";
-import type { SskAiStory, StoryBlockLabels, StoryCopy, StoryTable, StoryVisualPlacement } from "@/lib/ssk-ai/types";
+import type { SskAiStory, StoryApplication, StoryBlockLabels, StoryCopy, StoryTable, StoryVisualPlacement } from "@/lib/ssk-ai/types";
 
 export const DEFAULT_STORY_LABELS: StoryBlockLabels = {
   happened: "What happened?",
@@ -74,9 +74,9 @@ function StoryDataTable({ table }: { table: StoryTable }) {
   );
 }
 
-function Applications({ story }: { story: SskAiStory }) {
-  const demonstrated = story.applications.filter((item) => item.kind === "demonstrated");
-  const potential = story.applications.filter((item) => item.kind === "potential");
+function Applications({ applications }: { applications: StoryApplication[] }) {
+  const demonstrated = applications.filter((item) => item.kind === "demonstrated");
+  const potential = applications.filter((item) => item.kind === "potential");
 
   return (
     <div className="ssk-apps">
@@ -141,6 +141,8 @@ export function StorySection({
   const rank = String(story.rank).padStart(2, "0");
   const heading = { ...DEFAULT_STORY_LABELS, ...labels };
   const lead = visualPlacement === "lead";
+  const asideVisual = !lead && Boolean(story.visual);
+  const hasAside = Boolean(story.beforeChangeResult) || asideVisual;
 
   return (
     <section className="ssk-story" id={story.id} aria-labelledby={`${story.id}-title`}>
@@ -181,7 +183,7 @@ export function StorySection({
         </div>
       ) : null}
 
-      <div className="ssk-story__grid">
+      <div className={hasAside ? "ssk-story__grid" : "ssk-story__grid ssk-story__grid--single"}>
         <div className="ssk-story__prose">
           <section className="ssk-block" aria-labelledby={`${story.id}-happened`}>
             <h3 id={`${story.id}-happened`}>{heading.happened}</h3>
@@ -204,14 +206,18 @@ export function StorySection({
               <Paragraphs text={story.whatsActuallyNew} />
             </section>
           ) : null}
-          <section className="ssk-block" aria-labelledby={`${story.id}-matters`}>
-            <h3 id={`${story.id}-matters`}>{heading.matters}</h3>
-            <Paragraphs text={story.whyItMatters} />
-          </section>
-          <section className="ssk-block" aria-labelledby={`${story.id}-apps`}>
-            <h3 id={`${story.id}-apps`}>{heading.applications}</h3>
-            <Applications story={story} />
-          </section>
+          {story.whyItMatters ? (
+            <section className="ssk-block" aria-labelledby={`${story.id}-matters`}>
+              <h3 id={`${story.id}-matters`}>{heading.matters}</h3>
+              <Paragraphs text={story.whyItMatters} />
+            </section>
+          ) : null}
+          {story.applications && story.applications.length > 0 ? (
+            <section className="ssk-block" aria-labelledby={`${story.id}-apps`}>
+              <h3 id={`${story.id}-apps`}>{heading.applications}</h3>
+              <Applications applications={story.applications} />
+            </section>
+          ) : null}
           <section className="ssk-block" aria-labelledby={`${story.id}-example`}>
             <h3 id={`${story.id}-example`}>{heading.example}</h3>
             <Paragraphs text={story.realWorldExample} />
@@ -222,23 +228,27 @@ export function StorySection({
           </section>
         </div>
 
-        <aside className="ssk-story__aside">
-          <div className="ssk-bcr" aria-label="Before, change, result">
-            <div>
-              <p className="ssk-bcr__label">Before</p>
-              <p>{story.beforeChangeResult.before}</p>
-            </div>
-            <div>
-              <p className="ssk-bcr__label">Change</p>
-              <p>{story.beforeChangeResult.change}</p>
-            </div>
-            <div>
-              <p className="ssk-bcr__label">Result</p>
-              <p>{story.beforeChangeResult.result}</p>
-            </div>
-          </div>
-          {lead || !story.visual ? null : <StoryVisualBlock story={story} />}
-        </aside>
+        {hasAside ? (
+          <aside className="ssk-story__aside">
+            {story.beforeChangeResult ? (
+              <div className="ssk-bcr" aria-label="Before, change, result">
+                <div>
+                  <p className="ssk-bcr__label">Before</p>
+                  <p>{story.beforeChangeResult.before}</p>
+                </div>
+                <div>
+                  <p className="ssk-bcr__label">Change</p>
+                  <p>{story.beforeChangeResult.change}</p>
+                </div>
+                <div>
+                  <p className="ssk-bcr__label">Result</p>
+                  <p>{story.beforeChangeResult.result}</p>
+                </div>
+              </div>
+            ) : null}
+            {asideVisual ? <StoryVisualBlock story={story} /> : null}
+          </aside>
+        ) : null}
       </div>
 
       <details className="ssk-source">

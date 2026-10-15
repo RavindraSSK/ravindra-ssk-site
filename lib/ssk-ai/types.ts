@@ -166,11 +166,14 @@ export type SskAiStory = {
   updates?: StoryUpdate[];
   /** Optional: an edition whose analysis lives under "Why it matters" leaves this out. */
   whatsActuallyNew?: string[];
-  whyItMatters: StoryCopy;
-  applications: StoryApplication[];
+  /** Optional in short-format editions, which carry only the update, an example and a take. */
+  whyItMatters?: StoryCopy;
+  /** Optional; when left out, the applications block is not rendered. */
+  applications?: StoryApplication[];
   realWorldExample: StoryCopy;
   developerTakeaway: StoryCopy;
-  beforeChangeResult: BeforeChangeResult;
+  /** Optional; a story without it and without an aside image renders its copy full width. */
+  beforeChangeResult?: BeforeChangeResult;
   /** Optional: a systems-heavy story with no illustration to add carries no visual block. */
   visual?: StoryVisual;
   source: StorySource;
@@ -324,6 +327,19 @@ export type SskAiIssue = {
    * parts are plain text; `{ href, label }` parts become internal links.
    */
   relatedReading?: Array<string | { href: string; label: string }>;
+  /**
+   * Short closing sections rendered after the stories and briefs — a weekend
+   * exercise or a reader prompt. `options` renders as a labeled list; it is a
+   * prompt for comments, never a voting form.
+   */
+  closingSections?: {
+    id: string;
+    eyebrow?: string;
+    heading: string;
+    body: string[];
+    options?: { label: string; text: string }[];
+    after?: string[];
+  }[];
 };
 
 export type SskAiPublication = {

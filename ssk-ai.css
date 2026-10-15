@@ -1219,6 +1219,10 @@ html[data-theme="dark"] .ssk-dense-block {
     align-items: start;
   }
 
+  .ssk-story__grid--single {
+    grid-template-columns: minmax(0, 46rem);
+  }
+
   .ssk-measure {
     max-width: 46rem;
   }
@@ -1411,6 +1415,18 @@ html[data-theme="dark"] .ssk-dense-block {
   display: grid;
   gap: 1rem;
   margin-top: 1.4rem;
+}
+
+.ssk-closing .section-title {
+  margin-bottom: 1rem;
+}
+
+.ssk-closing__options {
+  display: grid;
+  gap: 0.6rem;
+  margin: 1rem 0;
+  padding-left: 1.2rem;
+  line-height: 1.6;
 }
 
 .ssk-story-group {

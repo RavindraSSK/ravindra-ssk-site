@@ -98,6 +98,15 @@ desk page renders identically on every build.
    - `readingListLabels` relabels the reading-list title and third column.
    - `firstDeliverable` adds a line to a project card.
 
+   `lib/ssk-ai/issue-2026-10-15.ts` (October 8–14, 2026) is a short-format edition. Each
+   story carries only the update, a proposed example and a short take:
+   - It leaves out `whyItMatters`, `applications` and `beforeChangeResult`, which are
+     optional; a story with no aside content renders its copy full width.
+   - `closingSections` adds short closing sections after the stories (a weekend
+     exercise, a reader prompt with lettered `options`). The prompt invites comments;
+     it is not a voting form.
+   - The edition hero now loads eagerly; later images stay lazy.
+
 2. **Fill in the `edition` block.** This is what places the edition on the calendar:
 
    ```ts
