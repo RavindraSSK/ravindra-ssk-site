@@ -213,8 +213,16 @@ export type MonthlyDevelopment = {
   name: string;
   whatHappened: string;
   whyItMatters: string;
-  /** One plain-English sentence understandable without an AI background. */
-  inSimpleWords: string;
+  /** One plain-English sentence understandable without an AI background. Optional: an edition may use pictureThis / take / tryThis instead. */
+  inSimpleWords?: string;
+  /** Optional reader lane shown as a chip on the card, e.g. "TRY NOW", "BUILD / WATCH", "BIG BET". */
+  lane?: string;
+  /** Optional "Picture this" proposed example. */
+  pictureThis?: string;
+  /** Optional editorial take (SSK AI Hub analysis). */
+  take?: string;
+  /** Optional proposed "try this" suggestion; a proposal, not a test we ran. */
+  tryThis?: string;
   /**
    * Deep link into the weekly edition that carries the full analysis — or, for a
    * development no weekly carried (e.g. announced after the last weekly window
@@ -237,7 +245,24 @@ export type MonthlyCapsule = {
   capsule?: EditorialImageVisual;
   developments: MonthlyDevelopment[];
   bigPicture: { thesis: string; body: string };
-  watchlist: { theme: string; note: string }[];
+  /** Optional: an edition without a watchlist renders no "what to watch" section. */
+  watchlist?: { theme: string; note: string }[];
+  /** Optional reader lanes legend, rendered as chips under the intro. */
+  lanes?: { label: string; text: string }[];
+  /** Optional coded flow of steps, rendered under the intro as an ordered sequence. */
+  flow?: { heading: string; steps: string[] };
+  /** Optional "if you only read three" block. */
+  readThree?: { heading: string; items: { audience: string; name: string; why: string }[] };
+  /** Optional scorecard table of the month's picks. */
+  scorecard?: { heading: string; rows: { category: string; pick: string; why: string }[] };
+  /** Optional weekend experiments — proposals, never claimed results. */
+  weekendTests?: { heading: string; items: { title: string; body: string }[] };
+  /** Optional editorial point of view on what mattered less. */
+  noise?: { heading: string; intro: string[]; points: string[]; closing: string };
+  /** Optional late-month signal that did not displace the main selection. */
+  lateSignal?: { heading: string; name: string; body: string[]; watch: string; source?: { label: string; href: string } };
+  /** Optional reader question rendered as a labeled list — a comment prompt, never a voting form. */
+  readerQuestion?: { heading: string; intro: string; options: { label: string; text: string }[]; after: string };
 };
 
 /** Where an edition sits in the Tech News publishing calendar. */

@@ -1454,3 +1454,115 @@ html[data-theme="dark"] .ssk-dense-block {
 .ssk-brief .ssk-prose:last-child {
   margin-bottom: 0;
 }
+
+/* Month in review: reader lanes, flow, "read three", scorecard (optional monthly sections) */
+.ssk-mdev__num {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.ssk-lane {
+  display: inline-block;
+  padding: 0.18rem 0.6rem;
+  border: 1px solid var(--ambient-line);
+  border-radius: 999px;
+  background: var(--ambient-editorial);
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-text);
+}
+
+.ssk-lanes {
+  display: grid;
+  gap: 0.6rem;
+  margin: 0 0 1.4rem;
+  padding: 0;
+  list-style: none;
+}
+
+.ssk-lanes li {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.6rem;
+  line-height: 1.5;
+}
+
+.ssk-flow-wrap {
+  margin: 0 0 1.4rem;
+}
+
+.ssk-flow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 0.4rem;
+  margin: 0.5rem 0 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: ssk-flow;
+}
+
+.ssk-flow li {
+  counter-increment: ssk-flow;
+  padding: 0.45rem 0.8rem;
+  border: 1px solid var(--ambient-line);
+  border-radius: 10px;
+  background: var(--ambient-editorial);
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.ssk-flow li:not(:last-child)::after {
+  content: "→";
+  margin-left: 0.7rem;
+  color: var(--color-primary);
+}
+
+.ssk-readthree {
+  display: grid;
+  gap: 0.8rem;
+  padding: 1.3rem 1.5rem;
+}
+
+.ssk-readthree ul {
+  display: grid;
+  gap: 0.8rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.ssk-scorecard-wrap {
+  margin-top: 1rem;
+  overflow-x: auto;
+}
+
+.ssk-scorecard {
+  width: 100%;
+  min-width: 34rem;
+  border-collapse: collapse;
+  line-height: 1.5;
+}
+
+.ssk-scorecard th,
+.ssk-scorecard td {
+  padding: 0.7rem 0.8rem;
+  border-bottom: 1px solid var(--ambient-line);
+  text-align: left;
+  vertical-align: top;
+}
+
+.ssk-scorecard thead th {
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-text-faint);
+}
+
+.ssk-options {
+  padding-left: 1.2rem;
+}
