@@ -74,6 +74,48 @@ export function MonthlyCapsulePage({ issue, monthly }: { issue: SskAiIssue; mont
           </div>
         </section>
 
+        {monthly.lanes || monthly.flow || monthly.readThree ? (
+          <section className="section section--tight" aria-label="How to read this review">
+            <div className="container ssk-measure">
+              {monthly.lanes ? (
+                <ul className="ssk-lanes" aria-label="Reader lanes">
+                  {monthly.lanes.map((lane) => (
+                    <li key={lane.label}>
+                      <span className="ssk-lane">{lane.label}</span>
+                      <span>{lane.text}</span>
+                    </li>
+                  ))}
+                </ul>
+              ) : null}
+              {monthly.flow ? (
+                <div className="ssk-flow-wrap">
+                  <p className="ssk-mdev__label">{monthly.flow.heading}</p>
+                  <ol className="ssk-flow">
+                    {monthly.flow.steps.map((step) => (
+                      <li key={step}>{step}</li>
+                    ))}
+                  </ol>
+                </div>
+              ) : null}
+              {monthly.readThree ? (
+                <div className="card ssk-readthree">
+                  <h2 className="ssk-bigger-title">{monthly.readThree.heading}</h2>
+                  <ul>
+                    {monthly.readThree.items.map((item) => (
+                      <li key={item.audience}>
+                        <p className="ssk-mdev__label">{item.audience}</p>
+                        <p className="ssk-mdev__body">
+                          <strong>{item.name}</strong> — {item.why}
+                        </p>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ) : null}
+            </div>
+          </section>
+        ) : null}
+
         {monthly.capsule ? (
           <section className="section section--tight" aria-label="The month at a glance, as one graphic">
             <div className="container ssk-issue-hero">
@@ -91,18 +133,38 @@ export function MonthlyCapsulePage({ issue, monthly }: { issue: SskAiIssue; mont
             <ol className="ssk-mdev-grid">
               {monthly.developments.map((dev, index) => (
                 <li className="card ssk-mdev" key={dev.name}>
-                  <p className="ssk-mdev__num" aria-hidden="true">
-                    {String(index + 1).padStart(2, "0")}
+                  <p className="ssk-mdev__num">
+                    <span aria-hidden="true">{String(index + 1).padStart(2, "0")}</span>
+                    {dev.lane ? <span className="ssk-lane">{dev.lane}</span> : null}
                   </p>
                   <h3 className="ssk-mdev__name">{dev.name}</h3>
                   <p className="ssk-mdev__label">What happened</p>
                   <p className="ssk-mdev__body">{dev.whatHappened}</p>
                   <p className="ssk-mdev__label">Why it matters</p>
                   <p className="ssk-mdev__body">{dev.whyItMatters}</p>
-                  <p className="ssk-mdev__simple">
-                    <span className="ssk-mdev__label">In simple words</span>
-                    {dev.inSimpleWords}
-                  </p>
+                  {dev.pictureThis ? (
+                    <>
+                      <p className="ssk-mdev__label">Picture this — a proposed example</p>
+                      <p className="ssk-mdev__body">{dev.pictureThis}</p>
+                    </>
+                  ) : null}
+                  {dev.take ? (
+                    <p className="ssk-mdev__simple">
+                      <span className="ssk-mdev__label">SSK AI Hub take</span>
+                      {dev.take}
+                    </p>
+                  ) : null}
+                  {dev.tryThis ? (
+                    <p className="ssk-mdev__body">
+                      <strong>Try this (a proposal):</strong> {dev.tryThis}
+                    </p>
+                  ) : null}
+                  {dev.inSimpleWords ? (
+                    <p className="ssk-mdev__simple">
+                      <span className="ssk-mdev__label">In simple words</span>
+                      {dev.inSimpleWords}
+                    </p>
+                  ) : null}
                   <p className="ssk-mdev__read">
                     {dev.read.href.startsWith("/") ? (
                       <Link className="inline-link" href={dev.read.href}>
@@ -120,6 +182,103 @@ export function MonthlyCapsulePage({ issue, monthly }: { issue: SskAiIssue; mont
           </div>
         </section>
 
+        {monthly.scorecard ? (
+          <section className="section section--tight" aria-labelledby="ssk-monthly-score">
+            <div className="container">
+              <h2 id="ssk-monthly-score" className="section-title">
+                {monthly.scorecard.heading}
+              </h2>
+              <div className="ssk-scorecard-wrap" tabIndex={0} role="region" aria-labelledby="ssk-monthly-score">
+                <table className="ssk-scorecard">
+                  <thead>
+                    <tr>
+                      <th scope="col">Category</th>
+                      <th scope="col">Pick</th>
+                      <th scope="col">Why it stood out</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {monthly.scorecard.rows.map((row) => (
+                      <tr key={row.category}>
+                        <th scope="row">{row.category}</th>
+                        <td>{row.pick}</td>
+                        <td>{row.why}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </section>
+        ) : null}
+
+        {monthly.weekendTests ? (
+          <section className="section section--tight" aria-labelledby="ssk-monthly-weekend">
+            <div className="container">
+              <h2 id="ssk-monthly-weekend" className="section-title">
+                {monthly.weekendTests.heading}
+              </h2>
+              <div className="ssk-bigger-grid">
+                {monthly.weekendTests.items.map((item, index) => (
+                  <article className="card" key={item.title}>
+                    <p className="ssk-mdev__num">{String(index + 1).padStart(2, "0")}</p>
+                    <h3 className="ssk-bigger-title">{item.title}</h3>
+                    <p className="ssk-prose">{item.body}</p>
+                  </article>
+                ))}
+              </div>
+              <p className="ssk-prose ssk-measure">These are proposed exercises, not tests we ran or results we are claiming.</p>
+            </div>
+          </section>
+        ) : null}
+
+        {monthly.noise ? (
+          <section className="section section--tight" aria-labelledby="ssk-monthly-noise">
+            <div className="container ssk-measure">
+              <h2 id="ssk-monthly-noise" className="section-title">
+                {monthly.noise.heading}
+              </h2>
+              {monthly.noise.intro.map((paragraph) => (
+                <p key={paragraph.slice(0, 40)} className="ssk-prose">
+                  {paragraph}
+                </p>
+              ))}
+              <ul className="ssk-prose">
+                {monthly.noise.points.map((point) => (
+                  <li key={point}>{point}</li>
+                ))}
+              </ul>
+              <p className="ssk-bigger-lede">{monthly.noise.closing}</p>
+            </div>
+          </section>
+        ) : null}
+
+        {monthly.lateSignal ? (
+          <section className="section section--tight" aria-labelledby="ssk-monthly-late">
+            <div className="container ssk-measure">
+              <span className="eyebrow">Late-month signal</span>
+              <h2 id="ssk-monthly-late" className="section-title">
+                {monthly.lateSignal.heading}
+              </h2>
+              {monthly.lateSignal.body.map((paragraph) => (
+                <p key={paragraph.slice(0, 40)} className="ssk-prose">
+                  {paragraph}
+                </p>
+              ))}
+              <p className="ssk-prose">
+                <strong>{monthly.lateSignal.watch}</strong>
+              </p>
+              {monthly.lateSignal.source ? (
+                <p className="ssk-prose">
+                  <a className="inline-link" href={monthly.lateSignal.source.href} rel="noopener noreferrer">
+                    {monthly.lateSignal.source.label} <span aria-hidden="true">→</span>
+                  </a>
+                </p>
+              ) : null}
+            </div>
+          </section>
+        ) : null}
+
         <section className="section" aria-labelledby="ssk-monthly-big">
           <div className="container ssk-measure">
             <span className="eyebrow">The big picture</span>
@@ -131,6 +290,7 @@ export function MonthlyCapsulePage({ issue, monthly }: { issue: SskAiIssue; mont
           </div>
         </section>
 
+        {monthly.watchlist && monthly.watchlist.length > 0 ? (
         <section className="section section--tight" aria-labelledby="ssk-monthly-watch">
           <div className="container">
             <span className="eyebrow">Looking ahead</span>
@@ -147,6 +307,27 @@ export function MonthlyCapsulePage({ issue, monthly }: { issue: SskAiIssue; mont
             </div>
           </div>
         </section>
+        ) : null}
+
+        {monthly.readerQuestion ? (
+          <section className="section section--tight" aria-labelledby="ssk-monthly-question">
+            <div className="container ssk-measure">
+              <span className="eyebrow">Your turn</span>
+              <h2 id="ssk-monthly-question" className="section-title">
+                {monthly.readerQuestion.heading}
+              </h2>
+              <p className="ssk-prose">{monthly.readerQuestion.intro}</p>
+              <ul className="ssk-prose ssk-options">
+                {monthly.readerQuestion.options.map((option) => (
+                  <li key={option.label}>
+                    <strong>{option.label}</strong> {option.text}
+                  </li>
+                ))}
+              </ul>
+              <p className="ssk-prose">{monthly.readerQuestion.after}</p>
+            </div>
+          </section>
+        ) : null}
 
         {issue.projects && issue.projects.length > 0 ? (
           <section className="section section--tight">
