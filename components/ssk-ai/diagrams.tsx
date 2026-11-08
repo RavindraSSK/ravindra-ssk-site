@@ -595,6 +595,58 @@ export function OperationsPlatformDiagram() {
   );
 }
 
+export function WorkflowInfrastructureDiagram() {
+  return (
+    <SequenceDiagram
+      steps={[
+        "Goal",
+        "Agent / Model",
+        "Real Tool or Environment",
+        "Action / Edit / Analysis",
+        "Verification",
+        "Human-Reviewed Result",
+      ]}
+    />
+  );
+}
+
+export function ScienceAgentPatternDiagram() {
+  return (
+    <SequenceDiagram
+      steps={[
+        "Research Question",
+        "LLM Orchestration",
+        "Deterministic Scientific Tools",
+        "Evidence",
+        "Scientist Review",
+      ]}
+    />
+  );
+}
+
+export function DefensiveRemediationDiagram() {
+  return (
+    <SequenceDiagram steps={["Finding", "Validation", "Proposed Fix", "Tests", "Human Review"]} />
+  );
+}
+
+export function VerifiedWorkflowAgentDiagram() {
+  return (
+    <SequenceDiagram
+      steps={[
+        "User Goal",
+        "Planner",
+        "Tool Selection",
+        "Execution",
+        "Evidence / Tests",
+        "Verifier",
+        "Human Review",
+        "Final Action",
+      ]}
+    />
+  );
+}
+
 const diagrams = {
   "qwen-moe": QwenMoeDiagram,
   "mai-thinking": MaiThinkingDiagram,
@@ -615,6 +667,10 @@ const diagrams = {
   "governed-research-agent": GovernedResearchAgentDiagram,
   "privacy-aware-agent": PrivacyAwareAgentDiagram,
   "operations-platform": OperationsPlatformDiagram,
+  "workflow-infrastructure": WorkflowInfrastructureDiagram,
+  "science-agent-pattern": ScienceAgentPatternDiagram,
+  "defensive-remediation": DefensiveRemediationDiagram,
+  "verified-workflow-agent": VerifiedWorkflowAgentDiagram,
 } satisfies Record<CodedDiagramId, () => ReactElement>;
 
 export function CodedDiagram({ id, caption }: { id: CodedDiagramId; caption: string }) {
