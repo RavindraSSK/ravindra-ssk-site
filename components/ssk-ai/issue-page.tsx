@@ -1,6 +1,7 @@
 import Link from "next/link";
 
 import { AmieVisual } from "@/components/ssk-ai/amie-visual";
+import { CodedDiagram } from "@/components/ssk-ai/diagrams";
 import { LinkedInSubscribe } from "@/components/ssk-ai/linkedin-subscribe";
 import { MonthlyCapsulePage } from "@/components/ssk-ai/monthly-capsule";
 import { SskAiPoster } from "@/components/ssk-ai/poster";
@@ -213,6 +214,7 @@ export function SskAiIssuePage({ issue }: { issue: SskAiIssue }) {
               {(section.after ?? []).map((paragraph, index) => (
                 <RichText key={`${section.id}-after-${index}`} text={paragraph} className="ssk-prose" />
               ))}
+              {section.diagram ? <CodedDiagram id={section.diagram.id} caption={section.diagram.caption} /> : null}
             </div>
           </section>
         ))}

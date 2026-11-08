@@ -33,7 +33,11 @@ export type CodedDiagramId =
   | "migration-factory"
   | "governed-research-agent"
   | "privacy-aware-agent"
-  | "operations-platform";
+  | "operations-platform"
+  | "workflow-infrastructure"
+  | "science-agent-pattern"
+  | "defensive-remediation"
+  | "verified-workflow-agent";
 
 export type StoryVisual =
   | {
@@ -364,6 +368,8 @@ export type SskAiIssue = {
     body: string[];
     options?: { label: string; text: string }[];
     after?: string[];
+    /** Optional coded diagram rendered after the section body. */
+    diagram?: { id: CodedDiagramId; caption: string };
   }[];
 };
 
