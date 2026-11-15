@@ -37,7 +37,8 @@ export type CodedDiagramId =
   | "workflow-infrastructure"
   | "science-agent-pattern"
   | "defensive-remediation"
-  | "verified-workflow-agent";
+  | "verified-workflow-agent"
+  | "specialized-stack";
 
 export type StoryVisual =
   | {

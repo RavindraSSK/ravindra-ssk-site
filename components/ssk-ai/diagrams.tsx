@@ -647,6 +647,20 @@ export function VerifiedWorkflowAgentDiagram() {
   );
 }
 
+export function SpecializedStackDiagram() {
+  return (
+    <SequenceDiagram
+      steps={[
+        "Frontier model — difficult reasoning",
+        "Fast model — routine execution",
+        "Decision model — routing and control",
+        "Domain tools — real-world work",
+        "Monitoring and provenance — around the entire system",
+      ]}
+    />
+  );
+}
+
 const diagrams = {
   "qwen-moe": QwenMoeDiagram,
   "mai-thinking": MaiThinkingDiagram,
@@ -671,6 +685,7 @@ const diagrams = {
   "science-agent-pattern": ScienceAgentPatternDiagram,
   "defensive-remediation": DefensiveRemediationDiagram,
   "verified-workflow-agent": VerifiedWorkflowAgentDiagram,
+  "specialized-stack": SpecializedStackDiagram,
 } satisfies Record<CodedDiagramId, () => ReactElement>;
 
 export function CodedDiagram({ id, caption }: { id: CodedDiagramId; caption: string }) {
