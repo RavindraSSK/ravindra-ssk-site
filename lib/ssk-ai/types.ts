@@ -38,7 +38,14 @@ export type CodedDiagramId =
   | "science-agent-pattern"
   | "defensive-remediation"
   | "verified-workflow-agent"
-  | "specialized-stack";
+  | "specialized-stack"
+  | "agent-approval-flow"
+  | "task-matched-coding"
+  | "agent-eval-loop"
+  | "interactive-world-flow"
+  | "grounded-briefing"
+  | "chip-design-loop"
+  | "working-system";
 
 export type StoryVisual =
   | {
@@ -283,6 +290,29 @@ export type SskAiEdition = {
   periodLabel: string;
 };
 
+/** One reader path in an edition's interactive Build-or-Skip Lab. */
+export type BuildLabPath = {
+  id: string;
+  /** Tab label, e.g. "Student". */
+  label: string;
+  project: string;
+  brief: string;
+  /** Exactly three implementation steps. */
+  steps: [string, string, string];
+  metric: string;
+};
+
+/** Optional client-side "pick your path" project selector rendered after the stories. */
+export type BuildLab = {
+  id: string;
+  eyebrow: string;
+  heading: string;
+  intro: string;
+  paths: BuildLabPath[];
+  challenge: string;
+  checklist: { href: string; label: string; fileName: string };
+};
+
 export type SskAiIssue = {
   slug: string;
   edition: SskAiEdition;
@@ -362,6 +392,8 @@ export type SskAiIssue = {
    * exercise or a reader prompt. `options` renders as a labeled list; it is a
    * prompt for comments, never a voting form.
    */
+  /** Optional interactive Build-or-Skip Lab rendered between the stories and the closing sections. */
+  buildLab?: BuildLab;
   closingSections?: {
     id: string;
     eyebrow?: string;

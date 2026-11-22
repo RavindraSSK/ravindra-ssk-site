@@ -661,6 +661,58 @@ export function SpecializedStackDiagram() {
   );
 }
 
+export function AgentApprovalFlowDiagram() {
+  return <SequenceDiagram steps={["Request", "Plan", "Tools", "Evaluation", "Human approval"]} />;
+}
+
+export function TaskMatchedCodingDiagram() {
+  return (
+    <SequenceDiagram
+      steps={["Task classifier", "Tests"]}
+      branch={{
+        afterIndex: 0,
+        paths: ["MAI Code 2 Flash — routine edits and explanations", "MAI Code 2 — complex, multi-file work"],
+      }}
+    />
+  );
+}
+
+export function AgentEvalLoopDiagram() {
+  return (
+    <SequenceDiagram
+      steps={["Test suite", "Agent run", "Trace of the result and the path", "Expected vs observed", "Before / after comparison"]}
+    />
+  );
+}
+
+export function InteractiveWorldFlowDiagram() {
+  return (
+    <SequenceDiagram
+      steps={["Prompt or reference image", "Generated world state", "Interactive controls", "Real-time edits + native audio"]}
+    />
+  );
+}
+
+export function GroundedBriefingDiagram() {
+  return (
+    <SequenceDiagram
+      steps={["Documents + tables + media", "Model", "Answer with citations", "Human check"]}
+    />
+  );
+}
+
+export function ChipDesignLoopDiagram() {
+  return (
+    <SequenceDiagram
+      steps={["Specification", "Candidate RTL", "Simulation", "Formal / equivalence checks", "Engineer review"]}
+    />
+  );
+}
+
+export function WorkingSystemDiagram() {
+  return <SequenceDiagram steps={["Model", "Tool use", "Evidence", "Action"]} />;
+}
+
 const diagrams = {
   "qwen-moe": QwenMoeDiagram,
   "mai-thinking": MaiThinkingDiagram,
@@ -686,6 +738,13 @@ const diagrams = {
   "defensive-remediation": DefensiveRemediationDiagram,
   "verified-workflow-agent": VerifiedWorkflowAgentDiagram,
   "specialized-stack": SpecializedStackDiagram,
+  "agent-approval-flow": AgentApprovalFlowDiagram,
+  "task-matched-coding": TaskMatchedCodingDiagram,
+  "agent-eval-loop": AgentEvalLoopDiagram,
+  "interactive-world-flow": InteractiveWorldFlowDiagram,
+  "grounded-briefing": GroundedBriefingDiagram,
+  "chip-design-loop": ChipDesignLoopDiagram,
+  "working-system": WorkingSystemDiagram,
 } satisfies Record<CodedDiagramId, () => ReactElement>;
 
 export function CodedDiagram({ id, caption }: { id: CodedDiagramId; caption: string }) {
