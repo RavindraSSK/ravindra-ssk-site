@@ -6,6 +6,7 @@ import { LinkedInSubscribe } from "@/components/ssk-ai/linkedin-subscribe";
 import { MonthlyCapsulePage } from "@/components/ssk-ai/monthly-capsule";
 import { SskAiPoster } from "@/components/ssk-ai/poster";
 import { WhatWeCanBuild } from "@/components/ssk-ai/projects";
+import { BuildOrSkipLab } from "@/components/ssk-ai/build-lab";
 import { RichText, richText } from "@/components/ssk-ai/rich-text";
 import { SourceLinks, StorySection } from "@/components/ssk-ai/story";
 import { SSK_AI_HUB, TECH_NEWS } from "@/lib/ssk-ai";
@@ -183,6 +184,14 @@ export function SskAiIssuePage({ issue }: { issue: SskAiIssue }) {
                   </article>
                 ))}
               </div>
+            </div>
+          </section>
+        ) : null}
+
+        {issue.buildLab ? (
+          <section className="section section--tight ssk-closing" aria-labelledby={`${issue.buildLab.id}-title`} id={issue.buildLab.id}>
+            <div className="container ssk-measure">
+              <BuildOrSkipLab lab={issue.buildLab} />
             </div>
           </section>
         ) : null}
