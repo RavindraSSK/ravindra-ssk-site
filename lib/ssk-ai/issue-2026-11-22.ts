@@ -7,7 +7,8 @@ import type { SskAiIssue } from "./types";
  *
  * Corrections against the package:
  * - Gemini 4 Hydrogen is excluded: it launched November 12 (outside this window)
- *   and was story 3 of the November 8–14 edition. The edition runs six stories.
+ *   and was story 3 of the November 8–14 edition. Its slot goes to Microsoft Agent 365
+ *   at Ignite (November 17), from the package's own candidate pool.
  * - AI-assisted chip design is dated November 18 (OpenAI's post date), and its
  *   summary is rewritten to match the post: RISC-V work is OpenAI's own
  *   evaluation; the AMD collaboration is the GPU/CPU design gains.
@@ -40,7 +41,7 @@ export const issueNovember22_2026: SskAiIssue = {
   heading: "From AI Models to Working Systems",
   seoTitle: "SSK AI Week 3: GPT-6.2, Gemini 4, Genie 4, MAI Code 2 and AI Evals",
   seoDescription:
-    "November 15–21, 2026: six major AI developments explained with real-world examples, developer takeaways and weekend build ideas.",
+    "November 15–21, 2026: seven major AI developments explained with real-world examples, developer takeaways and weekend build ideas.",
   schemaType: "NewsArticle",
   tocHeading: "Table of contents",
   theme:
@@ -82,6 +83,7 @@ export const issueNovember22_2026: SskAiIssue = {
     { storyId: "genie-4", development: "Genie 4 in Project Genie and the Gemini API", announced: "November 18–19", question: "World models" },
     { storyId: "gemini-4-neon", development: "Gemini 4 Neon", announced: "November 18", question: "Multimodal" },
     { storyId: "ai-chip-design", development: "AI-assisted chip design with AMD", announced: "November 18", question: "Hardware" },
+    { storyId: "microsoft-agent-365", development: "Microsoft Agent 365 at Ignite", announced: "November 17", question: "Governance" },
   ],
   stories: [
     {
@@ -327,6 +329,40 @@ export const issueNovember22_2026: SskAiIssue = {
         ],
       },
     },
+    {
+      rank: 7,
+      id: "microsoft-agent-365",
+      date: "2026-11-17",
+      headline: "Microsoft Agent 365 at Ignite — governing agents as a working system",
+      posterHeadline: "Microsoft Agent 365: governing agents across platforms",
+      status: "Updates announced at Ignite 2026; dynamic agent risk in preview",
+      type: "Agent governance / security",
+      audienceTags: ["IT and security", "Agents"],
+      whatHappened: [
+        "At Ignite on November 17, Microsoft expanded Agent 365, its control plane for managing and securing AI agents. Microsoft says organizations have registered more than 50 million agents since the May 2026 launch.",
+        "New this week: connected platforms that sync agents from Salesforce Agentforce, Amazon AgentCore, Google Vertex AI, Databricks and Snowflake into one registry, each with a Microsoft Entra Agent ID; discovery of local and shadow agents such as Claude Code and GitHub Copilot CLI; and a dynamic agent-risk view, in preview, across the Microsoft 365 admin center, Defender, Entra and Purview.",
+      ],
+      realWorldExample:
+        "An IT team can find the coding agents developers run locally, register them alongside approved agents, and review what each one can reach before widening access.",
+      developerTakeaway:
+        "**Weekend prototype:** build an agent inventory for a small team: list every agent and tool in use, what data it can reach, who owns it, and a simple risk score.",
+      visual: {
+        kind: "coded-diagram",
+        diagram: "agent-governance",
+        caption:
+          "Agent governance: discover agents across platforms, register each with an identity, view risk continuously, then apply admin, security and compliance controls.",
+      },
+      source: {
+        heading: "Story 7 — Microsoft Agent 365 at Ignite 2026",
+        body: "Primary source: Microsoft's November 17 Agent 365 Ignite post. The **50-million-agent figure is Microsoft-reported**. Dynamic agent risk is in **preview**; availability of other features varies by licence and region.",
+        links: [
+          {
+            label: "Microsoft Tech Community: What's new in Microsoft Agent 365 — Ignite 2026",
+            href: "https://techcommunity.microsoft.com/blog/agent-365-blog/whats-new-in-microsoft-agent-365-ignite-2026/4571753",
+          },
+        ],
+      },
+    },
   ],
   buildLab: {
     id: "build-or-skip-lab",
@@ -429,9 +465,10 @@ export const issueNovember22_2026: SskAiIssue = {
       "Genie 4: editable, interactive AI worlds",
       "Gemini 4 Neon: fast frontier-level multimodal work",
       "AI-assisted chip design: AI enters hardware engineering",
+      "Microsoft Agent 365: governing agents across platforms",
     ],
-    theme: "Act • Evaluate • Build worlds • Engineer",
+    theme: "Act • Evaluate • Build worlds • Engineer • Govern",
   },
   generalSourceNote:
-    "Source review: November 21–22, 2026, after the November 15–21 window closed. This is a curated briefing of six developments, not a complete launch calendar. Benchmark, speed, price and result figures are company-reported, not independent measurements; no hands-on test was conducted. Real-world examples, weekend prototypes and the Build-or-Skip Lab are editorial proposals. Considered but left out: Gemini 4 Hydrogen (launched November 12; covered in the November 8–14 edition), GPT-Live-1.1 API updates (November 19), Gemini on lower-memory Android devices (November 18), Microsoft Ignite Agent 365 / Perception (November 17), GitHub Copilot code-review secret detection (November 17) and GitHub Copilot connectors (November 18). The banner is original AI-generated editorial artwork, not a product screenshot.",
+    "Source review: November 21–22, 2026, after the November 15–21 window closed. This is a curated briefing of seven developments, not a complete launch calendar. Benchmark, speed, price and result figures are company-reported, not independent measurements; no hands-on test was conducted. Real-world examples, weekend prototypes and the Build-or-Skip Lab are editorial proposals. Considered but left out: Gemini 4 Hydrogen (launched November 12; covered in the November 8–14 edition), GPT-Live-1.1 API updates (November 19), Gemini on lower-memory Android devices (November 18), Microsoft Perception and other Ignite announcements (November 17), GitHub Copilot code-review secret detection (November 17) and GitHub Copilot connectors (November 18). The banner is original AI-generated editorial artwork, not a product screenshot.",
 };

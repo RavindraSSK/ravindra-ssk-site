@@ -45,7 +45,8 @@ export type CodedDiagramId =
   | "interactive-world-flow"
   | "grounded-briefing"
   | "chip-design-loop"
-  | "working-system";
+  | "working-system"
+  | "agent-governance";
 
 export type StoryVisual =
   | {

@@ -713,6 +713,19 @@ export function WorkingSystemDiagram() {
   return <SequenceDiagram steps={["Model", "Tool use", "Evidence", "Action"]} />;
 }
 
+export function AgentGovernanceDiagram() {
+  return (
+    <SequenceDiagram
+      steps={[
+        "Discover agents — Microsoft, connected platforms, local and shadow",
+        "Register with an Entra Agent ID",
+        "Dynamic agent risk view (preview)",
+        "Admin, security and compliance controls",
+      ]}
+    />
+  );
+}
+
 const diagrams = {
   "qwen-moe": QwenMoeDiagram,
   "mai-thinking": MaiThinkingDiagram,
@@ -745,6 +758,7 @@ const diagrams = {
   "grounded-briefing": GroundedBriefingDiagram,
   "chip-design-loop": ChipDesignLoopDiagram,
   "working-system": WorkingSystemDiagram,
+  "agent-governance": AgentGovernanceDiagram,
 } satisfies Record<CodedDiagramId, () => ReactElement>;
 
 export function CodedDiagram({ id, caption }: { id: CodedDiagramId; caption: string }) {
