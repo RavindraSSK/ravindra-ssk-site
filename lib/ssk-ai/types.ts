@@ -188,6 +188,11 @@ export type SskAiStory = {
   beforeChangeResult?: BeforeChangeResult;
   /** Optional: a systems-heavy story with no illustration to add carries no visual block. */
   visual?: StoryVisual;
+  /**
+   * Optional full-width editorial image shown under the story header, in addition
+   * to `visual` (which then sits beside the copy, e.g. a coded diagram).
+   */
+  leadImage?: EditorialImageVisual;
   source: StorySource;
 };
 

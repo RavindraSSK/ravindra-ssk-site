@@ -16,9 +16,9 @@ import type { SskAiIssue } from "./types";
  *
  * Visuals: the hero is the top band of the package cover (title, dates, scene);
  * the lower story cards are not used because two carry wrong dates. Each story's
- * visual is the coded diagram from the visual manifest. The per-story raster
- * title cards repeat the headline (and the chip card carries the wrong date),
- * so they are not used. No share-card image: `/opengraph-image` falls back to
+ * story has its package illustration as a full-width lead image (WebP; the chip
+ * card's printed date corrected from Nov 19 to Nov 18) plus the coded diagram
+ * from the visual manifest beside the copy. No share-card image: `/opengraph-image` falls back to
  * the generated text card.
  */
 
@@ -100,6 +100,15 @@ export const issueNovember22_2026: SskAiIssue = {
         "An operations team can draft and validate structured reports while requiring approval before any external action is taken.",
       developerTakeaway:
         "**Weekend prototype:** build a permission-scoped document agent with audit logs, test cases and human sign-off.",
+      leadImage: {
+        kind: "editorial-image",
+        src: "/ssk-ai/2026-11-22/02-gpt-6-2-astra-sol.webp",
+        width: 1200,
+        height: 675,
+        alt: "Original SSK AI Hub editorial card for GPT-6.2 Astra & Sol, dated November 17, 2026: an abstract violet line illustration of stacked panels with list rows on a navy background. Conceptual artwork, not a product screenshot.",
+        caption: "GPT-6.2 Astra & Sol — original editorial illustration.",
+        description: "GPT-6.2 Astra & Sol — original editorial illustration.",
+      },
       visual: {
         kind: "coded-diagram",
         diagram: "agent-approval-flow",
@@ -133,6 +142,15 @@ export const issueNovember22_2026: SskAiIssue = {
         "A development team routes a small fix to MAI Code 2 Flash and a repository-wide refactor to MAI Code 2.",
       developerTakeaway:
         "**Weekend prototype:** build a coding benchmark with identical repositories, hidden tests and cost per merged PR.",
+      leadImage: {
+        kind: "editorial-image",
+        src: "/ssk-ai/2026-11-22/03-mai-code-2.webp",
+        width: 1200,
+        height: 675,
+        alt: "Original SSK AI Hub editorial card for MAI Code 2, dated November 17, 2026: an abstract teal line illustration of stacked panels with list rows on a navy background. Conceptual artwork, not a product screenshot.",
+        caption: "MAI Code 2 — original editorial illustration.",
+        description: "MAI Code 2 — original editorial illustration.",
+      },
       visual: {
         kind: "coded-diagram",
         diagram: "task-matched-coding",
@@ -164,6 +182,15 @@ export const issueNovember22_2026: SskAiIssue = {
       realWorldExample: "A platform team can regression-test an agent after changing a tool or prompt.",
       developerTakeaway:
         "**Weekend prototype:** build a public demo of an agent scorecard — completion, intervention, traceability and regressions.",
+      leadImage: {
+        kind: "editorial-image",
+        src: "/ssk-ai/2026-11-22/04-copilot-evals.webp",
+        width: 1200,
+        height: 675,
+        alt: "Original SSK AI Hub editorial card for Copilot Evals, dated November 17, 2026: an abstract amber line illustration of a grid with a column of checkpoint dots on a navy background. Conceptual artwork, not a product screenshot.",
+        caption: "Copilot Evals — original editorial illustration.",
+        description: "Copilot Evals — original editorial illustration.",
+      },
       visual: {
         kind: "coded-diagram",
         diagram: "agent-eval-loop",
@@ -197,6 +224,15 @@ export const issueNovember22_2026: SskAiIssue = {
       realWorldExample: "Designers can prototype interactive spaces before building conventional 3D assets.",
       developerTakeaway:
         "**Weekend prototype:** build a guided interactive learning scene with user controls and clear simulated-content labelling.",
+      leadImage: {
+        kind: "editorial-image",
+        src: "/ssk-ai/2026-11-22/05-genie-4.webp",
+        width: 1200,
+        height: 675,
+        alt: "Original SSK AI Hub editorial card for Genie 4, dated November 18–19, 2026: an abstract purple line illustration of concentric circles over layered frames on a navy background. Conceptual artwork, not a product screenshot.",
+        caption: "Genie 4 — original editorial illustration.",
+        description: "Genie 4 — original editorial illustration.",
+      },
       visual: {
         kind: "coded-diagram",
         diagram: "interactive-world-flow",
@@ -232,6 +268,15 @@ export const issueNovember22_2026: SskAiIssue = {
       realWorldExample: "An analyst can combine documents, tables and charts into a checked briefing.",
       developerTakeaway:
         "**Weekend prototype:** build a document-to-decision pipeline with citations and source-grounded verification.",
+      leadImage: {
+        kind: "editorial-image",
+        src: "/ssk-ai/2026-11-22/06-gemini-4-neon.webp",
+        width: 1200,
+        height: 675,
+        alt: "Original SSK AI Hub editorial card for Gemini 4 Neon, dated November 18, 2026: an abstract cyan line illustration of stacked bars inside layered frames on a navy background. Conceptual artwork, not a product screenshot.",
+        caption: "Gemini 4 Neon — original editorial illustration.",
+        description: "Gemini 4 Neon — original editorial illustration.",
+      },
       visual: {
         kind: "coded-diagram",
         diagram: "grounded-briefing",
@@ -265,6 +310,15 @@ export const issueNovember22_2026: SskAiIssue = {
         "Hardware engineers can treat model-generated suggestions as candidates to test with simulation and formal tools.",
       developerTakeaway:
         "**Weekend prototype:** build a reproducible HDL-assistant evaluation harness that checks synthesis, simulation and functional equivalence.",
+      leadImage: {
+        kind: "editorial-image",
+        src: "/ssk-ai/2026-11-22/07-ai-chip-design.webp",
+        width: 1200,
+        height: 675,
+        alt: "Original SSK AI Hub editorial card for AI-assisted chip design, dated November 18, 2026: an abstract orange line illustration of vertical pin-like bars inside layered frames on a navy background. Conceptual artwork, not a product screenshot.",
+        caption: "AI-assisted chip design — original editorial illustration.",
+        description: "AI-assisted chip design — original editorial illustration.",
+      },
       visual: {
         kind: "coded-diagram",
         diagram: "chip-design-loop",

@@ -175,6 +175,12 @@ export function StorySection({
         </div>
       </header>
 
+      {story.leadImage ? (
+        <div className="ssk-story__lead">
+          <AmieVisual visual={story.leadImage} sizes="(max-width: 1180px) 100vw, 1100px" />
+        </div>
+      ) : null}
+
       {lead && story.visual ? (
         // The story image directly under its header and status line, at the full
         // width of the story card, before the copy begins.
