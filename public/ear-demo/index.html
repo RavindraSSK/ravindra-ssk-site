@@ -1,0 +1,307 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Who Did It?</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;800&family=Source+Serif+4:ital,opsz,wght@1,8..60,400;1,8..60,500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0f2547; --navy-2: #1d3a6b; --mist: #eef2f8; --line: #d5dceb; --steel: #56657f;
+    --white: #ffffff; --ink: #0f2547; --red: #c2362b; --red-soft: #fbeceb; --amber: #9c6412; --amber-soft: #fbf3e4;
+    --sans: "Public Sans", system-ui, "Segoe UI", Roboto, sans-serif;
+    --serif: "Source Serif 4", Georgia, serif;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; background: var(--white); color: var(--ink); font: 16px/1.55 var(--sans); }
+  button, select, input, textarea { font: inherit; color: inherit; }
+  :focus-visible { outline: 3px solid #7aa2e3; outline-offset: 2px; }
+
+  /* Navy band */
+  .band { background: var(--navy); color: var(--white); padding: 28px 40px 30px; display: flex; gap: 32px;
+          align-items: flex-end; justify-content: space-between; flex-wrap: wrap; }
+  .band h1 { margin: 0; font-weight: 800; font-size: clamp(34px, 5vw, 56px); line-height: 1; letter-spacing: -0.02em; }
+  .band p { margin: 10px 0 0; max-width: 62ch; color: #c9d5ea; }
+  .model { display: flex; flex-direction: column; gap: 6px; min-width: 220px; }
+  .model label { font-size: 14px; color: #c9d5ea; }
+  .model select { background: var(--navy-2); border: 1px solid #3a5687; border-radius: 6px; padding: 9px 12px; color: var(--white); }
+
+  .page { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); gap: 40px; padding: 32px 40px 56px; max-width: 1440px; margin: 0 auto; }
+  h2 { margin: 0 0 4px; font-size: 20px; font-weight: 800; letter-spacing: -0.01em; }
+  .hint { margin: 0 0 16px; color: var(--steel); font-size: 15px; }
+
+  /* Photo-set strip */
+  .sets { display: flex; gap: 8px; margin-bottom: 22px; flex-wrap: wrap; }
+  .set { border: 2px solid transparent; border-radius: 6px; padding: 0; background: var(--mist); cursor: pointer; width: 74px; }
+  .set img { display: block; width: 100%; height: 50px; object-fit: cover; border-radius: 4px 4px 0 0; }
+  .set span { display: block; font-size: 13px; font-weight: 600; padding: 3px 0 4px; }
+  .set[aria-pressed="true"] { border-color: var(--navy); background: var(--navy); color: var(--white); }
+
+  /* The 2x2 matrix */
+  .matrix { display: grid; grid-template-columns: 120px 1fr 1fr; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
+  .mh { padding: 12px 14px; background: var(--mist); font-size: 14px; color: var(--steel); }
+  .mh q { display: block; margin-top: 4px; font: italic 15px/1.4 var(--serif); color: var(--ink); quotes: "\201C" "\201D"; }
+  .mh.corner { display: flex; align-items: flex-end; font-size: 13px; }
+  .rowh { background: var(--mist); border-top: 1px solid var(--line); padding: 10px; font-size: 13px; color: var(--steel); }
+  .rowh img { display: block; width: 100%; height: 72px; object-fit: cover; border-radius: 4px; margin-bottom: 6px; }
+  .cell { border: 0; border-top: 1px solid var(--line); border-left: 1px solid var(--line); background: var(--white);
+          text-align: left; padding: 14px 16px; cursor: pointer; display: flex; flex-direction: column; gap: 4px; min-height: 104px; }
+  .cell .exp { font-size: 13px; color: var(--steel); }
+  .cell .val { font-size: 17px; font-weight: 600; }
+  .cell .got { font-size: 13px; margin-top: auto; }
+  .cell .got.hit { color: var(--navy-2); }
+  .cell .got.miss { color: var(--red); }
+  .cell[aria-pressed="true"] { background: var(--navy); color: var(--white); }
+  .cell[aria-pressed="true"] .exp, .cell[aria-pressed="true"] .got { color: #c9d5ea; }
+  .cell[aria-pressed="true"] .got.miss { color: #ffb3ab; }
+
+  /* Selected stimulus */
+  .stimulus { margin-top: 22px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 20px; align-items: start; }
+  .stimulus figure { margin: 0; background: var(--mist); border-radius: 8px; display: flex; justify-content: center; }
+  .stimulus img { max-width: 100%; max-height: 320px; object-fit: contain; border-radius: 8px; }
+  .stimulus blockquote { margin: 0; font: italic 21px/1.45 var(--serif); }
+  .stimulus .act { margin: 12px 0 18px; color: var(--steel); font-size: 15px; }
+  .ask { background: var(--navy); color: var(--white); border: 0; border-radius: 6px; padding: 13px 22px; font-weight: 600; cursor: pointer; }
+  .ask:hover { background: var(--navy-2); }
+  .ask:disabled { opacity: .6; cursor: progress; }
+
+  /* Own photo */
+  details.own { margin-top: 30px; border-top: 1px solid var(--line); padding-top: 18px; }
+  details.own summary { cursor: pointer; font-weight: 800; font-size: 18px; }
+  .own-grid { display: grid; gap: 12px; margin-top: 14px; }
+  .own label { font-size: 14px; color: var(--steel); display: block; margin-bottom: 4px; }
+  .own input[type=text], .own textarea { width: 100%; border: 1px solid var(--line); border-radius: 6px; padding: 9px 12px; background: var(--white); }
+  .own textarea { min-height: 70px; font-family: var(--serif); font-style: italic; font-size: 17px; }
+  .own img { max-height: 200px; max-width: 100%; border-radius: 6px; }
+
+  /* Result */
+  .result { position: sticky; top: 20px; align-self: start; }
+  .waiting { border: 1px dashed var(--line); border-radius: 8px; padding: 40px 24px; color: var(--steel); }
+  .verdict { padding: 22px 24px; border-radius: 8px; background: var(--navy); color: var(--white); }
+  .verdict.bad { background: var(--red); }
+  .verdict.warn { background: var(--amber); }
+  .verdict strong { display: block; font-size: 28px; line-height: 1.15; font-weight: 800; letter-spacing: -0.01em; }
+  .verdict ul { margin: 12px 0 0; padding-left: 18px; }
+  .verdict li { margin-top: 4px; }
+  .expected { margin: 16px 0 8px; color: var(--steel); }
+  .expected b { color: var(--ink); }
+  table { width: 100%; border-collapse: collapse; margin-top: 6px; }
+  th, td { text-align: left; padding: 12px 10px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  th { font-size: 13px; font-weight: 600; color: var(--steel); }
+  td.input { font-weight: 600; width: 26%; }
+  td .none { color: var(--steel); }
+  td.miss { color: var(--red); font-weight: 600; }
+  td small { display: block; color: var(--steel); margin-top: 3px; font-size: 13px; }
+  tr.merged td { background: var(--mist); }
+  details.raw { margin-top: 14px; font-size: 14px; }
+  details.raw pre { white-space: pre-wrap; word-break: break-word; background: var(--mist); padding: 10px; border-radius: 6px; font-size: 12.5px; }
+  .error { color: var(--red); }
+  .reveal { animation: reveal .35s ease-out; }
+  @keyframes reveal { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+  @media (prefers-reduced-motion: reduce) { .reveal { animation: none; } }
+
+  @media (max-width: 980px) {
+    .band { padding: 22px 16px; }
+    .page { grid-template-columns: 1fr; padding: 22px 16px 40px; gap: 32px; }
+    .result { position: static; }
+    .stimulus { grid-template-columns: 1fr; }
+    .matrix { grid-template-columns: 84px 1fr 1fr; }
+    .rowh img { height: 52px; }
+    .cell { padding: 10px; min-height: 92px; }
+    .cell .val { font-size: 15px; }
+  }
+</style>
+</head>
+<body>
+<header class="band">
+  <div>
+    <h1>Who did it?</h1>
+    <p>A model sees a photo and a caption and names the person doing the action. Then it says where that came from.
+       This page checks the claim by asking about the caption alone and the photo alone.</p>
+  </div>
+  <div class="model">
+    <label for="model">Model</label>
+    <select id="model"></select>
+  </div>
+</header>
+
+<div class="page">
+  <section>
+    <h2>Pick a photo set and a condition</h2>
+    <p class="hint">Each photo comes in four versions: the actor shown or cropped out, and a caption that names them or leaves them out.</p>
+    <div class="sets" id="sets" role="group" aria-label="Photo sets"></div>
+    <div class="matrix" id="matrix"></div>
+
+    <div class="stimulus" id="stimulus">
+      <figure><img id="st-img" alt="The selected version of the photo"></figure>
+      <div>
+        <blockquote id="st-cap"></blockquote>
+        <p class="act" id="st-act"></p>
+        <button class="ask" id="ask-ex">Ask the model</button>
+      </div>
+    </div>
+
+    <details class="own" id="own">
+      <summary>Try your own photo</summary>
+      <div class="own-grid">
+        <div><label for="up-img">Photo (optional)</label><input type="file" id="up-img" accept="image/png,image/jpeg,image/webp"></div>
+        <img id="up-prev" alt="" hidden>
+        <div><label for="up-cap">Caption (optional)</label>
+          <textarea id="up-cap" placeholder="A box of water is handed to a woman by a man in a camouflage uniform."></textarea></div>
+        <div><label for="up-act">What is the action?</label>
+          <input type="text" id="up-act" placeholder="handing a box of water to a woman"></div>
+        <div><button class="ask" id="ask-up">Ask the model</button></div>
+      </div>
+    </details>
+  </section>
+
+  <section class="result" id="result" aria-live="polite">
+    <div class="waiting">Choose a version on the left and press <b>Ask the model</b>. Each question makes three calls:
+      photo and caption together, the caption alone, and the photo alone.</div>
+  </section>
+</div>
+
+<script>
+const $ = (s) => document.querySelector(s);
+const SRC = { image: "the photo", text: "the caption", both: "photo and caption", neither: "neither" };
+const IMG = [["actor_visible", "Actor shown"], ["actor_removed", "Actor cropped out"]];
+const CAP = [["expressed", "Caption names the actor"], ["omitted", "Caption leaves them out"]];
+let examples = [], fam = null, imgCond = "actor_visible", capCond = "expressed";
+const seen = {};   // instance id -> {source, hit}
+
+const esc = (s) => String(s ?? "").replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const find = (f, i, c) => examples.find(e => e.family_id === f && e.image_condition === i && e.caption_condition === c);
+const expectText = (e) => e.expected_source === "neither" ? "Not identifiable" : "From " + SRC[e.expected_source];
+
+function drawSets() {
+  const fams = [...new Set(examples.map(e => e.family_id))];
+  $("#sets").innerHTML = fams.map(f => {
+    const e = find(f, "actor_visible", "expressed");
+    return `<button class="set" data-f="${f}" aria-pressed="${f === fam}"><img src="${e.image_url}" alt=""><span>${f}</span></button>`;
+  }).join("");
+  document.querySelectorAll(".set").forEach(b => b.onclick = () => { fam = b.dataset.f; draw(); });
+}
+
+function drawMatrix() {
+  let h = `<div class="mh corner">Expected answer for each version</div>`;
+  for (const [c, label] of CAP) h += `<div class="mh">${label}<q>${esc(find(fam, "actor_visible", c).caption)}</q></div>`;
+  for (const [i, ilabel] of IMG) {
+    h += `<div class="rowh"><img src="${find(fam, i, "expressed").image_url}" alt="">${ilabel}</div>`;
+    for (const [c] of CAP) {
+      const e = find(fam, i, c), s = seen[e.id], on = i === imgCond && c === capCond;
+      const got = s ? `<span class="got ${s.hit ? "hit" : "miss"}">Model said ${SRC[s.source] || "no answer"}</span>` : `<span class="got"></span>`;
+      h += `<button class="cell" data-i="${i}" data-c="${c}" aria-pressed="${on}">
+              <span class="val">${expectText(e)}</span>${got}</button>`;
+    }
+  }
+  $("#matrix").innerHTML = h;
+  document.querySelectorAll(".cell").forEach(b => b.onclick = () => { imgCond = b.dataset.i; capCond = b.dataset.c; draw(); });
+}
+
+function drawStimulus() {
+  const e = find(fam, imgCond, capCond);
+  $("#st-img").src = e.image_url;
+  $("#st-cap").textContent = "“" + e.caption + "”";
+  $("#st-act").textContent = "Action: " + e.action;
+}
+
+function draw() { drawSets(); drawMatrix(); drawStimulus(); }
+
+function row(name, r, expected, merged) {
+  if (!r) return "";
+  if (r.error) return `<tr><td class="input">${name}</td><td colspan="2" class="error">${esc(r.error)}</td></tr>`;
+  const p = r.parsed || {};
+  if (!p.parse_ok) return `<tr><td class="input">${name}</td><td colspan="2" class="error">The answer could not be read.</td></tr>`;
+  const who = p.actor ? esc(p.actor) : `<span class="none">No one identified</span>`;
+  const quote = p.text_evidence ? `<small>Quotes: “${esc(p.text_evidence)}”</small>` : "";
+  const sees = p.visual_evidence ? `<small>Sees: ${esc(p.visual_evidence)}</small>` : "";
+  const miss = expected && p.evidence_source !== expected;
+  return `<tr class="${merged ? "merged" : ""}"><td class="input">${name}</td><td>${who}${quote}${sees}</td>
+          <td class="${miss ? "miss" : ""}">${SRC[p.evidence_source] || esc(p.evidence_source)}${expected ? `<small>Expected: ${SRC[expected]}</small>` : ""}</td></tr>`;
+}
+
+function showResult(d) {
+  const lvl = d.flags.some(f => f.level === "bad") ? "bad" : d.flags.some(f => f.level === "warn") ? "warn" : "ok";
+  const head = { ok: "The answer holds up.", warn: "The answer needs a second look.", bad: "The answer claims more than its inputs show." }[lvl];
+  const list = lvl === "ok" ? "" : `<ul>${d.flags.filter(f => f.level !== "ok").map(f => `<li>${esc(f.text)}</li>`).join("")}</ul>`;
+  const x = d.expected;
+  const expected = x ? `<p class="expected">Expected: <b>${x.source === "neither" ? "no one identifiable" : esc(x.actor)}</b>, from <b>${SRC[x.source]}</b>.</p>` : "";
+  const fullName = { multimodal: "Photo and caption", image_only: "Photo", caption_only: "Caption" }[d.full.mode];
+  let rows = row(fullName, d.full, x && x.source);
+  if (d.full.mode === "multimodal") {
+    rows += row("Caption alone", d.caption_only, x && x.caption_only) + row("Photo alone", d.image_only, x && x.image_only);
+    if (d.reconciled) rows += row("Merged from the two", { parsed: d.reconciled }, x && x.source, true);
+  }
+  const raw = ["full", "caption_only", "image_only"].filter(k => d[k]).map(k => `${k}:\n${d[k].raw || d[k].error || ""}`).join("\n\n");
+  $("#result").innerHTML = `<div class="reveal">
+    <div class="verdict ${lvl}"><strong>${head}</strong>${list}</div>${expected}
+    <table><thead><tr><th>Input</th><th>Who it names</th><th>Where it says that came from</th></tr></thead><tbody>${rows}</tbody></table>
+    <details class="raw"><summary>Raw model answers</summary><pre>${esc(raw)}</pre></details></div>`;
+}
+
+let STATIC = null;   // saved answers (data.json) when hosted without a server
+
+async function ask(url, fd, btn) {
+  fd.append("model", $("#model").value);
+  if (STATIC) {
+    const d = (STATIC.results[fd.get("model")] || {})[fd.get("example_id")];
+    if (!d) { $("#result").innerHTML = `<div class="waiting error">No saved answer for this version.</div>`; return; }
+    showResult(d);
+    return d;
+  }
+  btn.disabled = true; const label = btn.textContent; btn.textContent = "Asking (3 calls)…";
+  try {
+    const resp = await fetch(url, { method: "POST", body: fd });
+    const d = await resp.json();
+    if (!resp.ok) throw new Error(d.detail || resp.statusText);
+    showResult(d);
+    return d;
+  } catch (err) {
+    $("#result").innerHTML = `<div class="waiting error">${esc(err.message)}</div>`;
+  } finally { btn.disabled = false; btn.textContent = label; }
+}
+
+$("#ask-ex").onclick = async () => {
+  const e = find(fam, imgCond, capCond), fd = new FormData();
+  fd.append("example_id", e.id);
+  const d = await ask("/api/analyze/example", fd, $("#ask-ex"));
+  const p = d && d.full && d.full.parsed;
+  if (p && p.parse_ok) { seen[e.id] = { source: p.evidence_source, hit: p.evidence_source === e.expected_source }; drawMatrix(); }
+};
+
+$("#up-img").onchange = () => {
+  const f = $("#up-img").files[0];
+  $("#up-prev").hidden = !f; if (f) $("#up-prev").src = URL.createObjectURL(f);
+};
+$("#ask-up").onclick = () => {
+  const act = $("#up-act").value.trim();
+  if (!act) { $("#up-act").focus(); $("#result").innerHTML = `<div class="waiting error">Describe the action first, for example “handing a box of water to a woman”.</div>`; return; }
+  const fd = new FormData(), f = $("#up-img").files[0];
+  if (f) fd.append("image", f);
+  fd.append("caption", $("#up-cap").value); fd.append("action", act);
+  ask("/api/analyze/upload", fd, $("#ask-up"));
+};
+
+(async () => {
+  try { const r = await fetch("data.json"); if (r.ok) STATIC = await r.json(); } catch (_) {}
+  let models;
+  if (STATIC) {
+    models = STATIC.models; examples = STATIC.examples;
+    $("#own").hidden = true;
+    $("#ask-ex").textContent = "Show the model's answer";
+    $(".waiting").innerHTML = `Choose a version on the left and press <b>Show the model's answer</b>. These are saved answers from the pilot runs:
+      each one has three parts, photo and caption together, the caption alone, and the photo alone.`;
+    $("#model").onchange = () => { for (const k in seen) delete seen[k]; drawMatrix(); };
+  } else {
+    models = await (await fetch("/api/models")).json();
+    examples = await (await fetch("/api/examples")).json();
+  }
+  $("#model").innerHTML = models.map(m => `<option value="${m.id}">${esc(m.label)}</option>`).join("");
+  if (!examples.length) { $("#matrix").innerHTML = `<p class="error">No pilot examples found. Build them with build-conditions first.</p>`; $("#stimulus").hidden = true; return; }
+  fam = examples[0].family_id; draw();
+})();
+</script>
+</body>
+</html>
