@@ -256,6 +256,28 @@
                 </div>
               </article>
 
+              <article class="card card--hover animate-in" style="--delay: 45ms;">
+                <div class="stack">
+                  <p class="card-heading">Who Did It? — Do Vision-Language Models Invent a Missing Actor?</p>
+                  <p class="card-copy">Fall 2026 · NLP course project · TRACE AI Lab, Saint Louis University</p>
+                  <p class="card-copy">
+                    News captions often leave out who did something. This project tests whether vision-language models recover the missing person from the photo or make one up. Each photo comes in four versions: the actor shown or cropped out, crossed with a caption that names them or leaves them out. The answer is checked against what each input supports on its own.
+                  </p>
+                  <ul class="project-feature-list">
+                    <li>Controlled 2×2 benchmark built from public-domain news photos; a blind second annotator agreed with all 12 crop labels</li>
+                    <li>Three-call evidence check (photo + caption, caption alone, photo alone) that flags answers claiming support their inputs do not give</li>
+                    <li>Evaluated Qwen3-VL and Gemma-VL on the National Research Platform; a hand check showed an apparent 4/6 false-visual-support rate was a parser artifact (0/6 by hand)</li>
+                    <li>FastAPI demo with a static export of the saved model answers (link below)</li>
+                  </ul>
+                  <div class="meta-row">
+                    <span class="tag">Vision-Language Models</span><span class="tag">LLM Evaluation</span><span class="tag">NLP</span><span class="tag">FastAPI</span><span class="tag">Python</span>
+                  </div>
+                  <div class="project-card__links">
+                    <a class="inline-link" href="/ear-demo/index.html" target="_blank" rel="noopener noreferrer">Try the demo <span aria-hidden="true">&rarr;</span></a>
+                  </div>
+                </div>
+              </article>
+
               <article class="card card--hover animate-in" style="--delay: 60ms;">
                 <div class="stack">
                   <p class="card-heading">Gundata: Agentic AI</p>
